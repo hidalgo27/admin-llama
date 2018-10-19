@@ -29,7 +29,7 @@
                     </a>
                 </div>
 
-                <ul class="unstyled inbox-pagination mb-0">
+                <ul class="list-unstyled inbox-pagination mb-0">
                     <li><span>1-50 of 234</span></li>
                     <li>
                         <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
@@ -43,16 +43,31 @@
     </div>
     <form id="h_form" role="form">
         {{csrf_field()}}
-        <div class="row my-3">
-            <div class="col">
+        <div class="row my-3 align-items-center">
+
                 @foreach($inquire as $inquires)
                 @endforeach
-                    @foreach($package->where('id', $inquires->id_paquetes) as $packages)
-                        <h3 class="font-weight-bold">{{$packages->codigo}}: {{$packages->titulo}} X{{$inquires->traveller}}</h3>
+                @foreach($package->where('id', $inquires->id_paquetes) as $packages)
+                @endforeach
+
+            <div class="col">
+                <select class="selectpicker w-100" data-live-search="true" onchange="location = this.value;">
+                    @foreach($package as $pack)
+                        @if ($pack->id == $inquires->id_paquetes)
+                            @php
+                                $selected = "selected";
+                            @endphp
+                        @else
+                            @php
+                                $selected = "";
+                            @endphp
+                        @endif
+                        <option data-tokens="ketchup mustard" value="{{$inquires->id}}-{{$pack->id}}" {{$selected}}>{{$pack->codigo}}: {{$pack->titulo}}</option>
                     @endforeach
+                </select>
             </div>
         </div>
-        <div class="row mb-5">
+        <div class="row my-5">
             <div class="col">
                 <div class="card">
                     <div class="card-body">
@@ -138,20 +153,28 @@
 
                             <div class="col-12">
                                 <div class="md-form mt-0">
-                                    <textarea type="text" id="h_resumen" name="h_resumen[]" class="md-textarea md-textarea-auto form-control py-2 editor-{{$itin->id}}" rows="2">@php echo $itin->resumen @endphp</textarea>
+                                    {{--<textarea type="hidden" id="h_resumen" name="h_resumen[]" class="md-textarea md-textarea-auto form-control py-2 editor-{{$itin->id}}" rows="2">@php echo $itin->resumen @endphp</textarea>--}}
+                                    <input type="hidden" id="h_resumen" name="h_resumen[]" value="{{$itin->resumen}}">
+                                    @php echo $itin->resumen @endphp
                                     {{--<label for="text2">Auto-resizing textarea</label>--}}
                                 </div>
                             </div>
                         </div>
-                            @push('scripts')
-                                <script>
-                                    ClassicEditor
-                                        .create( document.querySelector( '.editor-{{$itin->id}}' ) )
-                                        .catch( error => {
-                                            console.error( error );
-                                        } );
-                                </script>
-                            @endpush
+                            {{--@push('scripts')--}}
+                                {{--<script>--}}
+                                    {{--ClassicEditor--}}
+                                        {{--.create( document.querySelector( '.editor-{{$itin->id}}' ) )--}}
+                                        {{--.then( editor => {--}}
+                                            {{--console.log( 'Editor was initialized', editor );--}}
+                                            {{--hresumen{{$itin->dia}} = editor;--}}
+                                        {{--} )--}}
+                                        {{--.catch( error => {--}}
+                                            {{--console.error( error );--}}
+                                        {{--} );--}}
+
+                                    {{--alert(hresumen1);--}}
+                                {{--</script>--}}
+                            {{--@endpush--}}
                             @endforeach
                     </div>
                 </div>
@@ -448,7 +471,6 @@
 
             var filter=/^[A-Za-z][A-Za-z0-9_.]*@[A-Za-z0-9_]+.[A-Za-z0-9_.]+[A-za-z]$/;
 
-
             var s_day = document.getElementsByName('h_day[]');
             var $day = "";
             for (var i = 0, l = s_day.length; i < l; i++) {
@@ -475,7 +497,6 @@
                 }
             }
             s_resumen = $resumen.substring(0,$resumen.length-3);
-
 
             var s_destinations = document.getElementsByName('destinations[]');
             var $destinations = "";
@@ -528,20 +549,7 @@
             var s_precio_4 = $("#h_precio_4").val();
             var s_precio_5 = $("#h_precio_5").val();
 
-            // var s_message = $("#h_message").val();
             var s_message = myEditor.getData();
-            // var s_number = $(".number:checked").val();
-            // var s_number_t = $("#h_number").val();
-            // var s_duration = $(".duration:checked").val();
-            // var s_duration_t = $("#h_duration").val();
-            // var s_date = $('#h_date').val();
-            // var s_tel = $('#h_tel').val();
-            // var s_name = $('#h_name').val();
-            // var s_email = $('#h_email').val();
-            // var s_comment = $('#h_comment').val();
-
-            {{--var s_countryData = $("#h_tel").intlTelInput("getSelectedCountryData").name;--}}
-            {{--var s_codeData = $("#h_tel").intlTelInput("getNumber");--}}
 
 
             if (filter.test(s_email)){
@@ -612,5 +620,7 @@
                 $("#h_submit").removeAttr("disabled");
             }
         }
+
+        $('.selectpicker').selectpicker();
     </script>
 @endpush

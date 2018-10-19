@@ -39,7 +39,16 @@
   top: 65px !important;
   z-index: 1 !important;
 }
-
+.filter-option-inner-inner{
+    font-size: 16px;
+    font-weight: bold;
+}
+.bootstrap-select .dropdown-menu{
+    min-width: 100% !important;
+}
+.bootstrap-select button{
+    margin: 0 !important;
+}
 //Mail design
 .mail-box {
   border-collapse: collapse;
@@ -401,12 +410,11 @@ ul.inbox-pagination li {
     width: 60px;
   }
 }
-ul {
-  list-style-type: none;
-  padding: 0px;
-  margin: 0px;
-}
-
+//ul {
+//  list-style-type: none;
+//  padding: 0px;
+//  margin: 0px;
+//}
 
 
 //

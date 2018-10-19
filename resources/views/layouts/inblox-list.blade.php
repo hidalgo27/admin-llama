@@ -27,7 +27,7 @@
                 {{--</a>--}}
             {{--</div>--}}
 
-            <ul class="unstyled inbox-pagination mb-0">
+            <ul class="list-unstyled inbox-pagination mb-0">
                 <li><span>1-50 of 234</span></li>
                 <li>
                     <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>

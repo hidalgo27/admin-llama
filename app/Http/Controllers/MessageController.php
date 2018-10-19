@@ -95,10 +95,38 @@ class MessageController extends Controller
                 'otros' => $otros,
                 'messagess' => $messagess
             ], function ($messaje) use ($from) {
-                $messaje->to($from, 'GotoPeru')
-                    ->subject('GOTOPERU')
+                $messaje->to($from, 'Llama Tours')
+                    ->subject('Llama Tours')
                     /*->attach('ruta')*/
-                    ->from('info@gotoperu.com', 'GotoPeru');
+                    ->from('info@llama.tours', 'Llama Tours');
+            });
+
+            Mail::send(['html' => 'notifications.page.message'], [
+                'day' => $day,
+                'title' => $title,
+                'resumen' => $resumen,
+                'destinations' => $destinations,
+                'incluye' => $incluye,
+                'noincluye' => $noincluye,
+                'email' => $email,
+                'name' => $name,
+                'category' => $category,
+                'date' => $date,
+                'phone' => $phone,
+                'precio_ch' => $precio_ch,
+                'precio_sh' => $precio_sh,
+                'precio_2' => $precio_2,
+                'precio_3' => $precio_3,
+                'precio_4' => $precio_4,
+                'precio_5' => $precio_5,
+
+                'otros' => $otros,
+                'messagess' => $messagess
+            ], function ($messaje) use ($email) {
+                $messaje->to($email, 'Llama Tours')
+                    ->subject('Llama Tours')
+                    /*->attach('ruta')*/
+                    ->from('info@llama.tours', 'Llama Tours');
             });
 
 

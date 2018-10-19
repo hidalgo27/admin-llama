@@ -54,7 +54,7 @@
 
                         <tr>
                             <td style="padding:20px 0px 20px 50px">
-                                <p style="font-size:18px"><b>Estimado(a) </b>: {{$name}}</p>
+                                <p style="font-size:18px"><b>Estimado(a) </b>: {{ucwords(strtolower($name))}}</p>
                                 <p>@php echo $messagess @endphp</p>
                                 <p style="font-weight: bold; font-size: 18px">PAQUETE: GTP500 Peru Fascinante</p>
                                 <center style="background:#f6f6f6; padding:10px;">
@@ -129,12 +129,12 @@
                                         </tbody>
                                     </table>
                                 </center>
-                                <hr>
-                                <center style="margin-top: 0px; width: 100%">
+
+                                <center style="margin-top: 30px; width: 100%">
                                     <table style="width: 100%; border: 1px solid #cccccc;">
                                         <thead>
-                                        <tr style="background: #0d0d0d; color: white; text-align: center">
-                                            <th>Economic</th>
+                                        <tr style="background: #8d8d8d; color: white; text-align: center">
+                                            <th style="padding: 10px;">Economic</th>
                                             <th>Tourist</th>
                                             <th>Superior</th>
                                             <th>Luxury</th>
@@ -158,7 +158,7 @@
                                     <table style="width: 100%">
                                         <tbody>
                                         <tr>
-                                            <td style="text-align:left">
+                                            <td style="text-align:left; float: left; width: 50%">
                                                 <p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Incluye:</p>
                                                 <ul>
                                                     @php
@@ -169,7 +169,7 @@
                                                     @endforeach
                                                 </ul>
                                             </td>
-                                            <td style="text-align:left">
+                                            <td style="text-align:left; float: left; width: 100%">
                                                 <p style="font-weight: bold; font-size: 16px; color: #ff9800 ">No Incluye:</p>
                                                 <ul>
                                                     @php

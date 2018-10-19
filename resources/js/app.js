@@ -8,6 +8,7 @@
 require('./bootstrap');
 require('mdbootstrap/js/bootstrap');
 require('mdbootstrap/js/mdb');
+require('bootstrap-select/js/bootstrap-select');
 // require('@ckeditor/ckeditor5-build-classic/build/ckeditor');
 window.Vue = require('vue');
 
