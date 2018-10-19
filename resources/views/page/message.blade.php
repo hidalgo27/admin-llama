@@ -394,7 +394,6 @@
                             </div>
                         </div>
                         <div class="">
-
                             <textarea class="form-control editor-mess w-100" aria-label="With textarea" id="h_message" rows="5"></textarea>
                         </div>
                     </div>
@@ -429,6 +428,10 @@
     <script>
         ClassicEditor
             .create( document.querySelector( '.editor-mess' ) )
+            .then( editor => {
+                console.log( 'Editor was initialized', editor );
+                myEditor = editor;
+            } )
             .catch( error => {
                 console.error( error );
             } );
@@ -525,8 +528,8 @@
             var s_precio_4 = $("#h_precio_4").val();
             var s_precio_5 = $("#h_precio_5").val();
 
-            var s_message = $("#h_message").val();
-
+            // var s_message = $("#h_message").val();
+            var s_message = myEditor.getData();
             // var s_number = $(".number:checked").val();
             // var s_number_t = $("#h_number").val();
             // var s_duration = $(".duration:checked").val();

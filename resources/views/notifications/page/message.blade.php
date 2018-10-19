@@ -66,14 +66,17 @@
                                                     $day = explode('*', $day);
                                                     $title = explode('*', $title);
                                                     $resumen = explode('*', $resumen);
+                                                    $count  = count($day);
                                                 @endphp
-                                                @foreach($day as $days)
-
-                                                            <p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia {{$days}}: Titulo</p>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur cumque dolore ducimus enim excepturi exercitationem natus. Aliquam deleniti doloremque dolorum eaque eligendi facilis libero minima, nulla possimus quis, soluta voluptatum.</p>
-{{--                                                            @php echo $resumen; @endphp--}}
-
-                                                @endforeach
+                                                @for ($i = 0; $i < $count; $i++)
+                                                    <p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia {{$day[$i]}}: {{$title[$i]}}</p>
+                                                    @php echo $resumen[$i]; @endphp
+                                                @endfor
+                                                {{--@foreach($day as $days)--}}
+                                                    {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia {{$days}}: {{$count}}</p>--}}
+                                                    {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur cumque dolore ducimus enim excepturi exercitationem natus. Aliquam deleniti doloremque dolorum eaque eligendi facilis libero minima, nulla possimus quis, soluta voluptatum.</p>--}}
+                                                    {{--                                                            @php echo $resumen; @endphp--}}
+                                                {{--@endforeach--}}
                                                 {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia 1: Titulo del paquete</p>--}}
                                                 {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur beatae culpa distinctio, enim fuga harum inventore ipsum, iste minima natus nobis pariatur, quia quo quos reiciendis similique totam veritatis voluptatibus?</p>--}}
                                                 {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia 1: Titulo del paquete</p>--}}
