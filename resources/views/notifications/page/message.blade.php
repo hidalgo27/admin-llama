@@ -56,7 +56,7 @@
                             <td style="padding:20px 0px 20px 50px">
                                 <p style="font-size:18px"><b>Estimado(a) </b>: {{ucwords(strtolower($name))}}</p>
                                 <p>@php echo $messagess @endphp</p>
-                                <p style="font-weight: bold; font-size: 18px">PAQUETE: GTP500 Peru Fascinante</p>
+                                <p style="font-weight: bold; font-size: 18px">PAQUETE: {{$codigo_p}} {{$titulo_p}}</p>
                                 <center style="background:#f6f6f6; padding:10px;">
                                     <table>
                                         <tbody>

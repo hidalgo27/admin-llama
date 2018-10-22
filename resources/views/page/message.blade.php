@@ -50,6 +50,7 @@
                 @foreach($package->where('id', $inquires->id_paquetes) as $packages)
                 @endforeach
 
+
             <div class="col">
                 <select class="selectpicker w-100" data-live-search="true" onchange="location = this.value;" id="h_package">
                     @foreach($package as $pack)
@@ -594,6 +595,8 @@
                     "txt_otros" : s_otros,
 
                     "txt_message" : s_message,
+
+                    "txt_package" : s_package,
 
                 };
                 $.ajax({

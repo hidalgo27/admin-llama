@@ -64,6 +64,19 @@ class MessageController extends Controller
 
         $messagess = $_POST['txt_message'];
 
+        $package = $_POST['txt_package'];
+
+        $package = explode('-', $package);
+
+        $package = TPaquete::where('id', $package[1])->get();
+
+        foreach ($package as $packages)
+        {
+            $codigo_p = $packages->codigo;
+            $titulo_p = $packages->titulo;
+        }
+
+
 
         try {
 //            Mail::send(['html' => 'notifications.page.client-form-design'], ['name' => $name], function ($messaje) use ($email, $name) {
@@ -94,6 +107,8 @@ class MessageController extends Controller
                 'precio_5' => $precio_5,
 
                 'otros' => $otros,
+                'codigo_p' => $codigo_p,
+                'titulo_p' => $titulo_p,
                 'messagess' => $messagess
             ], function ($messaje) use ($from) {
                 $messaje->to($from, 'Llama Tours')
@@ -122,6 +137,8 @@ class MessageController extends Controller
                 'precio_5' => $precio_5,
 
                 'otros' => $otros,
+                'codigo_p' => $codigo_p,
+                'titulo_p' => $titulo_p,
                 'messagess' => $messagess
             ], function ($messaje) use ($email) {
                 $messaje->to($email, 'Llama Tours')
