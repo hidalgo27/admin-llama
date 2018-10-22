@@ -51,9 +51,9 @@
                 @endforeach
 
             <div class="col">
-                <select class="selectpicker w-100" data-live-search="true" onchange="location = this.value;">
+                <select class="selectpicker w-100" data-live-search="true" onchange="location = this.value;" id="h_package">
                     @foreach($package as $pack)
-                        @if ($pack->id == $inquires->id_paquetes)
+                        @if ($pack->id == $id_paquete)
                             @php
                                 $selected = "selected";
                             @endphp
@@ -551,6 +551,9 @@
 
             var s_message = myEditor.getData();
 
+            var s_package = $("#h_package").val();
+
+            alert(s_package);
 
             if (filter.test(s_email)){
                 sendMail = "true";
