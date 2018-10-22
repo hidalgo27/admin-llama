@@ -185,7 +185,7 @@
                                     </table>
                                 </center>
 
-                                <hr>
+                                <hr style="margin: 40px 0">
                                 <center style="margin-top: 0px; width: 100%">
                                     <p style="font-weight: bold; font-size: 16px; color: #181818; text-align: left ">UPGRADES OPCIONALES</p>
                                     <table style="width: 100%;">
@@ -203,7 +203,7 @@
                                         </tr>
                                     </table>
                                 </center>
-                                <hr style="margin: 40px">
+                                <hr style="margin: 40px 0">
                                 <center style="background:#f6f6f6; padding:10px;">
                                     <table style="width: 100%">
                                         <tbody>
@@ -248,7 +248,7 @@
                                         </tbody>
                                     </table>
                                 </center>
-                                <hr style="margin: 40px">
+                                <hr style="margin: 40px 0">
                                 <center style="margin-top: 0px; width: 100%">
                                     <table style="width: 100%;">
                                         <tr>
