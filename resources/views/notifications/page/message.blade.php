@@ -43,7 +43,7 @@
             <tbody>
             <tr>
                 <td bgcolor="#ffffff" width="100%" valign="top">
-                    <table cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff" align="center" width="90%">
+                    <table cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff" align="center" width="100%">
                         <tbody>
                         <tr bgcolor="#ffffff">
                             <td valign="top" style="padding:10px 35px 0 35px;color:#ffffff">
@@ -215,7 +215,7 @@
                                                 <a href=""><img src="{{asset('images/redes/facebook.png')}}" alt="" style="width: 20px;"></a>
                                                 <a href=""><img src="{{asset('images/redes/instagram.png')}}" alt="" style="width: 20px;"></a>
                                             </td>
-                                            <td style="text-align:left; float: left; width: 70%; padding-left: 20px;">
+                                            <td style="text-align:left; float: left; padding-left: 20px;">
                                                 <table style="width: 100%">
                                                     <tr>
                                                         <td style="width: 15%">
