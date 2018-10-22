@@ -123,7 +123,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="padding: 10px; background: #8d8d8d; color: white; border-radius: 0 0 5px" colspan="2">* Si desea puede reservar las actividades por separado</td>
+                                            <td style="padding: 10px; background: #ff9800; color: white; border-radius: 0 0 5px" colspan="2">* Si desea puede reservar las actividades por separado</td>
                                             <td></td>
                                         </tr>
                                         </tbody>
@@ -151,7 +151,7 @@
 
                                         </tbody>
                                     </table>
-                                    <p style="text-align: left">***Precios basados en doble acomodación</p>
+                                    <p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>
                                 </center>
 
                                 <center style="background:#f6f6f6; padding:10px;">
@@ -204,12 +204,57 @@
                                     </table>
                                 </center>
                                 <hr style="margin: 40px">
+                                <center style="background:#f6f6f6; padding:10px;">
+                                    <table style="width: 100%">
+                                        <tbody>
+                                        <tr>
+                                            <td style="text-align:center; float: left; width: 30%">
+                                                <img src="https://scontent.flim5-1.fna.fbcdn.net/v/t1.0-9/31739806_993323907486435_1000599518791598080_n.jpg?_nc_cat=107&_nc_ht=scontent.flim5-1.fna&oh=dda0f6ac807e45167c5b86def2b4f24f&oe=5C3C4E5A" alt="" style="width: 100%">
+                                                <p style="font-size: 10px; text-align: center; margin: 0">TA. {{$name_a}}</p>
+                                                <a href=""><img src="{{asset('images/redes/whatsapp.png')}}" alt="" style="width: 20px;"></a>
+                                                <a href=""><img src="{{asset('images/redes/facebook.png')}}" alt="" style="width: 20px;"></a>
+                                                <a href=""><img src="{{asset('images/redes/instagram.png')}}" alt="" style="width: 20px;"></a>
+                                            </td>
+                                            <td style="text-align:left; float: left; width: 70%; padding-left: 20px;">
+                                                <table style="width: 100%">
+                                                    <tr>
+                                                        <td style="width: 15%">
+                                                            <img src="{{asset('images/logo-llama2.png')}}" alt="" style="width: 100%">
+                                                        </td>
+                                                        <td style="width: 85%; padding-left: 10px;">
+                                                            <p style="font-weight: bold; font-size: 18px; color: #ff9800; margin: 0;">{{$name_a}}</p>
+                                                            <p style="font-size: 12px;">Travel Advisor</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2"><hr></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Phone:</td>
+                                                        <td>+51 84 206 931</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Site:</td>
+                                                        <td><a href="llama.tours">llama.tours</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Email:</td>
+                                                        <td><a href="mailto:karina@llama.tours">{{$email_a}}</a></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </center>
+                                <hr style="margin: 40px">
                                 <center style="margin-top: 0px; width: 100%">
                                     <table style="width: 100%;">
                                         <tr>
                                             <td style="text-align:center;font-size:12px;padding:5px 15px;color:#999999">
                                                 <p>
-                                                    Visite Perú, tierra de los incas
+                                                    Visite Perú, tierra de los incas.
                                                 </p>
                                                 <img class="CToWUd" width="250" alt="logo llama tours" src="http://llama.tours/images/logo-llama.png" style="vertical-align:top;max-width:220px">
                                             </td>

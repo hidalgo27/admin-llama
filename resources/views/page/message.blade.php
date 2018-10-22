@@ -406,15 +406,21 @@
                                 <b>to:</b>
                             </div>
                             <div class="col">
-                                hidalgo@gmail.com
+                                {{--hidalgo@gmail.com--}}
+                                <div class="add-label">cliente@gmail.com</div>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-2">
                                 <b>from:</b>
                             </div>
-                            <div class="col">
-                                karina@llama.tours
+                            <div class="col-4">
+                                {{--karina@llama.tours--}}
+                                <select class="custom-select custom-select-sm" onchange="advisor()" id="h_advisor">
+                                    {{--<option selected>Open this select menu</option>--}}
+                                    <option value="0">karina@llama.tours</option>
+                                    <option value="1">paola@llama.tours</option>
+                                </select>
                             </div>
                         </div>
                         <div class="">
@@ -424,6 +430,124 @@
                 </div>
             </div>
         </div>
+
+        <div class="row mt-4 karina">
+            <div class="col">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-4 text-center">
+                                <img src="https://scontent.flim5-1.fna.fbcdn.net/v/t1.0-9/31739806_993323907486435_1000599518791598080_n.jpg?_nc_cat=107&_nc_ht=scontent.flim5-1.fna&oh=dda0f6ac807e45167c5b86def2b4f24f&oe=5C3C4E5A" alt="paola" class="w-100 img-thumbnail">
+                                <p class="small">TA. Karina Ñahui</p>
+                            </div>
+                            <div class="col">
+                                <div class="row align-items-center">
+                                    <div class="col-2">
+                                        <img src="{{asset('images/logo-llama2.png')}}" alt="" class="w-100">
+                                    </div>
+                                    <div class="col">
+                                        <h5 class="font-weight-bold orange-text mb-0">Karina Ñahui</h5>
+                                        <span class="small">Travel Advisor</span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-3">
+                                        Phone:
+                                    </div>
+                                    <div class="col">
+                                        +51 84 206 931
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        Site:
+                                    </div>
+                                    <div class="col">
+                                        <a href="llana.tours">llama.tours</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        Email:
+                                    </div>
+                                    <div class="col">
+                                        karina@llama.tours
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href=""><img src="{{asset('images/redes/whatsapp.png')}}" alt="" width="30"></a>
+                                        <a href=""><img src="{{asset('images/redes/facebook.png')}}" alt="" width="30"></a>
+                                        <a href=""><img src="{{asset('images/redes/instagram.png')}}" alt="" width="30"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4 paola d-none">
+            <div class="col">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-4 text-center">
+                                <img src="https://scontent.flim5-1.fna.fbcdn.net/v/t1.0-9/31739806_993323907486435_1000599518791598080_n.jpg?_nc_cat=107&_nc_ht=scontent.flim5-1.fna&oh=dda0f6ac807e45167c5b86def2b4f24f&oe=5C3C4E5A" alt="paola" class="w-100 img-thumbnail">
+                                <p class="small">TA. Karina Ñahui</p>
+                            </div>
+                            <div class="col">
+                                <div class="row align-items-center">
+                                    <div class="col-2">
+                                        <img src="{{asset('images/logo-llama2.png')}}" alt="" class="w-100">
+                                    </div>
+                                    <div class="col">
+                                        <h5 class="font-weight-bold orange-text mb-0">Paola</h5>
+                                        <span class="small">Travel Advisor</span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-3">
+                                        Phone:
+                                    </div>
+                                    <div class="col">
+                                        +51 84 206 931
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        Site:
+                                    </div>
+                                    <div class="col">
+                                        <a href="llana.tours">llama.tours</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        Email:
+                                    </div>
+                                    <div class="col">
+                                        paola@llama.tours
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href=""><img src="{{asset('images/redes/whatsapp.png')}}" alt="" width="30"></a>
+                                        <a href=""><img src="{{asset('images/redes/facebook.png')}}" alt="" width="30"></a>
+                                        <a href=""><img src="{{asset('images/redes/instagram.png')}}" alt="" width="30"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row mt-4">
             <div class="col">
                 <a href="" class="btn btn-light float-left">Save Mail <i class="fa fa-save"></i></a>
@@ -445,11 +569,233 @@
             </div>
         </div>
 
+        {{--<div class="row">--}}
+            {{--<div class="col">--}}
+                {{--<div class="container">--}}
+                    {{--<div style="font-family:Lato,sans-serif;font-size:15px;color:#666666" marginheight="0" marginwidth="0">--}}
+                        {{--<table cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff" align="center" width="100%" color="#666666">--}}
+                            {{--<tbody>--}}
+                            {{--<tr>--}}
+                                {{--<td bgcolor="#ffffff" width="100%" valign="top">--}}
+                                    {{--<table cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff" align="center" width="90%">--}}
+                                        {{--<tbody>--}}
+                                        {{--<tr bgcolor="#ffffff">--}}
+                                            {{--<td valign="top" style="padding:10px 35px 0 35px;color:#ffffff">--}}
+                                                {{--<img class="CToWUd" width="350" alt="logo llama tours" src="http://llama.tours/images/logo-llama.png" style="vertical-align:top;max-width:220px">--}}
+                                            {{--</td>--}}
+
+                                        {{--</tr>--}}
+
+                                        {{--<tr>--}}
+                                            {{--<td style="padding:20px 0px 20px 50px">--}}
+                                                {{--<p style="font-size:18px"><b>Estimado(a) </b>:sdsdsd</p>--}}
+                                                {{--<p>sdsdsd</p>--}}
+                                                {{--<p style="font-weight: bold; font-size: 18px">PAQUETE: sdsdsd</p>--}}
+                                                {{--<center style="background:#f6f6f6; padding:10px;">--}}
+                                                    {{--<table>--}}
+                                                        {{--<tbody>--}}
+                                                        {{--<tr>--}}
+                                                            {{--<td style="text-align:left">--}}
+                                                               {{--sdsdsd--}}
+                                                                {{--@foreach($day as $days)--}}
+                                                                {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia {{$days}}: {{$count}}</p>--}}
+                                                                {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur cumque dolore ducimus enim excepturi exercitationem natus. Aliquam deleniti doloremque dolorum eaque eligendi facilis libero minima, nulla possimus quis, soluta voluptatum.</p>--}}
+                                                                {{--                                                            @php echo $resumen; @endphp--}}
+                                                                {{--@endforeach--}}
+                                                                {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia 1: Titulo del paquete</p>--}}
+                                                                {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur beatae culpa distinctio, enim fuga harum inventore ipsum, iste minima natus nobis pariatur, quia quo quos reiciendis similique totam veritatis voluptatibus?</p>--}}
+                                                                {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia 1: Titulo del paquete</p>--}}
+                                                                {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur beatae culpa distinctio, enim fuga harum inventore ipsum, iste minima natus nobis pariatur, quia quo quos reiciendis similique totam veritatis voluptatibus?</p>--}}
+                                                                {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia 1: Titulo del paquete</p>--}}
+                                                                {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur beatae culpa distinctio, enim fuga harum inventore ipsum, iste minima natus nobis pariatur, quia quo quos reiciendis similique totam veritatis voluptatibus?</p>--}}
+                                                            {{--</td>--}}
+                                                        {{--</tr>--}}
+                                                        {{--</tbody>--}}
+                                                    {{--</table>--}}
+                                                {{--</center>--}}
+
+                                                {{--<center style="margin-top: 30px; width: 100%">--}}
+                                                    {{--<p style="font-weight: bold; font-size: 18px; text-align: left">PRECIOS</p>--}}
+                                                    {{--<table style="width: 100%">--}}
+                                                        {{--<tbody>--}}
+                                                        {{--<tr style="text-align: center;">--}}
+                                                            {{--<td style="text-align:center">--}}
+                                                                {{--<table style="text-align: center; width: 100%; background:#f6f6f6;">--}}
+                                                                    {{--<tr style="text-align: center">--}}
+                                                                        {{--<td style="font-size: 20px; font-weight: bold;">Con Hoteles</td>--}}
+                                                                    {{--</tr>--}}
+                                                                    {{--<tr style="text-align: center">--}}
+                                                                        {{--<td style="font-weight: bold; font-size: 25px">$sdsdusd</td>--}}
+                                                                    {{--</tr>--}}
+                                                                    {{--<tr style="text-align: center">--}}
+                                                                        {{--<td>Price per person.</td>--}}
+                                                                    {{--</tr>--}}
+                                                                {{--</table>--}}
+                                                            {{--</td>--}}
+                                                            {{--<td style="text-align:center">--}}
+                                                                {{--<table style="text-align: center; width: 100%; background:#f6f6f6;">--}}
+                                                                    {{--<tr style="text-align: center">--}}
+                                                                        {{--<td style="font-size: 20px; font-weight: bold;">Sin Hoteles</td>--}}
+                                                                    {{--</tr>--}}
+                                                                    {{--<tr style="text-align: center">--}}
+                                                                        {{--<td style="font-weight: bold; font-size: 25px">$sdsdusd</td>--}}
+                                                                    {{--</tr>--}}
+                                                                    {{--<tr style="text-align: center">--}}
+                                                                        {{--<td>Price per person.</td>--}}
+                                                                    {{--</tr>--}}
+                                                                {{--</table>--}}
+
+                                                            {{--</td>--}}
+                                                        {{--</tr>--}}
+                                                        {{--<tr>--}}
+                                                            {{--<td style="padding: 10px; background: #ff9800; color: white; border-radius: 0 0 5px" colspan="2">* Si desea puede reservar las actividades por separado</td>--}}
+                                                            {{--<td></td>--}}
+                                                        {{--</tr>--}}
+                                                        {{--</tbody>--}}
+                                                    {{--</table>--}}
+                                                {{--</center>--}}
+
+                                                {{--<center style="margin-top: 30px; width: 100%">--}}
+                                                    {{--<table style="width: 100%; border: 1px solid #cccccc;">--}}
+                                                        {{--<thead>--}}
+                                                        {{--<tr style="background: #8d8d8d; color: white; text-align: center">--}}
+                                                            {{--<th style="padding: 10px;">Economic</th>--}}
+                                                            {{--<th>Tourist</th>--}}
+                                                            {{--<th>Superior</th>--}}
+                                                            {{--<th>Luxury</th>--}}
+                                                        {{--</tr>--}}
+                                                        {{--</thead>--}}
+                                                        {{--<tbody>--}}
+
+                                                        {{--<tr style="text-align: center;">--}}
+                                                            {{--<td style="font-weight: bold; color: #181818">$1232usd</td>--}}
+                                                            {{--<td style="font-weight: bold; color: #181818">sadasdusd</td>--}}
+                                                            {{--<td style="font-weight: bold; color: #181818">$asasusd</td>--}}
+                                                            {{--<td style="font-weight: bold; color: #181818">$sdsdusd</td>--}}
+                                                        {{--</tr>--}}
+
+                                                        {{--</tbody>--}}
+                                                    {{--</table>--}}
+                                                    {{--<p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>--}}
+                                                {{--</center>--}}
+
+                                                {{--<center style="background:#f6f6f6; padding:10px;">--}}
+                                                    {{--<table style="width: 100%">--}}
+                                                        {{--<tbody>--}}
+                                                        {{--<tr>--}}
+                                                            {{--<td style="text-align:left; float: left; width: 50%">--}}
+                                                                {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Incluye:</p>--}}
+                                                                {{--<ul>--}}
+                                                                    {{--sdsdsd--}}
+                                                                {{--</ul>--}}
+                                                            {{--</td>--}}
+                                                            {{--<td style="text-align:left; float: left; width: 100%">--}}
+                                                                {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">No Incluye:</p>--}}
+                                                                {{--<ul>--}}
+                                                                    {{--sdsdsd--}}
+                                                                {{--</ul>--}}
+                                                            {{--</td>--}}
+                                                        {{--</tr>--}}
+                                                        {{--</tbody>--}}
+                                                    {{--</table>--}}
+                                                {{--</center>--}}
+
+                                                {{--<hr>--}}
+                                                {{--<center style="margin-top: 0px; width: 100%">--}}
+                                                    {{--<p style="font-weight: bold; font-size: 16px; color: #181818; text-align: left ">UPGRADES OPCIONALES</p>--}}
+                                                    {{--<table style="width: 100%;">--}}
+                                                        {{--<tr style="text-align: left;">--}}
+                                                            {{--<td style="font-weight: bold; color: #181818">--}}
+                                                                {{--<ul>--}}
+                                                                    {{--sdsdsd--}}
+                                                                {{--</ul>--}}
+                                                            {{--</td>--}}
+                                                        {{--</tr>--}}
+                                                    {{--</table>--}}
+                                                {{--</center>--}}
+                                                {{--<hr style="margin: 40px 0">--}}
+
+                                                {{--<center style="background:#f6f6f6; padding:10px;">--}}
+                                                    {{--<table style="width: 100%">--}}
+                                                        {{--<tbody>--}}
+                                                        {{--<tr>--}}
+                                                            {{--<td style="text-align:center; float: left; width: 30%">--}}
+                                                                {{--<img src="https://scontent.flim5-1.fna.fbcdn.net/v/t1.0-9/31739806_993323907486435_1000599518791598080_n.jpg?_nc_cat=107&_nc_ht=scontent.flim5-1.fna&oh=dda0f6ac807e45167c5b86def2b4f24f&oe=5C3C4E5A" alt="" style="width: 100%">--}}
+                                                                {{--<p style="font-size: 10px; text-align: center; margin: 0">TA. Karina Ñahui</p>--}}
+                                                                {{--<a href=""><img src="{{asset('images/redes/whatsapp.png')}}" alt="" style="width: 20px;"></a>--}}
+                                                                {{--<a href=""><img src="{{asset('images/redes/facebook.png')}}" alt="" style="width: 20px;"></a>--}}
+                                                                {{--<a href=""><img src="{{asset('images/redes/instagram.png')}}" alt="" style="width: 20px;"></a>--}}
+                                                            {{--</td>--}}
+                                                            {{--<td style="text-align:left; float: left; width: 70%; padding-left: 20px;">--}}
+                                                                {{--<table style="width: 100%">--}}
+                                                                    {{--<tr>--}}
+                                                                        {{--<td style="width: 15%">--}}
+                                                                            {{--<img src="{{asset('images/logo-llama2.png')}}" alt="" style="width: 100%">--}}
+                                                                        {{--</td>--}}
+                                                                        {{--<td style="width: 85%; padding-left: 10px;">--}}
+                                                                            {{--<p style="font-weight: bold; font-size: 18px; color: #ff9800; margin: 0;">Karina Ñahui</p>--}}
+                                                                            {{--<p style="font-size: 12px;">Travel Advisor</p>--}}
+                                                                        {{--</td>--}}
+                                                                    {{--</tr>--}}
+                                                                    {{--<tr>--}}
+                                                                        {{--<td colspan="2"><hr></td>--}}
+                                                                        {{--<td></td>--}}
+                                                                    {{--</tr>--}}
+                                                                    {{--<tr>--}}
+                                                                        {{--<td>Phone:</td>--}}
+                                                                        {{--<td>+51 84 206 931</td>--}}
+                                                                    {{--</tr>--}}
+                                                                    {{--<tr>--}}
+                                                                        {{--<td>Site:</td>--}}
+                                                                        {{--<td><a href="llama.tours">llama.tours</a></td>--}}
+                                                                    {{--</tr>--}}
+                                                                    {{--<tr>--}}
+                                                                        {{--<td>Email:</td>--}}
+                                                                        {{--<td><a href="mailto:karina@llama.tours">karina@llama.tours</a></td>--}}
+                                                                    {{--</tr>--}}
+                                                                {{--</table>--}}
+                                                            {{--</td>--}}
+                                                        {{--</tr>--}}
+                                                        {{--</tbody>--}}
+                                                    {{--</table>--}}
+                                                {{--</center>--}}
+                                                {{--<hr style="margin: 40px 0 ">--}}
+                                                {{--<center style="margin-top: 0px; width: 100%">--}}
+                                                    {{--<table style="width: 100%;">--}}
+                                                        {{--<tr>--}}
+                                                            {{--<td style="text-align:center;font-size:12px;padding:5px 15px;color:#999999">--}}
+                                                                {{--<p>--}}
+                                                                    {{--Visite Perú, tierra de los incas.--}}
+                                                                {{--</p>--}}
+                                                                {{--<img class="CToWUd" width="250" alt="logo llama tours" src="http://llama.tours/images/logo-llama.png" style="vertical-align:top;max-width:220px">--}}
+                                                            {{--</td>--}}
+                                                        {{--</tr>--}}
+                                                    {{--</table>--}}
+                                                {{--</center>--}}
+
+
+                                            {{--</td>--}}
+                                        {{--</tr>--}}
+
+
+                                        {{--</tbody>--}}
+                                    {{--</table>--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--</tbody>--}}
+                        {{--</table>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+
+            {{--</div>--}}
+        {{--</div>--}}
+
     </form>
 @endsection
 
 @push('scripts')
     <script>
+        //editor
         ClassicEditor
             .create( document.querySelector( '.editor-mess' ) )
             .then( editor => {
@@ -459,6 +805,23 @@
             .catch( error => {
                 console.error( error );
             } );
+
+        //email
+        $("#h_email").on('keyup', function() {
+            $('.add-label:last').text( $(this).val() );
+        });
+        //advisor
+        function advisor() {
+            var s_advisor = $("#h_advisor").val();
+            if (s_advisor == '0'){
+                $(".karina").removeClass('d-none');
+                $(".paola").addClass('d-none');
+            }else{
+                $(".paola").removeClass('d-none');
+                $(".karina").addClass('d-none');
+            }
+
+        }
 
         //formulario design
         function message(){
@@ -553,6 +916,7 @@
             var s_message = myEditor.getData();
 
             var s_package = $("#h_package").val();
+            var s_advisor = $("#h_advisor").val();
 
             if (filter.test(s_email)){
                 sendMail = "true";
@@ -597,6 +961,7 @@
                     "txt_message" : s_message,
 
                     "txt_package" : s_package,
+                    "txt_advisor" : s_advisor,
 
                 };
                 $.ajax({

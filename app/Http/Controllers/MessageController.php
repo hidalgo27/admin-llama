@@ -70,6 +70,16 @@ class MessageController extends Controller
 
         $package = TPaquete::where('id', $package[1])->get();
 
+        $advisor = $_POST['txt_advisor'];
+
+        if ($advisor==0){
+            $email_a = "karina@llama.tours";
+            $name_a = "Karina Ñahui";
+        }else{
+            $email_a = "paola@llama.tours";
+            $name_a = "Paola";
+        }
+
         foreach ($package as $packages)
         {
             $codigo_p = $packages->codigo;
@@ -109,6 +119,10 @@ class MessageController extends Controller
                 'otros' => $otros,
                 'codigo_p' => $codigo_p,
                 'titulo_p' => $titulo_p,
+
+                'email_a' => $email_a,
+                'name_a' => $name_a,
+
                 'messagess' => $messagess
             ], function ($messaje) use ($from) {
                 $messaje->to($from, 'Llama Tours')
@@ -139,6 +153,10 @@ class MessageController extends Controller
                 'otros' => $otros,
                 'codigo_p' => $codigo_p,
                 'titulo_p' => $titulo_p,
+
+                'email_a' => $email_a,
+                'name_a' => $name_a,
+
                 'messagess' => $messagess
             ], function ($messaje) use ($email) {
                 $messaje->to($email, 'Llama Tours')
