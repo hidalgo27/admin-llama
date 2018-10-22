@@ -553,8 +553,6 @@
 
             var s_package = $("#h_package").val();
 
-            alert(s_package);
-
             if (filter.test(s_email)){
                 sendMail = "true";
             } else{
