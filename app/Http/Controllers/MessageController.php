@@ -34,6 +34,18 @@ class MessageController extends Controller
         return view('page.message', ['inquire'=>$inquire, 'package'=>$package, 'itinerary'=>$itinerary, 'price'=>$price, 'paquete_destino'=>$paquete_destino, 'incluye'=>$incluye, 'no_incluye'=>$no_incluye, 'otro'=>$otro, 'id_paquete'=>$id_paquete]);
     }
 
+    public  function inquire_package()
+    {
+        $idinquire = $_POST['txt_idinquire'];
+        $idpackage = $_POST['txt_idpackage'];
+
+        $p_inquire = TInquire::FindOrFail($idinquire);
+        $p_inquire->id_paquetes = $idpackage;
+        if ($p_inquire->save()){
+            return ($idinquire.'-'.$idpackage);
+        }
+    }
+
     public function message_mail()
     {
         $from = 'hidalgochpnce@gmail.com';

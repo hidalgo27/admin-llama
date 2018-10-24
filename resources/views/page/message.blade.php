@@ -43,31 +43,54 @@
     </div>
     <form id="h_form" role="form">
         {{csrf_field()}}
-        <div class="row my-3 align-items-center">
+        @foreach($inquire as $inquires)
+        @endforeach
 
-                @foreach($inquire as $inquires)
-                @endforeach
-                @foreach($package->where('id', $inquires->id_paquetes) as $packages)
-                @endforeach
-
-
-            <div class="col">
-                <select class="selectpicker w-100" data-live-search="true" onchange="location = this.value;" id="h_package">
-                    @foreach($package as $pack)
-                        @if ($pack->id == $id_paquete)
-                            @php
-                                $selected = "selected";
-                            @endphp
-                        @else
-                            @php
-                                $selected = "";
-                            @endphp
-                        @endif
-                        <option data-tokens="ketchup mustard" value="{{$inquires->id}}-{{$pack->id}}" {{$selected}}>{{$pack->codigo}}: {{$pack->titulo}}</option>
-                    @endforeach
-                </select>
+        @if ($inquires->id_paquetes == 0)
+            <div class="row mt-3 justify-content-center d-none" id="sp_alert">
+                <div class="col-10">
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <b class="d-block"><strong>Asignacion completa</strong> de paquete. :)</b>
+                    </div>
+                </div>
             </div>
-        </div>
+            <div class="row my-3 align-items-center">
+                <div class="col">
+                    <select class="selectpicker w-100" data-live-search="true" onchange="save_package({{$inquires->id}})" id="sp_package">
+                        @foreach($package as $pack)
+                            <option data-tokens="ketchup mustard" value="{{$pack->id}}">{{$pack->codigo}}: {{$pack->titulo}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <i class="fas fa-spinner fa-pulse fa-2x text-primary d-none" id="sp_load"></i>
+        @else
+
+            <div class="row my-3 align-items-center">
+                    @foreach($package->where('id', $inquires->id_paquetes) as $packages)
+                    @endforeach
+
+                <div class="col">
+                    <select class="selectpicker w-100" data-live-search="true" onchange="location = this.value;" id="h_package">
+                        @foreach($package as $pack)
+                            @if ($pack->id == $id_paquete)
+                                @php
+                                    $selected = "selected";
+                                @endphp
+                            @else
+                                @php
+                                    $selected = "";
+                                @endphp
+                            @endif
+                            <option data-tokens="ketchup mustard" value="{{$inquires->id}}-{{$pack->id}}" {{$selected}}>{{$pack->codigo}}: {{$pack->titulo}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        @endif
         <div class="row my-5">
             <div class="col">
                 <div class="card">
@@ -81,7 +104,6 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-
 
                             <div class="row">
                                 <div class="col md-form form-group">
@@ -123,6 +145,7 @@
                 </div>
             </div>
         </div>
+        @if ($inquires->id_paquetes > 0)
         <div class="row mb-5">
             <div class="col">
                 <div class="card">
@@ -568,7 +591,7 @@
                 </div>
             </div>
         </div>
-
+        @endif
         {{--<div class="row">--}}
             {{--<div class="col">--}}
                 {{--<div class="container">--}}
@@ -795,6 +818,7 @@
 
 @push('scripts')
     <script>
+
         //editor
         ClassicEditor
             .create( document.querySelector( '.editor-mess' ) )
@@ -991,5 +1015,46 @@
         }
 
         $('.selectpicker').selectpicker();
+
+        function save_package(id){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('[name="_token"]').val()
+                }
+            });
+            var s_idinquire = id;
+            var s_idpackage = $("#sp_package").val();
+
+            if(s_idinquire > 0){
+                var datos = {
+                    "txt_idinquire" : s_idinquire,
+                    "txt_idpackage" : s_idpackage
+                };
+                $.ajax({
+                    data:  datos,
+                    url:   "{{route('update_inquire_p_path')}}",
+                    type:  'post',
+
+                    beforeSend: function () {
+
+                        // $('#de_send').removeClass('show');
+                        $("#sp_package").addClass('d-none');
+                        $("#sp_load").removeClass('d-none');
+                    },
+                    success:  function (response) {
+                        $('#h_form')[0].reset();
+                        $("#sp_load").addClass('d-none');
+                        $('#sp_alert').removeClass('d-none');
+                        $('#sp_package').removeClass('d-none');
+                        // $("#h_alert b").html(response);
+                        $("#sp_alert").fadeIn('slow');
+                        window.location = response;
+                    }
+                });
+            } else{
+                $('#sp_package').removeClass('d-none');
+            }
+
+        }
     </script>
 @endpush

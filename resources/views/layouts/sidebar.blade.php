@@ -6,7 +6,7 @@
     </a>
 
     <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item active waves-effect">
+        <a href="{{route('home_path')}}" class="list-group-item active waves-effect">
             <i class="fa fa-inbox mr-3"></i>Inquires
         </a>
         <a href="#" class="list-group-item list-group-item-action waves-effect">

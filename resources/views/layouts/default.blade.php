@@ -136,7 +136,7 @@
                             </div>
                             <ul class="inbox-nav inbox-divider">
                                 <li class="active">
-                                    <a href="#"><i class="fa fa-inbox"></i> Inbox <span class="badge badge-danger float-right">2</span></a>
+                                    <a href="{{route('home_path')}}"><i class="fa fa-inbox"></i> Inbox <span class="badge badge-danger float-right">2</span></a>
 
                                 </li>
                                 <li>

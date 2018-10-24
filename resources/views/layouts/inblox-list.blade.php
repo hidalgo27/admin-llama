@@ -41,20 +41,32 @@
 </div>
 <table class="table table-inbox table-hover">
     <tbody>
-    @foreach($inquire as $inquires)
-        @foreach($package->where('id', $inquires->id_paquetes) as $packages)
-            <tr class='clickable-row unread' data-href='{{route('message_path', [$inquires->id, $packages->id])}}'>
+    @foreach($inquire->sortBy('created_at') as $inquires)
+        @if ($inquires->id_paquetes == 0)
+            <tr class='clickable-row unread' data-href='{{route('message_path', [$inquires->id, 0])}}'>
                 <td class="inbox-small-cells">
                     <input type="checkbox" class="mail-checkbox">
                 </td>
                 <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
                 <td class="view-message  dont-show">{{$inquires->email}} X {{$inquires->traveller}}</td>
-
-                    <td class="view-message ">{{ucwords($packages->codigo)}}: {{ucwords(strtolower($packages->titulo))}} | {{$inquires->duration}} days</td>
-                <td class="view-message  inbox-small-cells"><i class="fa fa-paperclip"></i></td>
+                <td class="view-message font-weight-light font-italic">Sin paquete seleccionado</td>
+                <td class="view-message  inbox-small-cells"></td>
                 <td class="view-message  text-right">{{$inquires->time}}</td>
             </tr>
-        @endforeach
+        @else
+            @foreach($package->where('id', $inquires->id_paquetes) as $packages)
+                <tr class='clickable-row unread' data-href='{{route('message_path', [$inquires->id, $packages->id])}}'>
+                    <td class="inbox-small-cells">
+                        <input type="checkbox" class="mail-checkbox">
+                    </td>
+                    <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
+                    <td class="view-message  dont-show">{{$inquires->email}} X {{$inquires->traveller}}</td>
+                        <td class="view-message ">{{ucwords($packages->codigo)}}: {{ucwords(strtolower($packages->titulo))}} | {{$inquires->duration}} days</td>
+                    <td class="view-message  inbox-small-cells"><i class="fa fa-paperclip"></i></td>
+                    <td class="view-message  text-right">{{$inquires->time}}</td>
+                </tr>
+            @endforeach
+        @endif
     @endforeach
     {{--<tr class="unread">--}}
         {{--<td class="inbox-small-cells">--}}

@@ -29,3 +29,8 @@ Route::post('/message/send', [
     'uses' => 'MessageController@message_mail',
     'as' => 'message_mail_path',
 ]);
+Route::post('/message/inquire_package', [
+    'uses' => 'MessageController@inquire_package',
+    'as' => 'update_inquire_p_path',
+]);
+
