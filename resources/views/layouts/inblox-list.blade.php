@@ -41,7 +41,29 @@
 </div>
 <table class="table table-inbox table-hover">
     <tbody>
-    @foreach($inquire->sortBy('created_at') as $inquires)
+    @foreach($inquire->sortByDesc('created_at') as $inquires)
+        @switch($inquires->idusuario)
+            @case(0)
+                @php $badged = "badge-danger"; @endphp
+            @break
+
+            @case(1)
+                @php $badged = "badge-success"; @endphp
+            @break
+
+            @case(2)
+                @php $badged = "badge-warning"; @endphp
+            @break
+
+            @default
+                @php $badged = "badge-dark"; @endphp
+        @endswitch
+        {{--@if($inquires->idusuario == 0)--}}
+            {{--@php $badged = "badge-dark"; @endphp--}}
+        {{--@else--}}
+            {{--@php $badged = "badge-dark"; @endphp--}}
+        {{--@endif--}}
+
         @if ($inquires->id_paquetes == 0)
             <tr class='clickable-row unread' data-href='{{route('message_path', [$inquires->id, 0])}}'>
                 <td class="inbox-small-cells">
@@ -50,7 +72,7 @@
                 <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
                 <td class="view-message  dont-show">{{$inquires->email}} X {{$inquires->traveller}}</td>
                 <td class="view-message font-weight-light font-italic">Sin paquete seleccionado</td>
-                <td class="view-message  inbox-small-cells"></td>
+                <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->nombre}}</span></td>
                 <td class="view-message  text-right">{{$inquires->time}}</td>
             </tr>
         @else
@@ -62,7 +84,7 @@
                     <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
                     <td class="view-message  dont-show">{{$inquires->email}} X {{$inquires->traveller}}</td>
                         <td class="view-message ">{{ucwords($packages->codigo)}}: {{ucwords(strtolower($packages->titulo))}} | {{$inquires->duration}} days</td>
-                    <td class="view-message  inbox-small-cells"><i class="fa fa-paperclip"></i></td>
+                    <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->nombre}}</span></td>
                     <td class="view-message  text-right">{{$inquires->time}}</td>
                 </tr>
             @endforeach

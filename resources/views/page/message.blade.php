@@ -430,7 +430,7 @@
                             </div>
                             <div class="col">
                                 {{--hidalgo@gmail.com--}}
-                                <div class="add-label">cliente@gmail.com</div>
+                                <div class="add-label">{{$inquires->email}}</div>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -443,6 +443,7 @@
                                     {{--<option selected>Open this select menu</option>--}}
                                     <option value="0">karina@llama.tours</option>
                                     <option value="1">paola@llama.tours</option>
+                                    <option value="2">martin@llama.tours</option>
                                 </select>
                             </div>
                         </div>
@@ -454,122 +455,64 @@
             </div>
         </div>
 
-        <div class="row mt-4 karina">
-            <div class="col">
-                <div class="card bg-light">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-4 text-center">
-                                <img src="https://scontent.flim5-1.fna.fbcdn.net/v/t1.0-9/31739806_993323907486435_1000599518791598080_n.jpg?_nc_cat=107&_nc_ht=scontent.flim5-1.fna&oh=dda0f6ac807e45167c5b86def2b4f24f&oe=5C3C4E5A" alt="paola" class="w-100 img-thumbnail">
-                                <p class="small">TA. Karina Ñahui</p>
-                            </div>
-                            <div class="col">
-                                <div class="row align-items-center">
-                                    <div class="col-2">
-                                        <img src="{{asset('images/logo-llama2.png')}}" alt="" class="w-100">
-                                    </div>
-                                    <div class="col">
-                                        <h5 class="font-weight-bold orange-text mb-0">Karina Ñahui</h5>
-                                        <span class="small">Travel Advisor</span>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-3">
-                                        Phone:
-                                    </div>
-                                    <div class="col">
-                                        +51 84 206 931
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3">
-                                        Site:
-                                    </div>
-                                    <div class="col">
-                                        <a href="llana.tours">llama.tours</a>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3">
-                                        Email:
-                                    </div>
-                                    <div class="col">
-                                        karina@llama.tours
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col">
-                                        <a href=""><img src="{{asset('images/redes/whatsapp.png')}}" alt="" width="30"></a>
-                                        <a href=""><img src="{{asset('images/redes/facebook.png')}}" alt="" width="30"></a>
-                                        <a href=""><img src="{{asset('images/redes/instagram.png')}}" alt="" width="30"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-4 paola d-none">
-            <div class="col">
-                <div class="card bg-light">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-4 text-center">
-                                <img src="https://scontent.flim5-1.fna.fbcdn.net/v/t1.0-9/31739806_993323907486435_1000599518791598080_n.jpg?_nc_cat=107&_nc_ht=scontent.flim5-1.fna&oh=dda0f6ac807e45167c5b86def2b4f24f&oe=5C3C4E5A" alt="paola" class="w-100 img-thumbnail">
-                                <p class="small">TA. Karina Ñahui</p>
-                            </div>
-                            <div class="col">
-                                <div class="row align-items-center">
-                                    <div class="col-2">
-                                        <img src="{{asset('images/logo-llama2.png')}}" alt="" class="w-100">
-                                    </div>
-                                    <div class="col">
-                                        <h5 class="font-weight-bold orange-text mb-0">Paola</h5>
-                                        <span class="small">Travel Advisor</span>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-3">
-                                        Phone:
-                                    </div>
-                                    <div class="col">
-                                        +51 84 206 931
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3">
-                                        Site:
-                                    </div>
-                                    <div class="col">
-                                        <a href="llana.tours">llama.tours</a>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3">
-                                        Email:
-                                    </div>
-                                    <div class="col">
-                                        paola@llama.tours
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col">
-                                        <a href=""><img src="{{asset('images/redes/whatsapp.png')}}" alt="" width="30"></a>
-                                        <a href=""><img src="{{asset('images/redes/facebook.png')}}" alt="" width="30"></a>
-                                        <a href=""><img src="{{asset('images/redes/instagram.png')}}" alt="" width="30"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {{--<div class="row mt-4 karina">--}}
+            {{--<div class="col">--}}
+                {{--<div class="card bg-light">--}}
+                    {{--<div class="card-body">--}}
+                        {{--<div class="row">--}}
+                            {{--<div class="col-4 text-center">--}}
+                                {{--<img src="https://scontent.flim5-1.fna.fbcdn.net/v/t1.0-9/31739806_993323907486435_1000599518791598080_n.jpg?_nc_cat=107&_nc_ht=scontent.flim5-1.fna&oh=dda0f6ac807e45167c5b86def2b4f24f&oe=5C3C4E5A" alt="paola" class="w-100 img-thumbnail">--}}
+                                {{--<p class="small">TA. Karina Ñahui</p>--}}
+                            {{--</div>--}}
+                            {{--<div class="col">--}}
+                                {{--<div class="row align-items-center">--}}
+                                    {{--<div class="col-2">--}}
+                                        {{--<img src="{{asset('images/logo-llama2.png')}}" alt="" class="w-100">--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col">--}}
+                                        {{--<h5 class="font-weight-bold orange-text mb-0">Karina Ñahui</h5>--}}
+                                        {{--<span class="small">Travel Advisor</span>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<hr>--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-3">--}}
+                                        {{--Phone:--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col">--}}
+                                        {{--+51 84 206 931--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-3">--}}
+                                        {{--Site:--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col">--}}
+                                        {{--<a href="llana.tours">llama.tours</a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-3">--}}
+                                        {{--Email:--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col">--}}
+                                        {{--karina@llama.tours--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<hr>--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col">--}}
+                                        {{--<a href=""><img src="{{asset('images/redes/whatsapp.png')}}" alt="" width="30"></a>--}}
+                                        {{--<a href=""><img src="{{asset('images/redes/facebook.png')}}" alt="" width="30"></a>--}}
+                                        {{--<a href=""><img src="{{asset('images/redes/instagram.png')}}" alt="" width="30"></a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
 
         <div class="row mt-4">
             <div class="col">

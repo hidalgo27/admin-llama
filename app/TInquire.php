@@ -8,4 +8,9 @@ class TInquire extends Model
 {
     //
     protected $table = "tinquires";
+
+    public function usuario()
+    {
+        return $this->belongsTo(TUsuario::class, 'idusuario');
+    }
 }
