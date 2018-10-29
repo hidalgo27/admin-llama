@@ -460,29 +460,29 @@
                     <div class="card rgba-deep-purple-light">
                         <div class="card-body">
                             <h5 class="font-weight-bold orange-text">farewell</h5>
-                            <div class="row">
-                                <div class="col-2">
-                                    <b>to:</b>
-                                </div>
-                                <div class="col">
+                            {{--<div class="row">--}}
+                                {{--<div class="col-2">--}}
+                                    {{--<b>to:</b>--}}
+                                {{--</div>--}}
+                                {{--<div class="col">--}}
                                     {{--hidalgo@gmail.com--}}
-                                    <div class="add-label">{{$inquires->email}}</div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-2">
-                                    <b>from:</b>
-                                </div>
-                                <div class="col-4">
+                                    {{--<div class="add-label">{{$inquires->email}}</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="row mb-3">--}}
+                                {{--<div class="col-2">--}}
+                                    {{--<b>from:</b>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-4">--}}
                                     {{--karina@llama.tours--}}
-                                    <select class="custom-select custom-select-sm" onchange="advisor()" id="h_advisor">
+                                    {{--<select class="custom-select custom-select-sm" onchange="advisor()" id="h_advisor">--}}
                                         {{--<option selected>Open this select menu</option>--}}
-                                        <option value="0">karina@llama.tours</option>
-                                        <option value="1">paola@llama.tours</option>
-                                        <option value="2">martin@llama.tours</option>
-                                    </select>
-                                </div>
-                            </div>
+                                        {{--<option value="0">karina@llama.tours</option>--}}
+                                        {{--<option value="1">paola@llama.tours</option>--}}
+                                        {{--<option value="2">martin@llama.tours</option>--}}
+                                    {{--</select>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
                             <div class="">
                                 <textarea class="form-control editor-mess-2 w-100" aria-label="With textarea" id="h_message" rows="5"></textarea>
                             </div>

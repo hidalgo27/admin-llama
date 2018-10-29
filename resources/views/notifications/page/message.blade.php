@@ -210,7 +210,7 @@
                                         <tr>
                                             <td style="text-align:left;">
                                                 {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">***</p>--}}
-                                                <b class="font-weight-bold h5">***</b> <p>@php echo $messagess2 @endphp</p>
+                                                 <p><b class="font-weight-bold h5">***</b> @php echo $messagess2 @endphp</p>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -218,7 +218,7 @@
                                 </center>
                                 <hr style="margin: 40px 0">
                                 <center style="background:#f6f6f6; padding:10px;">
-                                    <table style="width: 100%">
+                                    <table style="width: 40%">
                                         <tbody>
                                         <tr>
                                             <td style="text-align:center; float: left; width: 30%">
