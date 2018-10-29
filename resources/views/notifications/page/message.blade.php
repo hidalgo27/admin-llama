@@ -228,7 +228,7 @@
                                                 <a href=""><img src="{{asset('images/redes/facebook.png')}}" alt="" style="width: 20px;"></a>
                                                 <a href=""><img src="{{asset('images/redes/instagram.png')}}" alt="" style="width: 20px;"></a>
                                             </td>
-                                            <td style="text-align:left; float: left; padding-left: 20px;">
+                                            <td style="text-align:left; float: left; padding-left: 20px; width: 70%;">
                                                 <table style="width: 100%">
                                                     <tr>
                                                         <td style="width: 15%">
