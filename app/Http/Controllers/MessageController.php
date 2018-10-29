@@ -75,6 +75,7 @@ class MessageController extends Controller
         $otros = $_POST['txt_otros'];
 
         $messagess = $_POST['txt_message'];
+        $messagess2 = $_POST['txt_message2'];
 
         $package = $_POST['txt_package'];
 
@@ -135,7 +136,8 @@ class MessageController extends Controller
                 'email_a' => $email_a,
                 'name_a' => $name_a,
 
-                'messagess' => $messagess
+                'messagess' => $messagess,
+                'messagess2' => $messagess2
             ], function ($messaje) use ($from) {
                 $messaje->to($from, 'Llama Tours')
                     ->subject('Llama Tours')
@@ -169,7 +171,8 @@ class MessageController extends Controller
                 'email_a' => $email_a,
                 'name_a' => $name_a,
 
-                'messagess' => $messagess
+                'messagess' => $messagess,
+                'messagess2' => $messagess2
             ], function ($messaje) use ($email) {
                 $messaje->to($email, 'Llama Tours')
                     ->subject('Llama Tours')

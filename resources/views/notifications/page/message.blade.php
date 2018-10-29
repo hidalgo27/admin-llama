@@ -57,7 +57,7 @@
                                 <p style="font-size:18px"><b>Estimado(a) </b>: {{ucwords(strtolower($name))}}</p>
                                 <p>@php echo $messagess @endphp</p>
                                 <p style="font-weight: bold; font-size: 18px">PAQUETE: {{$codigo_p}} {{$titulo_p}}</p>
-                                <center style="background:#f6f6f6; padding:10px;">
+                                <center style="background:#f6f6f6; padding:10px; -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);border: 0;">
                                     <table>
                                         <tbody>
                                         <tr>
@@ -123,7 +123,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="padding: 10px; background: #ff9800; color: white; border-radius: 0 0 5px" colspan="2">* Si desea puede reservar las actividades por separado</td>
+                                            <td style="padding: 10px; background: #ff9800; color: white; border-radius: 0 0 5px" colspan="2">* Si desea puede reservar las actividades por separado.</td>
                                             <td></td>
                                         </tr>
                                         </tbody>
@@ -154,7 +154,7 @@
                                     <p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>
                                 </center>
 
-                                <center style="background:#f6f6f6; padding:10px;">
+                                <center style="background:#f6f6f6; margin: 40px 0; padding:10px; -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);border: 0;">
                                     <table style="width: 100%">
                                         <tbody>
                                         <tr>
@@ -201,6 +201,19 @@
                                                 </ul>
                                             </td>
                                         </tr>
+                                    </table>
+                                </center>
+                                <hr style="margin: 40px 0">
+                                <center style="background:#d6e9f8; padding:10px; -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);border: 0;">
+                                    <table style="width: 100%">
+                                        <tbody>
+                                        <tr>
+                                            <td style="text-align:left;">
+                                                {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">***</p>--}}
+                                                <b class="font-weight-bold h5">***</b> <p>@php echo $messagess2 @endphp</p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
                                     </table>
                                 </center>
                                 <hr style="margin: 40px 0">

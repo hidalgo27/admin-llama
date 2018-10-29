@@ -93,7 +93,7 @@
         @endif
         <div class="row my-5">
             <div class="col">
-                <div class="card">
+                <div class="card yellow">
                     <div class="card-body">
                         {{$inquires->comments}}
                     </div>
@@ -421,9 +421,9 @@
         </div>
         <div class="row mt-4">
             <div class="col">
-                <div class="card">
+                <div class="card rgba-deep-orange-light">
                     <div class="card-body">
-                        <h5 class="font-weight-bold orange-text">Travel Advisor Message</h5>
+                        <h5 class="font-weight-bold orange-text">Presentation</h5>
                         <div class="row">
                             <div class="col-2">
                                 <b>to:</b>
@@ -454,6 +454,42 @@
                 </div>
             </div>
         </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="card rgba-deep-purple-light">
+                        <div class="card-body">
+                            <h5 class="font-weight-bold orange-text">farewell</h5>
+                            <div class="row">
+                                <div class="col-2">
+                                    <b>to:</b>
+                                </div>
+                                <div class="col">
+                                    {{--hidalgo@gmail.com--}}
+                                    <div class="add-label">{{$inquires->email}}</div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-2">
+                                    <b>from:</b>
+                                </div>
+                                <div class="col-4">
+                                    {{--karina@llama.tours--}}
+                                    <select class="custom-select custom-select-sm" onchange="advisor()" id="h_advisor">
+                                        {{--<option selected>Open this select menu</option>--}}
+                                        <option value="0">karina@llama.tours</option>
+                                        <option value="1">paola@llama.tours</option>
+                                        <option value="2">martin@llama.tours</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="">
+                                <textarea class="form-control editor-mess-2 w-100" aria-label="With textarea" id="h_message" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         {{--<div class="row mt-4 karina">--}}
             {{--<div class="col">--}}
@@ -557,7 +593,7 @@
                                                 {{--<p style="font-size:18px"><b>Estimado(a) </b>:sdsdsd</p>--}}
                                                 {{--<p>sdsdsd</p>--}}
                                                 {{--<p style="font-weight: bold; font-size: 18px">PAQUETE: sdsdsd</p>--}}
-                                                {{--<center style="background:#f6f6f6; padding:10px;">--}}
+                                                {{--<center style="background:#f6f6f6; padding:10px; -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);border: 0;">--}}
                                                     {{--<table>--}}
                                                         {{--<tbody>--}}
                                                         {{--<tr>--}}
@@ -566,7 +602,7 @@
                                                                 {{--@foreach($day as $days)--}}
                                                                 {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia {{$days}}: {{$count}}</p>--}}
                                                                 {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur cumque dolore ducimus enim excepturi exercitationem natus. Aliquam deleniti doloremque dolorum eaque eligendi facilis libero minima, nulla possimus quis, soluta voluptatum.</p>--}}
-                                                                {{--                                                            @php echo $resumen; @endphp--}}
+                                                                                                                            {{--@php echo $resumen; @endphp--}}
                                                                 {{--@endforeach--}}
                                                                 {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia 1: Titulo del paquete</p>--}}
                                                                 {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur beatae culpa distinctio, enim fuga harum inventore ipsum, iste minima natus nobis pariatur, quia quo quos reiciendis similique totam veritatis voluptatibus?</p>--}}
@@ -645,7 +681,7 @@
                                                     {{--<p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>--}}
                                                 {{--</center>--}}
 
-                                                {{--<center style="background:#f6f6f6; padding:10px;">--}}
+                                                {{--<center style="background:#f6f6f6; padding:10px; -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);border: 0;">--}}
                                                     {{--<table style="width: 100%">--}}
                                                         {{--<tbody>--}}
                                                         {{--<tr>--}}
@@ -666,7 +702,7 @@
                                                     {{--</table>--}}
                                                 {{--</center>--}}
 
-                                                {{--<hr>--}}
+                                                {{--<hr style="margin: 40px 0">--}}
                                                 {{--<center style="margin-top: 0px; width: 100%">--}}
                                                     {{--<p style="font-weight: bold; font-size: 16px; color: #181818; text-align: left ">UPGRADES OPCIONALES</p>--}}
                                                     {{--<table style="width: 100%;">--}}
@@ -680,7 +716,19 @@
                                                     {{--</table>--}}
                                                 {{--</center>--}}
                                                 {{--<hr style="margin: 40px 0">--}}
-
+                                                {{--<center style="background:#d6e9f8; padding:10px; -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);border: 0;">--}}
+                                                    {{--<table style="width: 100%">--}}
+                                                        {{--<tbody>--}}
+                                                        {{--<tr>--}}
+                                                            {{--<td style="text-align:left;">--}}
+                                                                {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">***</p>--}}
+                                                                {{--<b class="font-weight-bold h5">***</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores delectus iste nostrum pariatur placeat quis repudiandae ut. Labore, minus, quae. Aliquam blanditiis dolorum ex exercitationem fuga impedit molestias veritatis, voluptas!--}}
+                                                            {{--</td>--}}
+                                                        {{--</tr>--}}
+                                                        {{--</tbody>--}}
+                                                    {{--</table>--}}
+                                                {{--</center>--}}
+                                                {{--<hr style="margin: 40px 0">--}}
                                                 {{--<center style="background:#f6f6f6; padding:10px;">--}}
                                                     {{--<table style="width: 100%">--}}
                                                         {{--<tbody>--}}
@@ -768,6 +816,16 @@
             .then( editor => {
                 console.log( 'Editor was initialized', editor );
                 myEditor = editor;
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+
+        ClassicEditor
+            .create( document.querySelector( '.editor-mess-2' ) )
+            .then( editor => {
+                console.log( 'Editor was initialized', editor );
+                myEditor2 = editor;
             } )
             .catch( error => {
                 console.error( error );
@@ -881,6 +939,7 @@
             var s_precio_5 = $("#h_precio_5").val();
 
             var s_message = myEditor.getData();
+            var s_message2 = myEditor2.getData();
 
             var s_package = $("#h_package").val();
             var s_advisor = $("#h_advisor").val();
@@ -926,6 +985,7 @@
                     "txt_otros" : s_otros,
 
                     "txt_message" : s_message,
+                    "txt_message2" : s_message2,
 
                     "txt_package" : s_package,
                     "txt_advisor" : s_advisor,
