@@ -441,9 +441,14 @@
                                 {{--karina@llama.tours--}}
                                 <select class="custom-select custom-select-sm" onchange="advisor()" id="h_advisor">
                                     {{--<option selected>Open this select menu</option>--}}
-                                    <option value="0">karina@llama.tours</option>
-                                    <option value="1">paola@llama.tours</option>
-                                    <option value="2">martin@llama.tours</option>
+                                    @foreach($user as $users)
+                                        @if ($inquires->idusuario == $users->id)
+                                            @php $select_u = "selected"; @endphp
+                                        @else
+                                            @php $select_u = ""; @endphp
+                                        @endif
+                                        <option value="{{$users->id}}" {{$select_u}}>{{$users->email}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

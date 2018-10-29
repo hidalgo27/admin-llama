@@ -10,6 +10,7 @@ use App\TOtros;
 use App\TPaquete;
 use App\TPaqueteDestino;
 use App\TPrecioPaquete;
+use App\TUsuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -30,8 +31,9 @@ class MessageController extends Controller
         $incluye = TIncluye::all();
         $no_incluye = TNoIncluye::all();
         $otro = TOtros::all();
+        $user = TUsuario::all();
         $id_paquete = $id_paquete;
-        return view('page.message', ['inquire'=>$inquire, 'package'=>$package, 'itinerary'=>$itinerary, 'price'=>$price, 'paquete_destino'=>$paquete_destino, 'incluye'=>$incluye, 'no_incluye'=>$no_incluye, 'otro'=>$otro, 'id_paquete'=>$id_paquete]);
+        return view('page.message', ['inquire'=>$inquire, 'package'=>$package, 'itinerary'=>$itinerary, 'price'=>$price, 'paquete_destino'=>$paquete_destino, 'incluye'=>$incluye, 'no_incluye'=>$no_incluye, 'otro'=>$otro, 'id_paquete'=>$id_paquete, 'user'=>$user]);
     }
 
     public  function inquire_package()

@@ -20,6 +20,11 @@ Route::get('/', [
     'as' => 'home_path',
 ]);
 
+//Route::post('/message/{id_inquire}-{id_paquete}', [
+//    'uses' => 'MessageController@update',
+//    'as' => 'message_post_path',
+//]);
+
 Route::get('/message/{id_inquire}-{id_paquete}', [
     'uses' => 'MessageController@index',
     'as' => 'message_path',
@@ -33,4 +38,3 @@ Route::post('/message/inquire_package', [
     'uses' => 'MessageController@inquire_package',
     'as' => 'update_inquire_p_path',
 ]);
-
