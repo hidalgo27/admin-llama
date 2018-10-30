@@ -160,10 +160,10 @@
                                     <table style="width: 100%; border: 1px solid #cccccc;">
                                         <thead>
                                         <tr style="background: #8d8d8d; color: white; text-align: center">
-                                            <th style="padding: 10px;">Economic</th>
-                                            <th>Tourist</th>
+                                            <th style="padding: 10px;">Económico</th>
+                                            <th>Turista</th>
                                             <th>Superior</th>
-                                            <th>Luxury</th>
+                                            <th>Lujo</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -259,7 +259,7 @@
                                     {{--</table>--}}
                                 {{--</center>--}}
                                 <center style="margin-top: 0px; width: 100%">
-                                    <p style="font-weight: bold; font-size: 18px; color: #4b4b4b; text-align: left; margin: 0; ">Tambien ofrecemos</p>
+                                    <p style="font-weight: bold; font-size: 18px; color: #4b4b4b; text-align: left; margin: 0; ">También ofrecemos</p>
                                     <p style="font-size: 16px; color: #4b4b4b; text-align: left;margin: 0; ">Solo tours a la carta.</p>
                                     <table style="width: 100%;">
                                         <tr style="text-align: left;">
