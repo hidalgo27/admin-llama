@@ -150,6 +150,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
+                        @php $k=0; @endphp
                         @foreach($itinerary as $itin)
                         <div class="row mt-4">
                             <div class="col-1">
@@ -177,29 +178,21 @@
 
                             <div class="col-12">
                                 <div class="md-form mt-0">
-                                    {{--<textarea type="hidden" id="h_resumen" name="h_resumen[]" class="md-textarea md-textarea-auto form-control py-2 editor-{{$itin->id}}" rows="2">@php echo $itin->resumen @endphp</textarea>--}}
-                                    <input type="hidden" id="h_resumen" name="h_resumen[]" value="{{$itin->resumen}}">
-                                    @php echo $itin->resumen @endphp
+                                    <textarea type="hidden" id="h_resumen_{{$itin->dia}}" name="h_resumen_{{$itin->dia}}" class="md-textarea md-textarea-auto form-control py-2 editor-{{$itin->id}}" rows="2">@php echo $itin->resumen @endphp</textarea>
+                                    {{--<input type="hidden" id="h_resumen" name="h_resumen[]" value="{{$itin->resumen}}">--}}
+                                    {{--@php echo $itin->resumen @endphp--}}
                                     {{--<label for="text2">Auto-resizing textarea</label>--}}
                                 </div>
                             </div>
                         </div>
-                            {{--@push('scripts')--}}
-                                {{--<script>--}}
-                                    {{--ClassicEditor--}}
-                                        {{--.create( document.querySelector( '.editor-{{$itin->id}}' ) )--}}
-                                        {{--.then( editor => {--}}
-                                            {{--console.log( 'Editor was initialized', editor );--}}
-                                            {{--hresumen{{$itin->dia}} = editor;--}}
-                                        {{--} )--}}
-                                        {{--.catch( error => {--}}
-                                            {{--console.error( error );--}}
-                                        {{--} );--}}
-
-                                    {{--alert(hresumen1);--}}
-                                {{--</script>--}}
-                            {{--@endpush--}}
-                            @endforeach
+                            @push('scripts')
+                                <script>
+                                    ClassicEditor
+                                        .create( document.querySelector( '.editor-{{$itin->id}}' ) )
+                                </script>
+                            @endpush
+                            @php $k++; @endphp
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -210,7 +203,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <h5 class="font-weight-bold orange-text">Destinations</h5>
+                                <h5 class="font-weight-bold orange-text">Destinations {{$k}}</h5>
                                 @foreach($paquete_destino as $paquete_destinos)
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="destinos_{{$paquete_destinos->id}}" name="destinations[]" value="{{$paquete_destinos->destinos->nombre}}" checked>
@@ -928,6 +921,14 @@
             }
             s_otros = $otros.substring(0,$otros.length-3);
 
+            var $itinerary = "";
+            var $k = '{{$k}}';
+            // var $hresumen = 'hresumen';
+            for (var i = 1, l = $k; i <= l; i++) {
+                $itinerary += $('#h_resumen_'+i).val()+'*';
+            }
+            s_itinerary = $itinerary.substring(0,$itinerary.length-3);
+
 
             var s_email = $("#h_email").val();
             var s_name = $("#h_name").val();
@@ -994,6 +995,7 @@
 
                     "txt_package" : s_package,
                     "txt_advisor" : s_advisor,
+                    "txt_itinerary" : s_itinerary,
 
                 };
                 $.ajax({

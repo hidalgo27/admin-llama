@@ -66,11 +66,12 @@
                                                     $day = explode('*', $day);
                                                     $title = explode('*', $title);
                                                     $resumen = explode('*', $resumen);
+                                                    $itinerary = explode('*', $itinerary);
                                                     $count  = count($day);
                                                 @endphp
                                                 @for ($i = 0; $i < $count; $i++)
                                                     <p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia {{$day[$i]}}: {{$title[$i]}}</p>
-                                                    @php echo $resumen[$i]; @endphp
+                                                    @php echo $itinerary[$i]; @endphp
                                                 @endfor
                                                 {{--@foreach($day as $days)--}}
                                                     {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia {{$days}}: {{$count}}</p>--}}
@@ -224,15 +225,15 @@
                                             <td style="text-align:center; float: left; width: 30%">
                                                 <img src="https://scontent.flim5-1.fna.fbcdn.net/v/t1.0-9/31739806_993323907486435_1000599518791598080_n.jpg?_nc_cat=107&_nc_ht=scontent.flim5-1.fna&oh=dda0f6ac807e45167c5b86def2b4f24f&oe=5C3C4E5A" alt="" style="width: 100%">
                                                 <p style="font-size: 10px; text-align: center; margin: 0">TA. {{$name_a}}</p>
-                                                <a href=""><img src="{{asset('images/redes/whatsapp.png')}}" alt="" style="width: 20px;"></a>
-                                                <a href=""><img src="{{asset('images/redes/facebook.png')}}" alt="" style="width: 20px;"></a>
-                                                <a href=""><img src="{{asset('images/redes/instagram.png')}}" alt="" style="width: 20px;"></a>
+                                                <a href=""><img src="http://llama.tours/images/redes/whatsapp.png" alt="logo whatsapp" style="width: 20px;"></a>
+                                                <a href=""><img src="http://llama.tours/images/redes/facebook.png" alt="logo facebook" style="width: 20px;"></a>
+                                                <a href=""><img src="http://llama.tours/images/redes/instagram.png" alt="logo instagram" style="width: 20px;"></a>
                                             </td>
-                                            <td style="text-align:left; float: left; padding-left: 20px; width: 70%;">
+                                            <td style="text-align:left; float: left; padding-left: 20px; width: 60%;">
                                                 <table style="width: 100%">
                                                     <tr>
                                                         <td style="width: 15%">
-                                                            <img src="{{asset('images/logo-llama2.png')}}" alt="" style="width: 100%">
+                                                            <img src="http://llama.tours/images/logo-llama2.png" alt="" style="width: 100%">
                                                         </td>
                                                         <td style="width: 85%; padding-left: 10px;">
                                                             <p style="font-weight: bold; font-size: 18px; color: #ff9800; margin: 0;">{{$name_a}}</p>
@@ -267,7 +268,7 @@
                                         <tr>
                                             <td style="text-align:center;font-size:12px;padding:5px 15px;color:#999999">
                                                 <p>
-                                                    Visite Perú, tierra de los incas.
+                                                    Visite Perú, tierra de los Incas.
                                                 </p>
                                                 <img class="CToWUd" width="250" alt="logo llama tours" src="http://llama.tours/images/logo-llama.png" style="vertical-align:top;max-width:220px">
                                             </td>
