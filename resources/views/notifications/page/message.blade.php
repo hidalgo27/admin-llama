@@ -198,7 +198,7 @@
                                         <tbody>
                                         <tr style="text-align: center;">
                                             <td style="text-align:center; width: 60%">
-                                                <img src="{{asset('images/cuotas.jpg')}}" alt="" style="width: 100%">
+                                                <img src="{{asset('http://admin.llama.tours/images/cuotas.jpg')}}" alt="" style="width: 100%">
                                             </td>
                                             <td style="text-align:left; width: 50%">
                                                 <h5 style="font-weight: bold; font-size: 18px; margin-bottom: 5px;">Facilidades de Pago hasta 6 cuotas.</h5>
