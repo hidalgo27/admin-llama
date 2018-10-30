@@ -71,7 +71,7 @@
                                                 @endphp
                                                 @for ($i = 0; $i < $count; $i++)
                                                     <p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia {{$day[$i]}}: {{$title[$i]}}</p>
-                                                    @php echo $itinerary[$i]; @endphp
+                                                    @php echo $resumen[$i]; @endphp
                                                 @endfor
                                                 {{--@foreach($day as $days)--}}
                                                     {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia {{$days}}: {{$count}}</p>--}}

@@ -178,19 +178,13 @@
 
                             <div class="col-12">
                                 <div class="md-form mt-0">
-                                    <textarea type="hidden" id="h_resumen_{{$itin->dia}}" name="h_resumen_{{$itin->dia}}" class="md-textarea md-textarea-auto form-control py-2 editor-{{$itin->id}}" rows="2">@php echo $itin->resumen @endphp</textarea>
+                                    <textarea id="editor-{{$itin->id}}" name="h_resumen[]" class="editor-{{$itin->id}}" rows="2">{{$itin->resumen}}</textarea>
                                     {{--<input type="hidden" id="h_resumen" name="h_resumen[]" value="{{$itin->resumen}}">--}}
                                     {{--@php echo $itin->resumen @endphp--}}
                                     {{--<label for="text2">Auto-resizing textarea</label>--}}
                                 </div>
                             </div>
                         </div>
-                            @push('scripts')
-                                <script>
-                                    ClassicEditor
-                                        .create( document.querySelector( '.editor-{{$itin->id}}' ) )
-                                </script>
-                            @endpush
                             @php $k++; @endphp
                         @endforeach
                     </div>
@@ -803,9 +797,29 @@
         {{--</div>--}}
 
     </form>
+
 @endsection
 
 @push('scripts')
+    <script src='https://devpreview.tiny.cloud/demo/tinymce.min.js'></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            height: 200,
+            menubar: false,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor textcolor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+            setup: function (editor) {
+                editor.on('change', function () {
+                    editor.save();
+                });
+            }
+        });
+    </script>
     <script>
 
         //editor
@@ -883,6 +897,7 @@
                     $resumen += s_resumen[i].value+'*';
                 }
             }
+
             s_resumen = $resumen.substring(0,$resumen.length-1);
 
             var s_destinations = document.getElementsByName('destinations[]');
@@ -921,13 +936,15 @@
             }
             s_otros = $otros.substring(0,$otros.length-3);
 
-            var $itinerary = "";
-            var $k = '{{$k}}';
-            // var $hresumen = 'hresumen';
-            for (var i = 1, l = $k; i <= l; i++) {
-                $itinerary += $('#h_resumen_'+i).val()+'*';
-            }
-            s_itinerary = $itinerary.substring(0,$itinerary.length-1);
+            {{--var $itinerary = "";--}}
+            {{--var $k = '{{$k}}';--}}
+            {{--// var $hresumen = 'hresumen';--}}
+            {{--for (var i = 1, l = $k; i <= l; i++) {--}}
+                {{--$itinerary += $('#h_resumen_'+i).val()+'*';--}}
+            {{--}--}}
+            {{--s_itinerary = $itinerary.substring(0,$itinerary.length-1);--}}
+
+            {{--alert(s_itinerary);--}}
 
 
             var s_email = $("#h_email").val();
@@ -1066,5 +1083,6 @@
             }
 
         }
+
     </script>
 @endpush
