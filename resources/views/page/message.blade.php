@@ -865,7 +865,7 @@
                     $day += s_day[i].value+'*';
                 }
             }
-            s_day = $day.substring(0,$day.length-3);
+            s_day = $day.substring(0,$day.length-1);
 
             var s_title = document.getElementsByName('h_title[]');
             var $title = "";
@@ -874,7 +874,7 @@
                     $title += s_title[i].value+'*';
                 }
             }
-            s_title = $title.substring(0,$title.length-3);
+            s_title = $title.substring(0,$title.length-1);
 
             var s_resumen = document.getElementsByName('h_resumen[]');
             var $resumen = "";
@@ -883,7 +883,7 @@
                     $resumen += s_resumen[i].value+'*';
                 }
             }
-            s_resumen = $resumen.substring(0,$resumen.length-3);
+            s_resumen = $resumen.substring(0,$resumen.length-1);
 
             var s_destinations = document.getElementsByName('destinations[]');
             var $destinations = "";
@@ -901,7 +901,7 @@
                     $incluye += s_incluye[i].value+'*';
                 }
             }
-            s_incluye = $incluye.substring(0,$incluye.length-3);
+            s_incluye = $incluye.substring(0,$incluye.length-1);
 
             var s_noincluye = document.getElementsByName('noincluye[]');
             var $noincluye = "";
@@ -910,7 +910,7 @@
                     $noincluye += s_noincluye[i].value+'*';
                 }
             }
-            s_noincluye = $noincluye.substring(0,$noincluye.length-3);
+            s_noincluye = $noincluye.substring(0,$noincluye.length-1);
 
             var s_otros = document.getElementsByName('otros[]');
             var $otros = "";
@@ -927,7 +927,7 @@
             for (var i = 1, l = $k; i <= l; i++) {
                 $itinerary += $('#h_resumen_'+i).val()+'*';
             }
-            s_itinerary = $itinerary.substring(0,$itinerary.length-3);
+            s_itinerary = $itinerary.substring(0,$itinerary.length-1);
 
 
             var s_email = $("#h_email").val();
@@ -961,67 +961,67 @@
                 var sendMail = "false";
             }
 
-            if(sendMail == "true"){
-                var datos = {
+            {{--if(sendMail == "true"){--}}
+                {{--var datos = {--}}
 
-                    "txt_day" : s_day,
-                    "txt_title" : s_title,
-                    "txt_resumen" : s_resumen,
+                    {{--"txt_day" : s_day,--}}
+                    {{--"txt_title" : s_title,--}}
+                    {{--"txt_resumen" : s_resumen,--}}
 
-                    "txt_destinations" : s_destinations,
+                    {{--"txt_destinations" : s_destinations,--}}
 
-                    "txt_incluye" : s_incluye,
-                    "txt_noincluye" : s_noincluye,
+                    {{--"txt_incluye" : s_incluye,--}}
+                    {{--"txt_noincluye" : s_noincluye,--}}
 
-                    "txt_email" : s_email,
-                    "txt_name" : s_name,
-                    "txt_category" : s_category,
-                    "txt_date" : s_date,
-                    "txt_days" : s_days,
-                    "txt_phone" : s_phone,
+                    {{--"txt_email" : s_email,--}}
+                    {{--"txt_name" : s_name,--}}
+                    {{--"txt_category" : s_category,--}}
+                    {{--"txt_date" : s_date,--}}
+                    {{--"txt_days" : s_days,--}}
+                    {{--"txt_phone" : s_phone,--}}
 
-                    "txt_precio_ch" : s_precio_ch,
-                    "txt_precio_sh" : s_precio_sh,
+                    {{--"txt_precio_ch" : s_precio_ch,--}}
+                    {{--"txt_precio_sh" : s_precio_sh,--}}
 
-                    "txt_precio_2" : s_precio_2,
-                    "txt_precio_3" : s_precio_3,
-                    "txt_precio_4" : s_precio_4,
-                    "txt_precio_5" : s_precio_5,
+                    {{--"txt_precio_2" : s_precio_2,--}}
+                    {{--"txt_precio_3" : s_precio_3,--}}
+                    {{--"txt_precio_4" : s_precio_4,--}}
+                    {{--"txt_precio_5" : s_precio_5,--}}
 
-                    "txt_otros" : s_otros,
+                    {{--"txt_otros" : s_otros,--}}
 
-                    "txt_message" : s_message,
-                    "txt_message2" : s_message2,
+                    {{--"txt_message" : s_message,--}}
+                    {{--"txt_message2" : s_message2,--}}
 
-                    "txt_package" : s_package,
-                    "txt_advisor" : s_advisor,
-                    "txt_itinerary" : s_itinerary,
+                    {{--"txt_package" : s_package,--}}
+                    {{--"txt_advisor" : s_advisor,--}}
+                    {{--"txt_itinerary" : s_itinerary,--}}
 
-                };
-                $.ajax({
-                    data:  datos,
-                    url:   "{{route('message_mail_path')}}",
-                    type:  'post',
+                {{--};--}}
+                {{--$.ajax({--}}
+                    {{--data:  datos,--}}
+                    {{--url:   "{{route('message_mail_path')}}",--}}
+                    {{--type:  'post',--}}
 
-                    beforeSend: function () {
+                    {{--beforeSend: function () {--}}
 
-                        // $('#de_send').removeClass('show');
-                        $("#h_submit").addClass('d-none');
-                        $("#h_load").removeClass('d-none');
-                    },
-                    success:  function (response) {
-                        $('#h_form')[0].reset();
-                        $('#h_submit').removeClass('d-none');
-                        $("#h_load").addClass('d-none');
-                        $('#h_alert').removeClass('d-none');
-                        // $("#h_alert b").html(response);
-                        $("#h_alert").fadeIn('slow');
-                        $("#h_submit").removeAttr("disabled");
-                    }
-                });
-            } else{
-                $("#h_submit").removeAttr("disabled");
-            }
+                        {{--// $('#de_send').removeClass('show');--}}
+                        {{--$("#h_submit").addClass('d-none');--}}
+                        {{--$("#h_load").removeClass('d-none');--}}
+                    {{--},--}}
+                    {{--success:  function (response) {--}}
+                        {{--$('#h_form')[0].reset();--}}
+                        {{--$('#h_submit').removeClass('d-none');--}}
+                        {{--$("#h_load").addClass('d-none');--}}
+                        {{--$('#h_alert').removeClass('d-none');--}}
+                        {{--// $("#h_alert b").html(response);--}}
+                        {{--$("#h_alert").fadeIn('slow');--}}
+                        {{--$("#h_submit").removeAttr("disabled");--}}
+                    {{--}--}}
+                {{--});--}}
+            {{--} else{--}}
+                {{--$("#h_submit").removeAttr("disabled");--}}
+            {{--}--}}
         }
 
         $('.selectpicker').selectpicker();
