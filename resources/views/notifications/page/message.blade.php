@@ -156,7 +156,7 @@
                                 {{--</center>--}}
 
                                 <center style="margin-top: 10px; width: 100%">
-                                    <h5 style="font-size: 18px; margin-bottom: 10px;">Hoteles, Tours, Transporte, Entradas, Trenes, Tranfers.</h5>
+                                    <h5 style="font-size: 18px; margin-bottom: 10px;">Hoteles, Tours, Transporte, Entradas, Trenes, Transfers.</h5>
                                     <table style="width: 100%; border: 1px solid #cccccc;">
                                         <thead>
                                         <tr style="background: #8d8d8d; color: white; text-align: center">
@@ -181,7 +181,7 @@
                                 </center>
 
                                 <center style="margin-top: 30px; width: 100%">
-                                    <h5 style="font-size: 18px; margin-bottom: 10px;">Tours, Transporte, Entradas, Trenes, Tranfers.</h5>
+                                    <h5 style="font-size: 18px; margin-bottom: 10px;">Tours, Transporte, Entradas, Trenes, Transfers.</h5>
                                     <table style="width: 100%; border: 1px solid #cccccc;">
                                         <tbody>
                                         <tr style="background: #ff9800; color: white; text-align: center">
@@ -202,7 +202,7 @@
                                             </td>
                                             <td style="text-align:left; width: 50%">
                                                 <h5 style="font-weight: bold; font-size: 18px; margin-bottom: 5px;">Facilidades de Pago hasta 6 cuotas.</h5>
-                                                <p style="font-size: 16px; margin: 0;">Ejemplo: ${{$precio_ch}}/6 = ${{$precio_ch/6}} pagos mensuales.</p>
+                                                <p style="font-size: 16px; margin: 0;">Ejemplo: ${{$precio_sh}}/6 = ${{round($precio_ch/6, 2)}} pagos mensuales.</p>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -268,9 +268,13 @@
                                                 {{--sdsdsd--}}
                                                 {{--</ul>--}}
                                                 <ul>
-                                                    <li><a href="#">Machu Picchu Full Day: $220</a></li>
+                                                    <li><a href="http://llama.tours/peru-tours/machu-picchu-todo-el-dia" target="_blank">Machu Picchu todo el día: $229usd</a></li>
+                                                    <li><a href="http://llama.tours/peru-tours/city-tour-en-cusco" target="_blank">City tours en Cusco: $19usd</a></li>
+                                                    <li><a href="http://llama.tours/peru-tours/tour-valle-sagrado-de-los-incas" target="_blank">Tour Valle Sagrado de los incas: $21usd</a></li>
+                                                    <li><a href="http://llama.tours/peru-tours/tour-montaÑa-de-7-colores" target="_blank">Tour Montaña de 7 colores: $45usd</a></li>
+                                                    <li><a href="http://llama.tours/peru-tours/tour-lago-titicaca" target="_blank">Tour Lago Titicaca: $229usd</a></li>
                                                 </ul>
-                                                <span><a href="#">Ver más ...</a></span>
+                                                <span><a href="http://llama.tours/peru-tours" target="_blank">Ver más ...</a></span>
                                             </td>
                                         </tr>
                                     </table>
@@ -282,7 +286,7 @@
                                         <tr>
                                             <td style="text-align:left;">
                                                 {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">***</p>--}}
-                                                 <p><b class="font-weight-bold h5">***</b> @php echo $messagess2 @endphp</p>
+                                                 @php echo $messagess2 @endphp
                                             </td>
                                         </tr>
                                         </tbody>
