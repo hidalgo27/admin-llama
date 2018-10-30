@@ -961,67 +961,67 @@
                 var sendMail = "false";
             }
 
-            {{--if(sendMail == "true"){--}}
-                {{--var datos = {--}}
+            if(sendMail == "true"){
+                var datos = {
 
-                    {{--"txt_day" : s_day,--}}
-                    {{--"txt_title" : s_title,--}}
-                    {{--"txt_resumen" : s_resumen,--}}
+                    "txt_day" : s_day,
+                    "txt_title" : s_title,
+                    "txt_resumen" : s_resumen,
 
-                    {{--"txt_destinations" : s_destinations,--}}
+                    "txt_destinations" : s_destinations,
 
-                    {{--"txt_incluye" : s_incluye,--}}
-                    {{--"txt_noincluye" : s_noincluye,--}}
+                    "txt_incluye" : s_incluye,
+                    "txt_noincluye" : s_noincluye,
 
-                    {{--"txt_email" : s_email,--}}
-                    {{--"txt_name" : s_name,--}}
-                    {{--"txt_category" : s_category,--}}
-                    {{--"txt_date" : s_date,--}}
-                    {{--"txt_days" : s_days,--}}
-                    {{--"txt_phone" : s_phone,--}}
+                    "txt_email" : s_email,
+                    "txt_name" : s_name,
+                    "txt_category" : s_category,
+                    "txt_date" : s_date,
+                    "txt_days" : s_days,
+                    "txt_phone" : s_phone,
 
-                    {{--"txt_precio_ch" : s_precio_ch,--}}
-                    {{--"txt_precio_sh" : s_precio_sh,--}}
+                    "txt_precio_ch" : s_precio_ch,
+                    "txt_precio_sh" : s_precio_sh,
 
-                    {{--"txt_precio_2" : s_precio_2,--}}
-                    {{--"txt_precio_3" : s_precio_3,--}}
-                    {{--"txt_precio_4" : s_precio_4,--}}
-                    {{--"txt_precio_5" : s_precio_5,--}}
+                    "txt_precio_2" : s_precio_2,
+                    "txt_precio_3" : s_precio_3,
+                    "txt_precio_4" : s_precio_4,
+                    "txt_precio_5" : s_precio_5,
 
-                    {{--"txt_otros" : s_otros,--}}
+                    "txt_otros" : s_otros,
 
-                    {{--"txt_message" : s_message,--}}
-                    {{--"txt_message2" : s_message2,--}}
+                    "txt_message" : s_message,
+                    "txt_message2" : s_message2,
 
-                    {{--"txt_package" : s_package,--}}
-                    {{--"txt_advisor" : s_advisor,--}}
-                    {{--"txt_itinerary" : s_itinerary,--}}
+                    "txt_package" : s_package,
+                    "txt_advisor" : s_advisor,
+                    "txt_itinerary" : s_itinerary,
 
-                {{--};--}}
-                {{--$.ajax({--}}
-                    {{--data:  datos,--}}
-                    {{--url:   "{{route('message_mail_path')}}",--}}
-                    {{--type:  'post',--}}
+                };
+                $.ajax({
+                    data:  datos,
+                    url:   "{{route('message_mail_path')}}",
+                    type:  'post',
 
-                    {{--beforeSend: function () {--}}
+                    beforeSend: function () {
 
-                        {{--// $('#de_send').removeClass('show');--}}
-                        {{--$("#h_submit").addClass('d-none');--}}
-                        {{--$("#h_load").removeClass('d-none');--}}
-                    {{--},--}}
-                    {{--success:  function (response) {--}}
-                        {{--$('#h_form')[0].reset();--}}
-                        {{--$('#h_submit').removeClass('d-none');--}}
-                        {{--$("#h_load").addClass('d-none');--}}
-                        {{--$('#h_alert').removeClass('d-none');--}}
-                        {{--// $("#h_alert b").html(response);--}}
-                        {{--$("#h_alert").fadeIn('slow');--}}
-                        {{--$("#h_submit").removeAttr("disabled");--}}
-                    {{--}--}}
-                {{--});--}}
-            {{--} else{--}}
-                {{--$("#h_submit").removeAttr("disabled");--}}
-            {{--}--}}
+                        // $('#de_send').removeClass('show');
+                        $("#h_submit").addClass('d-none');
+                        $("#h_load").removeClass('d-none');
+                    },
+                    success:  function (response) {
+                        $('#h_form')[0].reset();
+                        $('#h_submit').removeClass('d-none');
+                        $("#h_load").addClass('d-none');
+                        $('#h_alert').removeClass('d-none');
+                        // $("#h_alert b").html(response);
+                        $("#h_alert").fadeIn('slow');
+                        $("#h_submit").removeAttr("disabled");
+                    }
+                });
+            } else{
+                $("#h_submit").removeAttr("disabled");
+            }
         }
 
         $('.selectpicker').selectpicker();
