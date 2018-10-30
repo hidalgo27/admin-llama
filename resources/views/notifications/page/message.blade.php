@@ -308,7 +308,7 @@
                                                 <table style="width: 100%">
                                                     <tr>
                                                         <td style="width: 15%">
-                                                            <img src="http://llama.tours/images/logo-llama2.png" alt="" style="width: 100%">
+                                                            <img src="http://admin.llama.tours/images/logo-llama2.png" alt="" style="width: 100%">
                                                         </td>
                                                         <td style="width: 85%; padding-left: 10px;">
                                                             <p style="font-weight: bold; font-size: 18px; color: #ff9800; margin: 0;">{{$name_a}}</p>
