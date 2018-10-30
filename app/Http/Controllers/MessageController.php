@@ -153,6 +153,7 @@ class MessageController extends Controller
                 'day' => $day,
                 'title' => $title,
                 'resumen' => $resumen,
+                'itinerary' => $itinerary,
                 'destinations' => $destinations,
                 'incluye' => $incluye,
                 'noincluye' => $noincluye,
