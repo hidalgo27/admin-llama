@@ -56,7 +56,7 @@ class MessageController extends Controller
         $day = $_POST['txt_day'];
         $title = $_POST['txt_title'];
         $resumen = $_POST['txt_resumen'];
-        $itinerary = $_POST['txt_itinerary'];
+//        $itinerary = $_POST['txt_itinerary'];
         $destinations = $_POST['txt_destinations'];
         $incluye = $_POST['txt_incluye'];
         $noincluye = $_POST['txt_noincluye'];
@@ -117,7 +117,7 @@ class MessageController extends Controller
                 'day' => $day,
                 'title' => $title,
                 'resumen' => $resumen,
-                'itinerary' => $itinerary,
+//                'itinerary' => $itinerary,
                 'destinations' => $destinations,
                 'incluye' => $incluye,
                 'noincluye' => $noincluye,
@@ -153,7 +153,7 @@ class MessageController extends Controller
                 'day' => $day,
                 'title' => $title,
                 'resumen' => $resumen,
-                'itinerary' => $itinerary,
+//                'itinerary' => $itinerary,
                 'destinations' => $destinations,
                 'incluye' => $incluye,
                 'noincluye' => $noincluye,

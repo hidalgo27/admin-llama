@@ -609,7 +609,8 @@
                                                 {{--</center>--}}
 
                                                 {{--<center style="margin-top: 30px; width: 100%">--}}
-                                                    {{--<p style="font-weight: bold; font-size: 18px; text-align: left">PRECIOS</p>--}}
+                                                    {{--<p style="font-weight: bold; font-size: 18px; text-align: left; margin: 0; color: #ff9800;">PRECIOS DE PROGRAMA DE 5 DIAS</p>--}}
+                                                    {{--<p style="text-align: left"><strong style="font-weight: bold;">Precio por persona USD$.</strong> <span style="font-style: italic;">(basados en doble acomodación.)</span></p>--}}
                                                     {{--<table style="width: 100%">--}}
                                                         {{--<tbody>--}}
                                                         {{--<tr style="text-align: center;">--}}
@@ -649,7 +650,8 @@
                                                     {{--</table>--}}
                                                 {{--</center>--}}
 
-                                                {{--<center style="margin-top: 30px; width: 100%">--}}
+                                                {{--<center style="margin-top: 10px; width: 100%">--}}
+                                                    {{--<h5>Hoteles, Tours, Transporte, Entradas, Trenes, Tranfers.</h5>--}}
                                                     {{--<table style="width: 100%; border: 1px solid #cccccc;">--}}
                                                         {{--<thead>--}}
                                                         {{--<tr style="background: #8d8d8d; color: white; text-align: center">--}}
@@ -673,7 +675,37 @@
                                                     {{--<p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>--}}
                                                 {{--</center>--}}
 
-                                                {{--<center style="background:#f6f6f6; padding:10px; -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);border: 0;">--}}
+                                                {{--<center style="margin-top: 30px; width: 100%">--}}
+                                                    {{--<h5>Tours, Transporte, Entradas, Trenes, Tranfers.</h5>--}}
+                                                    {{--<table style="width: 100%; border: 1px solid #cccccc;">--}}
+                                                        {{--<tbody>--}}
+                                                        {{--<tr style="background: #ff9800; color: white; text-align: center">--}}
+                                                            {{--<th style="padding: 10px; font-size: 18px">5 días <span style="color: #0d0d0d; font-weight: bold;">SIN HOTELES: $500usd</span></th>--}}
+                                                        {{--</tr>--}}
+                                                        {{--</tbody>--}}
+                                                    {{--</table>--}}
+                                                    {{--<p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>--}}
+                                                {{--</center>--}}
+
+
+                                                {{--<center style="margin-top: 30px; width: 100%">--}}
+                                                    {{--<table style="width: 100%">--}}
+                                                        {{--<tbody>--}}
+                                                            {{--<tr style="text-align: center;">--}}
+                                                                {{--<td style="text-align:center; width: 60%">--}}
+                                                                    {{--<img src="{{asset('images/cuotas.jpg')}}" alt="" style="width: 100%">--}}
+                                                                {{--</td>--}}
+                                                                {{--<td style="text-align:left; width: 50%">--}}
+                                                                    {{--<h5 style="font-weight: bold; font-size: 18px;">Facilidades de Pago hasta 6 cuotas.</h5>--}}
+                                                                    {{--<p style="font-size: 16px;">Ejemplo: $776/6 = $129 pagos mensuales.</p>--}}
+                                                                {{--</td>--}}
+                                                            {{--</tr>--}}
+                                                        {{--</tbody>--}}
+                                                    {{--</table>--}}
+                                                {{--</center>--}}
+
+
+                                                {{--<center style="background:#f6f6f6; margin-top: 30px; padding:10px; -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);border: 0;">--}}
                                                     {{--<table style="width: 100%">--}}
                                                         {{--<tbody>--}}
                                                         {{--<tr>--}}
@@ -696,13 +728,19 @@
 
                                                 {{--<hr style="margin: 40px 0">--}}
                                                 {{--<center style="margin-top: 0px; width: 100%">--}}
-                                                    {{--<p style="font-weight: bold; font-size: 16px; color: #181818; text-align: left ">UPGRADES OPCIONALES</p>--}}
+                                                    {{--<p style="font-weight: bold; font-size: 18px; color: #4b4b4b; text-align: left; margin: 0; ">Tambien ofrecemos</p>--}}
+                                                    {{--<p style="font-size: 16px; color: #4b4b4b; text-align: left ">Solo tours a la carta.</p>--}}
                                                     {{--<table style="width: 100%;">--}}
                                                         {{--<tr style="text-align: left;">--}}
                                                             {{--<td style="font-weight: bold; color: #181818">--}}
                                                                 {{--<ul>--}}
                                                                     {{--sdsdsd--}}
                                                                 {{--</ul>--}}
+                                                                {{--<ul>--}}
+                                                                    {{--<li><a href="">Machu Picchu Full Day: $220</a></li>--}}
+                                                                {{--</ul>--}}
+                                                                {{--<span><a href="">Ver más ...</a></span>--}}
+
                                                             {{--</td>--}}
                                                         {{--</tr>--}}
                                                     {{--</table>--}}
@@ -807,6 +845,8 @@
             selector: 'textarea',
             height: 200,
             menubar: false,
+            browser_spellcheck : true,
+            contextmenu: false,
             plugins: [
                 'advlist autolink lists link image charmap print preview anchor textcolor',
                 'searchreplace visualblocks code fullscreen',
@@ -1012,7 +1052,7 @@
 
                     "txt_package" : s_package,
                     "txt_advisor" : s_advisor,
-                    "txt_itinerary" : s_itinerary,
+                    // "txt_itinerary" : s_itinerary,
 
                 };
                 $.ajax({

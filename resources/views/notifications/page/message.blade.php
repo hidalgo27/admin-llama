@@ -66,7 +66,6 @@
                                                     $day = explode('*', $day);
                                                     $title = explode('*', $title);
                                                     $resumen = explode('*', $resumen);
-                                                    $itinerary = explode('*', $itinerary);
                                                     $count  = count($day);
                                                 @endphp
                                                 @for ($i = 0; $i < $count; $i++)
@@ -91,47 +90,73 @@
                                 </center>
 
                                 <center style="margin-top: 30px; width: 100%">
-                                    <p style="font-weight: bold; font-size: 18px; text-align: left">PRECIOS</p>
-                                    <table style="width: 100%">
-                                        <tbody>
-                                        <tr style="text-align: center;">
-                                            <td style="text-align:center">
-                                                <table style="text-align: center; width: 100%; background:#f6f6f6;">
-                                                    <tr style="text-align: center">
-                                                        <td style="font-size: 20px; font-weight: bold;">Con Hoteles</td>
-                                                    </tr>
-                                                    <tr style="text-align: center">
-                                                        <td style="font-weight: bold; font-size: 25px">${{$precio_ch}}usd</td>
-                                                    </tr>
-                                                    <tr style="text-align: center">
-                                                        <td>Price per person.</td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                            <td style="text-align:center">
-                                                <table style="text-align: center; width: 100%; background:#f6f6f6;">
-                                                    <tr style="text-align: center">
-                                                        <td style="font-size: 20px; font-weight: bold;">Sin Hoteles</td>
-                                                    </tr>
-                                                    <tr style="text-align: center">
-                                                        <td style="font-weight: bold; font-size: 25px">${{$precio_sh}}usd</td>
-                                                    </tr>
-                                                    <tr style="text-align: center">
-                                                        <td>Price per person.</td>
-                                                    </tr>
-                                                </table>
+                                    <p style="font-weight: bold; font-size: 18px; text-align: left; margin: 0; color: #ff9800;">PRECIOS DEL PROGRAMA DE {{$count}} DIAS</p>
+                                    <p style="text-align: left"><strong style="font-weight: bold;">Precio por persona USD$.</strong> <span style="font-style: italic;">(basados en doble acomodación.)</span></p>
+                                    {{--<table style="width: 100%">--}}
+                                        {{--<tbody>--}}
+                                        {{--<tr style="text-align: center;">--}}
+                                            {{--<td style="text-align:center">--}}
+                                                {{--<table style="text-align: center; width: 100%; background:#f6f6f6;">--}}
+                                                    {{--<tr style="text-align: center">--}}
+                                                        {{--<td style="font-size: 20px; font-weight: bold;">Con Hoteles</td>--}}
+                                                    {{--</tr>--}}
+                                                    {{--<tr style="text-align: center">--}}
+                                                        {{--<td style="font-weight: bold; font-size: 25px">${{$precio_ch}}usd</td>--}}
+                                                    {{--</tr>--}}
+                                                    {{--<tr style="text-align: center">--}}
+                                                        {{--<td>Price per person.</td>--}}
+                                                    {{--</tr>--}}
+                                                {{--</table>--}}
+                                            {{--</td>--}}
+                                            {{--<td style="text-align:center">--}}
+                                                {{--<table style="text-align: center; width: 100%; background:#f6f6f6;">--}}
+                                                    {{--<tr style="text-align: center">--}}
+                                                        {{--<td style="font-size: 20px; font-weight: bold;">Sin Hoteles</td>--}}
+                                                    {{--</tr>--}}
+                                                    {{--<tr style="text-align: center">--}}
+                                                        {{--<td style="font-weight: bold; font-size: 25px">${{$precio_sh}}usd</td>--}}
+                                                    {{--</tr>--}}
+                                                    {{--<tr style="text-align: center">--}}
+                                                        {{--<td>Price per person.</td>--}}
+                                                    {{--</tr>--}}
+                                                {{--</table>--}}
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 10px; background: #ff9800; color: white; border-radius: 0 0 5px" colspan="2">* Si desea puede reservar las actividades por separado.</td>
-                                            <td></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                            {{--</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td style="padding: 10px; background: #ff9800; color: white; border-radius: 0 0 5px" colspan="2">* Si desea puede reservar las actividades por separado.</td>--}}
+                                            {{--<td></td>--}}
+                                        {{--</tr>--}}
+                                        {{--</tbody>--}}
+                                    {{--</table>--}}
                                 </center>
 
-                                <center style="margin-top: 30px; width: 100%">
+                                {{--<center style="margin-top: 30px; width: 100%">--}}
+                                    {{--<table style="width: 100%; border: 1px solid #cccccc;">--}}
+                                        {{--<thead>--}}
+                                        {{--<tr style="background: #8d8d8d; color: white; text-align: center">--}}
+                                            {{--<th style="padding: 10px;">Economic</th>--}}
+                                            {{--<th>Tourist</th>--}}
+                                            {{--<th>Superior</th>--}}
+                                            {{--<th>Luxury</th>--}}
+                                        {{--</tr>--}}
+                                        {{--</thead>--}}
+                                        {{--<tbody>--}}
+
+                                        {{--<tr style="text-align: center;">--}}
+                                            {{--<td style="font-weight: bold; color: #181818">${{$precio_2}}usd</td>--}}
+                                            {{--<td style="font-weight: bold; color: #181818">{{$precio_3}}usd</td>--}}
+                                            {{--<td style="font-weight: bold; color: #181818">${{$precio_4}}usd</td>--}}
+                                            {{--<td style="font-weight: bold; color: #181818">${{$precio_5}}usd</td>--}}
+                                        {{--</tr>--}}
+
+                                        {{--</tbody>--}}
+                                    {{--</table>--}}
+                                    {{--<p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>--}}
+                                {{--</center>--}}
+
+                                <center style="margin-top: 10px; width: 100%">
+                                    <h5 style="font-size: 18px; margin-bottom: 10px;">Hoteles, Tours, Transporte, Entradas, Trenes, Tranfers.</h5>
                                     <table style="width: 100%; border: 1px solid #cccccc;">
                                         <thead>
                                         <tr style="background: #8d8d8d; color: white; text-align: center">
@@ -152,7 +177,36 @@
 
                                         </tbody>
                                     </table>
-                                    <p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>
+                                    {{--<p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>--}}
+                                </center>
+
+                                <center style="margin-top: 30px; width: 100%">
+                                    <h5 style="font-size: 18px; margin-bottom: 10px;">Tours, Transporte, Entradas, Trenes, Tranfers.</h5>
+                                    <table style="width: 100%; border: 1px solid #cccccc;">
+                                        <tbody>
+                                        <tr style="background: #ff9800; color: white; text-align: center">
+                                            <th style="padding: 10px; font-size: 18px">{{$count}} días <span style="color: #0d0d0d; font-weight: bold;">SIN HOTELES: ${{$precio_sh}}usd</span></th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    {{--<p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>--}}
+                                </center>
+
+
+                                <center style="margin-top: 30px; width: 100%">
+                                    <table style="width: 100%">
+                                        <tbody>
+                                        <tr style="text-align: center;">
+                                            <td style="text-align:center; width: 60%">
+                                                <img src="{{asset('images/cuotas.jpg')}}" alt="" style="width: 100%">
+                                            </td>
+                                            <td style="text-align:left; width: 50%">
+                                                <h5 style="font-weight: bold; font-size: 18px; margin-bottom: 5px;">Facilidades de Pago hasta 6 cuotas.</h5>
+                                                <p style="font-size: 16px; margin: 0;">Ejemplo: ${{$precio_ch}}/6 = ${{$precio_ch/6}} pagos mensuales.</p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </center>
 
                                 <center style="background:#f6f6f6; margin: 40px 0; padding:10px; -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);border: 0;">
@@ -187,19 +241,36 @@
                                 </center>
 
                                 <hr style="margin: 40px 0">
+                                {{--<center style="margin-top: 0px; width: 100%">--}}
+                                    {{--<p style="font-weight: bold; font-size: 16px; color: #181818; text-align: left ">UPGRADES OPCIONALES</p>--}}
+                                    {{--<table style="width: 100%;">--}}
+                                        {{--<tr style="text-align: left;">--}}
+                                            {{--<td style="font-weight: bold; color: #181818">--}}
+                                                {{--<ul>--}}
+                                                    {{--@php--}}
+                                                        {{--$otros = explode('*', $otros);--}}
+                                                    {{--@endphp--}}
+                                                    {{--@foreach($otros as $otro)--}}
+                                                        {{--<li>{{$otro}}</li>--}}
+                                                    {{--@endforeach--}}
+                                                {{--</ul>--}}
+                                            {{--</td>--}}
+                                        {{--</tr>--}}
+                                    {{--</table>--}}
+                                {{--</center>--}}
                                 <center style="margin-top: 0px; width: 100%">
-                                    <p style="font-weight: bold; font-size: 16px; color: #181818; text-align: left ">UPGRADES OPCIONALES</p>
+                                    <p style="font-weight: bold; font-size: 18px; color: #4b4b4b; text-align: left; margin: 0; ">Tambien ofrecemos</p>
+                                    <p style="font-size: 16px; color: #4b4b4b; text-align: left;margin: 0; ">Solo tours a la carta.</p>
                                     <table style="width: 100%;">
                                         <tr style="text-align: left;">
                                             <td style="font-weight: bold; color: #181818">
+                                                {{--<ul>--}}
+                                                {{--sdsdsd--}}
+                                                {{--</ul>--}}
                                                 <ul>
-                                                    @php
-                                                        $otros = explode('*', $otros);
-                                                    @endphp
-                                                    @foreach($otros as $otro)
-                                                        <li>{{$otro}}</li>
-                                                    @endforeach
+                                                    <li><a href="#">Machu Picchu Full Day: $220</a></li>
                                                 </ul>
+                                                <span><a href="#">Ver más ...</a></span>
                                             </td>
                                         </tr>
                                     </table>
