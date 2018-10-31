@@ -170,7 +170,7 @@
 
                                         <tr style="text-align: center;">
                                             <td style="font-weight: bold; color: #181818">${{$precio_2}}usd</td>
-                                            <td style="font-weight: bold; color: #181818">{{$precio_3}}usd</td>
+                                            <td style="font-weight: bold; color: #181818">${{$precio_3}}usd</td>
                                             <td style="font-weight: bold; color: #181818">${{$precio_4}}usd</td>
                                             <td style="font-weight: bold; color: #181818">${{$precio_5}}usd</td>
                                         </tr>
