@@ -15,6 +15,9 @@
 //    return view('welcome');
 //});
 
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/', [
     'uses' => 'HomeController@index',
     'as' => 'home_path',
@@ -37,4 +40,17 @@ Route::post('/message/send', [
 Route::post('/message/inquire_package', [
     'uses' => 'MessageController@inquire_package',
     'as' => 'update_inquire_p_path',
+]);
+//statistics
+Route::get('/statistics', [
+    'uses' => 'TeamController@index',
+    'as' => 'statistics_path',
+]);
+Route::get('/statistics/chart', [
+    'uses' => 'TeamController@chart',
+    'as' => 'chart_path',
+]);
+Route::get('/statistics/{iduser}', [
+    'uses' => 'TeamController@info',
+    'as' => 'info_path',
 ]);

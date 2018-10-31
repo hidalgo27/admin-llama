@@ -9,9 +9,9 @@ class TUsuario extends Model
     //
     protected $table = "tusuario";
 
-    public function inquire()
-    {
-        return $this->hasMany(TInquire::class, 'idusuario');
-    }
+//    public function inquire()
+//    {
+//        return $this->hasMany(TInquire::class, 'idusuario');
+//    }
 
 }

@@ -16,7 +16,25 @@
   padding: 2.5rem; }
 //.sidebar-fixed .logo-wrapper img {
 //  max-height: 50px; }
-
+.card-login{
+  background: none !important;
+}
+.bg-rgba-dark-4{
+  background: rgba(0, 0, 0, 0.4);
+}
+.bg-rgba-dark-8{
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+.bg-rgba-white-8{
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+.body-full{
+  background: url(/images/mapi.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 @media (min-width: 1200px) {
   .navbar,
   .page-footer,
@@ -423,4 +441,12 @@ ul.inbox-pagination li {
   color: #fff;
   background-color: #333333 !important;
   border-color: #181818 !important;
+}
+
+
+.card-wrapper .avatar {
+  display: block;
+  margin-top: -60px;
+  overflow: hidden;
+  width: 120px;
 }

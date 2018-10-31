@@ -11,6 +11,6 @@ class TInquire extends Model
 
     public function usuario()
     {
-        return $this->belongsTo(TUsuario::class, 'idusuario');
+        return $this->belongsTo(User::class, 'idusuario');
     }
 }

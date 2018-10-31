@@ -67,18 +67,18 @@
                     {{--<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>--}}
                     <div class="mail-box">
                         <aside class="sm-side">
-                            <div class="user-head">
-                                <a class="inbox-avatar" href="javascript:;">
-                                    <img  width="64" hieght="60" src="http://bootsnipp.com/img/avatars/ebeb306fd7ec11ab68cbcaa34282158bd80361a7.jpg">
-                                </a>
-                                <div class="user-name">
-                                    <h5><a href="#">Alireza Zare</a></h5>
-                                    <span><a href="#">Info.Ali.Pci@Gmail.com</a></span>
-                                </div>
-                                <a class="mail-dropdown float-right" href="javascript:;">
-                                    <i class="fa fa-chevron-down"></i>
-                                </a>
-                            </div>
+                            {{--<div class="user-head">--}}
+                                {{--<a class="inbox-avatar" href="javascript:;">--}}
+                                    {{--<img  width="64" hieght="60" src="http://bootsnipp.com/img/avatars/ebeb306fd7ec11ab68cbcaa34282158bd80361a7.jpg">--}}
+                                {{--</a>--}}
+                                {{--<div class="user-name">--}}
+                                    {{--<h5><a href="#">Alireza Zare</a></h5>--}}
+                                    {{--<span><a href="#">Info.Ali.Pci@Gmail.com</a></span>--}}
+                                {{--</div>--}}
+                                {{--<a class="mail-dropdown float-right" href="javascript:;">--}}
+                                    {{--<i class="fa fa-chevron-down"></i>--}}
+                                {{--</a>--}}
+                            {{--</div>--}}
                             <div class="inbox-body">
                                 <a href="#myModal" data-toggle="modal"  title="Compose"    class="btn btn-compose">
                                     Compose
@@ -191,15 +191,15 @@
 
                         </aside>
                         <aside class="lg-side">
-                            <div class="inbox-head orange">
-                                <h3>Inbox</h3>
-                                <form action="#" class="float-right position">
-                                    <div class="input-append">
-                                        <input type="text" class="sr-input" placeholder="Search Mail">
-                                        <button class="btn sr-btn m-0" type="button"><i class="fa fa-search"></i></button>
-                                    </div>
-                                </form>
-                            </div>
+                            {{--<div class="inbox-head orange">--}}
+                                {{--<h3>Inbox</h3>--}}
+                                {{--<form action="#" class="float-right position">--}}
+                                    {{--<div class="input-append">--}}
+                                        {{--<input type="text" class="sr-input" placeholder="Search Mail">--}}
+                                        {{--<button class="btn sr-btn m-0" type="button"><i class="fa fa-search"></i></button>--}}
+                                    {{--</div>--}}
+                                {{--</form>--}}
+                            {{--</div>--}}
                             <div class="inbox-body pt-2">
                                 @yield('content')
                             </div>

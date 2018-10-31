@@ -43,15 +43,15 @@
     <tbody>
     @foreach($inquire->sortByDesc('created_at') as $inquires)
         @switch($inquires->idusuario)
-            @case(0)
+            @case(2)
                 @php $badged = "badge-danger"; @endphp
             @break
 
-            @case(1)
+            @case(3)
                 @php $badged = "badge-success"; @endphp
             @break
 
-            @case(2)
+            @case(4)
                 @php $badged = "badge-warning"; @endphp
             @break
 
@@ -64,30 +64,59 @@
             {{--@php $badged = "badge-dark"; @endphp--}}
         {{--@endif--}}
 
-        @if ($inquires->id_paquetes == 0)
-            <tr class='clickable-row unread' data-href='{{route('message_path', [$inquires->id, 0])}}'>
-                <td class="inbox-small-cells">
-                    <input type="checkbox" class="mail-checkbox">
-                </td>
-                <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
-                <td class="view-message  dont-show">{{$inquires->email}} X {{$inquires->traveller}}</td>
-                <td class="view-message font-weight-light font-italic">Sin paquete seleccionado</td>
-                <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->nombre}}</span></td>
-                <td class="view-message  text-right">{{$inquires->time}}</td>
-            </tr>
-        @else
-            @foreach($package->where('id', $inquires->id_paquetes) as $packages)
-                <tr class='clickable-row unread' data-href='{{route('message_path', [$inquires->id, $packages->id])}}'>
+        @if(Auth::user()->hasRole('admin'))
+            @if ($inquires->id_paquetes == 0)
+                <tr class='clickable-row unread' data-href='{{route('message_path', [$inquires->id, 0])}}'>
                     <td class="inbox-small-cells">
                         <input type="checkbox" class="mail-checkbox">
                     </td>
                     <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
                     <td class="view-message  dont-show">{{$inquires->email}} X {{$inquires->traveller}}</td>
-                        <td class="view-message ">{{ucwords($packages->codigo)}}: {{ucwords(strtolower($packages->titulo))}} | {{$inquires->duration}} days</td>
-                    <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->nombre}}</span></td>
+                    <td class="view-message font-weight-light font-italic">Sin paquete seleccionado</td>
+                    <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
                     <td class="view-message  text-right">{{$inquires->time}}</td>
                 </tr>
-            @endforeach
+            @else
+                @foreach($package->where('id', $inquires->id_paquetes) as $packages)
+                    <tr class='clickable-row unread' data-href='{{route('message_path', [$inquires->id, $packages->id])}}'>
+                        <td class="inbox-small-cells">
+                            <input type="checkbox" class="mail-checkbox">
+                        </td>
+                        <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
+                        <td class="view-message  dont-show">{{$inquires->email}} X {{$inquires->traveller}}</td>
+                            <td class="view-message ">{{ucwords($packages->codigo)}}: {{ucwords(strtolower($packages->titulo))}} | {{$inquires->duration}} days</td>
+                        <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
+                        <td class="view-message  text-right">{{$inquires->time}}</td>
+                    </tr>
+                @endforeach
+            @endif
+        @else
+            @if ($inquires->id_paquetes == 0 AND $inquires->idusuario == Auth::user()->id)
+                <tr class='clickable-row unread' data-href='{{route('message_path', [$inquires->id, 0])}}'>
+                    <td class="inbox-small-cells">
+                        <input type="checkbox" class="mail-checkbox">
+                    </td>
+                    <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
+                    <td class="view-message  dont-show">{{$inquires->email}} X {{$inquires->traveller}}</td>
+                    <td class="view-message font-weight-light font-italic">Sin paquete seleccionado</td>
+                    <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
+                    <td class="view-message  text-right">{{$inquires->time}}</td>
+                </tr>
+            @elseif ($inquires->id_paquetes > 0 AND $inquires->idusuario == Auth::user()->id)
+                
+                @foreach($package->where('id', $inquires->id_paquetes) as $packages)
+                    <tr class='clickable-row unread' data-href='{{route('message_path', [$inquires->id, $packages->id])}}'>
+                        <td class="inbox-small-cells">
+                            <input type="checkbox" class="mail-checkbox">
+                        </td>
+                        <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
+                        <td class="view-message  dont-show">{{$inquires->email}} X {{$inquires->traveller}}</td>
+                        <td class="view-message ">{{ucwords($packages->codigo)}}: {{ucwords(strtolower($packages->titulo))}} | {{$inquires->duration}} days</td>
+                        <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
+                        <td class="view-message  text-right">{{$inquires->time}}</td>
+                    </tr>
+                @endforeach
+            @endif
         @endif
     @endforeach
     {{--<tr class="unread">--}}
