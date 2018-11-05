@@ -54,3 +54,14 @@ Route::get('/statistics/{iduser}', [
     'uses' => 'TeamController@info',
     'as' => 'info_path',
 ]);
+
+//packages
+Route::get('/packages', [
+    'uses' => 'PackageController@index',
+        'as' => 'packages_path',
+]);
+
+Route::get('search/autocomplete', [
+    'uses' => 'MessageController@autocomplete',
+    'as' => 'autocomplete_path',
+]);

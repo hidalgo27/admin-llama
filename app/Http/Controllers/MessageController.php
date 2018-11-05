@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\TDestino;
 use App\TIncluye;
 use App\TInquire;
 use App\TItinerario;
@@ -12,7 +13,9 @@ use App\TPaqueteDestino;
 use App\TPrecioPaquete;
 use App\TUsuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Response;
 
 class MessageController extends Controller
 {
@@ -277,5 +280,21 @@ class MessageController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function autocomplete(){
+        $term = Input::get('term');
+
+        $results = array();
+
+        $queries = TDestino::
+        where('nombre', 'LIKE', '%'.$term.'%')
+            ->take(5)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => ucwords(strtolower($query->nombre))];
+        }
+        return Response::json($results);
     }
 }

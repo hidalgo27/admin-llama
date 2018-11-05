@@ -450,3 +450,47 @@ ul.inbox-pagination li {
   overflow: hidden;
   width: 120px;
 }
+
+.tr-color-selected{
+  background-color: hsla(196, 77%, 55%, 0.3) !important;
+  transition: all .2s ease-in;
+}
+table.dataTable thead {
+  cursor: pointer;
+}
+.switch.round label .lever {
+  width: 54px;
+  height: 34px;
+  border-radius: 10em;
+}
+.switch.round label .lever:after {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  left: 4px;
+  top: 4px;
+}
+.switch.square label .lever {
+  width: 54px;
+  height: 34px;
+  border-radius: 0px;
+}
+.switch.square label .lever:after {
+  width: 26px;
+  height: 26px;
+  border-radius: 0px;
+  left: 4px;
+  top: 4px;
+}
+
+.bs-switch {
+  height: 15px !important;
+}
+.bs-switch .slider:before {
+  bottom: -5px !important;
+  -webkit-box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgba(0,0,0,.4);
+  box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgba(0,0,0,.4);
+}
+.dataTables_filter{
+  text-align: right;
+}

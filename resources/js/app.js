@@ -9,7 +9,13 @@ require('./bootstrap');
 require('mdbootstrap/js/bootstrap');
 require('mdbootstrap/js/mdb');
 require('bootstrap-select/js/bootstrap-select');
+// require('mdbootstrap/js/addons/datatables.min');
 // require('@ckeditor/ckeditor5-build-classic/build/ckeditor');
+import $ from 'jquery';
+window.$ = window.jQuery = $;
+
+import 'jquery-ui/ui/widgets/autocomplete';
+
 window.Vue = require('vue');
 
 /**

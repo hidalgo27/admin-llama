@@ -197,13 +197,40 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <h5 class="font-weight-bold orange-text">Destinations {{$k}}</h5>
+                                <h5 class="font-weight-bold orange-text">Destinations</h5>
                                 @foreach($paquete_destino as $paquete_destinos)
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="destinos_{{$paquete_destinos->id}}" name="destinations[]" value="{{$paquete_destinos->destinos->nombre}}" checked>
-                                        <label class="custom-control-label" for="destinos_{{$paquete_destinos->id}}">{{ucwords(strtolower($paquete_destinos->destinos->nombre))}}</label>
-                                    </div>
+
+                                        <div class="custom-control custom-checkbox field_wrapper">
+                                            <input type="hidden" id="destinos_{{$paquete_destinos->id}}" name="destinations[]" value="{{$paquete_destinos->destinos->id}}">
+                                            <input type="checkbox" class="custom-control-input" id="destinos_{{$paquete_destinos->id}}" name="destinations2[]" value="{{$paquete_destinos->destinos->nombre}}" checked>
+                                            <label class="custom-control-label" for="destinos_{{$paquete_destinos->id}}">{{ucwords(strtolower($paquete_destinos->destinos->nombre))}}</label>
+                                            <a href="javascript:void(0);" class="remove_button" title="Remove field"> <i class="fas fa-trash text-danger"></i></a>
+                                        </div>
+
                                 @endforeach
+
+                                <div class="field_wrapper2">
+                                    <div>
+                                        {{--<input type="text" name="field_name[]" value=""/>--}}
+                                    </div>
+                                </div>
+                                <a href="javascript:void(0);" class="add_button" title="Add field"><i class="fas fa-plus text-success"></i></a>
+                                {{--<input type="text" id="q2">--}}
+
+                                {{--{{ Form::open(['action' => ['SearchController@searchUser'], 'method' => 'GET']) }}--}}
+                                {{--{{ Form::text('q', '', ['id' =>  'q', 'placeholder' =>  'Enter name'])}}--}}
+                                {{--{{ Form::submit('Search', array('class' => 'button expand')) }}--}}
+                                {{--{{ Form::close() }}--}}
+
+
+                                    {{--<input type="text" name="q" value="" id="q" class="form-control form-control-sm col autocomplete"/>--}}
+
+                                {{--<div class="row align-items-center md-form w-25 px-3 my-2">--}}
+                                    {{--<input type="text" name="field_name[]" value="" id="q" class="form-control form-control-sm col "/>--}}
+                                {{--</div>--}}
+
+
+
                             </div>
                         </div>
                     </div>
@@ -218,20 +245,34 @@
                             <div class="col-12">
                                 <h5 class="font-weight-bold orange-text">Included</h5>
                                 @foreach($incluye as $incluidos)
-                                    <div class="custom-control custom-checkbox">
+                                    <div class="custom-control custom-checkbox field_included">
                                         <input type="checkbox" class="custom-control-input" id="incluye_{{$incluidos->id}}" name="incluye[]" value="{{$incluidos->incluye}}" checked>
                                         <label class="custom-control-label" for="incluye_{{$incluidos->id}}">{{$incluidos->incluye}}</label>
+                                        <a href="javascript:void(0);" class="remove_button" title="Remove field"> <i class="fas fa-trash text-danger"></i></a>
                                     </div>
                                 @endforeach
+                                <div class="field_included2">
+                                    <div>
+                                        {{--<input type="text" name="field_name[]" value=""/>--}}
+                                    </div>
+                                </div>
+                                <a href="javascript:void(0);" class="add_btn_included" title="Add field"><i class="fas fa-plus text-success"></i></a>
                             </div>
                             <div class="col-12 mt-3">
                                 <h5 class="font-weight-bold orange-text">Not Included</h5>
                                 @foreach($no_incluye as $no_incluidos)
-                                    <div class="custom-control custom-checkbox">
+                                    <div class="custom-control custom-checkbox field_no_included">
                                         <input type="checkbox" class="custom-control-input" id="no_incluye_{{$no_incluidos->id}}" name="noincluye[]" value="{{$no_incluidos->noincluye}}" checked>
                                         <label class="custom-control-label" for="no_incluye_{{$no_incluidos->id}}">{{$no_incluidos->noincluye}}</label>
+                                        <a href="javascript:void(0);" class="remove_button" title="Remove field"> <i class="fas fa-trash text-danger"></i></a>
                                     </div>
                                 @endforeach
+                                <div class="field_no_included2">
+                                    <div>
+                                        {{--<input type="text" name="field_name[]" value=""/>--}}
+                                    </div>
+                                </div>
+                                <a href="javascript:void(0);" class="add_btn_no_included" title="Add field"><i class="fas fa-plus text-success"></i></a>
                             </div>
                         </div>
                     </div>
@@ -841,6 +882,7 @@
 @push('scripts')
     <script src='https://devpreview.tiny.cloud/demo/tinymce.min.js'></script>
     <script>
+
         tinymce.init({
             selector: 'textarea',
             height: 200,
@@ -859,8 +901,6 @@
                 });
             }
         });
-    </script>
-    <script>
 
         //editor
         ClassicEditor
@@ -1123,6 +1163,138 @@
             }
 
         }
+
+        $(document).ready(function(){
+            var maxField = 10; //Input fields increment limitation
+
+            var addButton = $('.add_button'); //Add button selector
+            var addButtonIncluded = $('.add_btn_included');
+            var addButtonNoIncluded = $('.add_btn_no_included');
+
+            var wrapper = $('.field_wrapper'); //Input field wrapper
+            var wrapper2 = $('.field_wrapper2'); //Input field wrapper
+
+            var wrapper_included = $('.field_included'); //Input field wrapper field_included
+            var wrapper_included2 = $('.field_included2'); //Input field wrapper field_included
+
+            var wrapper_no_included = $('.field_no_included'); //Input field wrapper field_included
+            var wrapper_no_included2 = $('.field_no_included2'); //Input field wrapper field_included
+
+            var fieldHTML = '' +
+                '<div class="row align-items-center md-form w-25 px-3 my-2">' +
+                '<input type="text" name="destinations[]" value="" class="form-control form-control-sm col autocomplete"/>' +
+                '<a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-trash text-danger"></i></a>' +
+                '</div>'+ //New input field html
+            '<script>'+
+                '$( ".autocomplete" ).autocomplete({'+
+                    'source: "{{route('autocomplete_path')}}",'+
+                    'minLength: 2'+
+                '});'+
+            '<'+
+                '/'+
+                'script>';
+
+            var fieldHTMLIncluded = '' +
+                '<div class="row align-items-center md-form px-3 my-2">' +
+                '<input type="text" name="incluye[]" value="" class="form-control form-control-sm col autocomplete"/>' +
+                '<a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-trash text-danger"></i></a>' +
+                '</div>'+ //New input field html
+                '<script>'+
+                '$( ".autocomplete" ).autocomplete({'+
+                'source: "{{route('autocomplete_path')}}",'+
+                'minLength: 2'+
+                '});'+
+                '<'+
+                '/'+
+                'script>';
+
+            var fieldHTMLNoIncluded = '' +
+                '<div class="row align-items-center md-form px-3 my-2">' +
+                '<input type="text" name="noincluye[]" value="" class="form-control form-control-sm col autocomplete"/>' +
+                '<a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-trash text-danger"></i></a>' +
+                '</div>'+ //New input field html
+                '<script>'+
+                '$( ".autocomplete" ).autocomplete({'+
+                'source: "{{route('autocomplete_path')}}",'+
+                'minLength: 2'+
+                '});'+
+                '<'+
+                '/'+
+                'script>';
+
+            var x = 1; //Initial field counter is 1
+
+            $(addButton).click(function(){ //Once add button is clicked
+                if(x < maxField){ //Check maximum number of input fields
+                    x++; //Increment field counter
+                    $(wrapper2).append(fieldHTML); // Add field html
+                }
+            });
+
+            $(addButtonIncluded).click(function(){ //Once add button is clicked
+                if(x < maxField){ //Check maximum number of input fields
+                    x++; //Increment field counter
+                    $(wrapper_included2).append(fieldHTMLIncluded); // Add field html
+                }
+            });
+
+            $(addButtonNoIncluded).click(function(){ //Once add button is clicked
+                if(x < maxField){ //Check maximum number of input fields
+                    x++; //Increment field counter
+                    $(wrapper_no_included2).append(fieldHTMLNoIncluded); // Add field html
+                }
+            });
+
+            $(wrapper).on('click', '.remove_button', function(e){ //Once remove button is clicked
+                e.preventDefault();
+                $(this).parent('div').remove(); //Remove field html
+                x--; //Decrement field counter
+            });
+            $(wrapper2).on('click', '.remove_button', function(e){ //Once remove button is clicked
+                e.preventDefault();
+                $(this).parent('div').remove(); //Remove field html
+                x--; //Decrement field counter
+            });
+
+            $(wrapper_included).on('click', '.remove_button', function(e){ //Once remove button is clicked
+                e.preventDefault();
+                $(this).parent('div').remove(); //Remove field html
+                x--; //Decrement field counter
+            });
+            $(wrapper_included2).on('click', '.remove_button', function(e){ //Once remove button is clicked
+                e.preventDefault();
+                $(this).parent('div').remove(); //Remove field html
+                x--; //Decrement field counter
+            });
+
+            $(wrapper_no_included).on('click', '.remove_button', function(e){ //Once remove button is clicked
+                e.preventDefault();
+                $(this).parent('div').remove(); //Remove field html
+                x--; //Decrement field counter
+            });
+            $(wrapper_no_included2).on('click', '.remove_button', function(e){ //Once remove button is clicked
+                e.preventDefault();
+                $(this).parent('div').remove(); //Remove field html
+                x--; //Decrement field counter
+            });
+
+
+            $( "#q" ).autocomplete({
+                source: "{{route('autocomplete_path')}}",
+                minLength: 2,
+                select: function(event, ui) {
+                    // $this.val(ui.item.value);
+                    // $('#q2').val(ui.item.value);
+                    var res = ui.item.id;
+                    document.getElementById("q2").value = res;
+                }
+
+            });
+
+
+        });
+        
+
 
     </script>
 @endpush
