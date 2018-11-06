@@ -65,3 +65,16 @@ Route::get('search/autocomplete', [
     'uses' => 'MessageController@autocomplete',
     'as' => 'autocomplete_path',
 ]);
+Route::get('search/autocomplete_included', [
+    'uses' => 'MessageController@autocomplete_included',
+    'as' => 'autocomplete_included_path',
+]);
+Route::get('search/autocomplete_no_included', [
+    'uses' => 'MessageController@autocomplete_no_included',
+    'as' => 'autocomplete_no_included_path',
+]);
+
+Route::get('search/autocomplete_itinerary', [
+    'uses' => 'MessageController@autocomplete_itinerary',
+    'as' => 'autocomplete_itinerary_path',
+]);

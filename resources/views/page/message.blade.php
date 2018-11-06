@@ -150,43 +150,61 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        @php $k=0; @endphp
-                        @foreach($itinerary as $itin)
-                        <div class="row mt-4">
-                            <div class="col-1">
-                                <div class="md-form form-lg">
-                                    <input type="text" id="h_day_{{$itin->id}}" name="h_day[]" class="form-control form-control-lg font-weight-bold dark-grey-text" value="{{$itin->dia}}">
-                                    <label for="h_day_{{$itin->id}}">Day</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="md-form form-lg">
-                                    <input type="text" id="h_title_{{$itin->id}}" name="h_title[]" class="form-control form-control-lg font-weight-bold orange-text" value="{{ucwords(strtolower($itin->titulo))}}">
-                                    <label for="h_title_{{$itin->id}}">Title</label>
-                                </div>
-                                    {{--Day 1: Cusco Arrival --}}
-                                    {{--<span class="badge badge-dark">$1200<small>USD</small></span>--}}
-                            </div>
-                            {{--<div class="col-3">--}}
-                                {{--<div class="md-form form-lg">--}}
-                                    {{--<input type="text" id="inputLGEx" class="form-control form-control-lg" value="1289">--}}
-                                    {{--<label for="inputLGEx">Price <small>(USD$)</small></label>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                                {{--Day 1: Cusco Arrival --}}
-                                {{--<span class="badge badge-dark">$1200<small>USD</small></span>--}}
+                        <div class="col">
+                            @php $k=0; @endphp
+                            @foreach($itinerary as $itin)
+                                <div class="row mt-4 align-items-center no-gutters">
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <div class="md-form form-lg">
+                                                    <input type="text" id="h_day_{{$itin->id}}" name="h_day[]" class="form-control form-control-lg font-weight-bold dark-grey-text" value="{{$itin->dia}}">
+                                                    <label for="h_day_{{$itin->id}}">Day</label>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="md-form form-lg">
+                                                    <input type="text" id="h_title_{{$itin->id}}" name="h_title[]" class="form-control form-control-lg font-weight-bold orange-text" value="{{ucwords(strtolower($itin->titulo))}}">
+                                                    <label for="h_title_{{$itin->id}}">Title</label>
+                                                </div>
+                                                {{--Day 1: Cusco Arrival --}}
+                                                {{--<span class="badge badge-dark">$1200<small>USD</small></span>--}}
+                                            </div>
+                                            {{--<div class="col-3">--}}
+                                            {{--<div class="md-form form-lg">--}}
+                                            {{--<input type="text" id="inputLGEx" class="form-control form-control-lg" value="1289">--}}
+                                            {{--<label for="inputLGEx">Price <small>(USD$)</small></label>--}}
+                                            {{--</div>--}}
+                                            {{--</div>--}}
+                                            {{--Day 1: Cusco Arrival --}}
+                                            {{--<span class="badge badge-dark">$1200<small>USD</small></span>--}}
 
-                            <div class="col-12">
-                                <div class="md-form mt-0">
-                                    <textarea id="editor-{{$itin->id}}" name="h_resumen[]" class="editor-{{$itin->id}}" rows="2">{{$itin->resumen}}</textarea>
-                                    {{--<input type="hidden" id="h_resumen" name="h_resumen[]" value="{{$itin->resumen}}">--}}
-                                    {{--@php echo $itin->resumen @endphp--}}
-                                    {{--<label for="text2">Auto-resizing textarea</label>--}}
+                                            <div class="col-12">
+                                                <div class="md-form mt-0">
+                                                    <textarea id="editor-{{$itin->id}}" name="h_resumen[]" class="editor-{{$itin->id}}" rows="2">{{$itin->resumen}}</textarea>
+                                                    {{--<input type="hidden" id="h_resumen" name="h_resumen[]" value="{{$itin->resumen}}">--}}
+                                                    {{--@php echo $itin->resumen @endphp--}}
+                                                    {{--<label for="text2">Auto-resizing textarea</label>--}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto field_itinerary">
+                                        <a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>
+                                    </div>
+                                </div>
+                                @php $k++; @endphp
+                            @endforeach
+
+                            <div class="field_itinerary2">
+                                <div>
+                                    {{--<input type="text" name="field_name[]" value=""/>--}}
                                 </div>
                             </div>
+
+                            <a href="javascript:void(0);" class="add_btn_itinerary" title="Add field"><i class="fas fa-plus text-success"></i></a>
                         </div>
-                            @php $k++; @endphp
-                        @endforeach
+
                     </div>
                 </div>
             </div>
@@ -200,11 +218,11 @@
                                 <h5 class="font-weight-bold orange-text">Destinations</h5>
                                 @foreach($paquete_destino as $paquete_destinos)
 
-                                        <div class="custom-control custom-checkbox field_wrapper">
-                                            <input type="hidden" id="destinos_{{$paquete_destinos->id}}" name="destinations[]" value="{{$paquete_destinos->destinos->id}}">
-                                            <input type="checkbox" class="custom-control-input" id="destinos_{{$paquete_destinos->id}}" name="destinations2[]" value="{{$paquete_destinos->destinos->nombre}}" checked>
-                                            <label class="custom-control-label" for="destinos_{{$paquete_destinos->id}}">{{ucwords(strtolower($paquete_destinos->destinos->nombre))}}</label>
-                                            <a href="javascript:void(0);" class="remove_button" title="Remove field"> <i class="fas fa-trash text-danger"></i></a>
+                                        <div class="row field_wrapper align-items-center md-form px-3 my-1">
+                                            {{--<input type="hidden" id="destinos_{{$paquete_destinos->id}}" name="destinations[]" value="{{$paquete_destinos->destinos->id}}">--}}
+                                            <input type="text" class="form-control form-control-sm col-6 autocomplete_destinos" id="destinos_{{$paquete_destinos->id}}" name="destinations[]" value="{{$paquete_destinos->destinos->nombre}}">
+                                            {{--<label class="custom-control-label" for="destinos_{{$paquete_destinos->id}}">{{ucwords(strtolower($paquete_destinos->destinos->nombre))}}</label>--}}
+                                            <a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>
                                         </div>
 
                                 @endforeach
@@ -245,10 +263,10 @@
                             <div class="col-12">
                                 <h5 class="font-weight-bold orange-text">Included</h5>
                                 @foreach($incluye as $incluidos)
-                                    <div class="custom-control custom-checkbox field_included">
-                                        <input type="checkbox" class="custom-control-input" id="incluye_{{$incluidos->id}}" name="incluye[]" value="{{$incluidos->incluye}}" checked>
-                                        <label class="custom-control-label" for="incluye_{{$incluidos->id}}">{{$incluidos->incluye}}</label>
-                                        <a href="javascript:void(0);" class="remove_button" title="Remove field"> <i class="fas fa-trash text-danger"></i></a>
+                                    <div class="row field_included align-items-center md-form px-3 my-1">
+                                        <input type="text" class="form-control form-control-sm col autocomplete_included" id="incluye_{{$incluidos->id}}" name="incluye[]" value="{{$incluidos->incluye}}">
+                                        {{--<label class="custom-control-label" for="incluye_{{$incluidos->id}}">{{$incluidos->incluye}}</label>--}}
+                                        <a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>
                                     </div>
                                 @endforeach
                                 <div class="field_included2">
@@ -261,10 +279,10 @@
                             <div class="col-12 mt-3">
                                 <h5 class="font-weight-bold orange-text">Not Included</h5>
                                 @foreach($no_incluye as $no_incluidos)
-                                    <div class="custom-control custom-checkbox field_no_included">
-                                        <input type="checkbox" class="custom-control-input" id="no_incluye_{{$no_incluidos->id}}" name="noincluye[]" value="{{$no_incluidos->noincluye}}" checked>
-                                        <label class="custom-control-label" for="no_incluye_{{$no_incluidos->id}}">{{$no_incluidos->noincluye}}</label>
-                                        <a href="javascript:void(0);" class="remove_button" title="Remove field"> <i class="fas fa-trash text-danger"></i></a>
+                                    <div class="row field_no_included align-items-center md-form px-3 my-1">
+                                        <input type="text" class="form-control form-control-sm col autocomplete_no_included" id="no_incluye_{{$no_incluidos->id}}" name="noincluye[]" value="{{$no_incluidos->noincluye}}">
+{{--                                        <label class="custom-control-label" for="no_incluye_{{$no_incluidos->id}}">{{$no_incluidos->noincluye}}</label>--}}
+                                        <a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>
                                     </div>
                                 @endforeach
                                 <div class="field_no_included2">
@@ -587,7 +605,7 @@
             <div class="col">
                 <a href="" class="btn btn-light float-left">Save Mail <i class="fa fa-save"></i></a>
                 {{--<a href="" class="btn btn-primary float-right" onclick="design()">Send Mail</a>--}}
-                <button type="button" class="btn btn-primary float-right" id="h_submit" onclick="message()">Submit</button>
+                <button type="button" class="btn btn-primary float-right" id="h_submit" onclick="message()">Send</button>
                 <i class="fas fa-spinner fa-pulse fa-2x text-primary float-right d-none" id="h_load"></i>
             </div>
         </div>
@@ -885,7 +903,7 @@
 
         tinymce.init({
             selector: 'textarea',
-            height: 200,
+            height: 280,
             menubar: false,
             browser_spellcheck : true,
             contextmenu: false,
@@ -983,7 +1001,7 @@
             var s_destinations = document.getElementsByName('destinations[]');
             var $destinations = "";
             for (var i = 0, l = s_destinations.length; i < l; i++) {
-                if (s_destinations[i].checked) {
+                if (s_destinations[i]) {
                     $destinations += s_destinations[i].value+'*';
                 }
             }
@@ -992,7 +1010,7 @@
             var s_incluye = document.getElementsByName('incluye[]');
             var $incluye = "";
             for (var i = 0, l = s_incluye.length; i < l; i++) {
-                if (s_incluye[i].checked) {
+                if (s_incluye[i]) {
                     $incluye += s_incluye[i].value+'*';
                 }
             }
@@ -1001,9 +1019,10 @@
             var s_noincluye = document.getElementsByName('noincluye[]');
             var $noincluye = "";
             for (var i = 0, l = s_noincluye.length; i < l; i++) {
-                if (s_noincluye[i].checked) {
+                if (s_noincluye[i]) {
                     $noincluye += s_noincluye[i].value+'*';
                 }
+
             }
             s_noincluye = $noincluye.substring(0,$noincluye.length-1);
 
@@ -1170,6 +1189,7 @@
             var addButton = $('.add_button'); //Add button selector
             var addButtonIncluded = $('.add_btn_included');
             var addButtonNoIncluded = $('.add_btn_no_included');
+            var addButtonItinerary = $('.add_btn_itinerary');
 
             var wrapper = $('.field_wrapper'); //Input field wrapper
             var wrapper2 = $('.field_wrapper2'); //Input field wrapper
@@ -1180,43 +1200,57 @@
             var wrapper_no_included = $('.field_no_included'); //Input field wrapper field_included
             var wrapper_no_included2 = $('.field_no_included2'); //Input field wrapper field_included
 
+            var wrapper_itinerary = $('.field_itinerary'); //Input field wrapper field_included
+            var wrapper_itinerary2 = $('.field_itinerary2'); //Input field wrapper field_included
+
             var fieldHTML = '' +
-                '<div class="row align-items-center md-form w-25 px-3 my-2">' +
-                '<input type="text" name="destinations[]" value="" class="form-control form-control-sm col autocomplete"/>' +
-                '<a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-trash text-danger"></i></a>' +
+                '<div class="row align-items-center md-form px-3 my-1">' +
+                '<input type="text" name="destinations[]" value="" class="form-control form-control-sm col-6 autocomplete_destinos"/>' +
+                '<a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>' +
                 '</div>'+ //New input field html
             '<script>'+
-                '$( ".autocomplete" ).autocomplete({'+
+                '$( ".autocomplete_destinos" ).autocomplete({'+
                     'source: "{{route('autocomplete_path')}}",'+
-                    'minLength: 2'+
+
                 '});'+
             '<'+
                 '/'+
                 'script>';
 
             var fieldHTMLIncluded = '' +
-                '<div class="row align-items-center md-form px-3 my-2">' +
-                '<input type="text" name="incluye[]" value="" class="form-control form-control-sm col autocomplete"/>' +
-                '<a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-trash text-danger"></i></a>' +
+                '<div class="row align-items-center md-form px-3 my-1">' +
+                '<input type="text" name="incluye[]" value="" class="form-control form-control-sm col autocomplete_included"/>' +
+                '<a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>' +
                 '</div>'+ //New input field html
                 '<script>'+
-                '$( ".autocomplete" ).autocomplete({'+
-                'source: "{{route('autocomplete_path')}}",'+
-                'minLength: 2'+
+                '$( ".autocomplete_included" ).autocomplete({'+
+                'source: "{{route('autocomplete_included_path')}}",'+
                 '});'+
                 '<'+
                 '/'+
                 'script>';
 
             var fieldHTMLNoIncluded = '' +
-                '<div class="row align-items-center md-form px-3 my-2">' +
-                '<input type="text" name="noincluye[]" value="" class="form-control form-control-sm col autocomplete"/>' +
-                '<a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-trash text-danger"></i></a>' +
+                '<div class="row align-items-center md-form px-3 my-1">' +
+                '<input type="text" name="noincluye[]" value="" class="form-control form-control-sm col autocomplete_no_included"/>' +
+                '<a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>' +
                 '</div>'+ //New input field html
                 '<script>'+
-                '$( ".autocomplete" ).autocomplete({'+
-                'source: "{{route('autocomplete_path')}}",'+
-                'minLength: 2'+
+                '$( ".autocomplete_no_included" ).autocomplete({'+
+                'source: "{{route('autocomplete_no_included_path')}}",'+
+                '});'+
+                '<'+
+                '/'+
+                'script>';
+
+            var fieldHTMLItinerary = '' +
+                '<div class="row align-items-center md-form px-3 my-1">' +
+                '<input type="text" name="noincluye[]" value="" class="form-control form-control-sm col autocomplete_itinerary"/>' +
+                '<a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>' +
+                '</div>'+ //New input field html
+                '<script>'+
+                '$( ".autocomplete_itinerary" ).autocomplete({'+
+                'source: "{{route('autocomplete_itinerary_path')}}",'+
                 '});'+
                 '<'+
                 '/'+
@@ -1242,6 +1276,13 @@
                 if(x < maxField){ //Check maximum number of input fields
                     x++; //Increment field counter
                     $(wrapper_no_included2).append(fieldHTMLNoIncluded); // Add field html
+                }
+            });
+
+            $(addButtonItinerary).click(function(){ //Once add button is clicked
+                if(x < maxField){ //Check maximum number of input fields
+                    x++; //Increment field counter
+                    $(wrapper_itinerary2).append(fieldHTMLItinerary); // Add field html
                 }
             });
 
@@ -1279,9 +1320,23 @@
             });
 
 
+
+            $(wrapper_itinerary).on('click', '.remove_button', function(e){ //Once remove button is clicked
+                e.preventDefault();
+                $(this).parent('div').parent('div').remove(); //Remove field html
+                x--; //Decrement field counter
+            });
+            $(wrapper_itinerary2).on('click', '.remove_button', function(e){ //Once remove button is clicked
+                e.preventDefault();
+                $(this).parent('div').remove(); //Remove field html
+                x--; //Decrement field counter
+            });
+
+
+
             $( "#q" ).autocomplete({
                 source: "{{route('autocomplete_path')}}",
-                minLength: 2,
+                // minLength: 2,
                 select: function(event, ui) {
                     // $this.val(ui.item.value);
                     // $('#q2').val(ui.item.value);
@@ -1291,10 +1346,31 @@
 
             });
 
+            {{--$( "#q" ).autocomplete({--}}
+                {{--source: "{{route('autocomplete_path')}}",--}}
+                {{--// minLength: 2,--}}
+                {{--select: function(event, ui) {--}}
+                    {{--// $this.val(ui.item.value);--}}
+                    {{--// $('#q2').val(ui.item.value);--}}
+                    {{--var res = ui.item.id;--}}
+                    {{--document.getElementById("q2").value = res;--}}
+                {{--}--}}
+
+            {{--});--}}
+
+            $( ".autocomplete_destinos" ).autocomplete({
+                source: "{{route('autocomplete_path')}}",
+            });
+
+            $( ".autocomplete_included" ).autocomplete({
+                source: "{{route('autocomplete_included_path')}}",
+            });
+
+            $( ".autocomplete_no_included" ).autocomplete({
+                source: "{{route('autocomplete_no_included_path')}}",
+            });
 
         });
-        
-
 
     </script>
 @endpush

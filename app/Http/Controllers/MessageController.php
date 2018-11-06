@@ -297,4 +297,37 @@ class MessageController extends Controller
         }
         return Response::json($results);
     }
+
+    public function autocomplete_included(){
+        $term = Input::get('term');
+
+        $results = array();
+
+        $queries = TIncluye::
+        where('incluye', 'LIKE', '%'.$term.'%')
+            ->take(5)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => $query->incluye];
+        }
+        return Response::json($results);
+    }
+
+    public function autocomplete_no_included(){
+        $term = Input::get('term');
+
+        $results = array();
+
+        $queries = TNoIncluye::
+        where('noincluye', 'LIKE', '%'.$term.'%')
+            ->take(5)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => $query->noincluye];
+        }
+        return Response::json($results);
+    }
+
 }
