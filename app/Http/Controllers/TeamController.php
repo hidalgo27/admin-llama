@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\TInquire;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -17,11 +18,16 @@ class TeamController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request)
+    public function index(Request $request, $from, $to)
     {
+//        $from = strtotime ( 'Y-m-d' , strtotime ( $to ) ) ;
+        $fromDate = date('Y-m-d' . ' 00:00:00', strtotime ($from));
+        $toDate = date('Y-m-d' . ' 23:59:59', strtotime ($to));
+
         $request->user()->authorizeRoles(['admin', 'sales']);
         $user = User::all();
-        return view('page.statistics', ['user'=>$user]);
+        $inquire = TInquire::whereBetween('created_at', [$fromDate, $toDate])->get();
+        return view('page.statistics', ['user'=>$user, 'inquire'=>$inquire]);
     }
     public function chart(Request $request)
     {

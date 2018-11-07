@@ -42,7 +42,7 @@ Route::post('/message/inquire_package', [
     'as' => 'update_inquire_p_path',
 ]);
 //statistics
-Route::get('/statistics', [
+Route::get('/statistics/{from}/{to}', [
     'uses' => 'TeamController@index',
     'as' => 'statistics_path',
 ]);
