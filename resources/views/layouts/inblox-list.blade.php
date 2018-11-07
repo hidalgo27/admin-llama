@@ -74,7 +74,18 @@
                     <td class="view-message  dont-show">{{$inquires->email}} X {{$inquires->traveller}}</td>
                     <td class="view-message font-weight-light font-italic">Sin paquete seleccionado</td>
                     <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
-                    <td class="view-message  text-right">{{$inquires->time}}</td>
+                    @php
+                        date_default_timezone_set('America/Lima');
+                        $date_a = date('Y-m-d');
+                        $date_i = $inquires->created_at;
+                        $date_i = strftime('%Y-%m-%d', strtotime($date_i));
+
+                    @endphp
+                    @if ($date_a == $date_i)
+                        <td class="view-message  text-right">{{$inquires->time}}</td>
+                    @else
+                        <td class="view-message  text-right">{{strftime("%d %b", strtotime(str_replace('-','/', $inquires->created_at)))}}</td>
+                    @endif
                 </tr>
             @else
                 @foreach($package->where('id', $inquires->id_paquetes) as $packages)
@@ -86,7 +97,17 @@
                         <td class="view-message  dont-show">{{$inquires->email}} X {{$inquires->traveller}}</td>
                             <td class="view-message ">{{ucwords($packages->codigo)}}: {{ucwords(strtolower($packages->titulo))}} | {{$inquires->duration}} days</td>
                         <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
-                        <td class="view-message  text-right">{{$inquires->time}}</td>
+                        @php
+                            date_default_timezone_set('America/Lima');
+                            $date_a = date('Y-m-d');
+                            $date_i = $inquires->created_at;
+                            $date_i = strftime('%Y-%m-%d', strtotime($date_i));
+                        @endphp
+                        @if ($date_a == $date_i)
+                            <td class="view-message  text-right">{{$inquires->time}}</td>
+                        @else
+                            <td class="view-message  text-right">{{strftime("%d %b", strtotime(str_replace('-','/', $inquires->created_at)))}}</td>
+                        @endif
                     </tr>
                 @endforeach
             @endif

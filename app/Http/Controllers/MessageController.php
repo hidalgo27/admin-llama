@@ -330,4 +330,20 @@ class MessageController extends Controller
         return Response::json($results);
     }
 
+    public function autocomplete_itinerary(){
+        $term = Input::get('term');
+
+        $results = array();
+
+        $queries = TItinerario::
+        where('titulo', 'LIKE', '%'.$term.'%')
+            ->take(5)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => $query->titulo];
+        }
+        return Response::json($results);
+    }
+
 }

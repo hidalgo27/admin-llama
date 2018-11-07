@@ -89,6 +89,7 @@
                         @endforeach
                     </select>
                 </div>
+
             </div>
         @endif
         <div class="row my-5">
@@ -197,9 +198,7 @@
                             @endforeach
 
                             <div class="field_itinerary2">
-                                <div>
-                                    {{--<input type="text" name="field_name[]" value=""/>--}}
-                                </div>
+
                             </div>
 
                             <a href="javascript:void(0);" class="add_btn_itinerary" title="Add field"><i class="fas fa-plus text-success"></i></a>
@@ -902,19 +901,19 @@
     <script>
 
         tinymce.init({
-            selector: 'textarea',
+            selector: "textarea",
             height: 280,
             menubar: false,
             browser_spellcheck : true,
             contextmenu: false,
             plugins: [
-                'advlist autolink lists link image charmap print preview anchor textcolor',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste code help wordcount'
+                "advlist autolink lists link image charmap print preview anchor textcolor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table paste code help wordcount"
             ],
-            toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+            toolbar: "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
             setup: function (editor) {
-                editor.on('change', function () {
+                editor.on("change", function () {
                     editor.save();
                 });
             }
@@ -1203,6 +1202,8 @@
             var wrapper_itinerary = $('.field_itinerary'); //Input field wrapper field_included
             var wrapper_itinerary2 = $('.field_itinerary2'); //Input field wrapper field_included
 
+            var $num_day = "{{$k+1}}";
+
             var fieldHTML = '' +
                 '<div class="row align-items-center md-form px-3 my-1">' +
                 '<input type="text" name="destinations[]" value="" class="form-control form-control-sm col-6 autocomplete_destinos"/>' +
@@ -1244,17 +1245,62 @@
                 'script>';
 
             var fieldHTMLItinerary = '' +
-                '<div class="row align-items-center md-form px-3 my-1">' +
-                '<input type="text" name="noincluye[]" value="" class="form-control form-control-sm col autocomplete_itinerary"/>' +
-                '<a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>' +
-                '</div>'+ //New input field html
+                '<div class="row mt-4 align-items-center no-gutters">'+
+                '<div class="col">'+
+                '<div class="row">'+
+                '<div class="col-1">'+
+                '<div class="md-form form-lg">'+
+                '<input type="text" id="" name="h_day[]" class="form-control form-control-lg font-weight-bold dark-grey-text" value="'+$num_day+'" placeholder="Day">'+
+
+                '</div>'+
+                '</div>'+
+                '<div class="col">'+
+                '<div class="md-form form-lg">'+
+                '<input type="text" id="" name="h_title[]" class="form-control form-control-lg font-weight-bold orange-text" value="" placeholder="Title">'+
+
+                '</div>'+
+                '</div>'+
+                '<div class="col-12">'+
+                '<div class="md-form mt-0">'+
+                '<textarea id="" name="h_resumen[]" class="" rows="2"></textarea>'+
+                '</div>'+
+                '</div>'+
+                '</div>'+
+                '</div>'+
+                '<div class="col-auto field_itinerary">'+
+                '<a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>'+
+                '</div>'+
                 '<script>'+
                 '$( ".autocomplete_itinerary" ).autocomplete({'+
                 'source: "{{route('autocomplete_itinerary_path')}}",'+
                 '});'+
                 '<'+
                 '/'+
-                'script>';
+                'script>'+
+                '<script>'+
+
+                'tinymce.init({'+
+                'selector: "textarea",'+
+                'height: 280,'+
+                'menubar: false,'+
+                'browser_spellcheck : true,'+
+                'contextmenu: false,'+
+                'plugins: ['+
+                '"advlist autolink lists link image charmap print preview anchor textcolor",'+
+                '"searchreplace visualblocks code fullscreen",'+
+                '"insertdatetime media table paste code help wordcount"'+
+                '],'+
+                'toolbar: "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",'+
+                'setup: function (editor) {'+
+                'editor.on("change", function () {'+
+                'editor.save();'+
+                '});'+
+                '}'+
+                '});'+
+                '<'+
+                '/'+
+                'script>'+
+                '</div>';
 
             var x = 1; //Initial field counter is 1
 
@@ -1328,7 +1374,7 @@
             });
             $(wrapper_itinerary2).on('click', '.remove_button', function(e){ //Once remove button is clicked
                 e.preventDefault();
-                $(this).parent('div').remove(); //Remove field html
+                $(this).parent('div').parent('div').remove(); //Remove field html
                 x--; //Decrement field counter
             });
 
