@@ -27,7 +27,7 @@ class TeamController extends Controller
         $request->user()->authorizeRoles(['admin', 'sales']);
         $user = User::all();
         $inquire = TInquire::whereBetween('created_at', [$fromDate, $toDate])->get();
-        return view('page.statistics', ['user'=>$user, 'inquire'=>$inquire]);
+        return view('page.statistics', ['user'=>$user, 'inquire'=>$inquire, 'fromDate'=>$from, 'toDate'=>$to]);
     }
     public function chart(Request $request)
     {

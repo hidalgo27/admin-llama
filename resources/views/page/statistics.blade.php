@@ -36,22 +36,23 @@
                                 <div class="row mb-5 bg-light rounded justify-content-center ">
                                     <div class="col-6">
                                         <form class="form-inline">
-                                            {{csrf_field()}}
+
                                             <div class="input-group">
                                                 <label for="inputPassword6" class="mr-2">From</label>
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                                                 </div>
-                                                <input type="date" id="i_from" class="form-control" aria-describedby="passwordHelpInline">
+                                                <input type="text" id="i_from" name="from" class="form-control datepicker" aria-describedby="passwordHelpInline" value="{{$fromDate}}">
                                             </div>
                                             <div class="input-group mx-4">
                                                 <label for="inputPassword6" class="mr-2">To</label>
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                                                 </div>
-                                                <input type="date" id="i_to" class="form-control" aria-describedby="passwordHelpInline">
+                                                <input type="text" id="i_to" name="to" class="form-control datepicker" aria-describedby="passwordHelpInline" value="{{$toDate}}">
                                             </div>
-                                            <a href="" class="btn btn-primary mb-2">Submit</a>
+                                            {{--<a href="" class="btn btn-primary mb-2">Submit</a>--}}
+                                            <button type="button" class="btn btn-primary mb-2" onclick="range()">Submit</button>
                                         </form>
                                     </div>
                                 </div>
@@ -92,6 +93,20 @@
 @endsection
 @push('scripts')
     <script>
+        function range(){
+            var $from = $('#i_from').val();
+            var $to = $('#i_to').val();
+            window.location.href = '../../statistics/'+$from+'/'+$to;
+
+        }
+
+        $( function() {
+            $( ".datepicker" ).datepicker(
+                {
+                    dateFormat: 'yy-mm-dd'
+                }
+            );
+        } );
 
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {

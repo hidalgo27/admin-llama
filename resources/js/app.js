@@ -15,6 +15,7 @@ import $ from 'jquery';
 window.$ = window.jQuery = $;
 
 import 'jquery-ui/ui/widgets/autocomplete';
+import 'jquery-ui/ui/widgets/datepicker';
 
 window.Vue = require('vue');
 
