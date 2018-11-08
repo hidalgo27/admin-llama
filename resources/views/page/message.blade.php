@@ -146,13 +146,14 @@
                 </div>
             </div>
         </div>
+        @php $k=0; @endphp
         @if ($inquires->id_paquetes > 0)
         <div class="row mb-5">
             <div class="col">
                 <div class="card">
                     <div class="card-body">
                         <div class="col">
-                            @php $k=0; @endphp
+
                             @foreach($itinerary as $itin)
                                 <div class="row mt-4 align-items-center no-gutters">
                                     <div class="col">
