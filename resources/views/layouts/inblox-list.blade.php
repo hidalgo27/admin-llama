@@ -17,7 +17,7 @@
             {{--</div>--}}
 
             <div class="btn-group">
-                <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#" class="btn mini tooltips">
+                <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#" onClick="location.reload();"  class="btn mini tooltips">
                     <i class="fas fa-redo-alt"></i>
                 </a>
             </div>
