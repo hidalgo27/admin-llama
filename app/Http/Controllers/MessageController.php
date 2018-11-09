@@ -12,6 +12,7 @@ use App\TPaquete;
 use App\TPaqueteDestino;
 use App\TPrecioPaquete;
 use App\TUsuario;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
@@ -34,7 +35,7 @@ class MessageController extends Controller
         $incluye = TIncluye::all();
         $no_incluye = TNoIncluye::all();
         $otro = TOtros::all();
-        $user = TUsuario::all();
+        $user = User::all();
         $id_paquete = $id_paquete;
 
         $p_inquire = TInquire::FindOrFail($id_inquire);
@@ -61,6 +62,7 @@ class MessageController extends Controller
         $from = 'hidalgochpnce@gmail.com';
         $from2 = 'paul@gotoperu.com';
 
+        $idinquire = $_POST['txt_idinquire'];
         $day = $_POST['txt_day'];
         $title = $_POST['txt_title'];
         $resumen = $_POST['txt_resumen'];
@@ -96,12 +98,17 @@ class MessageController extends Controller
 
         $advisor = $_POST['txt_advisor'];
 
-        if ($advisor==0){
-            $email_a = "karina@llama.tours";
-            $name_a = "Karina Ñahui";
-        }else{
+        if ($advisor==2){
             $email_a = "paola@llama.tours";
             $name_a = "Paola";
+        }
+        if ($advisor==3){
+            $email_a = "karina@llama.tours";
+            $name_a = "Karina";
+        }
+        if ($advisor==4){
+            $email_a = "martin@llama.tours";
+            $name_a = "Martin";
         }
 
         foreach ($package as $packages)
@@ -110,9 +117,11 @@ class MessageController extends Controller
             $titulo_p = $packages->titulo;
         }
 
+        $p_inquire = TInquire::FindOrFail($idinquire);
+        $p_inquire->estado = 2;
 
-
-        try {
+        if($p_inquire->save()){
+            try {
 //            Mail::send(['html' => 'notifications.page.client-form-design'], ['name' => $name], function ($messaje) use ($email, $name) {
 //                $messaje->to($email, $name)
 //                    ->subject('GotoPeru')
@@ -121,77 +130,77 @@ class MessageController extends Controller
 //            });
 
 
-            Mail::send(['html' => 'notifications.page.message'], [
-                'day' => $day,
-                'title' => $title,
-                'resumen' => $resumen,
+                Mail::send(['html' => 'notifications.page.message'], [
+                    'day' => $day,
+                    'title' => $title,
+                    'resumen' => $resumen,
 //                'itinerary' => $itinerary,
-                'destinations' => $destinations,
-                'incluye' => $incluye,
-                'noincluye' => $noincluye,
-                'email' => $email,
-                'name' => $name,
-                'category' => $category,
-                'date' => $date,
-                'phone' => $phone,
-                'precio_ch' => $precio_ch,
-                'precio_sh' => $precio_sh,
-                'precio_2' => $precio_2,
-                'precio_3' => $precio_3,
-                'precio_4' => $precio_4,
-                'precio_5' => $precio_5,
+                    'destinations' => $destinations,
+                    'incluye' => $incluye,
+                    'noincluye' => $noincluye,
+                    'email' => $email,
+                    'name' => $name,
+                    'category' => $category,
+                    'date' => $date,
+                    'phone' => $phone,
+                    'precio_ch' => $precio_ch,
+                    'precio_sh' => $precio_sh,
+                    'precio_2' => $precio_2,
+                    'precio_3' => $precio_3,
+                    'precio_4' => $precio_4,
+                    'precio_5' => $precio_5,
 
-                'otros' => $otros,
-                'codigo_p' => $codigo_p,
-                'titulo_p' => $titulo_p,
+                    'otros' => $otros,
+                    'codigo_p' => $codigo_p,
+                    'titulo_p' => $titulo_p,
 
-                'email_a' => $email_a,
-                'name_a' => $name_a,
+                    'email_a' => $email_a,
+                    'name_a' => $name_a,
 
-                'messagess' => $messagess,
-                'messagess2' => $messagess2
-            ], function ($messaje) use ($from) {
-                $messaje->to($from, 'Llama Tours')
-                    ->subject('Llama Tours')
-                    /*->attach('ruta')*/
-                    ->from('info@llama.tours', 'Llama Tours');
-            });
+                    'messagess' => $messagess,
+                    'messagess2' => $messagess2
+                ], function ($messaje) use ($from) {
+                    $messaje->to($from, 'Llama Tours')
+                        ->subject('Llama Tours')
+                        /*->attach('ruta')*/
+                        ->from('info@llama.tours', 'Llama Tours');
+                });
 
-            Mail::send(['html' => 'notifications.page.message'], [
-                'day' => $day,
-                'title' => $title,
-                'resumen' => $resumen,
+                Mail::send(['html' => 'notifications.page.message'], [
+                    'day' => $day,
+                    'title' => $title,
+                    'resumen' => $resumen,
 //                'itinerary' => $itinerary,
-                'destinations' => $destinations,
-                'incluye' => $incluye,
-                'noincluye' => $noincluye,
-                'email' => $email,
-                'name' => $name,
-                'category' => $category,
-                'date' => $date,
-                'phone' => $phone,
-                'precio_ch' => $precio_ch,
-                'precio_sh' => $precio_sh,
-                'precio_2' => $precio_2,
-                'precio_3' => $precio_3,
-                'precio_4' => $precio_4,
-                'precio_5' => $precio_5,
+                    'destinations' => $destinations,
+                    'incluye' => $incluye,
+                    'noincluye' => $noincluye,
+                    'email' => $email,
+                    'name' => $name,
+                    'category' => $category,
+                    'date' => $date,
+                    'phone' => $phone,
+                    'precio_ch' => $precio_ch,
+                    'precio_sh' => $precio_sh,
+                    'precio_2' => $precio_2,
+                    'precio_3' => $precio_3,
+                    'precio_4' => $precio_4,
+                    'precio_5' => $precio_5,
 
-                'otros' => $otros,
-                'codigo_p' => $codigo_p,
-                'titulo_p' => $titulo_p,
+                    'otros' => $otros,
+                    'codigo_p' => $codigo_p,
+                    'titulo_p' => $titulo_p,
 
-                'email_a' => $email_a,
-                'name_a' => $name_a,
+                    'email_a' => $email_a,
+                    'name_a' => $name_a,
 
-                'messagess' => $messagess,
-                'messagess2' => $messagess2
-            ], function ($messaje) use ($email) {
-                $messaje->to($email, 'Llama Tours')
-                    ->subject('Llama Tours')
-                    /*->attach('ruta')*/
-                    ->from('info@llama.tours', 'Llama Tours');
-            });
+                    'messagess' => $messagess,
+                    'messagess2' => $messagess2
+                ], function ($messaje) use ($email) {
+                    $messaje->to($email, 'Llama Tours')
+                        ->subject('Llama Tours')
+                        /*->attach('ruta')*/
+                        ->from('info@llama.tours', 'Llama Tours');
+                });
 
 
 //            Mail::send(['html' => 'notifications.page.admin-form-inquire'], [
@@ -212,11 +221,12 @@ class MessageController extends Controller
 //            });
 
 
-            return 'Thank you.';
+                return 'Thank you.';
 
-        }
-        catch (Exception $e){
-            return $e;
+            }
+            catch (Exception $e){
+                return $e;
+            }
         }
     }
 

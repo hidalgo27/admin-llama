@@ -46,6 +46,8 @@
         @foreach($inquire as $inquires)
         @endforeach
 
+        <input type="text" id="id_inquire" value="{{$inquires->id}}">
+
         @if ($inquires->id_paquetes == 0)
             <div class="row mt-3 justify-content-center d-none" id="sp_alert">
                 <div class="col-10">
@@ -493,7 +495,7 @@
                                         @else
                                             @php $select_u = ""; @endphp
                                         @endif
-                                        <option value="{{$users->id}}" {{$select_u}}>{{$users->email}}</option>
+                                        <option value="{{$users->id}}" {{$select_u}}>{{$users->email}} sd</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -1045,7 +1047,7 @@
 
             {{--alert(s_itinerary);--}}
 
-
+            var s_idinquire = $("#id_inquire").val();
             var s_email = $("#h_email").val();
             var s_name = $("#h_name").val();
             var s_category = $("#h_category").val();
@@ -1080,7 +1082,8 @@
             if(sendMail == "true"){
                 var datos = {
 
-                    "txt_day" : s_day,
+                        "txt_idinquire" : s_idinquire,
+                        "txt_day" : s_day,
                     "txt_title" : s_title,
                     "txt_resumen" : s_resumen,
 
