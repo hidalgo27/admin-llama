@@ -153,6 +153,13 @@
 
         }
 
+        $(document).ready(function () {
+            $('#dtBasicExample2').DataTable({
+                "info": true
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+
 
     </script>
 

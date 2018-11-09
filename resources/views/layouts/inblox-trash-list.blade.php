@@ -357,10 +357,10 @@
 </form>
 
 @push('script')
-    <script>
-        function chk_restore() {
-            alert("hola");
+    {{--<script>--}}
+        {{--function chk_restore() {--}}
+            {{--alert("hola");--}}
 
-        }
-    </script>
+        {{--}--}}
+    {{--</script>--}}
     @endpush

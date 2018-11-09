@@ -1,4 +1,4 @@
-<div class="row sticky-top sticky-top-50 bg-white">
+<div class="row sticky-top sticky-top-50 bg-white mb-3">
     <div class="col">
         <div class="mail-option py-2 mb-0">
             {{--<div class="chk-all">--}}
@@ -51,7 +51,29 @@
 </div>
 <form id="h_form" role="form">
     {{csrf_field()}}
-<table class="table table-inbox table-hover">
+<table id="dtBasicExample2" class="table table-inbox table-hover">
+    <thead>
+    <tr class="bg-light d-none">
+        <th class="th-sm p-0">
+            {{--<i class="fa fa-sort float-right" aria-hidden="true"></i>--}}
+        </th>
+        <th class="th-sm p-0">
+            {{--<i class="fa fa-sort float-right" aria-hidden="true"></i>--}}
+        </th>
+        <th class="th-sm p-0 pl-2">Duration
+            <i class="fa fa-sort" aria-hidden="true"></i>
+        </th>
+        <th class="th-sm p-0">
+
+        </th>
+        <th class="th-sm p-0">
+
+        </th>
+        <th class="th-sm p-0 text-right pr-2">Date
+            <i class="fa fa-sort" aria-hidden="true"></i>
+        </th>
+    </tr>
+    </thead>
     <tbody>
     @foreach($inquire->sortByDesc('created_at') as $inquires)
         @switch($inquires->idusuario)
@@ -354,3 +376,11 @@
     </tbody>
 </table>
 </form>
+@push('script')
+    <script>
+        // $(document).ready(function () {
+        //     $('#dtBasicExample2').DataTable();
+        //     $('.dataTables_length').addClass('bs-select');
+        // });
+    </script>
+@endpush
