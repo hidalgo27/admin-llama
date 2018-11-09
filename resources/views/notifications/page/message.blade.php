@@ -298,7 +298,7 @@
                                         <tbody>
                                         <tr>
                                             <td style="text-align:center; float: left; width: 30%">
-                                                <img src="http://admin.llama.tours/images/{{email_a}}.jpg" alt="" style="width: 100%">
+                                                <img src="http://admin.llama.tours/images/{{$email_a}}.jpg" alt="" style="width: 100%">
                                                 <p style="font-size: 10px; text-align: center; margin: 0">TA. {{$name_a}}</p>
                                                 <a href=""><img src="http://admin.llama.tours/images/redes/whatsapp.png" alt="logo whatsapp" style="width: 20px;"></a>
                                                 <a href=""><img src="http://admin.llama.tours/images/redes/facebook.png" alt="logo facebook" style="width: 20px;"></a>

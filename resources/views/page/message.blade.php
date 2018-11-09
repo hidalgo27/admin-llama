@@ -495,7 +495,7 @@
                                         @else
                                             @php $select_u = ""; @endphp
                                         @endif
-                                        <option value="{{$users->id}}" {{$select_u}}>{{$users->email}} sd</option>
+                                        <option value="{{$users->id}}" {{$select_u}}>{{$users->email}}</option>
                                     @endforeach
                                 </select>
                             </div>
