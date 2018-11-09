@@ -63,6 +63,16 @@ class HomeController extends Controller
 
         return view('page.home-trash', ['inquire'=>$inquire, 'package'=>$package]);
     }
+
+    public function send(Request $request)
+    {
+        $request->user()->authorizeRoles(['admin', 'sales']);
+
+        $inquire = TInquire::all();
+        $package = TPaquete::all();
+
+        return view('page.home-send', ['inquire'=>$inquire, 'package'=>$package]);
+    }
     /*
         public function someAdminStuff(Request $request)
         {

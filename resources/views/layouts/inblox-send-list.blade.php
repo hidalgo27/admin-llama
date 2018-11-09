@@ -78,7 +78,7 @@
             {{--@endif--}}
 
             @if(Auth::user()->hasRole('admin'))
-                @if ($inquires->id_paquetes == 0 AND $inquires->estado == 3)
+                @if ($inquires->id_paquetes == 0 AND $inquires->estado == 2)
                     <tr class='unread'>
                         <td class="inbox-small-cells">
                             <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
@@ -99,7 +99,7 @@
                             <td class="view-message  text-right">{{strftime("%d %b", strtotime(str_replace('-','/', $inquires->created_at)))}}</td>
                         @endif
                     </tr>
-                @elseif($inquires->id_paquetes AND $inquires->estado == 3)
+                @elseif($inquires->id_paquetes AND $inquires->estado == 2)
                     @foreach($package->where('id', $inquires->id_paquetes) as $packages)
                         <tr class='unread'>
                             <td class="inbox-small-cells">
@@ -124,7 +124,7 @@
                     @endforeach
                 @endif
             @else
-                @if ($inquires->id_paquetes == 0 AND $inquires->idusuario == Auth::user()->id AND $inquires->estado == 3)
+                @if ($inquires->id_paquetes == 0 AND $inquires->idusuario == Auth::user()->id AND $inquires->estado == 2)
                     <tr class='unread'>
                         <td class="inbox-small-cells">
                             <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
@@ -135,7 +135,7 @@
                         <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
                         <td class="view-message  text-right">{{$inquires->time}}</td>
                     </tr>
-                @elseif ($inquires->id_paquetes > 0 AND $inquires->idusuario == Auth::user()->id AND $inquires->estado == 3)
+                @elseif ($inquires->id_paquetes > 0 AND $inquires->idusuario == Auth::user()->id AND $inquires->estado == 2)
 
                     @foreach($package->where('id', $inquires->id_paquetes) as $packages)
                         <tr class='unread'>
@@ -358,9 +358,9 @@
 
 @push('script')
     {{--<script>--}}
-        {{--function chk_restore() {--}}
-            {{--alert("hola");--}}
+    {{--function chk_restore() {--}}
+    {{--alert("hola");--}}
 
-        {{--}--}}
+    {{--}--}}
     {{--</script>--}}
-    @endpush
+@endpush

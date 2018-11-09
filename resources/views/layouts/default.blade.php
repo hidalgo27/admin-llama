@@ -140,7 +140,7 @@
 
                                 </li>
                                 <li>
-                                    <a href="#"><i class="far fa-envelope"></i> Sent Mail</a>
+                                    <a href="{{route('send_path')}}"><i class="far fa-envelope"></i> Sent Mail</a>
                                 </li>
                                 <li>
                                     <a href="#"><i class="far fa-bookmark"></i> Important</a>

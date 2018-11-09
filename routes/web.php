@@ -33,6 +33,11 @@ Route::get('/trash', [
     'as' => 'trash_path',
 ]);
 
+Route::get('/send', [
+    'uses' => 'HomeController@send',
+    'as' => 'send_path',
+]);
+
 Route::post('/home/restore', [
     'uses' => 'HomeController@restore_inquire',
     'as' => 'restore_inquire_path',
