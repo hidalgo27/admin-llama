@@ -46,7 +46,7 @@
         @foreach($inquire as $inquires)
         @endforeach
 
-        <input type="text" id="id_inquire" value="{{$inquires->id}}">
+        <input type="hidden" id="id_inquire" value="{{$inquires->id}}">
 
         @if ($inquires->id_paquetes == 0)
             <div class="row mt-3 justify-content-center d-none" id="sp_alert">
