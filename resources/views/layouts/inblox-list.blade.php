@@ -77,7 +77,7 @@
         {{--@endif--}}
 
         @if(Auth::user()->hasRole('admin'))
-            @if ($inquires->id_paquetes == 0 AND $inquires->estado == 0)
+            @if ($inquires->id_paquetes == 0 AND ($inquires->estado == 0 OR $inquires->estado == 1))
                 <tr class='unread'>
                     <td class="inbox-small-cells">
                         <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
@@ -98,14 +98,14 @@
                         <td class="view-message  text-right">{{strftime("%d %b", strtotime(str_replace('-','/', $inquires->created_at)))}}</td>
                     @endif
                 </tr>
-            @elseif($inquires->id_paquetes AND $inquires->estado == 0)
+            @elseif($inquires->id_paquetes AND ($inquires->estado == 0 OR $inquires->estado == 1))
             @foreach($package->where('id', $inquires->id_paquetes) as $packages)
                     <tr class='unread'>
                         <td class="inbox-small-cells">
                             <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
                         </td>
                         <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
-                        <td class="view-message  dont-show"><a href="{{route('message_path', [$inquires->id, $inquires->id, $packages->id])}}" class="hover-underline">{{$inquires->email}} X {{$inquires->traveller}}</a></td>
+                        <td class="view-message  dont-show"><a href="{{route('message_path', [$inquires->id, $packages->id])}}" class="hover-underline">{{$inquires->email}} X {{$inquires->traveller}}</a></td>
                             <td class="view-message ">{{ucwords($packages->codigo)}}: {{ucwords(strtolower($packages->titulo))}} | {{$inquires->duration}} days</td>
                         <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
                         @php
@@ -123,7 +123,7 @@
                 @endforeach
             @endif
         @else
-            @if ($inquires->id_paquetes == 0 AND $inquires->idusuario == Auth::user()->id)
+            @if ($inquires->id_paquetes == 0 AND $inquires->idusuario == Auth::user()->id AND ($inquires->estado == 0 OR $inquires->estado == 1))
                 <tr class='unread'>
                     <td class="inbox-small-cells">
                         <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
@@ -134,7 +134,7 @@
                     <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
                     <td class="view-message  text-right">{{$inquires->time}}</td>
                 </tr>
-            @elseif ($inquires->id_paquetes > 0 AND $inquires->idusuario == Auth::user()->id)
+            @elseif ($inquires->id_paquetes > 0 AND $inquires->idusuario == Auth::user()->id AND ($inquires->estado == 0 OR $inquires->estado == 1))
                 
                 @foreach($package->where('id', $inquires->id_paquetes) as $packages)
                     <tr class='unread'>
