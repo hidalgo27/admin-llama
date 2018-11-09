@@ -298,7 +298,7 @@
                                         <tbody>
                                         <tr>
                                             <td style="text-align:center; float: left; width: 30%">
-                                                <img src="https://scontent.flim5-1.fna.fbcdn.net/v/t1.0-9/31739806_993323907486435_1000599518791598080_n.jpg?_nc_cat=107&_nc_ht=scontent.flim5-1.fna&oh=dda0f6ac807e45167c5b86def2b4f24f&oe=5C3C4E5A" alt="" style="width: 100%">
+                                                <img src="http://admin.llama.tours/images/{{email_a}}.jpg" alt="" style="width: 100%">
                                                 <p style="font-size: 10px; text-align: center; margin: 0">TA. {{$name_a}}</p>
                                                 <a href=""><img src="http://admin.llama.tours/images/redes/whatsapp.png" alt="logo whatsapp" style="width: 20px;"></a>
                                                 <a href=""><img src="http://admin.llama.tours/images/redes/facebook.png" alt="logo facebook" style="width: 20px;"></a>
