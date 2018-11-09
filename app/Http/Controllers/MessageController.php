@@ -36,7 +36,12 @@ class MessageController extends Controller
         $otro = TOtros::all();
         $user = TUsuario::all();
         $id_paquete = $id_paquete;
-        return view('page.message', ['inquire'=>$inquire, 'package'=>$package, 'itinerary'=>$itinerary, 'price'=>$price, 'paquete_destino'=>$paquete_destino, 'incluye'=>$incluye, 'no_incluye'=>$no_incluye, 'otro'=>$otro, 'id_paquete'=>$id_paquete, 'user'=>$user]);
+
+        $p_inquire = TInquire::FindOrFail($id_inquire);
+        $p_inquire->estado = 1;
+        if ($p_inquire->save()){
+            return view('page.message', ['inquire'=>$inquire, 'package'=>$package, 'itinerary'=>$itinerary, 'price'=>$price, 'paquete_destino'=>$paquete_destino, 'incluye'=>$incluye, 'no_incluye'=>$no_incluye, 'otro'=>$otro, 'id_paquete'=>$id_paquete, 'user'=>$user]);
+        }
     }
 
     public  function inquire_package()

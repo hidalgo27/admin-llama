@@ -23,10 +23,22 @@ Route::get('/', [
     'as' => 'home_path',
 ]);
 
-//Route::post('/message/{id_inquire}-{id_paquete}', [
-//    'uses' => 'MessageController@update',
-//    'as' => 'message_post_path',
-//]);
+Route::post('/home/del', [
+    'uses' => 'HomeController@remove_inquire',
+    'as' => 'remove_inquire_path',
+]);
+
+Route::get('/trash', [
+    'uses' => 'HomeController@trash',
+    'as' => 'trash_path',
+]);
+
+Route::post('/home/restore', [
+    'uses' => 'HomeController@restore_inquire',
+    'as' => 'restore_inquire_path',
+]);
+
+//
 
 Route::get('/message/{id_inquire}-{id_paquete}', [
     'uses' => 'MessageController@index',

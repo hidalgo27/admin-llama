@@ -21,6 +21,48 @@ class HomeController extends Controller
 
         return view('page.home', ['inquire'=>$inquire, 'package'=>$package]);
     }
+
+    public function remove_inquire(Request $request)
+    {
+        $request->user()->authorizeRoles(['admin', 'sales']);
+
+        $mails = $_POST['txt_mails'];
+        $inquires = explode(',', $mails);
+
+        foreach ($inquires as $inquire){
+            $p_estado = TInquire::FindOrFail($inquire);
+            $p_estado->estado = 3;
+            $p_estado->save();
+
+        }
+
+    }
+
+    public function restore_inquire(Request $request)
+    {
+        $request->user()->authorizeRoles(['admin', 'sales']);
+
+        $mails = $_POST['txt_mails'];
+        $inquires = explode(',', $mails);
+
+        foreach ($inquires as $inquire){
+            $p_estado = TInquire::FindOrFail($inquire);
+            $p_estado->estado = 0;
+            $p_estado->save();
+        }
+
+    }
+
+
+    public function trash(Request $request)
+    {
+        $request->user()->authorizeRoles(['admin', 'sales']);
+
+        $inquire = TInquire::all();
+        $package = TPaquete::all();
+
+        return view('page.home-trash', ['inquire'=>$inquire, 'package'=>$package]);
+    }
     /*
         public function someAdminStuff(Request $request)
         {

@@ -149,7 +149,7 @@
                                     <a href="#"><i class="fas fa-external-link-alt"></i> Drafts <span class="badge badge-info float-right">30</span></a>
                                 </li>
                                 <li>
-                                    <a href="#"><i class=" fa fa-trash-alt"></i> Trash</a>
+                                    <a href="{{route('trash_path')}}"><i class=" fa fa-trash-alt"></i> Trash</a>
                                 </li>
                             </ul>
                             {{--<ul class="nav nav-pills nav-stacked labels-info inbox-divider ">--}}
