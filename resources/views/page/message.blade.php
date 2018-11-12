@@ -312,7 +312,7 @@
                         <div class="card-deck mb-3 text-center">
                             <div class="card shadow-sm">
                                 <div class="card-header">
-                                    <h4 class="my-0 font-weight-normal">Without Hotels</h4>
+                                    <h4 class="my-0 font-weight-normal">With Hotels</h4>
                                 </div>
                                 <div class="card-body">
                                     <h1 class="card-title pricing-card-title">
@@ -322,7 +322,7 @@
                                             </div>
                                             @foreach($price as $prices)
                                                 @if ($prices->estrellas == 2)
-                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_ch" value="{{$prices->precio}}">
+                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_ch" value="{{$prices->precio_d}}">
                                                 @endif
                                             @endforeach
                                             <div class="input-group-append">
@@ -390,7 +390,7 @@
                                                     <span class="input-group-text">$</span>
                                                 </div>
 
-                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_2" value="{{$prices->precio}}">
+                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_2" value="{{$prices->precio_d}}">
                                                 <div class="input-group-append">
                                                     <span class="input-group-text">USD</span>
                                                 </div>
@@ -406,7 +406,7 @@
                                                         <span class="input-group-text">$</span>
                                                     </div>
 
-                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_3" value="{{$prices->precio}}">
+                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_3" value="{{$prices->precio_d}}">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">USD</span>
                                                     </div>
@@ -422,7 +422,7 @@
                                                         <span class="input-group-text">$</span>
                                                     </div>
 
-                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_4" value="{{$prices->precio}}">
+                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_4" value="{{$prices->precio_d}}">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">USD</span>
                                                     </div>
@@ -438,7 +438,7 @@
                                                         <span class="input-group-text">$</span>
                                                     </div>
 
-                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_5" value="{{$prices->precio}}">
+                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_5" value="{{$prices->precio_d}}">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">USD</span>
                                                     </div>
