@@ -198,8 +198,8 @@ class MessageController extends Controller
 
                     'messagess' => $messagess,
                     'messagess2' => $messagess2
-                ], function ($messaje) use ($from) {
-                    $messaje->to($from, 'Llama Tours')
+                ], function ($messaje) use ($email_a) {
+                    $messaje->to($email_a, 'Llama Tours')
                         ->subject('Llama Tours')
                         /*->attach('ruta')*/
                         ->from('info@llama.tours', 'Llama Tours');
