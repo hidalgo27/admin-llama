@@ -49,6 +49,14 @@ Route::get('/message/{id_inquire}-{id_paquete}', [
     'uses' => 'MessageController@index',
     'as' => 'message_path',
 ]);
+Route::get('/message_send/{id_inquire}-{id_paquete}', [
+    'uses' => 'MessageController@message_send',
+    'as' => 'message_send_path',
+]);
+Route::get('/del_send/{id_inquire}-{id_paquete}', [
+    'uses' => 'MessageController@del_send',
+    'as' => 'del_send_path',
+]);
 
 Route::post('/message/send', [
     'uses' => 'MessageController@message_mail',

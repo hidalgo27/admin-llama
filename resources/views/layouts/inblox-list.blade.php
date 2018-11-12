@@ -37,15 +37,15 @@
                 {{--</a>--}}
             {{--</div>--}}
 
-            <ul class="list-unstyled inbox-pagination mb-0">
-                <li><span>1-50 of 234</span></li>
-                <li>
-                    <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
-                </li>
-                <li>
-                    <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
-                </li>
-            </ul>
+            {{--<ul class="list-unstyled inbox-pagination mb-0">--}}
+                {{--<li><span>1-50 of 234</span></li>--}}
+                {{--<li>--}}
+                    {{--<a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>--}}
+                {{--</li>--}}
+            {{--</ul>--}}
         </div>
     </div>
 </div>

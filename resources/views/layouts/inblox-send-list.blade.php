@@ -38,15 +38,15 @@
             {{--</a>--}}
             {{--</div>--}}
 
-            <ul class="list-unstyled inbox-pagination mb-0">
-                <li><span>1-50 of 234</span></li>
-                <li>
-                    <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
-                </li>
-                <li>
-                    <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
-                </li>
-            </ul>
+            {{--<ul class="list-unstyled inbox-pagination mb-0">--}}
+                {{--<li><span>1-50 of 234</span></li>--}}
+                {{--<li>--}}
+                    {{--<a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>--}}
+                {{--</li>--}}
+            {{--</ul>--}}
         </div>
     </div>
 </div>
@@ -84,7 +84,7 @@
                             <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
                         </td>
                         <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
-                        <td class="view-message  dont-show"><a href="{{route('message_path', [$inquires->id, 0])}}" class="hover-underline">{{$inquires->email}} X {{$inquires->traveller}}</a></td>
+                        <td class="view-message  dont-show"><a href="{{route('message_send_path', [$inquires->id, 0])}}" class="hover-underline">{{$inquires->email}} X {{$inquires->traveller}}</a></td>
                         <td class="view-message font-weight-light font-italic">Sin paquete seleccionado</td>
                         <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
                         @php
@@ -106,7 +106,7 @@
                                 <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
                             </td>
                             <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
-                            <td class="view-message  dont-show"><a href="{{route('message_path', [$inquires->id, $packages->id])}}" class="hover-underline">{{$inquires->email}} X {{$inquires->traveller}}</a></td>
+                            <td class="view-message  dont-show"><a href="{{route('message_send_path', [$inquires->id, $packages->id])}}" class="hover-underline">{{$inquires->email}} X {{$inquires->traveller}}</a></td>
                             <td class="view-message ">{{ucwords($packages->codigo)}}: {{ucwords(strtolower($packages->titulo))}} | {{$inquires->duration}} days</td>
                             <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
                             @php
@@ -130,7 +130,7 @@
                             <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
                         </td>
                         <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
-                        <td class="view-message  dont-show"><a href="{{route('message_path', [$inquires->id, 0])}}" class="hover-underline">{{$inquires->email}} X {{$inquires->traveller}}</td></a>
+                        <td class="view-message  dont-show"><a href="{{route('message_send_path', [$inquires->id, 0])}}" class="hover-underline">{{$inquires->email}} X {{$inquires->traveller}}</td></a>
                         <td class="view-message font-weight-light font-italic">Sin paquete seleccionado</td>
                         <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
                         <td class="view-message  text-right">{{$inquires->time}}</td>
@@ -143,7 +143,7 @@
                                 <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
                             </td>
                             <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
-                            <td class="view-message  dont-show"><a href="{{route('message_path', [$inquires->id, $packages->id])}}" class="hover-underline">{{$inquires->email}} X {{$inquires->traveller}}</td></a>
+                            <td class="view-message  dont-show"><a href="{{route('message_send_path', [$inquires->id, $packages->id])}}" class="hover-underline">{{$inquires->email}} X {{$inquires->traveller}}</td></a>
                             <td class="view-message ">{{ucwords($packages->codigo)}}: {{ucwords(strtolower($packages->titulo))}} | {{$inquires->duration}} days</td>
                             <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
                             <td class="view-message  text-right">{{$inquires->time}}</td>

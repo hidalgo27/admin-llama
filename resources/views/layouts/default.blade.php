@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Material Design Bootstrap</title>
+    <title>Admin Llama Tours</title>
     <!-- Font Awesome -->
     {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">--}}
     <!-- Bootstrap core CSS -->
@@ -80,7 +80,7 @@
                                 {{--</a>--}}
                             {{--</div>--}}
                             <div class="inbox-body">
-                                <a href="#myModal" data-toggle="modal"  title="Compose"    class="btn btn-compose">
+                                <a href="#" data-toggle="modal"  title="Compose"    class="btn btn-compose">
                                     Compose
                                 </a>
                                 <!-- Modal -->
@@ -142,11 +142,11 @@
                                 <li>
                                     <a href="{{route('send_path')}}"><i class="far fa-envelope"></i> Sent Mail</a>
                                 </li>
-                                <li>
-                                    <a href="#"><i class="far fa-bookmark"></i> Important</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fas fa-external-link-alt"></i> Drafts <span class="badge badge-info float-right">30</span></a>
+                                {{--<li>--}}
+                                    {{--<a href="#"><i class="far fa-bookmark"></i> Important</a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"><i class="fas fa-external-link-alt"></i> Drafts <span class="badge badge-info float-right">30</span></a>--}}
                                 </li>
                                 <li>
                                     <a href="{{route('trash_path')}}"><i class=" fa fa-trash-alt"></i> Trash</a>
@@ -171,23 +171,23 @@
                             {{--</li>--}}
                             {{--</ul>--}}
 
-                            <div class="inbox-body text-center">
-                                <div class="btn-group">
-                                    <a class="btn mini btn-primary" href="javascript:;">
-                                        <i class="fa fa-plus"></i>
-                                    </a>
-                                </div>
-                                <div class="btn-group">
-                                    <a class="btn mini btn-success" href="javascript:;">
-                                        <i class="fa fa-phone"></i>
-                                    </a>
-                                </div>
-                                <div class="btn-group">
-                                    <a class="btn mini btn-info" href="javascript:;">
-                                        <i class="fa fa-cog"></i>
-                                    </a>
-                                </div>
-                            </div>
+                            {{--<div class="inbox-body text-center">--}}
+                                {{--<div class="btn-group">--}}
+                                    {{--<a class="btn mini btn-primary" href="javascript:;">--}}
+                                        {{--<i class="fa fa-plus"></i>--}}
+                                    {{--</a>--}}
+                                {{--</div>--}}
+                                {{--<div class="btn-group">--}}
+                                    {{--<a class="btn mini btn-success" href="javascript:;">--}}
+                                        {{--<i class="fa fa-phone"></i>--}}
+                                    {{--</a>--}}
+                                {{--</div>--}}
+                                {{--<div class="btn-group">--}}
+                                    {{--<a class="btn mini btn-info" href="javascript:;">--}}
+                                        {{--<i class="fa fa-cog"></i>--}}
+                                    {{--</a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
 
                         </aside>
                         <aside class="lg-side">
