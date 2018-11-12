@@ -130,9 +130,9 @@ class MessageController extends Controller
 
         $package = $_POST['txt_package'];
 
-        $package = explode('-', $package);
+//        $package = explode('-', $package);
 
-        $package = TPaquete::where('id', $package[1])->get();
+        $package = TPaquete::where('id', $package)->get();
 
         $advisor = $_POST['txt_advisor'];
 

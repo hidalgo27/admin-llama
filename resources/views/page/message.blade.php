@@ -76,7 +76,9 @@
                     @endforeach
 
                 <div class="col">
-                    <select class="selectpicker w-100" data-live-search="true" onchange="location = this.value;" id="h_package">
+                    {{--<select class="selectpicker w-100" data-live-search="true" onchange="location = this.value;" id="h_package">--}}
+                        <select class="selectpicker w-100" data-live-search="true" onchange="save_package({{$inquires->id}})" id="sp_package">
+
                         @foreach($package as $pack)
                             @if ($pack->id == $id_paquete)
                                 @php
@@ -87,7 +89,7 @@
                                     $selected = "";
                                 @endphp
                             @endif
-                            <option data-tokens="ketchup mustard" value="{{$inquires->id}}-{{$pack->id}}" {{$selected}}>{{$pack->codigo}}: {{$pack->titulo}}</option>
+                            <option data-tokens="ketchup mustard" value="{{$pack->id}}" {{$selected}}>{{$pack->codigo}}: {{$pack->titulo}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -1065,7 +1067,7 @@
             var s_message = myEditor.getData();
             var s_message2 = myEditor2.getData();
 
-            var s_package = $("#h_package").val();
+            var s_package = $("#sp_package").val();
             var s_advisor = $("#h_advisor").val();
 
             if (filter.test(s_email)){
@@ -1153,6 +1155,8 @@
             });
             var s_idinquire = id;
             var s_idpackage = $("#sp_package").val();
+
+            // alert(s_idpackage);
 
             if(s_idinquire > 0){
                 var datos = {
