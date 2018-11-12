@@ -61,7 +61,7 @@
                                     @foreach($user as $users)
                                         @php $k = 0; @endphp
                                         @foreach($users->roles->where('name', 'sales') as $rol)
-                                            @foreach($inquire->where('idusuario', $users->id) as $inquires)
+                                            @foreach($inquire->where('idusuario', $users->id)->where('estado', '<', 3) as $inquires)
                                                 @php $k++; @endphp
                                             @endforeach
                                             <div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
