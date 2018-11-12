@@ -59,11 +59,17 @@
                                 <!-- Grid row -->
                                 <div class="row justify-content-center">
                                     @foreach($user as $users)
-                                        @php $k = 0; @endphp
+                                        @php $k = 0; $j = 0; $i = 0; @endphp
                                         @foreach($users->roles->where('name', 'sales') as $rol)
-                                            @foreach($inquire->where('idusuario', $users->id)->where('estado', '<', 3) as $inquires)
-                                                @php $k++; @endphp
-                                            @endforeach
+                                                @foreach($inquire->where('estado', '<', 3) as $inquires)
+                                                    @php $i++; @endphp
+                                                @endforeach
+                                                @foreach($inquire->where('idusuario', $users->id)->where('estado', '<', 3)->where('estado', 2) as $inquires)
+                                                    @php $j++; @endphp
+                                                @endforeach
+                                                    @foreach($inquire->where('idusuario', $users->id)->where('estado', '<', 3) as $inquires)
+                                                        @php $k++; @endphp
+                                                    @endforeach
                                             <div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
                                                 <a href="{{route('info_path', $users->id)}}">
                                                     <div class="avatar mx-auto">
@@ -73,14 +79,18 @@
                                                     <h5 class="font-weight-bold mt-4 mb-3">{{$users->name}}</h5>
                                                     <p class="text-uppercase blue-text"><strong>{{$rol->name}}</strong></p>
                                                     <p class="grey-text w-responsive mx-auto">Closing Rate: <span class="font-weight-bold text-dark">?%</span></p>
-                                                    <a href="s" class="btn btn-link mx-auto mb-5 font-weight-bold"><span class="grey-text">Inquires:</span> <span class="font-weight-bold text-dark">{{$k}}</span></a>
+                                                    <a href="s" class="btn btn-link mx-auto mb-5 font-weight-bold"><span class="grey-text">Inquires:</span> <span class="font-weight-bold text-dark">{{$k}}</span> <span class="grey-text">Response:</span> <span class="font-weight-bold text-dark">{{$j}}</span></a>
                                                 </a>
                                             </div>
                                         @endforeach
                                     @endforeach
-
                                 </div>
                                 <!-- Grid row -->
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="alert alert-dark font-weight-bold">Total Inquires: {{$i}}</div>
+                                    </div>
+                                </div>
 
                             </section>
                             <!-- Section: Team v.1 -->
