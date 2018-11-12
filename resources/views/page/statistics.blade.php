@@ -58,7 +58,7 @@
                                 </div>
                                 <!-- Grid row -->
                                 <div class="row justify-content-center">
-                                    @foreach($user as $users)
+                                    @foreach($user->where('estado', 1) as $users)
                                         @php $k = 0; $j = 0; $i = 0; @endphp
                                         @foreach($users->roles->where('name', 'sales') as $rol)
                                                 @foreach($inquire->where('estado', '<', 3) as $inquires)
@@ -73,7 +73,7 @@
                                             <div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
                                                 <a href="{{route('info_path', $users->id)}}">
                                                     <div class="avatar mx-auto">
-                                                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg" class="rounded-circle z-depth-1 w-100"
+                                                        <img src="{{asset('images/'.$users->email.'-2.jpg')}}" class="rounded-circle z-depth-1 w-100"
                                                              alt="Sample avatar">
                                                     </div>
                                                     <h5 class="font-weight-bold mt-4 mb-3">{{$users->name}}</h5>
