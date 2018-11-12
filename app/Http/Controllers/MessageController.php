@@ -238,7 +238,7 @@ class MessageController extends Controller
                     $messaje->to($email, $name)
                         ->subject('Propuesta Llama Tours')
                         /*->attach('ruta')*/
-                        ->from($email_a, 'Llama Tours');
+                        ->from($email_a, 'Asesor Llama Tours');
                 });
 
 
