@@ -198,11 +198,11 @@ class MessageController extends Controller
 
                     'messagess' => $messagess,
                     'messagess2' => $messagess2
-                ], function ($messaje) use ($email_a) {
+                ], function ($messaje) use ($email_a, $email) {
                     $messaje->to($email_a, 'Llama Tours')
-                        ->subject('Llama Tours')
+                        ->subject('Propuesta Llama Tours')
                         /*->attach('ruta')*/
-                        ->from('info@llama.tours', 'Llama Tours');
+                        ->from($email, 'Llama Tours');
                 });
 
                 Mail::send(['html' => 'notifications.page.message'], [
@@ -234,11 +234,11 @@ class MessageController extends Controller
 
                     'messagess' => $messagess,
                     'messagess2' => $messagess2
-                ], function ($messaje) use ($email) {
-                    $messaje->to($email, 'Llama Tours')
-                        ->subject('Llama Tours')
+                ], function ($messaje) use ($email, $email_a, $name) {
+                    $messaje->to($email, $name)
+                        ->subject('Contacto Llama Tours')
                         /*->attach('ruta')*/
-                        ->from('info@llama.tours', 'Llama Tours');
+                        ->from($email_a, 'Llama Tours');
                 });
 
 
