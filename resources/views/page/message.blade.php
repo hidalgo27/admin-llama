@@ -372,10 +372,30 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr class="bg-dark text-white text-center">
-                                <th scope="col">Economic</th>
-                                <th scope="col">Tourist</th>
-                                <th scope="col">Superior</th>
-                                <th scope="col">Luxury</th>
+                                <th scope="col">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="h_economic" value="economic" checked>
+                                        <label class="custom-control-label" for="h_economic">Economic</label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="h_tourist" value="tourist" checked>
+                                        <label class="custom-control-label" for="h_tourist">Tourist</label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="h_superior" value="superior" checked>
+                                        <label class="custom-control-label" for="h_superior">Superior</label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="h_luxury" value="luxury" checked>
+                                        <label class="custom-control-label" for="h_luxury">Luxury</label>
+                                    </div>
+                                </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -1063,6 +1083,10 @@
             var s_precio_3 = $("#h_precio_3").val();
             var s_precio_4 = $("#h_precio_4").val();
             var s_precio_5 = $("#h_precio_5").val();
+            var s_economic = $("#h_economic:checked").val();
+            var s_tourist = $("#h_tourist:checked").val();
+            var s_superior = $("#h_superior:checked").val();
+            var s_luxury = $("#h_luxury:checked").val();
 
             var s_message = myEditor.getData();
             var s_message2 = myEditor2.getData();
@@ -1108,6 +1132,11 @@
                     "txt_precio_3" : s_precio_3,
                     "txt_precio_4" : s_precio_4,
                     "txt_precio_5" : s_precio_5,
+
+                    "txt_economic" : s_economic,
+                    "txt_tourist" : s_tourist,
+                    "txt_superior" : s_superior,
+                    "txt_luxury" : s_luxury,
 
                     "txt_otros" : s_otros,
 

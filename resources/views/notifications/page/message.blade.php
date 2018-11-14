@@ -160,19 +160,41 @@
                                     <table style="width: 100%; border: 1px solid #cccccc;">
                                         <thead>
                                         <tr style="background: #8d8d8d; color: white; text-align: center">
-                                            <th style="padding: 10px;">Económico</th>
-                                            <th>Turista</th>
-                                            <th>Superior</th>
-                                            <th>Lujo</th>
+                                            @php
+                                            if ($economic == 'economic'){
+                                            $econo = " ";
+                                            }else{
+                                            $econo = "display:none;";
+                                            }
+                                            if ($tourist == 'tourist'){
+                                            $tour = " ";
+                                            }else{
+                                            $tour = "display:none;";
+                                            }
+                                            if ($superior == 'superior'){
+                                            $sup = " ";
+                                            }else{
+                                            $sup = "display:none;";
+                                            }
+                                            if ($luxury == 'luxury'){
+                                            $lux = " ";
+                                            }else{
+                                            $lux = "display:none;";
+                                            }
+                                            @endphp
+                                            <th style="padding: 10px; {{$econo}}">Económico</th>
+                                            <th style="{{$tour}}">Turista</th>
+                                            <th style="{{$sup}}">Superior</th>
+                                            <th style="{{$lux}}">Lujo</th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
                                         <tr style="text-align: center;">
-                                            <td style="font-weight: bold; color: #181818">${{$precio_2}}usd</td>
-                                            <td style="font-weight: bold; color: #181818">${{$precio_3}}usd</td>
-                                            <td style="font-weight: bold; color: #181818">${{$precio_4}}usd</td>
-                                            <td style="font-weight: bold; color: #181818">${{$precio_5}}usd</td>
+                                            <td style="font-weight: bold; color: #181818; {{$econo}}">${{$precio_2}}usd</td>
+                                            <td style="font-weight: bold; color: #181818; {{$tour}}">${{$precio_3}}usd</td>
+                                            <td style="font-weight: bold; color: #181818; {{$sup}}">${{$precio_4}}usd</td>
+                                            <td style="font-weight: bold; color: #181818; {{$lux}}">${{$precio_5}}usd</td>
                                         </tr>
 
                                         </tbody>

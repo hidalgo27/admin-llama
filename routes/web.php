@@ -103,3 +103,9 @@ Route::get('search/autocomplete_itinerary', [
     'uses' => 'MessageController@autocomplete_itinerary',
     'as' => 'autocomplete_itinerary_path',
 ]);
+
+//payment
+Route::get('send/payment/{idinquire}', [
+    'uses' => 'PaymentController@show',
+    'as' => 'payment_show_path',
+]);
