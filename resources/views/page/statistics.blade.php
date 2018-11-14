@@ -73,7 +73,7 @@
                                             <div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
                                                 <a href="{{route('info_path', $users->id)}}">
                                                     <div class="avatar mx-auto">
-                                                        <img src="{{asset('images/'.$users->email.'-2.jpg')}}" class="rounded-circle z-depth-1 w-100"
+                                                        <img src="{{asset('images/'.$users->email.'.jpg')}}" class="rounded-circle z-depth-1 w-100"
                                                              alt="Sample avatar">
                                                     </div>
                                                     <h5 class="font-weight-bold mt-4 mb-3">{{$users->name}}</h5>
