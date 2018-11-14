@@ -14,9 +14,123 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <!-- Section: Team v.1 -->
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque delectus dignissimos explicabo fuga fugit impedit, labore mollitia necessitatibus qui reprehenderit suscipit tenetur veritatis vitae. Deserunt, inventore vel! Animi, itaque, quis?
-                            <!-- Section: Team v.1 -->
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <div class="h1 font-weight-bold grey-text">Hidalgo Ch Ponce X2</div>
+                                    <div class="font-weight-bold text-default">GTP500: Andes Escape</div>
+                                    {{--<div class="font-weight-bold text-default">Travel date: 15 Jul 2018</div>--}}
+                                </div>
+                                <div class="col-6 text-right">
+                                    <div class="h1 font-weight-bold grey-text"><sup>$</sup>500</div>
+                                    <div class="font-weight-bold grey-text">15 Jul 2018</div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <div class="md-form ">
+                                        <div class="md-form">
+                                            <i class="fas fa-credit-card prefix grey-text"></i>
+                                            <input type="text" id="inputIconEx2" class="form-control" placeholder="Payment Method">
+                                            {{--<label for="inputIconEx2">Payment Method</label>--}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="md-form ">
+                                        <div class="md-form">
+                                            <i class="fas fa-qrcode prefix grey-text"></i>
+                                            <input type="text" id="inputIconEx2" class="form-control" placeholder="Transaction">
+                                            {{--<label for="inputIconEx2">Transaction Code</label>--}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="md-form ">
+                                        <input placeholder="Amount to Pay" type="text" id="inputPlaceholderEx" class="form-control text-center" value="27-05-2018">
+                                        {{--<label for="inputPlaceholderEx">Date</label>--}}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="md-form ">
+                                        <input placeholder="Amount to Pay" type="text" id="inputPlaceholderEx" class="form-control text-right" value="500">
+                                        {{--<label for="inputPlaceholderEx">Amount to Pay</label>--}}
+                                    </div>
+                                </div>
+                                <div class="col text-center">
+                                    <i class="fa fa-check font-weight-bold"></i>
+                                </div>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <div class="md-form ">
+                                        <div class="md-form">
+                                            {{--<i class="fas fa-credit-card prefix grey-text"></i>--}}
+                                            {{--<input type="text" id="inputIconEx2" class="form-control" placeholder="Payment Method">--}}
+                                            {{--<label for="inputIconEx2">Payment Method</label>--}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="md-form ">
+                                        <div class="md-form">
+                                            {{--<i class="fas fa-qrcode prefix grey-text"></i>--}}
+                                            {{--<input type="text" id="inputIconEx2" class="form-control" placeholder="Transaction">--}}
+                                            {{--<label for="inputIconEx2">Transaction Code</label>--}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="md-form ">
+                                        <input placeholder="Amount to Pay" type="text" id="inputPlaceholderEx" class="form-control text-center font-weight-bold text-secondary" value="27-05-2018">
+                                        {{--<label for="inputPlaceholderEx">Date</label>--}}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="md-form ">
+                                        <input placeholder="Amount to Pay" type="text" id="inputPlaceholderEx" class="form-control text-right" value="500">
+                                        {{--<label for="inputPlaceholderEx">Amount to Pay</label>--}}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-sm btn-amber btn-lg">register next payment</button>
+                                </div>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <div class="md-form ">
+                                        <div class="md-form">
+                                            <i class="fas fa-credit-card prefix grey-text"></i>
+                                            <input type="text" id="inputIconEx2" class="form-control" placeholder="Payment Method">
+                                            {{--<label for="inputIconEx2">Payment Method</label>--}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="md-form ">
+                                        <div class="md-form">
+                                            <i class="fas fa-qrcode prefix grey-text"></i>
+                                            <input type="text" id="inputIconEx2" class="form-control" placeholder="Transaction">
+                                            {{--<label for="inputIconEx2">Transaction Code</label>--}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="md-form ">
+                                        <input placeholder="Amount to Pay" type="text" id="inputPlaceholderEx" class="form-control text-center" value="27-05-2018">
+                                        {{--<label for="inputPlaceholderEx">Date</label>--}}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="md-form ">
+                                        <input placeholder="Amount to Pay" type="text" id="inputPlaceholderEx" class="form-control text-right" value="500">
+                                        {{--<label for="inputPlaceholderEx">Amount to Pay</label>--}}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-sm btn-primary btn-lg">Register Payment</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -120,7 +120,7 @@
                             @else
                                 <td class="view-message  text-right">{{strftime("%d %b", strtotime(str_replace('-','/', $inquires->created_at)))}}</td>
                             @endif
-                            <td class="view-message  text-right"><a href="{{route('payment_show_path', 1)}}" class="text-primary"><i class="fas fa-credit-card"></i> Payment Methods</a></td>
+                            <td class="view-message  text-right"><a href="{{route('payment_show_path', $inquires->id)}}" class="text-primary"><i class="fas fa-credit-card"></i> Payment Methods</a></td>
                         </tr>
                     @endforeach
                 @endif
