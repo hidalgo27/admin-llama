@@ -34,7 +34,7 @@
                                     {{--eum porro a pariatur veniam.</p>--}}
 
                                 <div class="row mb-5 bg-light rounded justify-content-center ">
-                                    <div class="col-6">
+                                    <div class="col-10">
                                         <form class="form-inline">
 
                                             <div class="input-group">
