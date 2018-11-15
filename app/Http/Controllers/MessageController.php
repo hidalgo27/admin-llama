@@ -123,6 +123,27 @@ class MessageController extends Controller
         $precio_4 = $_POST['txt_precio_4'];
         $precio_5 = $_POST['txt_precio_5'];
 
+        if (isset($_POST['txt_economic'])){
+            $economic = $_POST['txt_economic'];
+        }else{
+            $economic = "eco";
+        }
+        if (isset($_POST['txt_tourist'])){
+            $tourist = $_POST['txt_tourist'];
+        }else{
+            $tourist = "eco";
+        }
+        if (isset($_POST['txt_superior'])){
+            $superior = $_POST['txt_superior'];
+        }else{
+            $superior = "eco";
+        }
+        if (isset($_POST['txt_luxury'])){
+            $luxury = $_POST['txt_luxury'];
+        }else{
+            $luxury = "eco";
+        }
+
         $otros = $_POST['txt_otros'];
 
         $messagess = $_POST['txt_message'];
@@ -189,6 +210,11 @@ class MessageController extends Controller
                     'precio_4' => $precio_4,
                     'precio_5' => $precio_5,
 
+                    'economic' => $economic,
+                    'tourist' => $tourist,
+                    'superior' => $superior,
+                    'luxury' => $luxury,
+
                     'otros' => $otros,
                     'codigo_p' => $codigo_p,
                     'titulo_p' => $titulo_p,
@@ -224,6 +250,11 @@ class MessageController extends Controller
                     'precio_3' => $precio_3,
                     'precio_4' => $precio_4,
                     'precio_5' => $precio_5,
+
+                    'economic' => $economic,
+                    'tourist' => $tourist,
+                    'superior' => $superior,
+                    'luxury' => $luxury,
 
                     'otros' => $otros,
                     'codigo_p' => $codigo_p,

@@ -121,6 +121,11 @@
                                     <input type="text" id="h_name" class="form-control validate" value="{{$inquires->name}}">
                                     <label for="h_name" data-error="wrong" data-success="right">Traveller Name</label>
                                 </div>
+                                <div class="col-3 md-form form-group">
+                                    <i class="fa fa-users prefix grey-text"></i>
+                                    <input type="text" id="h_name" class="form-control validate" value="{{$inquires->traveller}}">
+                                    <label for="h_name" data-error="wrong" data-success="right">Travellers</label>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col md-form form-group">
@@ -372,10 +377,31 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr class="bg-dark text-white text-center">
-                                <th scope="col">Economic</th>
-                                <th scope="col">Tourist</th>
-                                <th scope="col">Superior</th>
-                                <th scope="col">Luxury</th>
+                                <th scope="col">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="h_economic" value="economic" checked>
+                                        <label class="custom-control-label" for="h_economic">Economic</label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="h_tourist" value="tourist" checked>
+                                        <label class="custom-control-label" for="h_tourist">Tourist</label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="h_superior" value="superior" checked>
+                                        <label class="custom-control-label" for="h_superior">Superior</label>
+                                    </div>
+                                </th>
+
+                                <th scope="col">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="h_luxury" value="luxury" checked>
+                                        <label class="custom-control-label" for="h_luxury">Luxury</label>
+                                    </div>
+                                </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -1064,6 +1090,12 @@
             var s_precio_4 = $("#h_precio_4").val();
             var s_precio_5 = $("#h_precio_5").val();
 
+            var s_economic = $("#h_economic:checked").val();
+            var s_tourist = $("#h_tourist:checked").val();
+            var s_superior = $("#h_superior:checked").val();
+            var s_luxury = $("#h_luxury:checked").val();
+
+
             var s_message = myEditor.getData();
             var s_message2 = myEditor2.getData();
 
@@ -1084,8 +1116,8 @@
             if(sendMail == "true"){
                 var datos = {
 
-                        "txt_idinquire" : s_idinquire,
-                        "txt_day" : s_day,
+                    "txt_idinquire" : s_idinquire,
+                    "txt_day" : s_day,
                     "txt_title" : s_title,
                     "txt_resumen" : s_resumen,
 
@@ -1108,6 +1140,11 @@
                     "txt_precio_3" : s_precio_3,
                     "txt_precio_4" : s_precio_4,
                     "txt_precio_5" : s_precio_5,
+
+                    "txt_economic" : s_economic,
+                    "txt_tourist" : s_tourist,
+                    "txt_superior" : s_superior,
+                    "txt_luxury" : s_luxury,
 
                     "txt_otros" : s_otros,
 

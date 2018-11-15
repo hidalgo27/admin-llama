@@ -13,4 +13,9 @@ class TInquire extends Model
     {
         return $this->belongsTo(User::class, 'idusuario');
     }
+
+    public function payment()
+    {
+        return $this->hasMany(TPayment::class, 'idinquires');
+    }
 }

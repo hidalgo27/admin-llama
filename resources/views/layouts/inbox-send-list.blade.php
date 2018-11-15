@@ -24,8 +24,9 @@
             <div class="btn-group">
                 <a id="d_mailbtn" data-placement="top" class="btn mini tooltips d-none" onclick="chk_restore()">
                     {{--<i class="fa fa-trash" id="d_trash"></i>--}}
-                    <i class="fas fa-arrow-circle-right" id="d_trash"></i>
+                    <i class="fas fa-archive" id="d_trash"></i>
                     <i class="fas fa-spinner fa-pulse d-none" id="d_spinner"></i>
+                    {{--<i class="fas fa-archive"></i>--}}
                 </a>
                 {{--<button type="button" class="btn mini tooltips d-none" id="d_mailbtn" onclick="chk_trash()">--}}
                 {{--<i class="fa fa-trash" id="d_trash"></i>--}}
@@ -105,9 +106,9 @@
                             <td class="inbox-small-cells">
                                 <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
                             </td>
-                            <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
-                            <td class="view-message  dont-show"><a href="{{route('message_send_path', [$inquires->id, $packages->id])}}" class="hover-underline">{{$inquires->email}} X {{$inquires->traveller}}</a></td>
-                            <td class="view-message ">{{ucwords($packages->codigo)}}: {{ucwords(strtolower($packages->titulo))}} | {{$inquires->duration}} days</td>
+                            {{--<td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>--}}
+                            <td class="view-message  dont-show"><a href="{{route('message_send_path', [$inquires->id, $packages->id])}}" class="hover-underline">{{ucwords(strtolower($inquires->name))}}: {{$inquires->email}}</a></td>
+{{--                            <td class="view-message ">{{ucwords($packages->codigo)}}: {{ucwords(strtolower($packages->titulo))}} | {{$inquires->duration}} days</td>--}}
                             <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
                             @php
                                 date_default_timezone_set('America/Lima');
@@ -120,6 +121,7 @@
                             @else
                                 <td class="view-message  text-right">{{strftime("%d %b", strtotime(str_replace('-','/', $inquires->created_at)))}}</td>
                             @endif
+                            <td class="view-message  inbox-small-cells text-right"><a href="{{route('payment_path', $inquires->id)}}" class=" font-weight-bold"><i class="far fa-credit-card text-primary"></i> <span class="text-primary">Payment Methods</span></a></td>
                         </tr>
                     @endforeach
                 @endif

@@ -8,7 +8,7 @@
 {{--@include('layouts.sidebar')--}}
 {{--@endsection--}}
 @section('content')
-    @include('layouts.inblox-send-list')
+    @include('layouts.inbox-send-list')
 @endsection
 @push('scripts')
     <script>

@@ -8,7 +8,7 @@
 {{--@include('layouts.sidebar')--}}
 {{--@endsection--}}
 @section('content')
-    @include('layouts.inblox-trash-list')
+    @include('layouts.inbox-trash-list')
 @endsection
 @push('scripts')
     <script>

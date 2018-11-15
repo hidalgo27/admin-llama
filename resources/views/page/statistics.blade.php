@@ -25,7 +25,7 @@
                                             date_default_timezone_set('America/Lima');
                                             $date_a = date ("Y-m-d");
                                         @endphp
-                                        <a href="{{route('statistics_path', [$date_a, $date_a])}}" class="btn btn-link active">Basic Information</a> | <a href="{{route('chart_path')}}" class="btn btn-link">comparison chart</a>
+                                        <a href="{{route('statistics_path', [$date_a, $date_a])}}" class="btn btn-link active">Basica Information</a> | <a href="{{route('chart_path')}}" class="btn btn-link">comparison chart</a>
                                     </div>
                                 </div>
                                 <!-- Section description -->

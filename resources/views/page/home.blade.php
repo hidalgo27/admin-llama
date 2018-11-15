@@ -8,7 +8,7 @@
     {{--@include('layouts.sidebar')--}}
 {{--@endsection--}}
 @section('content')
-    @include('layouts.inblox-list')
+    @include('layouts.inbox-list')
 @endsection
 @push('scripts')
     <script>
@@ -17,7 +17,6 @@
                 window.location = $(this).data("href");
             });
         });
-
 
 
             //set initial state.

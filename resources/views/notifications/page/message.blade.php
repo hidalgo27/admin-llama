@@ -155,24 +155,52 @@
                                     {{--<p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>--}}
                                 {{--</center>--}}
 
+                                @php
+
+                                    if ($economic == 'economic'){
+                                        $d_economic = "display: none;";
+                                    }else{
+                                        $d_economic = '';
+                                    }
+
+                                    if ($tourist == 'tourist'){
+                                        $d_tourist = "display: none;";
+                                    }else{
+                                        $d_tourist = '';
+                                    }
+
+                                    if ($superior == 'superior'){
+                                        $d_superior = "display: none;";
+                                    }else{
+                                        $d_superior = '';
+                                    }
+
+                                    if ($luxury = 'luxury'){
+                                        $d_luxury = "display: none;";
+                                    }else{
+                                        $d_luxury = '';
+                                    }
+
+                                @endphp
+
                                 <center style="margin-top: 10px; width: 100%">
                                     <h5 style="font-size: 18px; margin-bottom: 10px;">Hoteles, Tours, Transporte, Entradas, Trenes, Transfers.</h5>
                                     <table style="width: 100%; border: 1px solid #cccccc;">
                                         <thead>
                                         <tr style="background: #8d8d8d; color: white; text-align: center">
-                                            <th style="padding: 10px;">Económico</th>
-                                            <th>Turista</th>
-                                            <th>Superior</th>
-                                            <th>Lujo</th>
+                                            <th style="padding: 10px; {{$d_economic}}">Económico</th>
+                                            <th style="{{$d_tourist}}">Turista</th>
+                                            <th style="{{$d_superior}}">Superior</th>
+                                            <th style="{{$d_luxury}}">Lujo</th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
                                         <tr style="text-align: center;">
-                                            <td style="font-weight: bold; color: #181818">${{$precio_2}}usd</td>
-                                            <td style="font-weight: bold; color: #181818">${{$precio_3}}usd</td>
-                                            <td style="font-weight: bold; color: #181818">${{$precio_4}}usd</td>
-                                            <td style="font-weight: bold; color: #181818">${{$precio_5}}usd</td>
+                                            <td style="font-weight: bold; color: #181818; {{$d_economic}}">${{$precio_2}}usd</td>
+                                            <td style="font-weight: bold; color: #181818; {{$d_tourist}}">${{$precio_3}}usd</td>
+                                            <td style="font-weight: bold; color: #181818; {{$d_superior}}">${{$precio_4}}usd</td>
+                                            <td style="font-weight: bold; color: #181818; {{$d_luxury}}">${{$precio_5}}usd</td>
                                         </tr>
 
                                         </tbody>
