@@ -113,7 +113,7 @@
                             <div class="row">
                                 <div class="col md-form form-group">
                                     <i class="fa fa-envelope prefix grey-text"></i>
-                                    <input type="email" id="h_email" class="form-control validate" value="{{$inquires->email}}">
+                                    <input type="email" id="h_email" class="form-control validate" value="{{strtolower($inquires->email)}}">
                                     <label for="h_email" data-error="wrong" data-success="right">Email</label>
                                 </div>
                                 <div class="col md-form form-group">

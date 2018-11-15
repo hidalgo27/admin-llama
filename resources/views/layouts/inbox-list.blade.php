@@ -108,7 +108,7 @@
                         <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
                     </td>
                     <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
-                    <td class="view-message  dont-show"><a href="{{route('message_path', [$inquires->id, 0])}}" class="hover-underline">{{ucwords(strtolower($inquires->name))}} <span class="grey-text d-block small">{{$inquires->email}} X {{$inquires->traveller}}</span> </a></td>
+                    <td class="view-message  dont-show"><a href="{{route('message_path', [$inquires->id, 0])}}" class="hover-underline">{{ucwords(strtolower($inquires->name))}} <span class="grey-text d-block small">{{strtolower($inquires->email)}} X {{$inquires->traveller}}</span> </a></td>
                     <td class="view-message font-weight-light font-italic">Sin paquete seleccionado</td>
                     <td class="view-message  inbox-small-cells"><span class="grey-text">{{$inquires->city}}</span></td>
                     <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
@@ -131,7 +131,7 @@
                             <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
                         </td>
                         <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
-                        <td class="view-message  dont-show"><a href="{{route('message_path', [$inquires->id, $packages->id])}}" class="hover-underline">{{ucwords(strtolower($inquires->name))}} <span class="grey-text d-block small">{{$inquires->email}} X {{$inquires->traveller}}</span></a></td>
+                        <td class="view-message  dont-show"><a href="{{route('message_path', [$inquires->id, $packages->id])}}" class="hover-underline">{{ucwords(strtolower($inquires->name))}} <span class="grey-text d-block small">{{strtolower($inquires->email)}} X {{$inquires->traveller}}</span></a></td>
                             <td class="view-message ">{{ucwords($packages->codigo)}}</td>
                         <td class="view-message  inbox-small-cells"><span class="grey-text">{{$inquires->city}}</span></td>
                         <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
@@ -156,7 +156,7 @@
                         <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
                     </td>
                     <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
-                    <td class="view-message  dont-show"><a href="{{route('message_path', [$inquires->id, 0])}}" class="hover-underline">{{ucwords(strtolower($inquires->name))}} <span class="grey-text d-block small">{{$inquires->email}} X {{$inquires->traveller}}</span></a></td>
+                    <td class="view-message  dont-show"><a href="{{route('message_path', [$inquires->id, 0])}}" class="hover-underline">{{ucwords(strtolower($inquires->name))}} <span class="grey-text d-block small">{{strtolower($inquires->email)}} X {{$inquires->traveller}}</span></a></td>
                     <td class="view-message font-weight-light font-italic">Sin paquete seleccionado</td>
                     <td class="view-message  inbox-small-cells"><span class="grey-text">{{$inquires->city}}</span></td>
                     <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
@@ -180,7 +180,7 @@
                             <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
                         </td>
                         <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
-                        <td class="view-message  dont-show"><a href="{{route('message_path', [$inquires->id, $packages->id])}}" class="hover-underline">{{ucwords(strtolower($inquires->name))}} <span class="grey-text d-block small">{{$inquires->email}} X {{$inquires->traveller}}</span></a></td>
+                        <td class="view-message  dont-show"><a href="{{route('message_path', [$inquires->id, $packages->id])}}" class="hover-underline">{{ucwords(strtolower($inquires->name))}} <span class="grey-text d-block small">{{strtolower($inquires->email)}} X {{$inquires->traveller}}</span></a></td>
                         <td class="view-message ">{{ucwords($packages->codigo)}}</td>
                         <td class="view-message  inbox-small-cells"><span class="grey-text">{{$inquires->city}}</span></td>
                         <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
