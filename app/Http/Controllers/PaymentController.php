@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\TInquire;
+
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -54,6 +57,7 @@ class PaymentController extends Controller
 
         $inquire = TInquire::with('payment')->where('id', $id)->get();
         return view('page.payment', ['inquire'=>$inquire]);
+
     }
 
     /**

@@ -126,22 +126,22 @@ class MessageController extends Controller
         if (isset($_POST['txt_economic'])){
             $economic = $_POST['txt_economic'];
         }else{
-            $economic = "eco";
+            $economic = "0";
         }
         if (isset($_POST['txt_tourist'])){
             $tourist = $_POST['txt_tourist'];
         }else{
-            $tourist = "eco";
+            $tourist = "0";
         }
         if (isset($_POST['txt_superior'])){
             $superior = $_POST['txt_superior'];
         }else{
-            $superior = "eco";
+            $superior = "0";
         }
         if (isset($_POST['txt_luxury'])){
             $luxury = $_POST['txt_luxury'];
         }else{
-            $luxury = "eco";
+            $luxury = "0";
         }
 
         $otros = $_POST['txt_otros'];

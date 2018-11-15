@@ -1089,6 +1089,10 @@
             var s_precio_3 = $("#h_precio_3").val();
             var s_precio_4 = $("#h_precio_4").val();
             var s_precio_5 = $("#h_precio_5").val();
+            var s_economic = $("#h_economic:checked").val();
+            var s_tourist = $("#h_tourist:checked").val();
+            var s_superior = $("#h_superior:checked").val();
+            var s_luxury = $("#h_luxury:checked").val();
 
             var s_economic = $("#h_economic:checked").val();
             var s_tourist = $("#h_tourist:checked").val();
