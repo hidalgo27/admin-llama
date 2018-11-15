@@ -44,6 +44,27 @@ class MessageController extends Controller
             return view('page.message', ['inquire'=>$inquire, 'package'=>$package, 'itinerary'=>$itinerary, 'price'=>$price, 'paquete_destino'=>$paquete_destino, 'incluye'=>$incluye, 'no_incluye'=>$no_incluye, 'otro'=>$otro, 'id_paquete'=>$id_paquete, 'user'=>$user]);
         }
     }
+
+    public function compose($id_inquire, $id_paquete)
+    {
+        $inquire = TInquire::Where('id', $id_inquire)->get();
+        $package = TPaquete::with('itinerario')->get();
+        $itinerary = TItinerario::Where('idpaquetes', $id_paquete)->get();
+        $price = TPrecioPaquete::where('idpaquetes', $id_paquete)->get();
+        $paquete_destino = TPaqueteDestino::with('destinos')->where('idpaquetes', $id_paquete)->get();
+        $incluye = TIncluye::all();
+        $no_incluye = TNoIncluye::all();
+        $otro = TOtros::all();
+        $user = User::all();
+        $id_paquete = $id_paquete;
+
+        $p_inquire = TInquire::FindOrFail($id_inquire);
+        $p_inquire->estado = 1;
+        if ($p_inquire->save()){
+            return view('page.compose', ['inquire'=>$inquire, 'package'=>$package, 'itinerary'=>$itinerary, 'price'=>$price, 'paquete_destino'=>$paquete_destino, 'incluye'=>$incluye, 'no_incluye'=>$no_incluye, 'otro'=>$otro, 'id_paquete'=>$id_paquete, 'user'=>$user]);
+        }
+    }
+
     public function message_send($id_inquire, $id_paquete)
     {
         $inquire = TInquire::Where('id', $id_inquire)->get();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\TInquire;
 
+use App\TPaquete;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -22,6 +23,16 @@ class PaymentController extends Controller
     public function index()
     {
 
+    }
+
+    public function send_methods(Request $request)
+    {
+        $request->user()->authorizeRoles(['admin', 'sales']);
+
+        $inquire = TInquire::all();
+        $package = TPaquete::all();
+
+        return view('page.home-send', ['inquire'=>$inquire, 'package'=>$package]);
     }
 
     /**
@@ -57,6 +68,14 @@ class PaymentController extends Controller
 
         $inquire = TInquire::with('payment')->where('id', $id)->get();
         return view('page.payment', ['inquire'=>$inquire]);
+
+    }
+    public function methods(Request $request, $id)
+    {
+        $request->user()->authorizeRoles(['admin', 'sales']);
+
+        $inquire = TInquire::with('payment')->where('id', $id)->get();
+        return view('page.methods', ['inquire'=>$inquire]);
 
     }
 

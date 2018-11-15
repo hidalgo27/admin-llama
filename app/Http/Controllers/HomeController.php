@@ -73,31 +73,30 @@ class HomeController extends Controller
 
         return view('page.home-send', ['inquire'=>$inquire, 'package'=>$package]);
     }
-    /*
-        public function someAdminStuff(Request $request)
-        {
-            $request->user()->authorizeRoles(‘admin’);
-            return view(‘some.view’);
+
+    public function save_compose(Request $request)
+    {
+        $request->user()->authorizeRoles(['admin', 'sales']);
+
+        $idpackage = $_POST['id_package'];
+        $name = $_POST['txt_name'];
+        $email = $_POST['txt_email'];
+        $travellers = $_POST['txt_travellers'];
+        $date = $_POST['txt_date'];
+
+
+        $p_inquire = new TInquire();
+        $p_inquire->name = $name;
+        $p_inquire->email = $email;
+        $p_inquire->traveller = $travellers;
+        $p_inquire->traveldate = $date;
+        $p_inquire->id_paquetes = $idpackage;
+        $p_inquire->idusuario = $request->user()->id;
+        $p_inquire->estado = 1;
+
+        if ($p_inquire->save()){
+            return redirect()->route('message_path', [$p_inquire->id, $idpackage]);
         }
-        */
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-//    public function __construct()
-//    {
-//        $this->middleware('auth');
-//    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-//    public function index()
-//    {
-//        return view('home');
-//    }
+    }
 }

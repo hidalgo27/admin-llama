@@ -80,59 +80,77 @@
                                 {{--</a>--}}
                             {{--</div>--}}
                             <div class="inbox-body">
-                                <a href="#" data-toggle="modal"  title="Compose"    class="btn btn-compose">
+                                <a href="#" data-toggle="modal"  title="Compose"  data-target="#compose"  class="btn btn-compose">
                                     Compose
                                 </a>
                                 <!-- Modal -->
-                                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade" style="display: none;">
-                                    <div class="modal-dialog">
+                                <div class="modal fade" id="compose" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
                                         <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                                                <h4 class="modal-title">Compose</h4>
+                                            <div class="modal-header text-center">
+                                                <h4 class="modal-title w-100 grey-text font-weight-bold">NEW INQUIRE</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
                                             </div>
-                                            <div class="modal-body">
-                                                <form role="form" class="form-horizontal">
-                                                    <div class="form-group">
-                                                        <label class="col-lg-2 control-label">To</label>
-                                                        <div class="col-lg-10">
-                                                            <input type="text" placeholder="" id="inputEmail1" class="form-control">
-                                                        </div>
+                                            <form action="{{route('save_compose_path')}}" role="form" method="post">
+                                                {{csrf_field()}}
+                                            <div class="modal-body mx-3">
+                                                <div class="row my-3 align-items-center">
+                                                    <div class="col">
+                                                        <select class="selectpicker w-100" data-live-search="true" id="a_package" name="id_package">
+                                                            @foreach($package as $pack)
+                                                                <option data-tokens="ketchup mustard" value="{{$pack->id}}">{{$pack->codigo}}: {{$pack->titulo}}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-lg-2 control-label">Cc / Bcc</label>
-                                                        <div class="col-lg-10">
-                                                            <input type="text" placeholder="" id="cc" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-lg-2 control-label">Subject</label>
-                                                        <div class="col-lg-10">
-                                                            <input type="text" placeholder="" id="inputPassword1" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-lg-2 control-label">Message</label>
-                                                        <div class="col-lg-10">
-                                                            <textarea rows="10" cols="30" class="form-control" id="" name=""></textarea>
-                                                        </div>
-                                                    </div>
+                                                </div>
 
-                                                    <div class="form-group">
-                                                        <div class="col-lg-offset-2 col-lg-10">
-                                                      <span class="btn green fileinput-button">
-                                                        <i class="fa fa-plus fa fa-white"></i>
-                                                        <span>Attachment</span>
-                                                        <input type="file" name="files[]" multiple="">
-                                                      </span>
-                                                            <button class="btn btn-send" type="submit">Send</button>
+                                                <div class="row pt-4">
+                                                    <div class="col">
+                                                        <div class="md-form mb-5">
+                                                            <i class="fa fa-envelope prefix grey-text"></i>
+                                                            <input placeholder="Full Name" type="text" id="a_name" class="form-control validate" name="txt_name" required>
+                                                            <label data-error="wrong" data-success="right" for="a_name">Name</label>
                                                         </div>
                                                     </div>
-                                                </form>
+                                                    <div class="col">
+                                                        <div class="md-form mb-5">
+                                                            <i class="fa fa-envelope prefix grey-text"></i>
+                                                            <input placeholder="Email" type="email" id="a_mail" class="form-control validate" name="txt_email" required>
+                                                            <label data-error="wrong" data-success="right" for="a_mail">Your email</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="md-form mb-5">
+                                                            <i class="fa fa-envelope prefix grey-text"></i>
+                                                            <input placeholder="Traveller Number" type="number" id="a_travellers" class="form-control validate" name="txt_travellers" required>
+                                                            <label data-error="wrong" data-success="right" for="a_travellers">Travellers</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="md-form mb-5">
+                                                            <i class="fa fa-envelope prefix grey-text"></i>
+                                                            <input placeholder="Travel Date" type="text" id="datepicker" class="form-control validate" name="txt_date" required>
+                                                            <label data-error="wrong" data-success="right" for="a_date">Travel Date</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <i class="fas fa-spinner fa-pulse fa-2x text-primary d-none" id="sp_load"></i>
                                             </div>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div><!-- /.modal -->
+                                            <div class="modal-footer d-flex justify-content-center">
+                                                <button class="btn btn-primary" type="submit">Compose</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{--<p>Date: <input type="text" id="datepicker"></p>--}}
+
+
                             </div>
                             <ul class="inbox-nav inbox-divider">
                                 <li class="active">
@@ -140,7 +158,10 @@
 
                                 </li>
                                 <li>
-                                    <a href="{{route('send_path')}}"><i class="far fa-envelope"></i> Sent Mail</a>
+                                    <a href="{{route('send_methods_path')}}"><i class="far fa-share-square"></i> Payment Methods</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('send_path')}}"><i class="fas fa-credit-card"></i> Payment Process</a>
                                 </li>
                                 {{--<li>--}}
                                     {{--<a href="#"><i class="far fa-bookmark"></i> Important</a>--}}
@@ -282,10 +303,22 @@
 <script type="text/javascript">
     // Animations initialization
     new WOW().init();
+
+    $( function() {
+        $( "#a_date" ).datepicker();
+    } );
 </script>
 @stack('scripts')
 
-
+<script>
+    $( function() {
+        $( "#datepicker" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+        });
+    } );
+</script>
 </body>
 
 </html>

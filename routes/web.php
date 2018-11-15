@@ -33,6 +33,11 @@ Route::get('/trash', [
     'as' => 'trash_path',
 ]);
 
+Route::post('/save_compose', [
+    'uses' => 'HomeController@save_compose',
+    'as' => 'save_compose_path',
+]);
+
 Route::get('/send', [
     'uses' => 'HomeController@send',
     'as' => 'send_path',
@@ -49,6 +54,12 @@ Route::get('/message/{id_inquire}-{id_paquete}', [
     'uses' => 'MessageController@index',
     'as' => 'message_path',
 ]);
+
+Route::get('/message/compose/{id_inquire}-{id_paquete}', [
+    'uses' => 'MessageController@compose',
+    'as' => 'compose_path',
+]);
+
 Route::get('/message_send/{id_inquire}-{id_paquete}', [
     'uses' => 'MessageController@message_send',
     'as' => 'message_send_path',
@@ -105,8 +116,19 @@ Route::get('search/autocomplete_itinerary', [
 ]);
 
 
+//
+Route::get('/send/methods', [
+    'uses' => 'PaymentController@send_methods',
+    'as' => 'send_methods_path',
+]);
+Route::get('send/methods/{idinquire}', [
+    'uses' => 'PaymentController@methods',
+    'as' => 'methods_show_path',
+]);
 //payment
 Route::get('send/payment/{idinquire}', [
     'uses' => 'PaymentController@show',
     'as' => 'payment_show_path',
 ]);
+
+
