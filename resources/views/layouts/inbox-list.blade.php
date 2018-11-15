@@ -69,6 +69,9 @@
         <th class="th-sm p-0">
 
         </th>
+        <th class="th-sm p-0">
+
+        </th>
         <th class="th-sm p-0 text-right pr-2">Date
             <i class="fa fa-sort" aria-hidden="true"></i>
         </th>
