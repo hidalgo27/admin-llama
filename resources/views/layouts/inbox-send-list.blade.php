@@ -53,7 +53,29 @@
 </div>
 <form id="h_form" role="form">
     {{csrf_field()}}
-    <table class="table table-inbox table-hover">
+    <table id="table_send" class="table table-inbox table-hover">
+        <thead>
+        <tr class="bg-light d-none">
+            <th class="th-sm p-0">
+                {{--<i class="fa fa-sort float-right" aria-hidden="true"></i>--}}s
+            </th>
+            <th class="th-sm p-0">
+                {{--<i class="fa fa-sort float-right" aria-hidden="true"></i>--}}d
+            </th>
+            <th class="th-sm p-0 pl-2">Duration
+                <i class="fa fa-sort" aria-hidden="true"></i>
+            </th>
+            <th class="th-sm p-0">
+
+            </th>
+
+            <th class="th-sm p-0">
+            </th>
+            <th class="th-sm p-0 text-right pr-2">Date
+                <i class="fa fa-sort" aria-hidden="true"></i>
+            </th>
+        </tr>
+        </thead>
         <tbody>
         @foreach($inquire->sortByDesc('created_at') as $inquires)
             @switch($inquires->idusuario)
@@ -137,7 +159,7 @@
                         </td>
                         {{--<td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>--}}
                         <td class="view-message  dont-show"><a href="{{route('message_path', [$inquires->id, 0])}}" class="hover-underline">{{ucwords(strtolower($inquires->name))}} <span class="grey-text d-block small">{{strtolower($inquires->email)}} X {{$inquires->traveller}}</span></a></td>
-                        <td class="view-message font-weight-light font-italic">Sin paquete seleccionado</td>
+                        {{--<td class="view-message font-weight-light font-italic">Sin paquete seleccionado</td>--}}
                         <td class="view-message  inbox-small-cells"><span class="grey-text">{{$inquires->city}}</span></td>
                         <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
                         @php
@@ -162,7 +184,7 @@
                             </td>
                             {{--<td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>--}}
                             <td class="view-message  dont-show"><a href="{{route('message_path', [$inquires->id, 0])}}" class="hover-underline">{{ucwords(strtolower($inquires->name))}} <span class="grey-text d-block small">{{strtolower($inquires->email)}} X {{$inquires->traveller}}</span></a></td>
-                            <td class="view-message ">{{ucwords($packages->codigo)}}</td>
+{{--                            <td class="view-message ">{{ucwords($packages->codigo)}}</td>--}}
                             <td class="view-message  inbox-small-cells"><span class="grey-text">{{$inquires->city}}</span></td>
                             <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
                             @php
@@ -386,11 +408,13 @@
     </table>
 </form>
 
-@push('script')
-    {{--<script>--}}
-    {{--function chk_restore() {--}}
-    {{--alert("hola");--}}
-
-    {{--}--}}
-    {{--</script>--}}
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('#table_send').DataTable({
+                "info": true
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
 @endpush
