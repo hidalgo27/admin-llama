@@ -15,15 +15,37 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <div class="row align-items-center">
+                            <div class="row align-items-center justify-content-between">
                                 <div class="col-6">
-                                    <div class="h1 font-weight-bold grey-text">Hidalgo Ch Ponce X2</div>
-                                    <div class="font-weight-bold text-default">GTP500: Andes Escape</div>
+                                    @foreach($inquire as $inquires)
+                                    {{--<div class="h1 font-weight-bold grey-text">{{ucwords(strtolower($inquires->name))}}</div>--}}
+                                        <div class="md-form m-0">
+                                            <input type="text" id="p_name" class="form-control font-weight-bold grey-text font-size-35 p-0 display-1" placeholder="Client" value="{{ucwords(strtolower($inquires->name))}}">
+                                            {{--<label for="inputIconEx2">Payment Method</label>--}}
+                                        </div>
+                                    {{--<div class="font-weight-bold text-default">GTP500: Andes Escape</div>--}}
+                                        <div class="md-form input-group-sm m-0 w-50">
+                                            <input type="text" id="p_package" class="form-control font-weight-bold text-info p-0" placeholder="Payment Method" value="GTP500: Classic Cusco">
+                                            {{--<label for="inputIconEx2">Payment Method</label>--}}
+                                        </div>
                                     {{--<div class="font-weight-bold text-default">Travel date: 15 Jul 2018</div>--}}
+                                    @endforeach
                                 </div>
-                                <div class="col-6 text-right">
-                                    <div class="h1 font-weight-bold grey-text"><sup>$</sup>500</div>
-                                    <div class="font-weight-bold grey-text">15 Jul 2018</div>
+                                <div class="col-2">
+                                    {{--<div class="md-form m-0">--}}
+                                        {{--<input type="text" id="p_name" class="form-control font-weight-bold grey-text font-size-35 p-0 text-right" placeholder="Client" value="500">--}}
+                                        {{--<label for="inputIconEx2">Payment Method</label>--}}
+                                    {{--</div>--}}
+                                    <div class="md-form input-group-sm m-0">
+                                        <i class="fas fa-dollar-sign prefix grey-text"></i>
+                                        <input placeholder="Full Name" type="text" id="p_package" class="form-control font-weight-bold grey-text font-size-35 p-0 text-right" name="txt_name" value="500">
+                                    </div>
+                                    {{--<div class="h1 font-weight-bold grey-text"><sup>$</sup>500</div>--}}
+                                    {{--<div class="font-weight-bold grey-text">15 Jul 2018</div>--}}
+                                    <div class="md-form input-group-sm m-0">
+                                        <input type="text" id="p_package" class="form-control font-weight-bold grey-text p-0 text-right" placeholder="Payment Method" value="15 Jul 2018">
+                                        {{--<label for="inputIconEx2">Payment Method</label>--}}
+                                    </div>
                                 </div>
                             </div>
                             <hr>
@@ -32,7 +54,7 @@
                                     <div class="md-form ">
                                         <div class="md-form">
                                             <i class="fas fa-credit-card prefix grey-text"></i>
-                                            <input type="text" id="inputIconEx2" class="form-control" placeholder="Payment Method">
+                                            <input type="text" id="inputIconEx2" class="form-control" placeholder="Payment Method" disabled>
                                             {{--<label for="inputIconEx2">Payment Method</label>--}}
                                         </div>
                                     </div>
@@ -41,20 +63,20 @@
                                     <div class="md-form ">
                                         <div class="md-form">
                                             <i class="fas fa-qrcode prefix grey-text"></i>
-                                            <input type="text" id="inputIconEx2" class="form-control" placeholder="Transaction">
+                                            <input type="text" id="inputIconEx2" class="form-control" placeholder="Transaction" disabled>
                                             {{--<label for="inputIconEx2">Transaction Code</label>--}}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="md-form ">
-                                        <input placeholder="Amount to Pay" type="text" id="inputPlaceholderEx" class="form-control text-center" value="27-05-2018">
+                                        <input placeholder="Amount to Pay" type="text" id="inputPlaceholderEx" class="form-control text-center" value="27-05-2018" disabled>
                                         {{--<label for="inputPlaceholderEx">Date</label>--}}
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="md-form ">
-                                        <input placeholder="Amount to Pay" type="text" id="inputPlaceholderEx" class="form-control text-right" value="500">
+                                        <input placeholder="Amount to Pay" type="text" id="inputPlaceholderEx" class="form-control text-right" value="500" disabled>
                                         {{--<label for="inputPlaceholderEx">Amount to Pay</label>--}}
                                     </div>
                                 </div>
@@ -83,7 +105,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="md-form ">
-                                        <input placeholder="Amount to Pay" type="text" id="inputPlaceholderEx" class="form-control text-center font-weight-bold text-secondary" value="27-05-2018">
+                                        <input placeholder="Payment Day" type="text" id="inputPlaceholderEx" class="form-control text-center font-weight-bold text-secondary" value="27-05-2018">
                                         {{--<label for="inputPlaceholderEx">Date</label>--}}
                                     </div>
                                 </div>
@@ -141,12 +163,6 @@
 @endsection
 @push('scripts')
     <script>
-        function range(){
-            var $from = $('#i_from').val();
-            var $to = $('#i_to').val();
-            window.location.href = '../../statistics/'+$from+'/'+$to;
-
-        }
 
         $( function() {
             $( ".datepicker" ).datepicker(
@@ -156,55 +172,6 @@
             );
         } );
 
-        var ctx = document.getElementById("myChart").getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ["Paola", "Martin", "Karina"],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
-                }
-            }
-        });
-<<<<<<< HEAD
 
-        $('#printInvoice').click(function(){
-            Popup($('.invoice')[0].outerHTML);
-            function Popup(data)
-            {
-                window.print();
-                return true;
-            }
-        });
-
-=======
->>>>>>> origin/master
     </script>
 @endpush
