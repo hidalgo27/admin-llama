@@ -3,8 +3,7 @@
     <div class="container-fluid">
 
         <!-- Brand -->
-        <a class="navbar-brand waves-effect" href="{{asset('home_path')}}"
-           target="_blank">
+        <a class="navbar-brand waves-effect" href="{{route('home_path')}}">
             <strong><span class="orange-text">LLAMA</span>tous</strong>
         </a>
 

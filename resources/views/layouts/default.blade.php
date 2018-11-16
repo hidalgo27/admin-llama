@@ -157,9 +157,9 @@
                                     <a href="{{route('home_path')}}"><i class="fa fa-inbox"></i> Inbox <span class="badge badge-danger float-right">2</span></a>
 
                                 </li>
-                                <li>
-                                    <a href="{{route('send_methods_path')}}"><i class="far fa-share-square"></i> Payment Methods</a>
-                                </li>
+                                {{--<li>--}}
+                                    {{--<a href="{{route('send_methods_path')}}"><i class="far fa-share-square"></i> Payment Methods</a>--}}
+                                {{--</li>--}}
                                 <li>
                                     <a href="{{route('send_path')}}"><i class="fas fa-credit-card"></i> Payment Process</a>
                                 </li>
