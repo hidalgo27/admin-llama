@@ -150,6 +150,16 @@
                                     <label for="h_phone" data-error="wrong" data-success="right">Number Phone</label>
                                 </div>
                             </div>
+                        @if ($inquires->destinations)
+                            <div class="row">
+                                <div class="col">
+                                    <div class="alert alert-primary">
+                                        <i class="fas fa-map-marker-alt"></i> {{$inquires->destinations}}.
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
 
 
                     </div>
