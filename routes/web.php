@@ -27,6 +27,10 @@ Route::post('/home/del', [
     'uses' => 'HomeController@remove_inquire',
     'as' => 'remove_inquire_path',
 ]);
+Route::post('/home/sent', [
+    'uses' => 'HomeController@sent_inquire',
+    'as' => 'sent_inquire_path',
+]);
 
 Route::get('/trash', [
     'uses' => 'HomeController@trash',

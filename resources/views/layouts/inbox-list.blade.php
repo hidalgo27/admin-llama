@@ -22,7 +22,7 @@
                 </a>
             </div>
             <div class="btn-group">
-                <a id="d_mailbtn" data-placement="top" class="btn mini tooltips d-none" onclick="chk_trash()">
+                <a id="d_mailbtn" data-placement="top" class="btn mini tooltips d-none d_mailbtn" onclick="chk_trash()">
                     <i class="fa fa-trash" id="d_trash"></i>
                     <i class="fas fa-spinner fa-pulse d-none" id="d_spinner"></i>
                 </a>
@@ -31,6 +31,21 @@
                     {{--<i class="fas fa-spinner fa-pulse d-none" id="d_spinner"></i>--}}
                 {{--</button>--}}
             </div>
+            <div class="btn-group">
+                <a id="d_mailbtn2" data-placement="top" class="btn mini tooltips d-none d_mailbtn" onclick="chk_sent()">
+                    <i class="fas fa-envelope-open" id="d_sent"></i>
+                    <i class="fas fa-spinner fa-pulse d-none" id="d_spinner_sent"></i>
+                </a>
+                {{--<button type="button" class="btn mini tooltips d-none" id="d_mailbtn" onclick="chk_trash()">--}}
+                {{--<i class="fa fa-trash" id="d_trash"></i>--}}
+                {{--<i class="fas fa-spinner fa-pulse d-none" id="d_spinner"></i>--}}
+                {{--</button>--}}
+            </div>
+            {{--<div class="btn-group">--}}
+                {{--<a data-original-title="Sent" data-placement="top" data-toggle="dropdown" href="#" class="btn mini tooltips">--}}
+                    {{--<i class="fas fa-envelope-open"></i>--}}
+                {{--</a>--}}
+            {{--</div>--}}
             {{--<div class="btn-group">--}}
                 {{--<a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#" class="btn mini tooltips">--}}
                     {{--<i class=" fa fa-trash"></i>--}}

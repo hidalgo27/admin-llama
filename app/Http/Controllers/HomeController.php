@@ -38,6 +38,24 @@ class HomeController extends Controller
 
     }
 
+    public function sent_inquire(Request $request)
+    {
+        $request->user()->authorizeRoles(['admin', 'sales']);
+
+        $mails = $_POST['txt_mails'];
+        $inquires = explode(',', $mails);
+
+        foreach ($inquires as $inquire){
+            $p_estado = TInquire::FindOrFail($inquire);
+            $p_estado->estado = 2;
+            $p_estado->save();
+
+        }
+
+//        return redirect()->route('message_path', [$p_inquire->id, $idpackage]);
+
+    }
+
     public function restore_inquire(Request $request)
     {
         $request->user()->authorizeRoles(['admin', 'sales']);

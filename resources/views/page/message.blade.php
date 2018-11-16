@@ -24,10 +24,11 @@
                     </a>
                 </div>
                 <div class="btn-group">
-                    <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#" class="btn mini tooltips">
+                    <a data-original-title="Trash" data-placement="top" data-toggle="dropdown" href="#" class="btn mini tooltips">
                         <i class=" fa fa-trash"></i>
                     </a>
                 </div>
+
 
                 <ul class="list-unstyled inbox-pagination mb-0">
                     <li><span>1-50 of 234</span></li>

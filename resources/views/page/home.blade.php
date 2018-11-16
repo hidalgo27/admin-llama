@@ -39,9 +39,9 @@
                 s_mail = $mail.substring(0,$mail.length-1);
 
                 if (s_mail.length == 0 ){
-                    $("#d_mailbtn").addClass('d-none');
+                    $(".d_mailbtn").addClass('d-none');
                 }else{
-                    $("#d_mailbtn").removeClass('d-none');
+                    $(".d_mailbtn").removeClass('d-none');
                 }
             }
 
@@ -151,6 +151,60 @@
             }
 
         }
+
+        function chk_sent() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('[name="_token"]').val()
+                }
+            });
+            $("#d_mailbtn2").attr("disabled", true);
+            var s_mail = document.getElementsByName('chk_mail[]');
+            var $mail = "";
+            for (var i = 0, l = s_mail.length; i < l; i++) {
+                if (s_mail[i].checked) {
+                    $mail += s_mail[i].value+',';
+                }
+            }
+            s_mail = $mail.substring(0,$mail.length-1);
+            if (s_mail.length == 0 ){
+                $('#h_name').css("border-bottom", "2px solid #FF0000");
+                var delMail = "false";
+            }else{
+                var delMail = "true";
+            }
+
+
+            if(delMail == "true"){
+                var datos = {
+                    "txt_mails" : s_mail,
+                };
+                $.ajax({
+                    data:  datos,
+                    url:   "{{route('sent_inquire_path')}}",
+                    type:  'post',
+                    beforeSend: function () {
+                        // $('#de_send').removeClass('show');
+                        $("#d_sent ").addClass('d-none');
+                        $("#d_spinner_sent").removeClass('d-none');
+                    },
+                    success:  function (response) {
+                        $('#h_form')[0].reset();
+                        $('#d_sent').removeClass('d-none');
+                        $("#d_spinner_sent").addClass('d-none');
+                        // $('#h_alert').removeClass('d-none');
+                        // $("#h_alert b").html(response);
+                        // $("#h_alert").fadeIn('slow');
+                        $("#d_mailbtn2").removeAttr("disabled");
+                        window.location.href = "{{route('home_path')}}"
+                    }
+                });
+            } else{
+                $("#submit_tip").removeAttr("disabled");
+            }
+
+        }
+
 
         $(document).ready(function () {
             $('#dtBasicExample2').DataTable({

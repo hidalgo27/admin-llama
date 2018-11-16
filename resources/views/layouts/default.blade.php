@@ -96,54 +96,54 @@
                                             </div>
                                             <form action="{{route('save_compose_path')}}" role="form" method="post">
                                                 {{csrf_field()}}
-                                            <div class="modal-body mx-3">
-                                                <div class="row my-3 align-items-center">
-                                                    <div class="col">
-                                                        <select class="selectpicker w-100" data-live-search="true" id="a_package" name="id_package">
-                                                            @foreach($package as $pack)
-                                                                <option data-tokens="ketchup mustard" value="{{$pack->id}}">{{$pack->codigo}}: {{$pack->titulo}}</option>
-                                                            @endforeach
-                                                        </select>
+                                                <div class="modal-body mx-3">
+                                                    <div class="row my-3 align-items-center">
+                                                        <div class="col">
+                                                            <select class="selectpicker w-100" data-live-search="true" id="a_package" name="id_package">
+                                                                @foreach($package as $pack)
+                                                                    <option data-tokens="ketchup mustard" value="{{$pack->id}}">{{$pack->codigo}}: {{$pack->titulo}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="row pt-4">
-                                                    <div class="col">
-                                                        <div class="md-form mb-5">
-                                                            <i class="fa fa-envelope prefix grey-text"></i>
-                                                            <input placeholder="Full Name" type="text" id="a_name" class="form-control validate" name="txt_name" required>
-                                                            <label data-error="wrong" data-success="right" for="a_name">Name</label>
+                                                    <div class="row pt-4">
+                                                        <div class="col">
+                                                            <div class="md-form mb-5">
+                                                                <i class="fa fa-envelope prefix grey-text"></i>
+                                                                <input placeholder="Full Name" type="text" id="a_name" class="form-control validate" name="txt_name" required>
+                                                                <label data-error="wrong" data-success="right" for="a_name">Name</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="md-form mb-5">
+                                                                <i class="fa fa-envelope prefix grey-text"></i>
+                                                                <input placeholder="Email" type="email" id="a_mail" class="form-control validate" name="txt_email" required>
+                                                                <label data-error="wrong" data-success="right" for="a_mail">Your email</label>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col">
-                                                        <div class="md-form mb-5">
-                                                            <i class="fa fa-envelope prefix grey-text"></i>
-                                                            <input placeholder="Email" type="email" id="a_mail" class="form-control validate" name="txt_email" required>
-                                                            <label data-error="wrong" data-success="right" for="a_mail">Your email</label>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="md-form mb-5">
+                                                                <i class="fa fa-envelope prefix grey-text"></i>
+                                                                <input placeholder="Traveller Number" type="number" id="a_travellers" class="form-control validate" name="txt_travellers" required>
+                                                                <label data-error="wrong" data-success="right" for="a_travellers">Travellers</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="md-form mb-5">
+                                                                <i class="fa fa-envelope prefix grey-text"></i>
+                                                                <input placeholder="Travel Date" type="text" id="datepicker" class="form-control validate" name="txt_date" required>
+                                                                <label data-error="wrong" data-success="right" for="a_date">Travel Date</label>
+                                                            </div>
                                                         </div>
                                                     </div>
+                                                    <i class="fas fa-spinner fa-pulse fa-2x text-primary d-none" id="sp_load"></i>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="md-form mb-5">
-                                                            <i class="fa fa-envelope prefix grey-text"></i>
-                                                            <input placeholder="Traveller Number" type="number" id="a_travellers" class="form-control validate" name="txt_travellers" required>
-                                                            <label data-error="wrong" data-success="right" for="a_travellers">Travellers</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="md-form mb-5">
-                                                            <i class="fa fa-envelope prefix grey-text"></i>
-                                                            <input placeholder="Travel Date" type="text" id="datepicker" class="form-control validate" name="txt_date" required>
-                                                            <label data-error="wrong" data-success="right" for="a_date">Travel Date</label>
-                                                        </div>
-                                                    </div>
+                                                <div class="modal-footer d-flex justify-content-center">
+                                                    <button class="btn btn-primary" type="submit">Compose</button>
                                                 </div>
-                                                <i class="fas fa-spinner fa-pulse fa-2x text-primary d-none" id="sp_load"></i>
-                                            </div>
-                                            <div class="modal-footer d-flex justify-content-center">
-                                                <button class="btn btn-primary" type="submit">Compose</button>
-                                            </div>
                                             </form>
                                         </div>
                                     </div>
