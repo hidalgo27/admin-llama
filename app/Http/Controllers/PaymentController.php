@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\TInquire;
 
 use App\TPaquete;
+use App\TPayment;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -53,7 +54,114 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->user()->authorizeRoles(['admin', 'sales']);
+
+        $medio = $_POST["txt_medio"];
+        $transaction = $_POST["txt_transaction"];
+        $date = $_POST["txt_date"];
+        $amount = $_POST["txt_amount"];
+        $idinquire = $_POST["txt_idinquire"];
+
+        $inquire = TInquire::with('usuario')->where('id', $idinquire);
+
+        $payment = new TPayment();
+        $payment->a_cuenta = $amount;
+        $payment->fecha_a_pagar = $date;
+        $payment->medio = $medio;
+        $payment->transaccion = $transaction;
+        $payment->estado = 1;
+        $payment->idinquires = $idinquire;
+        if($payment->save()){
+            try {
+//            Mail::send(['html' => 'notifications.page.client-form-design'], ['name' => $name], function ($messaje) use ($email, $name) {
+//                $messaje->to($email, $name)
+//                    ->subject('GotoPeru')
+//                    /*->attach('ruta')*/
+//                    ->from('info@gotoperu.com', 'GotoPeru');
+//            });
+
+
+                Mail::send(['html' => 'notifications.page.message'], [
+                    'medio' => $medio,
+                    'transaction' => $transaction,
+                    'date' => $date,
+                    'amount' => $amount,
+                    'inquire' => $inquire
+                ], function ($messaje) use ($email_a, $email) {
+                    $messaje->to($email_a, 'Llama Tours')
+                        ->subject('Propuesta Llama Tours')
+                        /*->attach('ruta')*/
+                        ->from($email, 'Llama Tours');
+                });
+//
+//                Mail::send(['html' => 'notifications.page.message'], [
+//                    'day' => $day,
+//                    'title' => $title,
+//                    'resumen' => $resumen,
+////                'itinerary' => $itinerary,
+//                    'destinations' => $destinations,
+//                    'incluye' => $incluye,
+//                    'noincluye' => $noincluye,
+//                    'email' => $email,
+//                    'name' => $name,
+//                    'category' => $category,
+//                    'date' => $date,
+//                    'phone' => $phone,
+//                    'precio_ch' => $precio_ch,
+//                    'precio_sh' => $precio_sh,
+//                    'precio_2' => $precio_2,
+//                    'precio_3' => $precio_3,
+//                    'precio_4' => $precio_4,
+//                    'precio_5' => $precio_5,
+//
+//                    'economic' => $economic,
+//                    'tourist' => $tourist,
+//                    'superior' => $superior,
+//                    'luxury' => $luxury,
+//
+//                    'otros' => $otros,
+//                    'codigo_p' => $codigo_p,
+//                    'titulo_p' => $titulo_p,
+//
+//                    'email_a' => $email_a,
+//                    'name_a' => $name_a,
+//
+//                    'messagess' => $messagess,
+//                    'messagess2' => $messagess2
+//                ], function ($messaje) use ($email, $email_a, $name) {
+//                    $messaje->to($email, $name)
+//                        ->subject('Propuesta Llama Tours')
+//                        /*->attach('ruta')*/
+//                        ->from($email_a, 'Asesor Llama Tours');
+//                });
+
+
+//            Mail::send(['html' => 'notifications.page.admin-form-inquire'], [
+//                'accommodation' => $accommodation,
+//                'number' => $number,
+//
+//                'date' => $date,
+//                'tel' => $tel,
+//                'name' => $name,
+//                'email' => $email,
+//                'package' => $package,
+//                'comment' => $comment
+//            ], function ($messaje) use ($from2) {
+//                $messaje->to($from2, 'GotoPeru')
+//                    ->subject('GOTOPERU')
+//                    /*->attach('ruta')*/
+//                    ->from('hidalgochpnce@gmail.com', 'GotoPeru');
+//            });
+
+
+                return 'Thank you.';
+
+            }
+            catch (Exception $e){
+                return $e;
+            }
+        }
+
     }
 
     /**

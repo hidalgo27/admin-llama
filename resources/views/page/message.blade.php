@@ -365,7 +365,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">$</span>
                                             </div>
-                                            <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_sh" value="{{$packages->precio}}">
+                                            <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_sh" value="{{$packages->d_precio}}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text">USD</span>
                                             </div>

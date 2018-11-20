@@ -161,7 +161,7 @@
                                     {{--<a href="{{route('send_methods_path')}}"><i class="far fa-share-square"></i> Payment Methods</a>--}}
                                 {{--</li>--}}
                                 <li>
-                                    <a href="{{route('send_path')}}"><i class="fas fa-credit-card"></i> Payment Process</a>
+                                    <a href="{{route('send_path')}}"><i class="fas fa-credit-card"></i> Send Mail</a>
                                 </li>
                                 {{--<li>--}}
                                     {{--<a href="#"><i class="far fa-bookmark"></i> Important</a>--}}

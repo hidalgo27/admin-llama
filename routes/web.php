@@ -134,5 +134,9 @@ Route::get('send/payment/{idinquire}', [
     'uses' => 'PaymentController@show',
     'as' => 'payment_show_path',
 ]);
+Route::post('send/payment/registrer', [
+    'uses' => 'PaymentController@store',
+    'as' => 'payment_store_path',
+]);
 
 
