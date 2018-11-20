@@ -3,7 +3,7 @@
         <tr>
             <td>
                 <a target="_blank" href="http://llama.tours/">
-                    <img src="{{asset('images/logo-llama.png')}}" data-holder-rendered="true" width="300">
+                    <img src="http://llama.tours/images/logo-llama.png" data-holder-rendered="true" width="300">
                 </a>
             </td>
             <td style="text-align: right;">

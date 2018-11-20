@@ -7,6 +7,7 @@ use App\TInquire;
 use App\TPaquete;
 use App\TPayment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
 {
@@ -56,13 +57,21 @@ class PaymentController extends Controller
     {
         $request->user()->authorizeRoles(['admin', 'sales']);
 
+        $email = $request->user()->email;
+
         $medio = $_POST["txt_medio"];
         $transaction = $_POST["txt_transaction"];
         $date = $_POST["txt_date"];
         $amount = $_POST["txt_amount"];
         $idinquire = $_POST["txt_idinquire"];
 
-        $inquire = TInquire::with('usuario')->where('id', $idinquire);
+        $inquire = TInquire::with('usuario')->where('id', $idinquire)->get();
+
+        foreach ($inquire as $inquires){
+            $email_a = $inquires->email;
+            $name_a = $inquires->name;
+        }
+
 
         $payment = new TPayment();
         $payment->a_cuenta = $amount;
@@ -81,15 +90,16 @@ class PaymentController extends Controller
 //            });
 
 
-                Mail::send(['html' => 'notifications.page.message'], [
+                Mail::send(['html' => 'notifications.page.invoice'], [
                     'medio' => $medio,
                     'transaction' => $transaction,
                     'date' => $date,
                     'amount' => $amount,
                     'inquire' => $inquire
-                ], function ($messaje) use ($email_a, $email) {
-                    $messaje->to($email_a, 'Llama Tours')
-                        ->subject('Propuesta Llama Tours')
+                ], function ($messaje) use ($email_a, $email, $name_a) {
+                    $messaje->to($email_a, $name_a)
+                        ->subject('Payment Llama Tours')
+                        ->cc($email, 'Payment Llama Tours')
                         /*->attach('ruta')*/
                         ->from($email, 'Llama Tours');
                 });
