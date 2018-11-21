@@ -177,7 +177,9 @@
                                                                 <tbody>
                                                                 <tr>
                                                                     <td>
-                                                                        <p class="m-0"><b class="font-weight-bold">Price per person:</b> {{$total}}/{{$payments->inquires->traveller}} = ${{round($total/$payments->inquires->traveller, 2)}}</p>
+                                                                        @if (isset($payments))
+                                                                            <p class="m-0"><b class="font-weight-bold">Price per person:</b> {{$total}}/{{$payments->inquires->traveller}} = ${{round($total/$payments->inquires->traveller, 2)}}</p>
+                                                                        @endif
                                                                         <p class="m-0"><strong class="text-danger font-weight-bold">Outstanding: $100.00</strong></p>
                                                                         <p class="m-0 font-weight-bold"><span class="yellow p-1 rounded">Next Payment Date: 28 Jul 2018</span></p>
                                                                     </td>
