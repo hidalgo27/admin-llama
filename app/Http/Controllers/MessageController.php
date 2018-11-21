@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\TDestino;
 use App\TIncluye;
 use App\TInquire;
 use App\TItinerario;
@@ -10,8 +11,12 @@ use App\TOtros;
 use App\TPaquete;
 use App\TPaqueteDestino;
 use App\TPrecioPaquete;
+use App\TUsuario;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Response;
 
 class MessageController extends Controller
 {
@@ -30,7 +35,85 @@ class MessageController extends Controller
         $incluye = TIncluye::all();
         $no_incluye = TNoIncluye::all();
         $otro = TOtros::all();
-        return view('page.message', ['inquire'=>$inquire, 'package'=>$package, 'itinerary'=>$itinerary, 'price'=>$price, 'paquete_destino'=>$paquete_destino, 'incluye'=>$incluye, 'no_incluye'=>$no_incluye, 'otro'=>$otro]);
+        $user = User::all();
+        $id_paquete = $id_paquete;
+
+        $p_inquire = TInquire::FindOrFail($id_inquire);
+        $p_inquire->estado = 1;
+        if ($p_inquire->save()){
+            return view('page.message', ['inquire'=>$inquire, 'package'=>$package, 'itinerary'=>$itinerary, 'price'=>$price, 'paquete_destino'=>$paquete_destino, 'incluye'=>$incluye, 'no_incluye'=>$no_incluye, 'otro'=>$otro, 'id_paquete'=>$id_paquete, 'user'=>$user]);
+        }
+    }
+
+    public function compose($id_inquire, $id_paquete)
+    {
+        $inquire = TInquire::Where('id', $id_inquire)->get();
+        $package = TPaquete::with('itinerario')->get();
+        $itinerary = TItinerario::Where('idpaquetes', $id_paquete)->get();
+        $price = TPrecioPaquete::where('idpaquetes', $id_paquete)->get();
+        $paquete_destino = TPaqueteDestino::with('destinos')->where('idpaquetes', $id_paquete)->get();
+        $incluye = TIncluye::all();
+        $no_incluye = TNoIncluye::all();
+        $otro = TOtros::all();
+        $user = User::all();
+        $id_paquete = $id_paquete;
+
+        $p_inquire = TInquire::FindOrFail($id_inquire);
+        $p_inquire->estado = 1;
+        if ($p_inquire->save()){
+            return view('page.compose', ['inquire'=>$inquire, 'package'=>$package, 'itinerary'=>$itinerary, 'price'=>$price, 'paquete_destino'=>$paquete_destino, 'incluye'=>$incluye, 'no_incluye'=>$no_incluye, 'otro'=>$otro, 'id_paquete'=>$id_paquete, 'user'=>$user]);
+        }
+    }
+
+    public function message_send($id_inquire, $id_paquete)
+    {
+        $inquire = TInquire::Where('id', $id_inquire)->get();
+        $package = TPaquete::with('itinerario')->get();
+        $itinerary = TItinerario::Where('idpaquetes', $id_paquete)->get();
+        $price = TPrecioPaquete::where('idpaquetes', $id_paquete)->get();
+        $paquete_destino = TPaqueteDestino::with('destinos')->where('idpaquetes', $id_paquete)->get();
+        $incluye = TIncluye::all();
+        $no_incluye = TNoIncluye::all();
+        $otro = TOtros::all();
+        $user = User::all();
+        $id_paquete = $id_paquete;
+
+        $p_inquire = TInquire::FindOrFail($id_inquire);
+        $p_inquire->estado = 2;
+        if ($p_inquire->save()){
+            return view('page.message', ['inquire'=>$inquire, 'package'=>$package, 'itinerary'=>$itinerary, 'price'=>$price, 'paquete_destino'=>$paquete_destino, 'incluye'=>$incluye, 'no_incluye'=>$no_incluye, 'otro'=>$otro, 'id_paquete'=>$id_paquete, 'user'=>$user]);
+        }
+    }
+    public function del_send($id_inquire, $id_paquete)
+    {
+        $inquire = TInquire::Where('id', $id_inquire)->get();
+        $package = TPaquete::with('itinerario')->get();
+        $itinerary = TItinerario::Where('idpaquetes', $id_paquete)->get();
+        $price = TPrecioPaquete::where('idpaquetes', $id_paquete)->get();
+        $paquete_destino = TPaqueteDestino::with('destinos')->where('idpaquetes', $id_paquete)->get();
+        $incluye = TIncluye::all();
+        $no_incluye = TNoIncluye::all();
+        $otro = TOtros::all();
+        $user = User::all();
+        $id_paquete = $id_paquete;
+
+        $p_inquire = TInquire::FindOrFail($id_inquire);
+        $p_inquire->estado = 3;
+        if ($p_inquire->save()){
+            return view('page.message', ['inquire'=>$inquire, 'package'=>$package, 'itinerary'=>$itinerary, 'price'=>$price, 'paquete_destino'=>$paquete_destino, 'incluye'=>$incluye, 'no_incluye'=>$no_incluye, 'otro'=>$otro, 'id_paquete'=>$id_paquete, 'user'=>$user]);
+        }
+    }
+
+    public  function inquire_package()
+    {
+        $idinquire = $_POST['txt_idinquire'];
+        $idpackage = $_POST['txt_idpackage'];
+
+        $p_inquire = TInquire::FindOrFail($idinquire);
+        $p_inquire->id_paquetes = $idpackage;
+        if ($p_inquire->save()){
+            return ($idinquire.'-'.$idpackage);
+        }
     }
 
     public function message_mail()
@@ -38,9 +121,11 @@ class MessageController extends Controller
         $from = 'hidalgochpnce@gmail.com';
         $from2 = 'paul@gotoperu.com';
 
+        $idinquire = $_POST['txt_idinquire'];
         $day = $_POST['txt_day'];
         $title = $_POST['txt_title'];
         $resumen = $_POST['txt_resumen'];
+//        $itinerary = $_POST['txt_itinerary'];
         $destinations = $_POST['txt_destinations'];
         $incluye = $_POST['txt_incluye'];
         $noincluye = $_POST['txt_noincluye'];
@@ -59,12 +144,65 @@ class MessageController extends Controller
         $precio_4 = $_POST['txt_precio_4'];
         $precio_5 = $_POST['txt_precio_5'];
 
+        if (isset($_POST['txt_economic'])){
+            $economic = $_POST['txt_economic'];
+        }else{
+            $economic = "0";
+        }
+        if (isset($_POST['txt_tourist'])){
+            $tourist = $_POST['txt_tourist'];
+        }else{
+            $tourist = "0";
+        }
+        if (isset($_POST['txt_superior'])){
+            $superior = $_POST['txt_superior'];
+        }else{
+            $superior = "0";
+        }
+        if (isset($_POST['txt_luxury'])){
+            $luxury = $_POST['txt_luxury'];
+        }else{
+            $luxury = "0";
+        }
+
         $otros = $_POST['txt_otros'];
 
         $messagess = $_POST['txt_message'];
+        $messagess2 = $_POST['txt_message2'];
+
+        $package = $_POST['txt_package'];
+
+//        $package = explode('-', $package);
+
+        $package = TPaquete::where('id', $package)->get();
+
+        $advisor = $_POST['txt_advisor'];
+
+        if ($advisor==2){
+            $email_a = "paola@llama.tours";
+            $name_a = "Paola";
+        }
+        if ($advisor==3){
+            $email_a = "mihael@llama.tours";
+            $name_a = "Mihael";
+        }
+//        if ($advisor==4){
+//            $email_a = "martin@llama.tours";
+//            $name_a = "Martin";
+//        }
 
 
-        try {
+        foreach ($package as $packages)
+        {
+            $codigo_p = $packages->codigo;
+            $titulo_p = $packages->titulo;
+        }
+
+        $p_inquire = TInquire::FindOrFail($idinquire);
+        $p_inquire->estado = 2;
+
+        if($p_inquire->save()){
+            try {
 //            Mail::send(['html' => 'notifications.page.client-form-design'], ['name' => $name], function ($messaje) use ($email, $name) {
 //                $messaje->to($email, $name)
 //                    ->subject('GotoPeru')
@@ -73,61 +211,87 @@ class MessageController extends Controller
 //            });
 
 
-            Mail::send(['html' => 'notifications.page.message'], [
-                'day' => $day,
-                'title' => $title,
-                'resumen' => $resumen,
-                'destinations' => $destinations,
-                'incluye' => $incluye,
-                'noincluye' => $noincluye,
-                'email' => $email,
-                'name' => $name,
-                'category' => $category,
-                'date' => $date,
-                'phone' => $phone,
-                'precio_ch' => $precio_ch,
-                'precio_sh' => $precio_sh,
-                'precio_2' => $precio_2,
-                'precio_3' => $precio_3,
-                'precio_4' => $precio_4,
-                'precio_5' => $precio_5,
+                Mail::send(['html' => 'notifications.page.message'], [
+                    'day' => $day,
+                    'title' => $title,
+                    'resumen' => $resumen,
+//                'itinerary' => $itinerary,
+                    'destinations' => $destinations,
+                    'incluye' => $incluye,
+                    'noincluye' => $noincluye,
+                    'email' => $email,
+                    'name' => $name,
+                    'category' => $category,
+                    'date' => $date,
+                    'phone' => $phone,
+                    'precio_ch' => $precio_ch,
+                    'precio_sh' => $precio_sh,
+                    'precio_2' => $precio_2,
+                    'precio_3' => $precio_3,
+                    'precio_4' => $precio_4,
+                    'precio_5' => $precio_5,
 
-                'otros' => $otros,
-                'messagess' => $messagess
-            ], function ($messaje) use ($from) {
-                $messaje->to($from, 'Llama Tours')
-                    ->subject('Llama Tours')
-                    /*->attach('ruta')*/
-                    ->from('info@llama.tours', 'Llama Tours');
-            });
+                    'economic' => $economic,
+                    'tourist' => $tourist,
+                    'superior' => $superior,
+                    'luxury' => $luxury,
 
-            Mail::send(['html' => 'notifications.page.message'], [
-                'day' => $day,
-                'title' => $title,
-                'resumen' => $resumen,
-                'destinations' => $destinations,
-                'incluye' => $incluye,
-                'noincluye' => $noincluye,
-                'email' => $email,
-                'name' => $name,
-                'category' => $category,
-                'date' => $date,
-                'phone' => $phone,
-                'precio_ch' => $precio_ch,
-                'precio_sh' => $precio_sh,
-                'precio_2' => $precio_2,
-                'precio_3' => $precio_3,
-                'precio_4' => $precio_4,
-                'precio_5' => $precio_5,
+                    'otros' => $otros,
+                    'codigo_p' => $codigo_p,
+                    'titulo_p' => $titulo_p,
 
-                'otros' => $otros,
-                'messagess' => $messagess
-            ], function ($messaje) use ($email) {
-                $messaje->to($email, 'Llama Tours')
-                    ->subject('Llama Tours')
-                    /*->attach('ruta')*/
-                    ->from('info@llama.tours', 'Llama Tours');
-            });
+                    'email_a' => $email_a,
+                    'name_a' => $name_a,
+
+                    'messagess' => $messagess,
+                    'messagess2' => $messagess2
+                ], function ($messaje) use ($email_a, $email) {
+                    $messaje->to($email_a, 'Llama Tours')
+                        ->subject('Propuesta Llama Tours')
+                        /*->attach('ruta')*/
+                        ->from($email, 'Llama Tours');
+                });
+
+                Mail::send(['html' => 'notifications.page.message'], [
+                    'day' => $day,
+                    'title' => $title,
+                    'resumen' => $resumen,
+//                'itinerary' => $itinerary,
+                    'destinations' => $destinations,
+                    'incluye' => $incluye,
+                    'noincluye' => $noincluye,
+                    'email' => $email,
+                    'name' => $name,
+                    'category' => $category,
+                    'date' => $date,
+                    'phone' => $phone,
+                    'precio_ch' => $precio_ch,
+                    'precio_sh' => $precio_sh,
+                    'precio_2' => $precio_2,
+                    'precio_3' => $precio_3,
+                    'precio_4' => $precio_4,
+                    'precio_5' => $precio_5,
+
+                    'economic' => $economic,
+                    'tourist' => $tourist,
+                    'superior' => $superior,
+                    'luxury' => $luxury,
+
+                    'otros' => $otros,
+                    'codigo_p' => $codigo_p,
+                    'titulo_p' => $titulo_p,
+
+                    'email_a' => $email_a,
+                    'name_a' => $name_a,
+
+                    'messagess' => $messagess,
+                    'messagess2' => $messagess2
+                ], function ($messaje) use ($email, $email_a, $name) {
+                    $messaje->to($email, $name)
+                        ->subject('Propuesta Llama Tours')
+                        /*->attach('ruta')*/
+                        ->from($email_a, 'Asesor Llama Tours');
+                });
 
 
 //            Mail::send(['html' => 'notifications.page.admin-form-inquire'], [
@@ -148,11 +312,12 @@ class MessageController extends Controller
 //            });
 
 
-            return 'Thank you.';
+                return 'Thank you.';
 
-        }
-        catch (Exception $e){
-            return $e;
+            }
+            catch (Exception $e){
+                return $e;
+            }
         }
     }
 
@@ -222,4 +387,69 @@ class MessageController extends Controller
     {
         //
     }
+
+    public function autocomplete(){
+        $term = Input::get('term');
+
+        $results = array();
+
+        $queries = TDestino::
+        where('nombre', 'LIKE', '%'.$term.'%')
+            ->take(5)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => ucwords(strtolower($query->nombre))];
+        }
+        return Response::json($results);
+    }
+
+    public function autocomplete_included(){
+        $term = Input::get('term');
+
+        $results = array();
+
+        $queries = TIncluye::
+        where('incluye', 'LIKE', '%'.$term.'%')
+            ->take(5)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => $query->incluye];
+        }
+        return Response::json($results);
+    }
+
+    public function autocomplete_no_included(){
+        $term = Input::get('term');
+
+        $results = array();
+
+        $queries = TNoIncluye::
+        where('noincluye', 'LIKE', '%'.$term.'%')
+            ->take(5)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => $query->noincluye];
+        }
+        return Response::json($results);
+    }
+
+    public function autocomplete_itinerary(){
+        $term = Input::get('term');
+
+        $results = array();
+
+        $queries = TItinerario::
+        where('titulo', 'LIKE', '%'.$term.'%')
+            ->take(5)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => $query->titulo];
+        }
+        return Response::json($results);
+    }
+
 }
