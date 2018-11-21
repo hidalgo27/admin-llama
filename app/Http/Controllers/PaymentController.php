@@ -47,6 +47,18 @@ class PaymentController extends Controller
         //
     }
 
+    public function total(Request $request){
+        $request->user()->authorizeRoles(['admin', 'sales']);
+        $price = $_POST["txt_price"];
+        $idinquire = $_POST["txt_idinquire"];
+
+        $total = TInquire::FindOrFail($idinquire);
+        $total->price = $price;
+        $total->estado = 4;
+        if ($total->save()){
+            return redirect()->route('payment_show_path', $idinquire)->with('status', 'Por favor registre los pagos de su cliente.');
+        }
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -185,7 +197,9 @@ class PaymentController extends Controller
         $request->user()->authorizeRoles(['admin', 'sales']);
 
         $inquire = TInquire::with('payment')->where('id', $id)->get();
-        return view('page.payment', ['inquire'=>$inquire]);
+        $payment = TPayment::with('inquires')->where('idinquires', $id)->get();
+        $package = TPaquete::with('precio_paquetes')->get();
+        return view('page.payment', ['inquire'=>$inquire, 'payment'=>$payment, 'package'=>$package]);
 
     }
     public function methods(Request $request, $id)

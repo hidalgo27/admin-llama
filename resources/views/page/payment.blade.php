@@ -8,12 +8,62 @@
 {{--@include('layouts.sidebar')--}}
 {{--@endsection--}}
 @section('content')
+    @foreach($inquire as $inquires)
+
+    @endforeach
+    @if ($inquires->price == 0 OR $inquires->price == NULL)
     <main class="pt-5 mx-lg-5">
         <div class="container-fluid mt-5">
             <div class="row wow fadeIn">
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
+                            <div class="alert alert-success text-center">
+                                <h5>Felicitaciones <strong>{{ Auth::user()->name }}</strong> usted esta a punto de registrar una venta para <strong>{{$inquires->name}}</strong> (<span class="small">{{$inquires->email}}</span>).</h5>
+                            </div>
+                            {{--<p>Ingrese el monto total de su venta:</p>--}}
+                            <form action="{{route('save_total_inquire_path')}}" method="post">
+                                {{csrf_field()}}
+                                <div class="row justify-content-center">
+                                    <div class="col-6 bg-white shadow-sm">
+                                        <div class="md-form my-5">
+                                            <i class="fas fa-dollar-sign prefix grey-text"></i>
+                                            <input placeholder="Price Sales" type="number" class="form-control validate" name="txt_price" required>
+                                            <input type="hidden" name="txt_idinquire" value="{{$inquires->id}}">
+                                            <label data-error="wrong" data-success="right" for="a_name">Enter the total amount of sale:</label>
+                                        </div>
+                                        <div class="md-form text-center">
+                                            <button class="btn btn-lg btn-info">Register Sales</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    @else
+    <main class="pt-5 mx-lg-5">
+        <div class="container-fluid mt-5">
+            <div class="row wow fadeIn">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    @if (session('status'))
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            <strong>Su venta se registro satisfactoriamente.</strong>
+                                            {{ session('status') }}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
 
                             <div class="row mb-5">
                                 <div class="col text-right">
@@ -58,13 +108,20 @@
                                                             <div class="row contacts">
                                                                 <div class="col invoice-to">
                                                                     <div class="text-gray-light">INVOICE TO:</div>
-                                                                    <h2 class="to">John Doe</h2>
+                                                                    @foreach($inquire as $inquires)
+                                                                        <h2 class="to">{{$inquires->name}}</h2>
+                                                                    @endforeach
                                                                     {{--<div class="address">796 Silver Harbour, TX 79273, US</div>--}}
-                                                                    <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+                                                                    <div class="email"><a href="mailto:{{$inquires->email}}">{{$inquires->email}}</a></div>
                                                                 </div>
                                                                 <div class="col invoice-details">
-                                                                    <h1 class="invoice-id">INVOICE 3-2-1</h1>
-                                                                    <div class="date">Date of Invoice: 01/10/2018</div>
+                                                                    <h1 class="invoice-id">INVOICE 000{{$inquires->id}}</h1>
+                                                                    @php
+                                                                        date_default_timezone_set('America/Lima');
+                                                                        $date_d = strftime("%d %b %Y",strtotime(date("Y-m-d")));
+                                                                        $date_a = date("Y-m-d");
+                                                                    @endphp
+                                                                    <div class="date">Date of Invoice: {{$date_d}}</div>
                                                                     {{--<div class="date">Due Date: 30/10/2018</div>--}}
                                                                 </div>
                                                             </div>
@@ -78,21 +135,29 @@
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                <tr>
-                                                                    <td class="no">01</td>
-                                                                    <td class="text-left">
-                                                                        <h3>GTP500: Classic Cusco x2</h3>
-                                                                        {{--Creating a recognizable design solution based on the company's existing visual identity--}}
-                                                                    </td>
-                                                                    <td>29 jul 2018</td>
-                                                                    <td class="total">$400.00</td>
-                                                                </tr>
+                                                                @php $total = 0; @endphp
+                                                                @foreach($payment as $payments)
+                                                                    @foreach($package->where('id', $payments->inquires->id_paquetes) as $packages)
+                                                                    <tr>
+                                                                        <td class="no">01</td>
+                                                                        <td class="text-left">
+                                                                            <h3>{{$packages->titulo}} X {{$payments->inquires->traveller}}</h3>
+                                                                            {{--Creating a recognizable design solution based on the company's existing visual identity--}}
+                                                                        </td>
+                                                                        <td>{{$payments->created_at}}</td>
+                                                                        <td class="total">${{$payments->a_cuenta}}</td>
+                                                                    </tr>
+                                                                        @php
+                                                                            $total = $total + $payments->a_cuenta
+                                                                        @endphp
+                                                                    @endforeach
+                                                                @endforeach
                                                                 </tbody>
                                                                 <tfoot>
                                                                 <tr>
                                                                     <td colspan="2"></td>
                                                                     <td>SUBTOTAL</td>
-                                                                    <td>$400.00</td>
+                                                                    <td>${{$total}}</td>
                                                                 </tr>
                                                                 {{--<tr>--}}
                                                                     {{--<td colspan="1"></td>--}}
@@ -102,7 +167,7 @@
                                                                 <tr>
                                                                     <td colspan="2" class="text-left display-1 font-weight-bold">Thank you!</td>
                                                                     <td>GRAND TOTAL</td>
-                                                                    <td>$400.00</td>
+                                                                    <td>${{$total}}</td>
                                                                 </tr>
                                                                 </tfoot>
                                                             </table>
@@ -112,7 +177,7 @@
                                                                 <tbody>
                                                                 <tr>
                                                                     <td>
-                                                                        <p class="m-0"><b class="font-weight-bold">Price per person:</b> 500/2 = $250.00</p>
+                                                                        <p class="m-0"><b class="font-weight-bold">Price per person:</b> {{$total}}/{{$payments->inquires->traveller}} = ${{round($total/$payments->inquires->traveller, 2)}}</p>
                                                                         <p class="m-0"><strong class="text-danger font-weight-bold">Outstanding: $100.00</strong></p>
                                                                         <p class="m-0 font-weight-bold"><span class="yellow p-1 rounded">Next Payment Date: 28 Jul 2018</span></p>
                                                                     </td>
@@ -153,7 +218,7 @@
                             </div>
 
 
-                            <div class="row align-items-center justify-content-between">
+                            <div class="row justify-content-between">
                                 <div class="col-6">
                                     @foreach($inquire as $inquires)
                                     {{--<div class="h1 font-weight-bold grey-text">{{ucwords(strtolower($inquires->name))}}</div>--}}
@@ -161,26 +226,35 @@
                                             <input type="text" id="p_name" class="form-control font-weight-bold grey-text font-size-35 p-0 display-1" placeholder="Client" value="{{ucwords(strtolower($inquires->name))}}">
                                             {{--<label for="inputIconEx2">Payment Method</label>--}}
                                         </div>
-                                    {{--<div class="font-weight-bold text-default">GTP500: Andes Escape</div>--}}
-                                        <div class="md-form input-group-sm m-0 w-50">
-                                            <input type="text" id="p_package" class="form-control font-weight-bold text-info p-0" placeholder="Payment Method" value="GTP500: Classic Cusco">
-                                            {{--<label for="inputIconEx2">Payment Method</label>--}}
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="md-form m-0">
+                                                    <input type="text" id="p_email" class="form-control font-weight-bold grey-text p-0" placeholder="Client" value="{{ucwords(strtolower($inquires->email))}}">
+                                                    {{--<label for="inputIconEx2">Payment Method</label>--}}
+                                                </div>
+                                            </div>
+                                            <div class="col-1">X</div>
+                                            <div class="col-2">
+                                                <div class="md-form m-0">
+                                                    <input type="text" id="p_email" class="form-control font-weight-bold grey-text text-center p-0" placeholder="Client" value="{{ucwords(strtolower($inquires->traveller))}}">
+                                                    {{--<label for="inputIconEx2">Payment Method</label>--}}
+                                                </div>
+                                            </div>
                                         </div>
-                                    {{--<div class="font-weight-bold text-default">Travel date: 15 Jul 2018</div>--}}
                                     @endforeach
                                 </div>
-                                <div class="col-2">
+                                <div class="col-3">
                                     {{--<div class="md-form m-0">--}}
                                         {{--<input type="text" id="p_name" class="form-control font-weight-bold grey-text font-size-35 p-0 text-right" placeholder="Client" value="500">--}}
                                         {{--<label for="inputIconEx2">Payment Method</label>--}}
                                     {{--</div>--}}
                                     <div class="md-form input-group-sm m-0">
                                         <i class="fas fa-dollar-sign prefix grey-text"></i>
-                                        <input placeholder="Full Name" type="text" id="p_package" class="form-control font-weight-bold grey-text font-size-35 p-0 text-right" name="txt_name" value="500">
+                                        <input placeholder="Full Name" type="text" id="p_package" class="form-control font-weight-bold grey-text font-size-35 p-0 text-right" name="txt_name" value="{{$inquires->price}}">
                                     </div>
                                     {{--<div class="h1 font-weight-bold grey-text"><sup>$</sup>500</div>--}}
                                     {{--<div class="font-weight-bold grey-text">15 Jul 2018</div>--}}
-                                    <div class="md-form input-group-sm m-0">
+                                    <div class="md-form m-0">
                                         @php
                                             date_default_timezone_set('America/Lima');
                                             $date_d = strftime("%d %b %Y",strtotime(date("Y-m-d")));
@@ -190,6 +264,26 @@
                                         <input type="text" id="p_package" class="form-control font-weight-bold grey-text p-0 text-right" placeholder="Payment Method" value="{{$date_d}}">
                                         {{--<label for="inputIconEx2">Payment Method</label>--}}
                                     </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row justify-content-center">
+                                <div class="col-6">
+                                    <select class="selectpicker w-100" data-live-search="true" onchange="save_package({{$inquires->id}})" id="sp_package">
+
+                                        @foreach($package as $pack)
+                                            @if ($pack->id == $inquires->id_paquetes)
+                                                @php
+                                                    $selected = "selected";
+                                                @endphp
+                                            @else
+                                                @php
+                                                    $selected = "";
+                                                @endphp
+                                            @endif
+                                            <option data-tokens="ketchup mustard" value="{{$pack->id}}" {{$selected}}>{{$pack->codigo}}: {{$pack->titulo}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <hr>
@@ -469,6 +563,7 @@
             </div>
         </div>
     </main>
+    @endif
 @endsection
 @push('scripts')
     <script>

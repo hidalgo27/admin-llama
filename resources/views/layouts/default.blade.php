@@ -110,7 +110,7 @@
                                                     <div class="row pt-4">
                                                         <div class="col">
                                                             <div class="md-form mb-5">
-                                                                <i class="fa fa-envelope prefix grey-text"></i>
+                                                                <i class="fa fa-user prefix grey-text"></i>
                                                                 <input placeholder="Full Name" type="text" id="a_name" class="form-control validate" name="txt_name" required>
                                                                 <label data-error="wrong" data-success="right" for="a_name">Name</label>
                                                             </div>
@@ -126,14 +126,14 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <div class="md-form mb-5">
-                                                                <i class="fa fa-envelope prefix grey-text"></i>
+                                                                <i class="fa fa-users prefix grey-text"></i>
                                                                 <input placeholder="Traveller Number" type="number" id="a_travellers" class="form-control validate" name="txt_travellers" required>
                                                                 <label data-error="wrong" data-success="right" for="a_travellers">Travellers</label>
                                                             </div>
                                                         </div>
                                                         <div class="col">
                                                             <div class="md-form mb-5">
-                                                                <i class="fa fa-envelope prefix grey-text"></i>
+                                                                <i class="fa fa-calendar prefix grey-text"></i>
                                                                 <input placeholder="Travel Date" type="text" id="datepicker" class="form-control validate" name="txt_date" required>
                                                                 <label data-error="wrong" data-success="right" for="a_date">Travel Date</label>
                                                             </div>
