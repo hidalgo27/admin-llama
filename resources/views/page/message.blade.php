@@ -507,6 +507,29 @@
                 </div>
             </div>
         </div>
+
+
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="font-weight-bold orange-text">Booking Process</h5>
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <i class="fas fa-file-pdf text-danger"></i> Desea adjuntar archivo de booking process?
+                                </div>
+                                <div class="col pt-3">
+                                    <label class="bs-switch">
+                                        <input type="checkbox" value="1" id="h_file">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         <div class="row mt-4">
             <div class="col">
                 <div class="card rgba-deep-orange-light">
@@ -1106,6 +1129,8 @@
             var s_superior = $("#h_superior:checked").val();
             var s_luxury = $("#h_luxury:checked").val();
 
+            var s_file = $("#h_file:checked").val();
+
             var s_economic = $("#h_economic:checked").val();
             var s_tourist = $("#h_tourist:checked").val();
             var s_superior = $("#h_superior:checked").val();
@@ -1161,6 +1186,8 @@
                     "txt_tourist" : s_tourist,
                     "txt_superior" : s_superior,
                     "txt_luxury" : s_luxury,
+
+                    "txt_file" : s_file,
 
                     "txt_otros" : s_otros,
 

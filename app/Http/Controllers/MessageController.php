@@ -144,6 +144,12 @@ class MessageController extends Controller
         $precio_4 = $_POST['txt_precio_4'];
         $precio_5 = $_POST['txt_precio_5'];
 
+        if (isset($_POST['txt_file'])){
+            $txt_file = $_POST['txt_file'];
+        }else{
+            $txt_file = 0;
+        }
+
         if (isset($_POST['txt_economic'])){
             $economic = $_POST['txt_economic'];
         }else{
@@ -245,11 +251,18 @@ class MessageController extends Controller
 
                     'messagess' => $messagess,
                     'messagess2' => $messagess2
-                ], function ($messaje) use ($email_a, $email) {
-                    $messaje->to($email_a, 'Llama Tours')
-                        ->subject('Propuesta Llama Tours')
-                        /*->attach('ruta')*/
-                        ->from($email, 'Llama Tours');
+                ], function ($messaje) use ($email_a, $email, $txt_file) {
+                    if ($txt_file == 0){
+                        $messaje->to($email_a, 'Llama Tours')
+                            ->subject('Propuesta Llama Tours')
+                            /*->attach('ruta')*/
+                            ->from($email, 'Llama Tours');
+                    }else{
+                        $messaje->to($email_a, 'Llama Tours')
+                            ->subject('Propuesta Llama Tours')
+                            ->attach(asset('file/booking.pdf'))
+                            ->from($email, 'Llama Tours');
+                    }
                 });
 
                 Mail::send(['html' => 'notifications.page.message'], [
@@ -286,11 +299,18 @@ class MessageController extends Controller
 
                     'messagess' => $messagess,
                     'messagess2' => $messagess2
-                ], function ($messaje) use ($email, $email_a, $name) {
-                    $messaje->to($email, $name)
-                        ->subject('Propuesta Llama Tours')
-                        /*->attach('ruta')*/
-                        ->from($email_a, 'Asesor Llama Tours');
+                ], function ($messaje) use ($email, $email_a, $name, $txt_file) {
+                    if ($txt_file == 0){
+                        $messaje->to($email, $name)
+                            ->subject('Propuesta Llama Tours')
+                            /*->attach('ruta')*/
+                            ->from($email_a, 'Asesor Llama Tours');
+                    }else{
+                        $messaje->to($email, $name)
+                            ->subject('Propuesta Llama Tours')
+                            ->attach(asset('file/booking.pdf'))
+                            ->from($email_a, 'Asesor Llama Tours');
+                    }
                 });
 
 

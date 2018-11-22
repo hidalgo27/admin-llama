@@ -112,7 +112,7 @@ class PaymentController extends Controller
                     $messaje->to($email_a, $name_a)
                         ->subject('Payment Llama Tours')
                         ->cc($email, 'Payment Llama Tours')
-                        /*->attach('ruta')*/
+                        ->attach(asset('file/booking.pdf'))
                         ->from($email, 'Llama Tours');
                 });
 //

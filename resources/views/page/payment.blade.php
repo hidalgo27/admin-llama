@@ -270,6 +270,13 @@
                             </div>
                             <hr>
                             <div class="row justify-content-center">
+                                <div class="col">
+                                    <div class="md-form">
+                                        <i class="fas fa-qrcode prefix grey-text"></i>
+                                        <input type="text" id="t_transaction" class="form-control text-right font-weight-bold" placeholder="Transaction">
+                                        {{--<label for="inputIconEx2">Transaction Code</label>--}}
+                                    </div>
+                                </div>
                                 <div class="col-6">
                                     <select class="selectpicker w-100" data-live-search="true" onchange="save_package({{$inquires->id}})" id="sp_package">
 
