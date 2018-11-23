@@ -231,14 +231,14 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="md-form m-0">
-                                                    <input type="text" id="p_email" class="form-control font-weight-bold grey-text p-0" placeholder="Client" value="{{ucwords(strtolower($inquires->email))}}">
+                                                    <input type="text" id="p_email" class="form-control font-weight-bold grey-text p-0" placeholder="Client" value="{{strtolower($inquires->email)}}">
                                                     {{--<label for="inputIconEx2">Payment Method</label>--}}
                                                 </div>
                                             </div>
                                             <div class="col-1">X</div>
                                             <div class="col-2">
                                                 <div class="md-form m-0">
-                                                    <input type="text" id="p_email" class="form-control font-weight-bold grey-text text-center p-0" placeholder="Client" value="{{ucwords(strtolower($inquires->traveller))}}">
+                                                    <input type="text" id="p_traveller" class="form-control font-weight-bold grey-text text-center p-0" placeholder="Client" value="{{$inquires->traveller}}">
                                                     {{--<label for="inputIconEx2">Payment Method</label>--}}
                                                 </div>
                                             </div>
@@ -252,7 +252,7 @@
                                     {{--</div>--}}
                                     <div class="md-form input-group-sm m-0">
                                         <i class="fas fa-dollar-sign prefix grey-text"></i>
-                                        <input placeholder="Full Name" type="text" id="p_package" class="form-control font-weight-bold grey-text font-size-35 p-0 text-right" name="txt_name" value="{{$inquires->price}}">
+                                        <input placeholder="Full Name" type="text" id="p_a_cuenta" class="form-control font-weight-bold grey-text font-size-35 p-0 text-right" name="txt_name" value="{{$inquires->price}}">
                                     </div>
                                     {{--<div class="h1 font-weight-bold grey-text"><sup>$</sup>500</div>--}}
                                     {{--<div class="font-weight-bold grey-text">15 Jul 2018</div>--}}
@@ -270,15 +270,11 @@
                             </div>
                             <hr>
                             <div class="row justify-content-center">
-                                <div class="col">
-                                    <div class="md-form">
-                                        <i class="fas fa-qrcode prefix grey-text"></i>
-                                        <input type="text" id="t_transaction" class="form-control text-right font-weight-bold" placeholder="Transaction">
-                                        {{--<label for="inputIconEx2">Transaction Code</label>--}}
-                                    </div>
-                                </div>
+                                {{--<div class="col">--}}
+                                    {{----}}
+                                {{--</div>--}}
                                 <div class="col-6">
-                                    <select class="selectpicker w-100" data-live-search="true" onchange="save_package({{$inquires->id}})" id="sp_package">
+                                    <select class="selectpicker w-100 mt-3" data-live-search="true" onchange="save_package({{$inquires->id}})" id="sp_package">
 
                                         @foreach($package as $pack)
                                             @if ($pack->id == $inquires->id_paquetes)
@@ -293,6 +289,11 @@
                                             <option data-tokens="ketchup mustard" value="{{$pack->id}}" {{$selected}}>{{$pack->codigo}}: {{$pack->titulo}}</option>
                                         @endforeach
                                     </select>
+                                    <div class="md-form">
+                                        <i class="fas fa-pen-alt prefix grey-text"></i>
+                                        <input type="text" id="t_concept" class="form-control font-weight-bold" placeholder="Concept">
+                                        {{--<label for="inputIconEx2">Transaction Code</label>--}}
+                                    </div>
                                 </div>
                             </div>
                             <hr>
@@ -613,11 +614,21 @@
 
             $("#btn_pay").attr("disabled", true);
 
+            var s_name = $("#p_name").val();
+            var s_email = $("#p_email").val();
+            var s_traveller = $("#p_traveller").val();
+            var s_concept = $("#t_concept").val();
+
+            var s_package = $("#sp_package").val();
+
 
             var s_medio = $("#t_medio").val();
             var s_transaction = $("#t_transaction").val();
             var s_date = $('#t_date').val();
             var s_amount = $('#t_amount').val();
+
+            var s_a_cuenta = $('#p_a_cuenta').val();
+
 
             if (s_amount.length == 0 ){
                 $('#t_amount').css("border-bottom", "2px solid #FF0000");
@@ -633,6 +644,13 @@
                     "txt_date" : s_date,
                     "txt_amount" : s_amount,
                     "txt_idinquire" : id,
+
+                    "txt_name" : s_name,
+                    "txt_email" : s_email,
+                    "txt_traveller" : s_traveller,
+                    "txt_concept" : s_concept,
+                    "txt_package" : s_package,
+                    "txt_a_cuenta" : s_a_cuenta,
                 };
                 $.ajax({
                     data:  datos,

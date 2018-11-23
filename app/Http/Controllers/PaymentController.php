@@ -77,22 +77,40 @@ class PaymentController extends Controller
         $amount = $_POST["txt_amount"];
         $idinquire = $_POST["txt_idinquire"];
 
+        $name_a = $_POST["txt_name"];
+        $email_a = $_POST["txt_email"];
+        $traveller = $_POST["txt_traveller"];
+        $concept = $_POST["txt_concept"];
+        $package = $_POST["txt_package"];
+
+        $total_sales = $_POST["txt_a_cuenta"];
+
+
         $inquire = TInquire::with('usuario')->where('id', $idinquire)->get();
 
-        foreach ($inquire as $inquires){
-            $email_a = $inquires->email;
-            $name_a = $inquires->name;
-        }
+//        foreach ($inquire as $inquires){
+////            $email_a = $inquires->email;
+//            $name_a = $inquires->name;
+//        }
 
 
         $payment = new TPayment();
+        $payment->concepto = $concept;
         $payment->a_cuenta = $amount;
         $payment->fecha_a_pagar = $date;
         $payment->medio = $medio;
         $payment->transaccion = $transaction;
         $payment->estado = 1;
         $payment->idinquires = $idinquire;
-        if($payment->save()){
+
+        $inquires = TInquire::FindOrFail($idinquire);
+        $inquires->name = $name_a;
+        $inquires->email = $email_a;
+        $inquires->traveller = $traveller;
+        $inquires->id_paquetes = $package;
+
+        if($payment->save() AND $inquires->save()){
+            $payment_l = TPayment::with('inquires')->where('idinquires', $payment->idinquires)->get();
             try {
 //            Mail::send(['html' => 'notifications.page.client-form-design'], ['name' => $name], function ($messaje) use ($email, $name) {
 //                $messaje->to($email, $name)
@@ -107,12 +125,18 @@ class PaymentController extends Controller
                     'transaction' => $transaction,
                     'date' => $date,
                     'amount' => $amount,
-                    'inquire' => $inquire
+                    'inquire' => $inquire,
+                    'name' => $name_a,
+                    'email' => $email_a,
+                    'concept' => $concept,
+                    'traveller' => $traveller,
+                    'payment_l' => $payment_l,
+                    'total_sales' => $total_sales
                 ], function ($messaje) use ($email_a, $email, $name_a) {
                     $messaje->to($email_a, $name_a)
                         ->subject('Payment Llama Tours')
                         ->cc($email, 'Payment Llama Tours')
-                        ->attach(asset('file/booking.pdf'))
+//                        ->attach(asset('file/booking.pdf'))
                         ->from($email, 'Llama Tours');
                 });
 //
