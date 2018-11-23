@@ -372,7 +372,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="md-form ">
-                                        <input placeholder="Amount to Pay" type="text" id="t_amount" class="form-control text-right font-weight-bold" value="500" >
+                                        <input placeholder="Amount to Pay" type="text" id="t_amount" class="form-control text-right font-weight-bold" value="{{$inquires->price}}" >
                                         <label for="t_amount" id="t_label_amount" class="text-danger d-none">Exceeded Amount</label>
                                     </div>
                                 </div>
@@ -384,7 +384,7 @@
 
                             </div>
                             </form>
-                            <form id="a_form" class="d-none">
+                            <form id="n_form" class="d-none">
                             <div class="row align-items-center">
                                 <div class="col">
                                     <div class="md-form">
@@ -406,18 +406,20 @@
                                 </div>
                                 <div class="col">
                                     <div class="md-form">
-                                        <input placeholder="Payment Day" type="text" id="a_date" class="form-control text-center datepicker font-weight-bold text-secondary">
+                                        <input placeholder="Payment Day" type="text" id="n_date" class="form-control text-center datepicker font-weight-bold text-secondary">
                                         {{--<label for="inputPlaceholderEx">Date</label>--}}
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="md-form ">
-                                        <input placeholder="Amount to Pay" type="text" id="a_amount" class="form-control text-right" value="500">
+                                        <input placeholder="Amount to Pay" type="text" id="n_amount" class="form-control text-right" value="">
                                         {{--<label for="inputPlaceholderEx">Amount to Pay</label>--}}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <button class="btn btn-sm btn-amber btn-lg">register next payment</button>
+                                    <button class="btn btn-sm btn-amber btn-lg" id="btn_pay_next" onclick="register_pay_next({{$inquires->id}})">register your payments</button>
+                                    <i class="fas fa-spinner font-weight-bold text-primary fa-pulse d-none" id="tn_load"></i>
+                                    <i class="fa fa-check font-weight-bold d-none" id="tn_check"></i>
                                 </div>
                             </div>
                             </form>
@@ -589,18 +591,24 @@
 
         $("#t_amount").on('keyup', function() {
             var amount = $("#t_amount").val();
-            if (amount < 500){
-                $("#a_form").removeClass('d-none');
-                var total = 500 - amount;
-                $('#a_amount').val(total);
+            var month_total = "{{$inquires->price}}";
+            if (amount < month_total){
+                $("#n_form").removeClass('d-none');
+                var total = month_total - amount;
+                $('#n_amount').val(total);
                 $('#t_label_amount').addClass('d-none');
+                $('#btn_pay').addClass('d-none');
+                // alert(total);
+
             }else{
-                $("#a_form").addClass('d-none');
+                $("#n_form").addClass('d-none');
                 $('#t_label_amount').removeClass('d-none');
+                $('#btn_pay').removeClass('d-none');
             }
 
-            if(amount == 500){
+            if(amount == month_total){
                 $('#t_label_amount').addClass('d-none');
+                $('#btn_pay').removeClass('d-none');
             }
 
         });
@@ -673,6 +681,85 @@
                 });
             } else{
                 $("#btn_pay").removeAttr("disabled");
+            }
+
+
+        }
+
+        function register_pay_next(id){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('[name="_token"]').val()
+                }
+            });
+
+            $("#btn_pay_next").attr("disabled", true);
+
+            var s_name = $("#p_name").val();
+            var s_email = $("#p_email").val();
+            var s_traveller = $("#p_traveller").val();
+            var s_concept = $("#t_concept").val();
+
+            var s_mdate = $("#n_date").val();
+            var s_mamount = $("#n_amount").val();
+
+            var s_package = $("#sp_package").val();
+
+
+            var s_medio = $("#t_medio").val();
+            var s_transaction = $("#t_transaction").val();
+            var s_date = $('#t_date').val();
+            var s_amount = $('#t_amount').val();
+
+            var s_a_cuenta = $('#p_a_cuenta').val();
+
+
+            if (s_mdate.length == 0 ){
+                $('#n_date').css("border-bottom", "2px solid #FF0000");
+                var amount_f = "false";
+            }else{
+                var amount_f = "true";
+            }
+
+            if(amount_f == "true"){
+                var datos = {
+                    "txt_medio" : s_medio,
+                    "txt_transaction" : s_transaction,
+                    "txt_date" : s_date,
+                    "txt_amount" : s_amount,
+                    "txt_idinquire" : id,
+
+                    "txt_name" : s_name,
+                    "txt_email" : s_email,
+                    "txt_traveller" : s_traveller,
+                    "txt_concept" : s_concept,
+                    "txt_package" : s_package,
+                    "txt_a_cuenta" : s_a_cuenta,
+
+                    "txt_mdate" : s_mdate,
+                    "txt_mamount" : s_mamount,
+                };
+                $.ajax({
+                    data:  datos,
+                    url:   "{{route('payment_store_next_path')}}",
+                    type:  'post',
+                    beforeSend: function () {
+                        // $('#de_send').removeClass('show');
+                        $("#btn_pay_next").addClass('d-none');
+                        $("#tn_load").removeClass('d-none');
+                    },
+                    success:  function (response) {
+                        // $('#t_form')[0].reset();
+                        $('#tn_check').removeClass('d-none');
+                        $("#tn_load").addClass('d-none');
+                        $('#t_alert').removeClass('d-none');
+                        // $("#h_alert b").html(response);
+                        $("#t_alert").fadeIn('slow');
+                        $("#btn_pay_next").removeAttr("disabled");
+                    }
+                });
+            } else{
+                $("#btn_pay_next").removeAttr("disabled");
             }
 
 

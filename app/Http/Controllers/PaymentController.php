@@ -210,6 +210,94 @@ class PaymentController extends Controller
 
     }
 
+
+
+
+    public function store_next(Request $request)
+    {
+        $request->user()->authorizeRoles(['admin', 'sales']);
+
+        $email = $request->user()->email;
+
+        $medio = $_POST["txt_medio"];
+        $transaction = $_POST["txt_transaction"];
+        $date = $_POST["txt_date"];
+        $amount = $_POST["txt_amount"];
+        $idinquire = $_POST["txt_idinquire"];
+
+        $name_a = $_POST["txt_name"];
+        $email_a = $_POST["txt_email"];
+        $traveller = $_POST["txt_traveller"];
+        $concept = $_POST["txt_concept"];
+        $package = $_POST["txt_package"];
+
+        $mdate = $_POST["txt_mdate"];
+        $mamount = $_POST["txt_mamount"];
+
+        $total_sales = $_POST["txt_a_cuenta"];
+
+
+        $inquire = TInquire::with('usuario')->where('id', $idinquire)->get();
+
+        $payment = new TPayment();
+        $payment->concepto = $concept;
+        $payment->a_cuenta = $amount;
+        $payment->fecha_a_pagar = $date;
+        $payment->medio = $medio;
+        $payment->transaccion = $transaction;
+        $payment->estado = 1;
+        $payment->idinquires = $idinquire;
+
+
+        $payment_next = new TPayment();
+        $payment_next->fecha_a_pagar = $mdate;
+        $payment_next->a_cuenta = $mamount;
+        $payment_next->estado = 0;
+        $payment_next->idinquires = $idinquire;
+
+
+        $inquires = TInquire::FindOrFail($idinquire);
+        $inquires->name = $name_a;
+        $inquires->email = $email_a;
+        $inquires->traveller = $traveller;
+        $inquires->id_paquetes = $package;
+
+        if($payment->save() AND $inquires->save() AND $payment_next->save()){
+            $payment_l = TPayment::with('inquires')->where('idinquires', $payment->idinquires)->get();
+            try {
+
+                Mail::send(['html' => 'notifications.page.invoice'], [
+                    'medio' => $medio,
+                    'transaction' => $transaction,
+                    'date' => $date,
+                    'amount' => $amount,
+                    'inquire' => $inquire,
+                    'name' => $name_a,
+                    'email' => $email_a,
+                    'concept' => $concept,
+                    'traveller' => $traveller,
+                    'payment_l' => $payment_l,
+                    'total_sales' => $total_sales
+                ], function ($messaje) use ($email_a, $email, $name_a) {
+                    $messaje->to($email_a, $name_a)
+                        ->subject('Payment Llama Tours')
+                        ->cc($email, 'Payment Llama Tours')
+//                        ->attach(asset('file/booking.pdf'))
+                        ->from($email, 'Llama Tours');
+                });
+
+
+                return 'Thank you.';
+
+            }
+            catch (Exception $e){
+                return $e;
+            }
+        }
+
+    }
+
+
     /**
      * Display the specified resource.
      *

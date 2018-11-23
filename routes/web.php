@@ -143,5 +143,10 @@ Route::post('send/payment/registrer', [
     'as' => 'payment_store_path',
 ]);
 
+Route::post('send/payment/registrer_next', [
+    'uses' => 'PaymentController@store_next',
+    'as' => 'payment_store_next_path',
+]);
+
 
 
