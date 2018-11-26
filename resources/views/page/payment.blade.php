@@ -33,7 +33,7 @@
                                             <label data-error="wrong" data-success="right" for="a_name">Enter the total amount of sale:</label>
                                         </div>
                                         <div class="md-form text-center">
-                                            <button class="btn btn-lg btn-info">Register Sales</button>
+                                            <button type="submit" class="btn btn-lg btn-info">Register Sales</button>
                                         </div>
                                     </div>
                                 </div>
@@ -332,108 +332,286 @@
                                     {{--<i class="fa fa-check font-weight-bold"></i>--}}
                                 {{--</div>--}}
                             {{--</div>--}}
-                            <form id="t_form" role="form">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    {{--<div class="md-form ">--}}
-                                        {{--<div class="md-form">--}}
+
+                            @if($count_pay > 0)
+                                @foreach($payment->where('estado', 1) as $payments)
+                                    <form id="t_form" role="form">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                {{--<div class="md-form ">--}}
+                                                {{--<div class="md-form">--}}
+                                                {{--<i class="fas fa-credit-card prefix grey-text"></i>--}}
+                                                {{--<input type="text" id="inputIconEx2" class="form-control" placeholder="Payment Method">--}}
+                                                {{--<label for="inputIconEx2">Payment Method</label>--}}
+                                                {{--</div>--}}
+                                                {{--</div>--}}
+
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-credit-card prefix grey-text"></i></label>
+                                                    </div>
+                                                    <select class="custom-select" disabled>
+                                                        <option value="VISA" selected>VISA</option>
+                                                        <option value="WESTERN UNION">WESTERN UNION</option>
+                                                        <option value="BANCO">BANCO</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="col">
+                                                <div class="md-form ">
+                                                    <div class="md-form">
+                                                        <i class="fas fa-qrcode prefix grey-text"></i>
+                                                        <input type="text" class="form-control text-right font-weight-bold" placeholder="Transaction" value="{{$payments->transaccion}}" disabled>
+                                                        {{--<label for="inputIconEx2">Transaction Code</label>--}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="md-form ">
+                                                    <input placeholder="Payment Day" type="text" class="form-control text-center datepicker font-weight-bold" value="{{$payments->fecha_a_pagar}}" disabled>
+                                                    {{--<label for="inputPlaceholderEx">Date</label>--}}
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="md-form ">
+                                                    <input placeholder="Amount to Pay" type="text" class="form-control text-right font-weight-bold" value="{{$payments->a_cuenta}}" disabled>
+                                                    <label for="t_amount" id="" class="text-danger d-none">Exceeded Amount</label>
+                                                </div>
+                                            </div>
+                                            <div class="col text-center">
+                                                {{--<button class="btn btn-sm btn-primary btn-lg" id="btn_pay" onclick="register_pay({{$inquires->id}})">Register Payment</button>--}}
+                                                {{--<i class="fas fa-spinner font-weight-bold text-primary fa-pulse d-none" id="t_load"></i>--}}
+                                                <i class="fa fa-check font-weight-bold" id="t_check"></i>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                @endforeach
+
+                                    @foreach($payment_a as $payment_as)
+                                        <form id="t_form" role="form">
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    {{--<div class="md-form ">--}}
+                                                    {{--<div class="md-form">--}}
+                                                    {{--<i class="fas fa-credit-card prefix grey-text"></i>--}}
+                                                    {{--<input type="text" id="inputIconEx2" class="form-control" placeholder="Payment Method">--}}
+                                                    {{--<label for="inputIconEx2">Payment Method</label>--}}
+                                                    {{--</div>--}}
+                                                    {{--</div>--}}
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-credit-card prefix grey-text"></i></label>
+                                                        </div>
+                                                        <select class="custom-select" id="t_medio">
+                                                            <option value="VISA" selected>VISA</option>
+                                                            <option value="WESTERN UNION">WESTERN UNION</option>
+                                                            <option value="BANCO">BANCO</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col">
+                                                    <div class="md-form ">
+                                                        <div class="md-form">
+                                                            <i class="fas fa-qrcode prefix grey-text"></i>
+                                                            <input type="text" id="t_transaction" class="form-control text-right font-weight-bold" placeholder="Transaction">
+                                                            {{--<label for="inputIconEx2">Transaction Code</label>--}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="md-form ">
+                                                        <input placeholder="Payment Day" type="text" id="t_date" class="form-control text-center datepicker font-weight-bold" value="{{$payment_as->fecha_a_pagar}}">
+                                                        <input type="hidden" id="id_payment" value="{{$payment_as->id}}">
+                                                        {{--<label for="inputPlaceholderEx">Date</label>--}}
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="md-form ">
+                                                        <input placeholder="Amount to Pay" type="text" id="t_amount" class="form-control text-right font-weight-bold" value="{{$payment_as->a_cuenta}}" >
+                                                        <input type="hidden" id="th_amount" value="{{$payment_as->a_cuenta}}" >
+                                                        <label for="t_amount" id="t_label_amount" class="text-danger d-none">Exceeded Amount</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col text-center">
+                                                    <button type="button" class="btn btn-sm btn-primary btn-lg" id="btn_pay" onclick="register_pay({{$inquires->id}})">Register Payment</button>
+                                                    <i class="fas fa-spinner font-weight-bold text-primary fa-pulse d-none" id="t_load"></i>
+                                                    <i class="fa fa-check font-weight-bold d-none" id="t_check"></i>
+                                                </div>
+
+                                            </div>
+                                        </form>
+
+                                        <form id="n_form" class="d-none">
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <div class="md-form">
+                                                        <div class="md-form">
+                                                            {{--<i class="fas fa-credit-card prefix grey-text"></i>--}}
+                                                            {{--<input type="text" id="inputIconEx2" class="form-control" placeholder="Payment Method">--}}
+                                                            {{--<label for="inputIconEx2">Payment Method</label>--}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="md-form ">
+                                                        <div class="md-form">
+                                                            {{--<i class="fas fa-qrcode prefix grey-text"></i>--}}
+                                                            {{--<input type="text" id="inputIconEx2" class="form-control" placeholder="Transaction">--}}
+                                                            {{--<label for="inputIconEx2">Transaction Code</label>--}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="md-form">
+                                                        <input placeholder="Payment Day" type="text" id="n_date" class="form-control text-center datepicker font-weight-bold text-secondary">
+                                                        <input type="hidden" id="id_payment" value="{{$payment_as->id}}">
+                                                        {{--<label for="inputPlaceholderEx">Date</label>--}}
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="md-form ">
+                                                        <input placeholder="Amount to Pay" type="text" id="n_amount" class="form-control text-right" value="">
+                                                        {{--<label for="inputPlaceholderEx">Amount to Pay</label>--}}
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <button type="button" class="btn btn-sm btn-amber btn-lg" id="btn_pay_next" onclick="register_pay_next({{$inquires->id}})">register your payments</button>
+                                                    <i class="fas fa-spinner font-weight-bold text-primary fa-pulse d-none" id="tn_load"></i>
+                                                    <i class="fa fa-check font-weight-bold d-none" id="tn_check"></i>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    @endforeach
+
+
+                                    <div class="row justify-content-center d-none" id="t_alert">
+                                        <div class="col-6">
+                                            <div class="alert alert-success alert-dismissible text-center" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <strong>Registro satisfactorio</strong>. Se envió  un recibo de pago a <b>{{$inquires->email}}</b> y una copia a Llama Payment.
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                            @else
+                                <form id="t_form" role="form">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            {{--<div class="md-form ">--}}
+                                            {{--<div class="md-form">--}}
                                             {{--<i class="fas fa-credit-card prefix grey-text"></i>--}}
                                             {{--<input type="text" id="inputIconEx2" class="form-control" placeholder="Payment Method">--}}
                                             {{--<label for="inputIconEx2">Payment Method</label>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
+                                            {{--</div>--}}
+                                            {{--</div>--}}
 
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-credit-card prefix grey-text"></i></label>
-                                        </div>
-                                        <select class="custom-select" id="t_medio">
-                                            <option value="VISA" selected>VISA</option>
-                                            <option value="WESTERN UNION">WESTERN UNION</option>
-                                            <option value="WESTERN UNION">BANCO</option>
-                                        </select>
-                                    </div>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-credit-card prefix grey-text"></i></label>
+                                                </div>
+                                                <select class="custom-select" id="t_medio">
+                                                    <option value="VISA" selected>VISA</option>
+                                                    <option value="WESTERN UNION">WESTERN UNION</option>
+                                                    <option value="BANCO">BANCO</option>
+                                                </select>
+                                            </div>
 
-                                </div>
-                                <div class="col">
-                                    <div class="md-form ">
-                                        <div class="md-form">
-                                            <i class="fas fa-qrcode prefix grey-text"></i>
-                                            <input type="text" id="t_transaction" class="form-control text-right font-weight-bold" placeholder="Transaction">
-                                            {{--<label for="inputIconEx2">Transaction Code</label>--}}
+                                        </div>
+                                        <div class="col">
+                                            <div class="md-form ">
+                                                <div class="md-form">
+                                                    <i class="fas fa-qrcode prefix grey-text"></i>
+                                                    <input type="text" id="t_transaction" class="form-control text-right font-weight-bold" placeholder="Transaction">
+                                                    {{--<label for="inputIconEx2">Transaction Code</label>--}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="md-form ">
+                                                <input placeholder="Payment Day" type="text" id="t_date" class="form-control text-center datepicker font-weight-bold" value="">
+                                                {{--<label for="inputPlaceholderEx">Date</label>--}}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="md-form ">
+                                                <input placeholder="Amount to Pay" type="text" id="t_amount" class="form-control text-right font-weight-bold" value="{{$inquires->price}}" >
+                                                <input type="hidden" id="th_amount" value="{{$inquires->price}}" >
+                                                <input type="hidden" id="th_amount" value="" >
+                                                <label for="t_amount" id="t_label_amount" class="text-danger d-none">Exceeded Amount</label>
+                                            </div>
+                                        </div>
+                                        <div class="col text-center">
+                                            <button type="button" class="btn btn-sm btn-primary btn-lg" id="btn_pay" onclick="register_pay({{$inquires->id}})">Register Payment</button>
+                                            <i class="fas fa-spinner font-weight-bold text-primary fa-pulse d-none" id="t_load"></i>
+                                            <i class="fa fa-check font-weight-bold d-none" id="t_check"></i>
+                                        </div>
+
+                                    </div>
+                                </form>
+
+
+                                <form id="n_form" class="d-none">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <div class="md-form">
+                                                <div class="md-form">
+                                                    {{--<i class="fas fa-credit-card prefix grey-text"></i>--}}
+                                                    {{--<input type="text" id="inputIconEx2" class="form-control" placeholder="Payment Method">--}}
+                                                    {{--<label for="inputIconEx2">Payment Method</label>--}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="md-form ">
+                                                <div class="md-form">
+                                                    {{--<i class="fas fa-qrcode prefix grey-text"></i>--}}
+                                                    {{--<input type="text" id="inputIconEx2" class="form-control" placeholder="Transaction">--}}
+                                                    {{--<label for="inputIconEx2">Transaction Code</label>--}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="md-form">
+                                                <input placeholder="Payment Day" type="text" id="n_date" class="form-control text-center datepicker font-weight-bold text-secondary">
+                                                {{--<input type="hidden" id="id_payment" value="{{$payments->id}}">--}}
+                                                {{--<label for="inputPlaceholderEx">Date</label>--}}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="md-form ">
+                                                <input placeholder="Amount to Pay" type="text" id="n_amount" class="form-control text-right" value="">
+                                                {{--<label for="inputPlaceholderEx">Amount to Pay</label>--}}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <button type="button" class="btn btn-sm btn-amber btn-lg" id="btn_pay_next" onclick="register_pay_next({{$inquires->id}})">register your payments</button>
+                                            <i class="fas fa-spinner font-weight-bold text-primary fa-pulse d-none" id="tn_load"></i>
+                                            <i class="fa fa-check font-weight-bold d-none" id="tn_check"></i>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <div class="md-form ">
-                                        <input placeholder="Payment Day" type="text" id="t_date" class="form-control text-center datepicker font-weight-bold" value="{{$date_a}}">
-                                        {{--<label for="inputPlaceholderEx">Date</label>--}}
+                                </form>
+
+                                <div class="row justify-content-center d-none" id="t_alert">
+                                    <div class="col-6">
+                                        <div class="alert alert-success alert-dismissible text-center" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <strong>Registro satisfactorio</strong>. Se envió  un recibo de pago a <b>{{$inquires->email}}</b> y una copia a Llama Payment.
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <div class="md-form ">
-                                        <input placeholder="Amount to Pay" type="text" id="t_amount" class="form-control text-right font-weight-bold" value="{{$inquires->price}}" >
-                                        <label for="t_amount" id="t_label_amount" class="text-danger d-none">Exceeded Amount</label>
-                                    </div>
-                                </div>
-                                <div class="col text-center">
-                                    <button class="btn btn-sm btn-primary btn-lg" id="btn_pay" onclick="register_pay({{$inquires->id}})">Register Payment</button>
-                                    <i class="fas fa-spinner font-weight-bold text-primary fa-pulse d-none" id="t_load"></i>
-                                    <i class="fa fa-check font-weight-bold d-none" id="t_check"></i>
                                 </div>
 
-                            </div>
-                            </form>
-                            <form id="n_form" class="d-none">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <div class="md-form">
-                                        <div class="md-form">
-                                            {{--<i class="fas fa-credit-card prefix grey-text"></i>--}}
-                                            {{--<input type="text" id="inputIconEx2" class="form-control" placeholder="Payment Method">--}}
-                                            {{--<label for="inputIconEx2">Payment Method</label>--}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="md-form ">
-                                        <div class="md-form">
-                                            {{--<i class="fas fa-qrcode prefix grey-text"></i>--}}
-                                            {{--<input type="text" id="inputIconEx2" class="form-control" placeholder="Transaction">--}}
-                                            {{--<label for="inputIconEx2">Transaction Code</label>--}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="md-form">
-                                        <input placeholder="Payment Day" type="text" id="n_date" class="form-control text-center datepicker font-weight-bold text-secondary">
-                                        {{--<label for="inputPlaceholderEx">Date</label>--}}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="md-form ">
-                                        <input placeholder="Amount to Pay" type="text" id="n_amount" class="form-control text-right" value="">
-                                        {{--<label for="inputPlaceholderEx">Amount to Pay</label>--}}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <button class="btn btn-sm btn-amber btn-lg" id="btn_pay_next" onclick="register_pay_next({{$inquires->id}})">register your payments</button>
-                                    <i class="fas fa-spinner font-weight-bold text-primary fa-pulse d-none" id="tn_load"></i>
-                                    <i class="fa fa-check font-weight-bold d-none" id="tn_check"></i>
-                                </div>
-                            </div>
-                            </form>
+                            @endif
 
-                            <div class="row justify-content-center d-none" id="t_alert">
-                                <div class="col-6">
-                                    <div class="alert alert-success alert-dismissible text-center" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        <strong>Registro satisfactorio</strong>. Se envió  un recibo de pago a <b>{{$inquires->email}}</b> y una copia a Llama Payment.
-                                    </div>
-                                </div>
-                            </div>
+
 
 
 
@@ -590,11 +768,13 @@
 
 
         $("#t_amount").on('keyup', function() {
-            var amount = $("#t_amount").val();
+            var amount = parseFloat($("#t_amount").val());
+            var hamount = parseFloat($("#th_amount").val());
             var month_total = "{{$inquires->price}}";
-            if (amount < month_total){
+            if (amount < hamount){
                 $("#n_form").removeClass('d-none');
-                var total = month_total - amount;
+                var total = hamount - amount;
+                // console.log(total+'='+hamount+'-'+amount+'------'+hamount);
                 $('#n_amount').val(total);
                 $('#t_label_amount').addClass('d-none');
                 $('#btn_pay').addClass('d-none');
@@ -606,7 +786,7 @@
                 $('#btn_pay').removeClass('d-none');
             }
 
-            if(amount == month_total){
+            if(amount == hamount){
                 $('#t_label_amount').addClass('d-none');
                 $('#btn_pay').removeClass('d-none');
             }
@@ -637,9 +817,18 @@
 
             var s_a_cuenta = $('#p_a_cuenta').val();
 
+            var sid_payment = $('#id_payment').val();
 
-            if (s_amount.length == 0 ){
+
+            if (s_amount.length == 0){
                 $('#t_amount').css("border-bottom", "2px solid #FF0000");
+                var amount_f = "false";
+            }else{
+                var amount_f = "true";
+            }
+
+            if (s_date.length == 0){
+                $('#t_date').css("border-bottom", "2px solid #FF0000");
                 var amount_f = "false";
             }else{
                 var amount_f = "true";
@@ -659,6 +848,8 @@
                     "txt_concept" : s_concept,
                     "txt_package" : s_package,
                     "txt_a_cuenta" : s_a_cuenta,
+
+                    "txt_idpayment" : sid_payment,
                 };
                 $.ajax({
                     data:  datos,
@@ -713,15 +904,17 @@
 
             var s_a_cuenta = $('#p_a_cuenta').val();
 
+            var sid_payment = $('#id_payment').val();
+
 
             if (s_mdate.length == 0 ){
                 $('#n_date').css("border-bottom", "2px solid #FF0000");
-                var amount_f = "false";
+                var s_mdate_f = "false";
             }else{
-                var amount_f = "true";
+                var s_mdate_f = "true";
             }
 
-            if(amount_f == "true"){
+            if(s_mdate_f == "true"){
                 var datos = {
                     "txt_medio" : s_medio,
                     "txt_transaction" : s_transaction,
@@ -738,6 +931,8 @@
 
                     "txt_mdate" : s_mdate,
                     "txt_mamount" : s_mamount,
+
+                    "txt_sid_payment" : sid_payment,
                 };
                 $.ajax({
                     data:  datos,

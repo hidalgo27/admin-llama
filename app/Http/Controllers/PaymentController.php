@@ -93,15 +93,26 @@ class PaymentController extends Controller
 //            $name_a = $inquires->name;
 //        }
 
-
-        $payment = new TPayment();
-        $payment->concepto = $concept;
-        $payment->a_cuenta = $amount;
-        $payment->fecha_a_pagar = $date;
-        $payment->medio = $medio;
-        $payment->transaccion = $transaction;
-        $payment->estado = 1;
-        $payment->idinquires = $idinquire;
+        if (isset($_POST["txt_idpayment"])){
+            $idpayment = $_POST["txt_idpayment"];
+            $payment = TPayment::FindOrFail($idpayment);
+            $payment->concepto = $concept;
+            $payment->a_cuenta = $amount;
+            $payment->fecha_a_pagar = $date;
+            $payment->medio = $medio;
+            $payment->transaccion = $transaction;
+            $payment->estado = 1;
+            $payment->idinquires = $idinquire;
+        }else{
+            $payment = new TPayment();
+            $payment->concepto = $concept;
+            $payment->a_cuenta = $amount;
+            $payment->fecha_a_pagar = $date;
+            $payment->medio = $medio;
+            $payment->transaccion = $transaction;
+            $payment->estado = 1;
+            $payment->idinquires = $idinquire;
+        }
 
         $inquires = TInquire::FindOrFail($idinquire);
         $inquires->name = $name_a;
@@ -236,17 +247,29 @@ class PaymentController extends Controller
 
         $total_sales = $_POST["txt_a_cuenta"];
 
-
         $inquire = TInquire::with('usuario')->where('id', $idinquire)->get();
 
-        $payment = new TPayment();
-        $payment->concepto = $concept;
-        $payment->a_cuenta = $amount;
-        $payment->fecha_a_pagar = $date;
-        $payment->medio = $medio;
-        $payment->transaccion = $transaction;
-        $payment->estado = 1;
-        $payment->idinquires = $idinquire;
+        if (isset($_POST["txt_sid_payment"])){
+            $id_payment = $_POST["txt_sid_payment"];
+
+            $payment = TPayment::FindOrFail($id_payment);
+            $payment->concepto = $concept;
+            $payment->a_cuenta = $amount;
+            $payment->fecha_a_pagar = $date;
+            $payment->medio = $medio;
+            $payment->transaccion = $transaction;
+            $payment->estado = 1;
+            $payment->idinquires = $idinquire;
+        }else{
+            $payment = new TPayment();
+            $payment->concepto = $concept;
+            $payment->a_cuenta = $amount;
+            $payment->fecha_a_pagar = $date;
+            $payment->medio = $medio;
+            $payment->transaccion = $transaction;
+            $payment->estado = 1;
+            $payment->idinquires = $idinquire;
+        }
 
 
         $payment_next = new TPayment();
@@ -310,8 +333,12 @@ class PaymentController extends Controller
 
         $inquire = TInquire::with('payment')->where('id', $id)->get();
         $payment = TPayment::with('inquires')->where('idinquires', $id)->get();
+        $payment_a = TPayment::with('inquires')->where('idinquires', $id)->where('estado', 0)->get();
         $package = TPaquete::with('precio_paquetes')->get();
-        return view('page.payment', ['inquire'=>$inquire, 'payment'=>$payment, 'package'=>$package]);
+
+        $count_pay = $payment->count();
+
+        return view('page.payment', ['inquire'=>$inquire, 'payment'=>$payment, 'package'=>$package, 'payment_a'=>$payment_a, 'count_pay'=>$count_pay]);
 
     }
     public function methods(Request $request, $id)
