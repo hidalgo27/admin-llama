@@ -117,4 +117,34 @@ class HomeController extends Controller
         }
 
     }
+
+
+    public function save_payment(Request $request)
+    {
+        $request->user()->authorizeRoles(['admin', 'sales']);
+
+        $idpackage = $_POST['id_package'];
+        $name = $_POST['txt_name'];
+        $email = $_POST['txt_email'];
+        $travellers = $_POST['txt_travellers'];
+        $date = $_POST['txt_date'];
+        $price = $_POST['txt_price'];
+
+        $p_inquire = new TInquire();
+        $p_inquire->name = $name;
+        $p_inquire->email = $email;
+        $p_inquire->traveller = $travellers;
+        $p_inquire->traveldate = $date;
+        $p_inquire->id_paquetes = $idpackage;
+        $p_inquire->idusuario = $request->user()->id;
+        $p_inquire->price = $price;
+        $p_inquire->estado = 4;
+
+        if ($p_inquire->save()){
+            return redirect()->route('payment_show_path', $p_inquire->id)->with('status', 'Por favor registre los pagos de su cliente.');
+        }
+
+    }
+
+
 }

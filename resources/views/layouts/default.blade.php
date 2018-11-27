@@ -157,18 +157,18 @@
                                     <a href="{{route('home_path')}}"><i class="fa fa-inbox"></i> Inbox <span class="badge badge-danger float-right">2</span></a>
 
                                 </li>
-                                {{--<li>--}}
-                                    {{--<a href="{{route('send_methods_path')}}"><i class="far fa-share-square"></i> Payment Methods</a>--}}
-                                {{--</li>--}}
                                 <li>
                                     <a href="{{route('send_path')}}"><i class="fas fa-credit-card"></i> Send Mail</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('process_path')}}"><i class="far fa-share-square"></i> Payment Process</a>
                                 </li>
                                 {{--<li>--}}
                                     {{--<a href="#"><i class="far fa-bookmark"></i> Important</a>--}}
                                 {{--</li>--}}
                                 {{--<li>--}}
                                     {{--<a href="#"><i class="fas fa-external-link-alt"></i> Drafts <span class="badge badge-info float-right">30</span></a>--}}
-                                </li>
+                                {{--</li>--}}
                                 <li>
                                     <a href="{{route('trash_path')}}"><i class=" fa fa-trash-alt"></i> Trash</a>
                                 </li>
@@ -313,6 +313,13 @@
 <script>
     $( function() {
         $( "#datepicker" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+        });
+    } );
+    $( function() {
+        $( ".datepicker" ).datepicker({
             dateFormat: 'yy-mm-dd',
             changeMonth: true,
             changeYear: true,

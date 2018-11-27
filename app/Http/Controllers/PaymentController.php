@@ -350,6 +350,16 @@ class PaymentController extends Controller
 
     }
 
+    public function process(Request $request)
+    {
+        $request->user()->authorizeRoles(['admin', 'sales']);
+
+        $inquire = TInquire::all();
+        $package = TPaquete::all();
+
+        return view('page.home-process', ['inquire'=>$inquire, 'package'=>$package]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

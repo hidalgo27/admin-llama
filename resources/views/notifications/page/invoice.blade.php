@@ -29,7 +29,7 @@
             </td>
             <td style="text-align: right;">
                 <h1 class="invoice-id">INVOICE
-                    @foreach($payment_l as $payment_ls)
+                    @foreach($payment_l->where('estado', 1) as $payment_ls)
                         - {{$payment_ls->id}}
                     @endforeach
                 </h1>

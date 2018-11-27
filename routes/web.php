@@ -41,6 +41,10 @@ Route::post('/save_compose', [
     'uses' => 'HomeController@save_compose',
     'as' => 'save_compose_path',
 ]);
+Route::post('/save_payment', [
+    'uses' => 'HomeController@save_payment',
+    'as' => 'save_compose_payment_path',
+]);
 
 Route::get('/send', [
     'uses' => 'HomeController@send',
@@ -148,5 +152,8 @@ Route::post('send/payment/registrer_next', [
     'as' => 'payment_store_next_path',
 ]);
 
-
-
+//process
+Route::get('/send/process', [
+    'uses' => 'PaymentController@process',
+    'as' => 'process_path',
+]);
