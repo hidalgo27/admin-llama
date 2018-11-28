@@ -85,7 +85,6 @@ class PaymentController extends Controller
 
         $total_sales = $_POST["txt_a_cuenta"];
 
-
         $inquire = TInquire::with('usuario')->where('id', $idinquire)->get();
 
 //        foreach ($inquire as $inquires){

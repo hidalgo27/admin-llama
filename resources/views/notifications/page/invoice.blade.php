@@ -96,7 +96,7 @@
         <tbody>
         <tr>
             <td>
-                <p style="margin: 0; padding: 0;"><b style="font-weight: bold;">Price per person:</b> {{$total}}/{{$traveller}} = ${{round($total/$traveller, 2)}}</p>
+                <p style="margin: 0; padding: 0;"><b style="font-weight: bold;">Price per person:</b> {{$total_sales}}/{{$traveller}} = ${{round($total_sales/$traveller, 2)}}</p>
                 @if ($total < $total_sales)
                     <p style="margin: 0; padding: 0;"><strong style="font-weight: bold; color: red;">Outstanding: ${{$total_sales - $total}}</strong></p>
                 @endif
