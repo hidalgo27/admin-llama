@@ -355,8 +355,9 @@ class PaymentController extends Controller
 
         $inquire = TInquire::all();
         $package = TPaquete::all();
+        $payment = TPayment::all();
 
-        return view('page.home-process', ['inquire'=>$inquire, 'package'=>$package]);
+        return view('page.home-process', ['inquire'=>$inquire, 'package'=>$package, 'payment'=>$payment]);
     }
 
     /**

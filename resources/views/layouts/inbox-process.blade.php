@@ -185,6 +185,14 @@
 
                     @if(Auth::user()->hasRole('admin'))
                         @if ($inquires->id_paquetes == 0 AND $inquires->estado == 4)
+                            @foreach($payment->where('idinquires', $inquires->id)->where('estado', 0) as $payments)
+                                @php
+                                    $pay_total = $pay_total + $payments->a_cuenta
+                                @endphp
+                            @endforeach
+                            @php
+                                $porcen =  100 - (($pay_total*100)/$inquires->price);
+                            @endphp
                             <tr class='unread'>
                                 <td class="inbox-small-cells">
                                     <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox mt-2" onclick="chk_del()">
@@ -208,14 +216,23 @@
                                 <td>
                                     <a href="{{route('payment_show_path', $inquires->id)}}">
                                         <div class="progress md-progress" style="height: 20px; width: 100%">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%; height: 20px" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{round($porcen, 2)}}%; height: 20px" aria-valuenow="{{round($porcen, 2)}}" aria-valuemin="0" aria-valuemax="100">{{round($porcen, 2)}}%</div>
                                         </div>
                                     </a>
                                 </td>
                                 {{--<td class="view-message  text-right"><a href="{{route('payment_show_path', $inquires->id)}}" class="text-primary"><i class="fas fa-credit-card"></i> Payment Methods</a></td>--}}
                             </tr>
                         @elseif($inquires->id_paquetes AND $inquires->estado == 4)
+                            @php $pay_total = 0; @endphp
                             @foreach($package->where('id', $inquires->id_paquetes) as $packages)
+                                @foreach($payment->where('idinquires', $inquires->id)->where('estado', 0) as $payments)
+                                    @php
+                                        $pay_total = $pay_total + $payments->a_cuenta
+                                    @endphp
+                                @endforeach
+                                @php
+                                     $porcen =  100 - (($pay_total*100)/$inquires->price);
+                                @endphp
                                 <tr class='unread'>
                                     <td class="inbox-small-cells">
                                         <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox mt-2" onclick="chk_del()">
@@ -239,7 +256,7 @@
                                     <td>
                                         <a href="{{route('payment_show_path', $inquires->id)}}">
                                         <div class="progress md-progress mt-2" style="height: 20px; width: 100%">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%; height: 20px" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{round($porcen, 2)}}%; height: 20px" aria-valuenow="{{round($porcen, 2)}}" aria-valuemin="0" aria-valuemax="100">{{round($porcen, 2)}}%</div>
                                         </div>
                                         </a>
                                     </td>
@@ -249,6 +266,14 @@
                         @endif
                     @else
                         @if ($inquires->id_paquetes == 0 AND $inquires->idusuario == Auth::user()->id AND $inquires->estado == 4)
+                            @foreach($payment->where('idinquires', $inquires->id)->where('estado', 0) as $payments)
+                                @php
+                                    $pay_total = $pay_total + $payments->a_cuenta
+                                @endphp
+                            @endforeach
+                            @php
+                                $porcen =  100 - (($pay_total*100)/$inquires->price);
+                            @endphp
                             <tr class='unread'>
                                 <td class="inbox-small-cells">
                                     <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
@@ -273,7 +298,7 @@
                                 <td>
                                     <a href="{{route('payment_show_path', $inquires->id)}}">
                                         <div class="progress md-progress" style="height: 20px; width: 100%">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%; height: 20px" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{round($porcen, 2)}}%; height: 20px" aria-valuenow="{{round($porcen, 2)}}" aria-valuemin="0" aria-valuemax="100">{{round($porcen, 2)}}%</div>
                                         </div>
                                     </a>
                                 </td>
@@ -281,6 +306,15 @@
                         @elseif ($inquires->id_paquetes > 0 AND $inquires->idusuario == Auth::user()->id AND $inquires->estado == 4)
 
                             @foreach($package->where('id', $inquires->id_paquetes) as $packages)
+                                @foreach($payment->where('idinquires', $inquires->id)->where('estado', 0) as $payments)
+                                    @php
+                                        $pay_total = $pay_total + $payments->a_cuenta
+                                    @endphp
+                                @endforeach
+                                @php
+                                    $porcen =  100 - (($pay_total*100)/$inquires->price);
+                                @endphp
+                                
                                 <tr class='unread'>
                                     <td class="inbox-small-cells">
                                         <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
@@ -305,7 +339,7 @@
                                     <td>
                                         <a href="{{route('payment_show_path', $inquires->id)}}">
                                             <div class="progress md-progress" style="height: 20px; width: 100%">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%; height: 20px" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: {{round($porcen, 2)}}%; height: 20px" aria-valuenow="{{round($porcen, 2)}}" aria-valuemin="0" aria-valuemax="100">{{round($porcen, 2)}}%</div>
                                             </div>
                                         </a>
                                     </td>
