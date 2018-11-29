@@ -199,7 +199,7 @@
 
                                     $fecha = $inquires->traveldate;
 
-                                    $nuevafecha = strtotime ( '-2 day' , strtotime ( $fecha ) ) ;
+                                    $nuevafecha = strtotime ( '-5 day' , strtotime ( $fecha ) ) ;
                                     $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
 
                                     if ($date_a <= $nuevafecha){
@@ -258,7 +258,7 @@
 
                                     $fecha = $inquires->traveldate;
 
-                                    $nuevafecha = strtotime ( '-2 day' , strtotime ( $fecha ) ) ;
+                                    $nuevafecha = strtotime ( '-5 day' , strtotime ( $fecha ) ) ;
                                     $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
 
                                     if ($date_a <= $nuevafecha){
@@ -319,7 +319,7 @@
 
                                     $fecha = $inquires->traveldate;
 
-                                    $nuevafecha = strtotime ( '-2 day' , strtotime ( $fecha ) ) ;
+                                    $nuevafecha = strtotime ( '-5 day' , strtotime ( $fecha ) ) ;
                                     $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
 
                                     if ($date_a <= $nuevafecha){
@@ -378,7 +378,7 @@
 
                                     $fecha = $inquires->traveldate;
 
-                                    $nuevafecha = strtotime ( '-2 day' , strtotime ( $fecha ) ) ;
+                                    $nuevafecha = strtotime ( '-5 day' , strtotime ( $fecha ) ) ;
                                     $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
 
                                     if ($date_a <= $nuevafecha){
