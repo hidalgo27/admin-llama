@@ -225,21 +225,40 @@
                             </tr>
                         @elseif($inquires->id_paquetes AND $inquires->estado == 4)
                             @php $pay_total = 0; @endphp
-                            @foreach($package->where('id', $inquires->id_paquetes) as $packages)
+                            @foreach($package->where('id', $inquires->id_paquetes)->sortBy('traveldate') as $packages)
                                 @foreach($payment->where('idinquires', $inquires->id)->where('estado', 0) as $payments)
                                     @php
                                         $pay_total = $pay_total + $payments->a_cuenta
                                     @endphp
                                 @endforeach
                                 @php
-                                     $porcen =  100 - (($pay_total*100)/$inquires->price);
+                                    date_default_timezone_set('America/Lima');
+                                    $porcen =  100 - (($pay_total*100)/$inquires->price);
+
+                                    $date_a = date ("Y-m-d");
+
+                                    $fecha = $inquires->traveldate;
+
+                                    $nuevafecha = strtotime ( '-2 day' , strtotime ( $fecha ) ) ;
+                                    $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
+
+                                    if ($date_a <= $nuevafecha){
+                                        $alert = "bg-success";
+                                    }else{
+                                        $alert = "bg-danger";
+                                    }
+
+                                    if ($porcen == 100){
+                                        $alert = "bg-success";
+                                    }
+
                                 @endphp
                                 <tr class='unread'>
                                     <td class="inbox-small-cells">
                                         <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox mt-2" onclick="chk_del()">
                                     </td>
                                     {{--<td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>--}}
-                                    <td class="view-message  dont-show"><a href="{{route('payment_show_path', $inquires->id)}}" class="hover-underline">{{ucwords(strtolower($inquires->name))}} <span class="grey-text d-block small">{{strtolower($inquires->email)}} X {{$inquires->traveller}}</span></a></td>
+                                    <td class="view-message  dont-show"><a href="{{route('payment_show_path', $inquires->id)}}" class="hover-underline">{{ucwords(strtolower($inquires->name))}} <span class="grey-text d-block small">{{strtolower($inquires->email)}} X {{$inquires->traveller}} {{$inquires->traveldate}}</span></a></td>
                                     {{--<td class="view-message ">{{ucwords($packages->codigo)}} | {{$inquires->duration}} days</td>--}}
                                     {{--<td class="view-message  inbox-small-cells"><span class="grey-text">{{$inquires->city}}</span></td>--}}
                                     {{--<td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>--}}
@@ -257,7 +276,7 @@
                                     <td>
                                         <a href="{{route('payment_show_path', $inquires->id)}}">
                                         <div class="progress md-progress mt-2" style="height: 20px; width: 100%">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{round($porcen, 2)}}%; height: 20px" aria-valuenow="{{round($porcen, 2)}}" aria-valuemin="0" aria-valuemax="100">{{round($porcen, 2)}}%</div>
+                                            <div class="progress-bar {{$alert}}" role="progressbar" style="width: {{round($porcen, 2)}}%; height: 20px" aria-valuenow="{{round($porcen, 2)}}" aria-valuemin="0" aria-valuemax="100">{{round($porcen, 2)}}%</div>
                                         </div>
                                         </a>
                                     </td>
