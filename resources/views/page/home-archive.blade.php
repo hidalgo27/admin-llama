@@ -8,7 +8,7 @@
 {{--@include('layouts.sidebar')--}}
 {{--@endsection--}}
 @section('content')
-    @include('layouts.inbox-send-list')
+    @include('layouts.inbox-archive-list')
 @endsection
 @push('scripts')
     <script>
@@ -151,7 +151,6 @@
             }
 
         }
-
 
     </script>
 

@@ -17,12 +17,12 @@
             {{--</div>--}}
 
             <div class="btn-group">
-                <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#" onClick="location.reload();"  class="btn mini tooltips">
+                <a href="#" onClick="location.reload();"  class="btn mini tooltips" data-toggle="tooltip" data-placement="bottom" title="Refresh">
                     <i class="fas fa-redo-alt"></i>
                 </a>
             </div>
             <div class="btn-group">
-                <a id="d_mailbtn" data-placement="top" class="btn mini tooltips d-none d_mailbtn" onclick="chk_trash()">
+                <a id="d_mailbtn" data-toggle="tooltip" data-placement="bottom" title="Remove" class="btn mini tooltips d-none d_mailbtn" onclick="chk_trash()">
                     <i class="fa fa-trash" id="d_trash"></i>
                     <i class="fas fa-spinner fa-pulse d-none" id="d_spinner"></i>
                 </a>
@@ -32,7 +32,7 @@
                 {{--</button>--}}
             </div>
             <div class="btn-group">
-                <a id="d_mailbtn2" data-placement="top" class="btn mini tooltips d-none d_mailbtn" onclick="chk_sent()">
+                <a id="d_mailbtn2" data-toggle="tooltip" data-placement="bottom" title="Sent" class="btn mini tooltips d-none d_mailbtn" onclick="chk_sent()">
                     <i class="fas fa-envelope-open" id="d_sent"></i>
                     <i class="fas fa-spinner fa-pulse d-none" id="d_spinner_sent"></i>
                 </a>
@@ -418,11 +418,14 @@
     </tbody>
 </table>
 </form>
-@push('script')
+@push('scripts')
     <script>
         // $(document).ready(function () {
         //     $('#dtBasicExample2').DataTable();
         //     $('.dataTables_length').addClass('bs-select');
         // });
+        // $(function () {
+        //     $('[data-toggle="tooltip"]').tooltip()
+        // })
     </script>
 @endpush

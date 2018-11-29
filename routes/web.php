@@ -56,6 +56,15 @@ Route::post('/home/restore', [
     'as' => 'restore_inquire_path',
 ]);
 
+Route::get('/archive', [
+    'uses' => 'HomeController@archive',
+    'as' => 'archive_path',
+]);
+Route::post('/home/archive', [
+    'uses' => 'HomeController@archive_inquire',
+    'as' => 'archive_inquire_path',
+]);
+
 //
 
 Route::get('/message/{id_inquire}-{id_paquete}', [

@@ -17,17 +17,17 @@
             {{--</div>--}}
 
             <div class="btn-group">
-                <a data-toggle="tooltip" data-placement="bottom" title="Refresh" href="#" onClick="location.reload();"  class="btn mini tooltips">
+                <a href="#" onClick="location.reload();"  class="btn mini tooltips" data-toggle="tooltip" data-placement="bottom" title="Refresh">
                     <i class="fas fa-redo-alt"></i>
                 </a>
             </div>
             <div class="btn-group">
-                <a id="d_mailbtn" data-toggle="tooltip" data-placement="bottom" title="Archive" class="btn mini tooltips d-none" onclick="chk_archive()">
+                {{--<a id="d_mailbtn" data-placement="top" class="btn mini tooltips d-none" onclick="chk_archive()">--}}
                     {{--<i class="fa fa-trash" id="d_trash"></i>--}}
-                    <i class="fas fa-archive" id="d_archive"></i>
-                    <i class="fas fa-spinner fa-pulse d-none" id="d_spinner"></i>
+                    {{--<i class="fas fa-archive" id="d_archive"></i>--}}
+                    {{--<i class="fas fa-spinner fa-pulse d-none" id="d_spinner"></i>--}}
                     {{--<i class="fas fa-archive"></i>--}}
-                </a>
+                {{--</a>--}}
                 {{--<button type="button" class="btn mini tooltips d-none" id="d_mailbtn" onclick="chk_trash()">--}}
                 {{--<i class="fa fa-trash" id="d_trash"></i>--}}
                 {{--<i class="fas fa-spinner fa-pulse d-none" id="d_spinner"></i>--}}
@@ -40,13 +40,13 @@
             {{--</div>--}}
 
             {{--<ul class="list-unstyled inbox-pagination mb-0">--}}
-                {{--<li><span>1-50 of 234</span></li>--}}
-                {{--<li>--}}
-                    {{--<a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>--}}
-                {{--</li>--}}
-                {{--<li>--}}
-                    {{--<a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>--}}
-                {{--</li>--}}
+            {{--<li><span>1-50 of 234</span></li>--}}
+            {{--<li>--}}
+            {{--<a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+            {{--<a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>--}}
+            {{--</li>--}}
             {{--</ul>--}}
         </div>
     </div>
@@ -101,7 +101,7 @@
             {{--@endif--}}
 
             @if(Auth::user()->hasRole('admin'))
-                @if ($inquires->id_paquetes == 0 AND $inquires->estado == 2)
+                @if ($inquires->id_paquetes == 0 AND $inquires->estado == 5)
                     <tr class='unread'>
                         <td class="inbox-small-cells">
                             <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
@@ -124,7 +124,7 @@
                         @endif
                         <td class="view-message  text-right"><a href="{{route('payment_show_path', $inquires->id)}}" class="text-primary"><i class="fas fa-credit-card"></i> Payment Methods</a></td>
                     </tr>
-                @elseif($inquires->id_paquetes AND $inquires->estado == 2)
+                @elseif($inquires->id_paquetes AND $inquires->estado == 5)
                     @foreach($package->where('id', $inquires->id_paquetes) as $packages)
                         <tr class='unread'>
                             <td class="inbox-small-cells">
@@ -152,7 +152,7 @@
                     @endforeach
                 @endif
             @else
-                @if ($inquires->id_paquetes == 0 AND $inquires->idusuario == Auth::user()->id AND $inquires->estado == 2)
+                @if ($inquires->id_paquetes == 0 AND $inquires->idusuario == Auth::user()->id AND $inquires->estado == 5)
                     <tr class='unread'>
                         <td class="inbox-small-cells">
                             <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
@@ -175,7 +175,7 @@
                         @endif
                         <td class="view-message  text-right"><a href="{{route('payment_show_path', $inquires->id)}}" class="text-primary"><i class="fas fa-credit-card"></i> Payment Methods</a></td>
                     </tr>
-                @elseif ($inquires->id_paquetes > 0 AND $inquires->idusuario == Auth::user()->id AND $inquires->estado == 2)
+                @elseif ($inquires->id_paquetes > 0 AND $inquires->idusuario == Auth::user()->id AND $inquires->estado == 5)
 
                     @foreach($package->where('id', $inquires->id_paquetes) as $packages)
                         <tr class='unread'>
@@ -184,7 +184,7 @@
                             </td>
                             {{--<td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>--}}
                             <td class="view-message  dont-show"><a href="#" class="hover-underline">{{ucwords(strtolower($inquires->name))}} <span class="grey-text d-block small">{{strtolower($inquires->email)}} X {{$inquires->traveller}}</span></a></td>
-{{--                            <td class="view-message ">{{ucwords($packages->codigo)}}</td>--}}
+                            {{--                            <td class="view-message ">{{ucwords($packages->codigo)}}</td>--}}
                             <td class="view-message  inbox-small-cells"><span class="grey-text">{{$inquires->city}}</span></td>
                             <td class="view-message  inbox-small-cells"><span class="badge {{$badged}}">{{$inquires->usuario->name}}</span></td>
                             @php

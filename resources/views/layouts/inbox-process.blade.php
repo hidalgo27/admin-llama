@@ -17,23 +17,23 @@
             {{--</div>--}}
 
             <div class="btn-group">
-                <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#" onClick="location.reload();"  class="btn mini tooltips">
+                <a data-toggle="tooltip" data-placement="bottom" title="Refresh" href="#" onClick="location.reload();"  class="btn mini tooltips">
                     <i class="fas fa-redo-alt"></i>
                 </a>
             </div>
-            <div class="btn-group">
-                <a id="d_mailbtn" data-placement="top" class="btn mini tooltips d-none" onclick="chk_restore()">
+            {{--<div class="btn-group">--}}
+                {{--<a id="d_mailbtn" data-toggle="tooltip" data-placement="bottom" title="Refresh" class="btn mini tooltips d-none" onclick="chk_restore()">--}}
                     {{--<i class="fa fa-trash" id="d_trash"></i>--}}
-                    <i class="fas fa-archive" id="d_trash"></i>
-                    <i class="fas fa-spinner fa-pulse d-none" id="d_spinner"></i>
+                    {{--<i class="fas fa-archive" id="d_trash"></i>--}}
+                    {{--<i class="fas fa-spinner fa-pulse d-none" id="d_spinner"></i>--}}
                     {{--<i class="fas fa-archive"></i>--}}
-                </a>
+                {{--</a>--}}
                 {{--<button type="button" class="btn mini tooltips d-none" id="d_mailbtn" onclick="chk_trash()">--}}
                 {{--<i class="fa fa-trash" id="d_trash"></i>--}}
                 {{--<i class="fas fa-spinner fa-pulse d-none" id="d_spinner"></i>--}}
                 {{--</button>--}}
-            </div>
-            <div class="btn-group">
+            {{--</div>--}}
+            <div class="btn-group" data-toggle="tooltip" data-placement="bottom" title="New Payment">
                 <a href="#"  class="btn mini tooltips btn-primary" data-toggle="modal" data-target="#new_payment">
                     <i class="fa fa-plus"></i>
                 </a>

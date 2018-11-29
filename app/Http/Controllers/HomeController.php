@@ -72,6 +72,22 @@ class HomeController extends Controller
     }
 
 
+    public function archive_inquire(Request $request)
+    {
+        $request->user()->authorizeRoles(['admin', 'sales']);
+
+        $mails = $_POST['txt_mails'];
+        $inquires = explode(',', $mails);
+
+        foreach ($inquires as $inquire){
+            $p_estado = TInquire::FindOrFail($inquire);
+            $p_estado->estado = 5;
+            $p_estado->save();
+        }
+
+    }
+
+
     public function trash(Request $request)
     {
         $request->user()->authorizeRoles(['admin', 'sales']);
@@ -90,6 +106,16 @@ class HomeController extends Controller
         $package = TPaquete::all();
 
         return view('page.home-send', ['inquire'=>$inquire, 'package'=>$package]);
+    }
+
+    public function archive(Request $request)
+    {
+        $request->user()->authorizeRoles(['admin', 'sales']);
+
+        $inquire = TInquire::all();
+        $package = TPaquete::all();
+
+        return view('page.home-archive', ['inquire'=>$inquire, 'package'=>$package]);
     }
 
     public function save_compose(Request $request)

@@ -17,12 +17,12 @@
             {{--</div>--}}
 
             <div class="btn-group">
-                <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#" onClick="location.reload();"  class="btn mini tooltips">
+                <a data-toggle="tooltip" data-placement="bottom" title="Refresh" href="#" onClick="location.reload();"  class="btn mini tooltips">
                     <i class="fas fa-redo-alt"></i>
                 </a>
             </div>
             <div class="btn-group">
-                <a id="d_mailbtn" data-placement="top" class="btn mini tooltips d-none" onclick="chk_restore()">
+                <a id="d_mailbtn" data-toggle="tooltip" data-placement="bottom" title="Restore" class="btn mini tooltips d-none" onclick="chk_restore()">
                     {{--<i class="fa fa-trash" id="d_trash"></i>--}}
                     <i class="fas fa-arrow-circle-right" id="d_trash"></i>
                     <i class="fas fa-spinner fa-pulse d-none" id="d_spinner"></i>
