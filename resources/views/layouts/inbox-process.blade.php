@@ -192,8 +192,27 @@
                                 @endphp
                             @endforeach
                             @php
-                                $porcen =  100 - (($pay_total*100)/$inquires->price);
-                            @endphp
+                                    date_default_timezone_set('America/Lima');
+                                    $porcen =  100 - (($pay_total*100)/$inquires->price);
+
+                                    $date_a = date ("Y-m-d");
+
+                                    $fecha = $inquires->traveldate;
+
+                                    $nuevafecha = strtotime ( '-2 day' , strtotime ( $fecha ) ) ;
+                                    $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
+
+                                    if ($date_a <= $nuevafecha){
+                                        $alert = "bg-success";
+                                    }else{
+                                        $alert = "bg-danger";
+                                    }
+
+                                    if ($porcen == 100){
+                                        $alert = "bg-success";
+                                    }
+
+                                @endphp
                             <tr class='unread'>
                                 <td class="inbox-small-cells">
                                     <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox mt-2" onclick="chk_del()">
@@ -217,7 +236,7 @@
                                 <td>
                                     <a href="{{route('payment_show_path', $inquires->id)}}">
                                         <div class="progress md-progress" style="height: 20px; width: 100%">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{round($porcen, 2)}}%; height: 20px" aria-valuenow="{{round($porcen, 2)}}" aria-valuemin="0" aria-valuemax="100">{{round($porcen, 2)}}%</div>
+                                            <div class="progress-bar {{$alert}}" role="progressbar" style="width: {{round($porcen, 2)}}%; height: 20px" aria-valuenow="{{round($porcen, 2)}}" aria-valuemin="0" aria-valuemax="100">{{round($porcen, 2)}}%</div>
                                         </div>
                                     </a>
                                 </td>
@@ -293,8 +312,27 @@
                                 @endphp
                             @endforeach
                             @php
-                                $porcen =  100 - (($pay_total*100)/$inquires->price);
-                            @endphp
+                                    date_default_timezone_set('America/Lima');
+                                    $porcen =  100 - (($pay_total*100)/$inquires->price);
+
+                                    $date_a = date ("Y-m-d");
+
+                                    $fecha = $inquires->traveldate;
+
+                                    $nuevafecha = strtotime ( '-2 day' , strtotime ( $fecha ) ) ;
+                                    $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
+
+                                    if ($date_a <= $nuevafecha){
+                                        $alert = "bg-success";
+                                    }else{
+                                        $alert = "bg-danger";
+                                    }
+
+                                    if ($porcen == 100){
+                                        $alert = "bg-success";
+                                    }
+
+                                @endphp
                             <tr class='unread'>
                                 <td class="inbox-small-cells">
                                     <input type="checkbox" name="chk_mail[]" value="{{$inquires->id}}" class="mail-checkbox" onclick="chk_del()">
@@ -319,7 +357,7 @@
                                 <td>
                                     <a href="{{route('payment_show_path', $inquires->id)}}">
                                         <div class="progress md-progress" style="height: 20px; width: 100%">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{round($porcen, 2)}}%; height: 20px" aria-valuenow="{{round($porcen, 2)}}" aria-valuemin="0" aria-valuemax="100">{{round($porcen, 2)}}%</div>
+                                            <div class="progress-bar {{$alert}}" role="progressbar" style="width: {{round($porcen, 2)}}%; height: 20px" aria-valuenow="{{round($porcen, 2)}}" aria-valuemin="0" aria-valuemax="100">{{round($porcen, 2)}}%</div>
                                         </div>
                                     </a>
                                 </td>
@@ -333,7 +371,26 @@
                                     @endphp
                                 @endforeach
                                 @php
+                                    date_default_timezone_set('America/Lima');
                                     $porcen =  100 - (($pay_total*100)/$inquires->price);
+
+                                    $date_a = date ("Y-m-d");
+
+                                    $fecha = $inquires->traveldate;
+
+                                    $nuevafecha = strtotime ( '-2 day' , strtotime ( $fecha ) ) ;
+                                    $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
+
+                                    if ($date_a <= $nuevafecha){
+                                        $alert = "bg-success";
+                                    }else{
+                                        $alert = "bg-danger";
+                                    }
+
+                                    if ($porcen == 100){
+                                        $alert = "bg-success";
+                                    }
+
                                 @endphp
 
                                 <tr class='unread'>
@@ -360,7 +417,7 @@
                                     <td>
                                         <a href="{{route('payment_show_path', $inquires->id)}}">
                                             <div class="progress md-progress" style="height: 20px; width: 100%">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: {{round($porcen, 2)}}%; height: 20px" aria-valuenow="{{round($porcen, 2)}}" aria-valuemin="0" aria-valuemax="100">{{round($porcen, 2)}}%</div>
+                                                <div class="progress-bar {{$alert}}" role="progressbar" style="width: {{round($porcen, 2)}}%; height: 20px" aria-valuenow="{{round($porcen, 2)}}" aria-valuemin="0" aria-valuemax="100">{{round($porcen, 2)}}%</div>
                                             </div>
                                         </a>
                                     </td>
