@@ -144,6 +144,8 @@ class MessageController extends Controller
         $precio_4 = $_POST['txt_precio_4'];
         $precio_5 = $_POST['txt_precio_5'];
 
+        $tratamiento = $_POST['txt_tratamiento'];
+
         if (isset($_POST['txt_file'])){
             $txt_file = $_POST['txt_file'];
         }else{
@@ -217,6 +219,55 @@ class MessageController extends Controller
 //            });
 
 
+//                Mail::send(['html' => 'notifications.page.message'], [
+//                    'day' => $day,
+//                    'title' => $title,
+//                    'resumen' => $resumen,
+////                'itinerary' => $itinerary,
+//                    'destinations' => $destinations,
+//                    'incluye' => $incluye,
+//                    'noincluye' => $noincluye,
+//                    'email' => $email,
+//                    'name' => $name,
+//                    'category' => $category,
+//                    'date' => $date,
+//                    'phone' => $phone,
+//                    'precio_ch' => $precio_ch,
+//                    'precio_sh' => $precio_sh,
+//                    'precio_2' => $precio_2,
+//                    'precio_3' => $precio_3,
+//                    'precio_4' => $precio_4,
+//                    'precio_5' => $precio_5,
+//
+//                    'economic' => $economic,
+//                    'tourist' => $tourist,
+//                    'superior' => $superior,
+//                    'luxury' => $luxury,
+//
+//                    'otros' => $otros,
+//                    'codigo_p' => $codigo_p,
+//                    'titulo_p' => $titulo_p,
+//
+//                    'email_a' => $email_a,
+//                    'name_a' => $name_a,
+//
+//                    'messagess' => $messagess,
+//                    'messagess2' => $messagess2,
+//                    'tratamiento' => $tratamiento
+//                ], function ($messaje) use ($email_a, $email, $txt_file) {
+//                    if ($txt_file == 0){
+//                        $messaje->to($email_a, 'Llama Tours')
+//                            ->subject('Propuesta Llama Tours')
+//                            /*->attach('ruta')*/
+//                            ->from($email, 'Llama Tours');
+//                    }else{
+//                        $messaje->to($email_a, 'Llama Tours')
+//                            ->subject('Propuesta Llama Tours')
+//                            ->attach(asset('file/booking.pdf'))
+//                            ->from($email, 'Llama Tours');
+//                    }
+//                });
+
                 Mail::send(['html' => 'notifications.page.message'], [
                     'day' => $day,
                     'title' => $title,
@@ -250,64 +301,18 @@ class MessageController extends Controller
                     'name_a' => $name_a,
 
                     'messagess' => $messagess,
-                    'messagess2' => $messagess2
-                ], function ($messaje) use ($email_a, $email, $txt_file) {
-                    if ($txt_file == 0){
-                        $messaje->to($email_a, 'Llama Tours')
-                            ->subject('Propuesta Llama Tours')
-                            /*->attach('ruta')*/
-                            ->from($email, 'Llama Tours');
-                    }else{
-                        $messaje->to($email_a, 'Llama Tours')
-                            ->subject('Propuesta Llama Tours')
-                            ->attach(asset('file/booking.pdf'))
-                            ->from($email, 'Llama Tours');
-                    }
-                });
-
-                Mail::send(['html' => 'notifications.page.message'], [
-                    'day' => $day,
-                    'title' => $title,
-                    'resumen' => $resumen,
-//                'itinerary' => $itinerary,
-                    'destinations' => $destinations,
-                    'incluye' => $incluye,
-                    'noincluye' => $noincluye,
-                    'email' => $email,
-                    'name' => $name,
-                    'category' => $category,
-                    'date' => $date,
-                    'phone' => $phone,
-                    'precio_ch' => $precio_ch,
-                    'precio_sh' => $precio_sh,
-                    'precio_2' => $precio_2,
-                    'precio_3' => $precio_3,
-                    'precio_4' => $precio_4,
-                    'precio_5' => $precio_5,
-
-                    'economic' => $economic,
-                    'tourist' => $tourist,
-                    'superior' => $superior,
-                    'luxury' => $luxury,
-
-                    'otros' => $otros,
-                    'codigo_p' => $codigo_p,
-                    'titulo_p' => $titulo_p,
-
-                    'email_a' => $email_a,
-                    'name_a' => $name_a,
-
-                    'messagess' => $messagess,
-                    'messagess2' => $messagess2
+                    'messagess2' => $messagess2,
+                    'tratamiento' => $tratamiento
                 ], function ($messaje) use ($email, $email_a, $name, $txt_file) {
                     if ($txt_file == 0){
                         $messaje->to($email, $name)
                             ->subject('Propuesta Llama Tours')
-                            /*->attach('ruta')*/
+                            ->cc($email_a, 'Propuesta Llama Tours')
                             ->from($email_a, 'Asesor Llama Tours');
                     }else{
                         $messaje->to($email, $name)
                             ->subject('Propuesta Llama Tours')
+                            ->cc($email_a, 'Propuesta Llama Tours')
                             ->attach(asset('file/booking.pdf'))
                             ->from($email_a, 'Asesor Llama Tours');
                     }

@@ -535,6 +535,27 @@
                 <div class="card rgba-deep-orange-light">
                     <div class="card-body">
                         <h5 class="font-weight-bold orange-text">Presentation</h5>
+                        <div class="row justify-content-center">
+                            <div class="col-8">
+                                <div class="row shadow p-3 mb-3 font-weight-bold text-center">
+                                    <div class="col-auto">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="h_tratamiento_sr" name="tratamiento[]" class="custom-control-input" checked value="o">
+                                            <label class="custom-control-label" for="h_tratamiento_sr">Sr.</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="h_tratamiento_sra" name="tratamiento[]" class="custom-control-input" value="a">
+                                            <label class="custom-control-label" for="h_tratamiento_sra">Sra.</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="add-label">{{$inquires->name}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-2">
                                 <b>to:</b>
@@ -1100,6 +1121,15 @@
             }
             s_otros = $otros.substring(0,$otros.length-3);
 
+            var s_tratamiento = document.getElementsByName('tratamiento[]');
+            var $tratamiento = "";
+            for (var i = 0, l = s_tratamiento.length; i < l; i++) {
+                if (s_tratamiento[i].checked) {
+                    $tratamiento += s_tratamiento[i].value;
+                }
+            }
+            s_tratamiento = $tratamiento;
+
             {{--var $itinerary = "";--}}
             {{--var $k = '{{$k}}';--}}
             {{--// var $hresumen = 'hresumen';--}}
@@ -1197,6 +1227,7 @@
                     "txt_package" : s_package,
                     "txt_advisor" : s_advisor,
                     // "txt_itinerary" : s_itinerary,
+                    "txt_tratamiento" : s_tratamiento,
 
                 };
                 $.ajax({

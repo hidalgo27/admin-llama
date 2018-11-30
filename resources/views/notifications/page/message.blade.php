@@ -54,7 +54,7 @@
 
                         <tr>
                             <td style="padding:20px 0px 20px 50px">
-                                <p style="font-size:18px"><b>Estimado(a) </b>: {{ucwords(strtolower($name))}}</p>
+                                <p style="font-size:18px"><b>Estimad{{$tratamiento}}</b>: {{ucwords(strtolower($name))}}</p>
                                 <p>@php echo $messagess @endphp</p>
                                 <p style="font-weight: bold; font-size: 18px">PAQUETE: {{$codigo_p}} {{$titulo_p}}</p>
                                 <center style="background:#f6f6f6; padding:10px; -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);border: 0;">
