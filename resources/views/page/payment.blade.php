@@ -358,6 +358,7 @@
                                                         <option value="VISA" selected>VISA</option>
                                                         <option value="WESTERN UNION">WESTERN UNION</option>
                                                         <option value="BANCO">BANCO</option>
+                                                        <option value="CASH">CASH</option>
                                                     </select>
                                                 </div>
 
@@ -413,6 +414,7 @@
                                                             <option value="VISA" selected>VISA</option>
                                                             <option value="WESTERN UNION">WESTERN UNION</option>
                                                             <option value="BANCO">BANCO</option>
+                                                            <option value="CASH">CASH</option>
                                                         </select>
                                                     </div>
 
@@ -524,6 +526,7 @@
                                                     <option value="VISA" selected>VISA</option>
                                                     <option value="WESTERN UNION">WESTERN UNION</option>
                                                     <option value="BANCO">BANCO</option>
+                                                    <option value="CASH">CASH</option>
                                                 </select>
                                             </div>
 
