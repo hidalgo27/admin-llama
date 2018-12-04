@@ -67,24 +67,33 @@
                                 {{--Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam--}}
                                 {{--eum porro a pariatur veniam.</p>--}}
 
-                                <div class="row mb-5 bg-light rounded justify-content-center ">
-                                    <div class="col-6">
-                                        <form class="form-inline">
-                                            <div class="input-group">
-                                                <label for="inputPassword6" class="mr-2">From</label>
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                <div class="row mb-4 justify-content-center ">
+                                    <div class="col-12">
+                                        <form class="bg-light rounded p-2 shadow">
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <div class="input-group">
+                                                        <label for="inputPassword6" class="mr-2 mt-2">From</label>
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                                        </div>
+                                                        <input type="text" id="i_from" name="from" class="form-control datepicker" aria-describedby="passwordHelpInline" value="{{$fromDate}}">
+                                                    </div>
                                                 </div>
-                                                <input type="date" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                                            </div>
-                                            <div class="input-group mx-4">
-                                                <label for="inputPassword6" class="mr-2">To</label>
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                                <div class="col">
+                                                    <div class="input-group mx-4">
+                                                        <label for="inputPassword6" class="mr-2 mt-2">To</label>
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                                        </div>
+                                                        <input type="text" id="i_to" name="to" class="form-control datepicker" aria-describedby="passwordHelpInline" value="{{$toDate}}">
+                                                    </div>
                                                 </div>
-                                                <input type="date" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                                                <div class="col-auto">
+                                                    {{--<a href="" class="btn btn-primary mb-2">Submit</a>--}}
+                                                    <button type="button" class="btn btn-primary mb-2" onclick="range()">Submit</button>
+                                                </div>
                                             </div>
-                                            <button type="submit" class="btn btn-primary mb-2">Submit</button>
                                         </form>
                                     </div>
                                 </div>
@@ -112,6 +121,21 @@
 @endsection
 @push('scripts')
     <script>
+
+        function range(id){
+            var $from = $('#i_from').val();
+            var $to = $('#i_to').val();
+            window.location.href = '../../chart/'+$from+'/'+$to;
+
+        }
+
+        $( function() {
+            $( ".datepicker" ).datepicker(
+                {
+                    dateFormat: 'yy-mm-dd'
+                }
+            );
+        } );
 
         {{--var $closing_v = "{{$closing_v}}";--}}
         {{--var $inquires_v = "{{$inquires_v}}";--}}
