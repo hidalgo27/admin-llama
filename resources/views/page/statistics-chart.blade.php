@@ -8,6 +8,40 @@
 {{--@include('layouts.sidebar')--}}
 {{--@endsection--}}
 @section('content')
+    @foreach($user->where('estado', 1) as $users)
+        @php $k = 0; $j = 0; $i = 0; $h = 0; @endphp
+        @foreach($users->roles->where('name', 'sales') as $rol)
+            @foreach($inquire->where('estado', '<', 3) as $inquires)
+                @php $i++; @endphp
+            @endforeach
+            @foreach($inquire->where('idusuario', $users->id)->where('estado', '<', 3)->where('estado', 2) as $inquires)
+                @php $j++; @endphp
+            @endforeach
+            @foreach($inquire->where('idusuario', $users->id)->where('estado', '<', 3) as $inquires)
+                @php $k++; @endphp
+            @endforeach
+
+            @foreach($inquire->where('idusuario', $users->id)->where('estado', 4) as $inquires)
+                @php $h++; @endphp
+            @endforeach
+            {{--<div class="container mt-5">--}}
+                {{--<div class="row pt-5">--}}
+                {{----}}
+                {{--</div>--}}
+            {{--</div>--}}
+            @php
+
+                $user_a[] = $users->name;
+
+                $user_v = $users->name;
+                $rol_v = $rol->name;
+                $closing_v[] = $h;
+                $inquires_v[] = $k;
+                $response_v[] = $j;
+            @endphp
+
+        @endforeach
+    @endforeach
     <main class="pt-5 mx-lg-5">
         <div class="container-fluid mt-5">
             <div class="row wow fadeIn">
@@ -21,7 +55,11 @@
                                 <h2 class="h1-responsive font-weight-bold mt-5">Sellers Statistics</h2>
                                 <div class="row my-4">
                                     <div class="col">
-                                        <a href="{{route('statistics_path')}}" class="btn btn-link">Basic Information</a> | <a href="{{route('chart_path')}}" class="btn btn-link active">comparison chart</a>
+                                        @php
+                                            date_default_timezone_set('America/Lima');
+                                            $date_a = date ("Y-m-d");
+                                        @endphp
+                                        <a href="{{route('statistics_path', [$date_a, $date_a])}}" class="btn btn-link">Basic Information</a> | <a href="{{route('chart_path', [$date_a, $date_a])}}" class="btn btn-link active">comparison chart</a>
                                     </div>
                                 </div>
                                 <!-- Section description -->
@@ -53,9 +91,9 @@
                                 <!-- Grid row -->
                                 <div class="row justify-content-center">
 
-                                   <div class="col">
-                                       <canvas id="myChart" style="max-width: 100%;"></canvas>
-                                   </div>
+                                    <div class="col">
+                                        <canvas id="myChart" style="max-width: 100%;"></canvas>
+                                    </div>
                                     <div class="col">
                                         <canvas id="lineChart"></canvas>
                                     </div>
@@ -75,14 +113,21 @@
 @push('scripts')
     <script>
 
+        {{--var $closing_v = "{{$closing_v}}";--}}
+        {{--var $inquires_v = "{{$inquires_v}}";--}}
+        {{--var $response_v = "{{$response_v}}";--}}
+
+        var  user_array = [<?php echo "'".implode("','", $user_a)."'" ?>];
+        var  inquires_array = [<?php echo "'".implode("','", $inquires_v)."'" ?>];
+        // alert(js_array.toString());
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["Paola", "Martin", "Karina"],
+                labels: user_array,
                 datasets: [{
-                    label: '# of Sales',
-                    data: [12, 19, 3, 5, 2, 3],
+                    label: '# Inquires',
+                    data: inquires_array,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',

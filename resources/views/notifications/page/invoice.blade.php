@@ -1,4 +1,18 @@
 <table style="font-family:Lato,sans-serif;font-size:15px;color:#666666;width: 100%;" marginheight="0" marginwidth="0">
+
+    <center style="padding:10px; border: 0;">
+        <table style="width: 100%">
+            <tbody>
+            <tr>
+                <td style="text-align:left;">
+                    {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">***</p>--}}
+                    @php echo $mensaje @endphp
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </center>
+
     <table cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff" align="center" width="100%" color="#666666">
         <tr>
             <td>

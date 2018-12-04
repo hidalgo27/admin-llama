@@ -85,6 +85,8 @@ class PaymentController extends Controller
 
         $total_sales = $_POST["txt_a_cuenta"];
 
+        $mensaje = $_POST["txt_message"];
+
         $inquire = TInquire::with('usuario')->where('id', $idinquire)->get();
 
 //        foreach ($inquire as $inquires){
@@ -99,6 +101,7 @@ class PaymentController extends Controller
             $payment->a_cuenta = $amount;
             $payment->fecha_a_pagar = $date;
             $payment->medio = $medio;
+            $payment->mensaje = $mensaje;
             $payment->transaccion = $transaction;
             $payment->estado = 1;
             $payment->idinquires = $idinquire;
@@ -108,6 +111,7 @@ class PaymentController extends Controller
             $payment->a_cuenta = $amount;
             $payment->fecha_a_pagar = $date;
             $payment->medio = $medio;
+            $payment->mensaje = $mensaje;
             $payment->transaccion = $transaction;
             $payment->estado = 1;
             $payment->idinquires = $idinquire;
@@ -141,6 +145,7 @@ class PaymentController extends Controller
                     'concept' => $concept,
                     'traveller' => $traveller,
                     'payment_l' => $payment_l,
+                    'mensaje' => $mensaje,
                     'total_sales' => $total_sales
                 ], function ($messaje) use ($email_a, $email, $name_a) {
                     $messaje->to($email_a, $name_a)

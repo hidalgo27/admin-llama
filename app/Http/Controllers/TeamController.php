@@ -29,17 +29,26 @@ class TeamController extends Controller
         $inquire = TInquire::whereBetween('created_at', [$fromDate, $toDate])->get();
         return view('page.statistics', ['user'=>$user, 'inquire'=>$inquire, 'fromDate'=>$from, 'toDate'=>$to]);
     }
-    public function chart(Request $request)
+    public function chart(Request $request, $from, $to)
     {
+        $fromDate = date('Y-m-d' . ' 00:00:00', strtotime ($from));
+        $toDate = date('Y-m-d' . ' 23:59:59', strtotime ($to));
+
         $request->user()->authorizeRoles(['admin', 'sales']);
         $user = User::all();
-        return view('page.statistics-chart', ['user'=>$user]);
+        $inquire = TInquire::whereBetween('created_at', [$fromDate, $toDate])->get();
+        return view('page.statistics-chart', ['user'=>$user, 'inquire'=>$inquire, 'fromDate'=>$from, 'toDate'=>$to]);
     }
-    public function info(Request $request, $iduser)
+    public function info(Request $request, $iduser, $from, $to)
     {
+        $fromDate = date('Y-m-d' . ' 00:00:00', strtotime ($from));
+        $toDate = date('Y-m-d' . ' 23:59:59', strtotime ($to));
+
         $request->user()->authorizeRoles(['admin', 'sales']);
-        $user = User::all();
-        return view('page.statistics-user', ['user'=>$user]);
+        $user = User::where('id', $iduser)->get();
+        $inquire = TInquire::whereBetween('created_at', [$fromDate, $toDate])->get();
+        return view('page.statistics-user', ['user'=>$user, 'inquire'=>$inquire, 'fromDate'=>$from, 'toDate'=>$to]);
+
     }
     /**
      * Show the form for creating a new resource.

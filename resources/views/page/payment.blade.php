@@ -273,7 +273,7 @@
                                 {{--<div class="col">--}}
                                     {{----}}
                                 {{--</div>--}}
-                                <div class="col-6">
+                                <div class="col-8">
                                     <select class="selectpicker w-100 mt-3" data-live-search="true" onchange="save_package({{$inquires->id}})" id="sp_package">
 
                                         @foreach($package as $pack)
@@ -294,7 +294,11 @@
                                         <input type="text" id="t_concept" class="form-control font-weight-bold" placeholder="Concept">
                                         {{--<label for="inputIconEx2">Transaction Code</label>--}}
                                     </div>
+                                    <textarea class="form-control editor-mess w-100" aria-label="With textarea" id="t_message" rows="5"></textarea>
                                 </div>
+                                {{--<div class="col-6">--}}
+                                    {{--<textarea class="form-control editor-mess w-100" aria-label="With textarea" id="t_message" rows="5"></textarea>--}}
+                                {{--</div>--}}
                             </div>
                             <hr>
                             {{--<div class="row align-items-center">--}}
@@ -756,7 +760,26 @@
     @endif
 @endsection
 @push('scripts')
+    <script src='https://devpreview.tiny.cloud/demo/tinymce.min.js'></script>
     <script>
+        tinymce.init({
+            selector: "textarea",
+            height: 280,
+            menubar: false,
+            browser_spellcheck : true,
+            contextmenu: false,
+            plugins: [
+                "advlist autolink lists link image charmap print preview anchor textcolor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table paste code help wordcount"
+            ],
+            toolbar: "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
+            setup: function (editor) {
+                editor.on("change", function () {
+                    editor.save();
+                });
+            }
+        });
 
         $( function() {
             $( ".datepicker" ).datepicker(
@@ -819,6 +842,8 @@
 
             var sid_payment = $('#id_payment').val();
 
+            var s_message = $('#t_message').val();
+
 
             if (s_amount.length == 0){
                 $('#t_amount').css("border-bottom", "2px solid #FF0000");
@@ -850,6 +875,7 @@
                     "txt_a_cuenta" : s_a_cuenta,
 
                     "txt_idpayment" : sid_payment,
+                    "txt_message" : s_message,
                 };
                 $.ajax({
                     data:  datos,

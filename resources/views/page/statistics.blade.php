@@ -25,7 +25,7 @@
                                             date_default_timezone_set('America/Lima');
                                             $date_a = date ("Y-m-d");
                                         @endphp
-                                        <a href="{{route('statistics_path', [$date_a, $date_a])}}" class="btn btn-link active">Basica Information</a> | <a href="{{route('chart_path')}}" class="btn btn-link">comparison chart</a>
+                                        <a href="{{route('statistics_path', [$date_a, $date_a])}}" class="btn btn-link active">Basica Information</a> | <a href="{{route('chart_path', [$date_a, $date_a])}}" class="btn btn-link">comparison chart</a>
                                     </div>
                                 </div>
                                 <!-- Section description -->
@@ -75,14 +75,18 @@
                                                         @php $h++; @endphp
                                                     @endforeach
                                             <div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
-                                                <a href="{{route('info_path', $users->id)}}">
+                                                @php
+                                                    date_default_timezone_set('America/Lima');
+                                                    $date_b = date ("Y-m-d");
+                                                @endphp
+                                                <a href="{{route('info_path', [$users->id, $date_b, $date_b])}}">
                                                     <div class="avatar mx-auto">
                                                         <img src="{{asset('images/'.$users->email.'.jpg')}}" class="rounded-circle z-depth-1 w-100"
                                                              alt="Sample avatar">
                                                     </div>
                                                     <h5 class="font-weight-bold mt-4 mb-3">{{$users->name}}</h5>
                                                     <p class="text-uppercase blue-text"><strong>{{$rol->name}}</strong></p>
-                                                    <p class="grey-text w-responsive mx-auto">Closing Rate: <span class="font-weight-bold text-dark">{{$h}}</span></p>
+                                                    <p class="grey-text w-responsive mx-auto">Closing: <span class="font-weight-bold text-dark">{{$h}}</span></p>
                                                     <a href="s" class="btn btn-link mx-auto mb-5 font-weight-bold"><span class="grey-text">Inquires:</span> <span class="font-weight-bold text-dark">{{$k}}</span> <span class="grey-text">Response:</span> <span class="font-weight-bold text-dark">{{$j}}</span></a>
                                                 </a>
                                             </div>

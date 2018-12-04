@@ -207,6 +207,8 @@ class MessageController extends Controller
         }
 
         $p_inquire = TInquire::FindOrFail($idinquire);
+        $p_inquire->presentation = $messagess;
+        $p_inquire->farewell = $messagess2;
         $p_inquire->estado = 2;
 
         if($p_inquire->save()){
@@ -306,13 +308,13 @@ class MessageController extends Controller
                 ], function ($messaje) use ($email, $email_a, $name, $txt_file) {
                     if ($txt_file == 0){
                         $messaje->to($email, $name)
-                            ->subject('Propuesta Llama Tours')
-                            ->cc($email_a, 'Propuesta Llama Tours')
+                            ->subject('Propuesta de viaje Llama.Tours')
+                            ->cc($email_a, 'Propuesta de viaje Llama.Tours')
                             ->from($email_a, 'Asesor Llama Tours');
                     }else{
                         $messaje->to($email, $name)
-                            ->subject('Propuesta Llama Tours')
-                            ->cc($email_a, 'Propuesta Llama Tours')
+                            ->subject('Propuesta de viaje Llama.Tours')
+                            ->cc($email_a, 'Propuesta de viaje Llama.Tours')
                             ->attach(asset('file/booking.pdf'))
                             ->from($email_a, 'Asesor Llama Tours');
                     }

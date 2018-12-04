@@ -95,15 +95,15 @@ Route::post('/message/inquire_package', [
     'as' => 'update_inquire_p_path',
 ]);
 //statistics
+Route::get('/statistics/chart/{from}/{to}', [
+    'uses' => 'TeamController@chart',
+    'as' => 'chart_path',
+]);
 Route::get('/statistics/{from}/{to}', [
     'uses' => 'TeamController@index',
     'as' => 'statistics_path',
 ]);
-Route::get('/statistics/chart', [
-    'uses' => 'TeamController@chart',
-    'as' => 'chart_path',
-]);
-Route::get('/statistics/{iduser}', [
+Route::get('/statistics/{iduser}/{from}/{to}', [
     'uses' => 'TeamController@info',
     'as' => 'info_path',
 ]);

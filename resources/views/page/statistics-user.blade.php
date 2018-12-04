@@ -8,6 +8,39 @@
 {{--@include('layouts.sidebar')--}}
 {{--@endsection--}}
 @section('content')
+    @foreach($user as $users)
+        @php $k = 0; $j = 0; $i = 0; $h = 0; @endphp
+        @foreach($users->roles->where('name', 'sales') as $rol)
+            @foreach($inquire->where('estado', '<', 3) as $inquires)
+                @php $i++; @endphp
+            @endforeach
+            @foreach($inquire->where('idusuario', $users->id)->where('estado', '<', 3)->where('estado', 2) as $inquires)
+                @php $j++; @endphp
+            @endforeach
+            @foreach($inquire->where('idusuario', $users->id)->where('estado', '<', 3) as $inquires)
+                @php $k++; @endphp
+            @endforeach
+
+            @foreach($inquire->where('idusuario', $users->id)->where('estado', 4) as $inquires)
+                @php $h++; @endphp
+            @endforeach
+            {{--<div class="container mt-5">--}}
+            {{--<div class="row pt-5">--}}
+            {{----}}
+            {{--</div>--}}
+            {{--</div>--}}
+            @php
+                $user_v = $users->name;
+                $rol_v = $rol->name;
+                $closing_v = $h;
+                $inquires_v = $k;
+                $response_v = $j;
+                $total = $i;
+            @endphp
+
+        @endforeach
+    @endforeach
+
     <main class="pt-5 mx-lg-5">
         <div class="container-fluid mt-5">
             <div class="row wow fadeIn">
@@ -28,16 +61,14 @@
                                         </div>
                                         <!-- Avatar -->
                                         <div class="avatar mx-auto white">
-                                            <img src="https://mdbootstrap.com/img/Photos/Avatars/img (10).jpg" class="rounded-circle img-fluid"
+                                            <img src="{{asset('images/'.$users->email.'.jpg')}}" class="rounded-circle img-fluid"
                                                  alt="First sample avatar image">
                                         </div>
                                         <!-- Content -->
                                         <div class="card-body">
-                                            <h4 class="font-weight-bold mt-1 mb-3">Maria Kate</h4>
-                                            <p class="font-weight-bold dark-grey-text">Photographer</p>
+                                            <h4 class="font-weight-bold ">{{ucwords(strtolower($user_v))}}</h4>
+                                            <p class="font-weight-bold dark-grey-text">{{strtoupper($rol_v)}}</p>
                                             <!-- Triggering button -->
-                                            <a class="rotate-btn grey-text" data-card="card-1">
-                                                <i class="fa fa-repeat grey-text"></i> Click here to rotate</a>
                                         </div>
                                     </div>
                                     <!-- Front Side -->
@@ -46,13 +77,11 @@
                                         <!-- Content -->
                                         <div class="card-body">
                                             <!-- Content -->
-                                            <h4 class="font-weight-bold mt-4 mb-2">
+                                            <h4 class="font-weight-bold mb-2">
                                                 <strong>About me</strong>
                                             </h4>
                                             <hr>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quae, dolores dicta.
-                                                Blanditiis rem amet repellat, dolores nihil quae in mollitia asperiores ut rerum repellendus,
-                                                voluptatum eum, officia laudantium quaerat?
+                                            <p>Travel advisor {{ucwords(strtolower($user_v))}}.
                                             </p>
 
                                             <!-- Social Icons -->
@@ -71,13 +100,92 @@
 
                     </div>
                 </div>
-                <div class="col"></div>
+                <div class="col">
+
+                    <div class="row mb-4 justify-content-center ">
+                        <div class="col-12">
+                            <form class="bg-light rounded p-2 shadow">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <div class="input-group">
+                                            <label for="inputPassword6" class="mr-2 mt-2">From</label>
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                            </div>
+                                            <input type="text" id="i_from" name="from" class="form-control datepicker" aria-describedby="passwordHelpInline" value="{{$fromDate}}">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group mx-4">
+                                            <label for="inputPassword6" class="mr-2 mt-2">To</label>
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                            </div>
+                                            <input type="text" id="i_to" name="to" class="form-control datepicker" aria-describedby="passwordHelpInline" value="{{$toDate}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        {{--<a href="" class="btn btn-primary mb-2">Submit</a>--}}
+                                        <button type="button" class="btn btn-primary mb-2" onclick="range({{$users->id}})">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">Inquires</th>
+                                            <td>{{$inquires_v}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Response</th>
+                                            <td>{{$response_v}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Closing</th>
+                                            <td>{{$closing_v}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Average response for inquire</th>
+                                            <td>4</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Total Inquires</th>
+                                            <td>{{$total}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </main>
 @endsection
 @push('scripts')
     <script>
+        function range(id){
+            var $from = $('#i_from').val();
+            var $to = $('#i_to').val();
+            window.location.href = '../../'+id+'/'+$from+'/'+$to;
 
+        }
+
+        $( function() {
+            $( ".datepicker" ).datepicker(
+                {
+                    dateFormat: 'yy-mm-dd'
+                }
+            );
+        } );
     </script>
 @endpush
