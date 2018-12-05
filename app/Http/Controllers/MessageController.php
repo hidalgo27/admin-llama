@@ -206,9 +206,13 @@ class MessageController extends Controller
             $titulo_p = $packages->titulo;
         }
 
+        date_default_timezone_set('America/Lima');
+        $date_res= date ("Y-m-d H:i:s");
+
         $p_inquire = TInquire::FindOrFail($idinquire);
         $p_inquire->presentation = $messagess;
         $p_inquire->farewell = $messagess2;
+        $p_inquire->response = $date_res;
         $p_inquire->estado = 2;
 
         if($p_inquire->save()){
