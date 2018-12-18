@@ -46,10 +46,8 @@
             <div class="row wow fadeIn">
                 <div class="col-4">
                     <div class="row">
-
                         <!-- Grid column -->
                         <div class="col-lg-12 col-md-12 mb-lg-0 mb-4">
-
                             <!-- Rotating card -->
                             <div class="card-wrapper">
                                 <div id="card-1" class="card card-rotating text-center">
@@ -81,12 +79,7 @@
                                                 <strong>About me</strong>
                                             </h4>
                                             <hr>
-                                            <p>Travel advisor {{ucwords(strtolower($user_v))}}.
-                                            </p>
-
-                                            <!-- Social Icons -->
-                                            <!-- Triggering button -->
-
+                                            <p>Travel advisor {{ucwords(strtolower($user_v))}}.</p>
                                         </div>
                                     </div>
                                     <!-- Back Side -->
@@ -145,7 +138,7 @@
                                         </tr>
                                         <tr>
                                             <th scope="row">Response</th>
-                                            <td>{{$response_v}}</td>
+                                            <td><a href="#" class="text-primary font-weight-bold" data-toggle="modal" data-target="#presentation">{{$response_v}}</a></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Closing</th>
@@ -153,7 +146,7 @@
                                         </tr>
                                         <tr>
                                             <th scope="row">Average response for inquire</th>
-                                            <td>4</td>
+                                            <td>---</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Total Inquires</th>
@@ -165,8 +158,57 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
+                    <!-- Modal -->
+                    <div class="modal fade" id="presentation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Response and farewell</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            @foreach($user as $users)
+                                                @php $k = 0; $j = 0; $i = 0; $h = 0; @endphp
+                                                @foreach($users->roles->where('name', 'sales') as $rol)
+                                                    {{--@foreach($inquire->where('estado', '<', 3) as $inquires)--}}
+                                                    {{--@php $i++; @endphp--}}
+                                                    {{--@endforeach--}}
+                                                    {{--@foreach($inquire->where('idusuario', $users->id)->where('estado', '<', 3)->where('estado', 2) as $inquires)--}}
+                                                    {{--@php $j++; @endphp--}}
+                                                    {{--@endforeach--}}
+                                                    {{--@foreach($inquire->where('idusuario', $users->id)->where('estado', '<', 3) as $inquires)--}}
+                                                    {{--@php $k++; @endphp--}}
+                                                    {{--@endforeach--}}
+
+                                                    {{--@foreach($inquire->where('idusuario', $users->id)->where('estado', 4) as $inquires)--}}
+                                                    {{--@php $h++; @endphp--}}
+                                                    {{--@endforeach--}}
+
+                                                    @foreach($inquire->where('idusuario', $users->id) as $inquires)
+                                                        @if($inquires->presentation == NULL)
+                                                        @else
+                                                            <div class="card">
+                                                                <div class="card-body">
+                                                                    @php echo $inquires->presentation; @endphp
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                @endforeach
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </main>

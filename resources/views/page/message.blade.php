@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <form id="h_form" role="form">
+    <form id="h_form" role="form" enctype="multipart/form-data">
         {{csrf_field()}}
         @foreach($inquire as $inquires)
         @endforeach
@@ -628,6 +628,41 @@
                 </div>
             </div>
 
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="font-weight-bold orange-text">Attach More Programs</h5>
+                            <div class="row">
+
+                                <div class="col-6">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">GTP500: Clasico Inca Machu Picchu</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="font-weight-bold orange-text">Attach File</h5>
+
+                            <div class="form-group">
+                                <input type="file" class="form-control-file" id="h_file">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         {{--<div class="row mt-4 karina">--}}
             {{--<div class="col">--}}
                 {{--<div class="card bg-light">--}}
@@ -1173,6 +1208,8 @@
             var s_package = $("#sp_package").val();
             var s_advisor = $("#h_advisor").val();
 
+            var s_file = $("#h_file").val();;
+
             if (filter.test(s_email)){
                 sendMail = "true";
             } else{
@@ -1536,6 +1573,7 @@
             });
 
         });
+
 
     </script>
 @endpush
