@@ -171,6 +171,8 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
+                                        <div class="col">
+                                        <div class="card-columns">
                                             @foreach($user as $users)
                                                 @php $k = 0; $j = 0; $i = 0; $h = 0; @endphp
                                                 @foreach($users->roles->where('name', 'sales') as $rol)
@@ -191,17 +193,17 @@
                                                     @foreach($inquire->where('idusuario', $users->id) as $inquires)
                                                         @if($inquires->presentation == NULL)
                                                         @else
-                                                            <div class="col-4 mb-4">
-                                                                <div class="card">
-                                                                    <div class="card-body">
-                                                                        @php echo $inquires->presentation; @endphp
-                                                                    </div>
+                                                            <div class="card">
+                                                                <div class="card-body">
+                                                                    @php echo $inquires->presentation; @endphp
                                                                 </div>
                                                             </div>
                                                         @endif
                                                     @endforeach
                                                 @endforeach
                                             @endforeach
+                                        </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
