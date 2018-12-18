@@ -137,8 +137,8 @@
                                             <td>{{$inquires_v}}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Response</th>
-                                            <td><a href="#" class="text-primary font-weight-bold" data-toggle="modal" data-target="#presentation">{{$response_v}}</a></td>
+                                            <th scope="row">Response | <a href="#" class="text-primary font-weight-bold small" data-toggle="modal" data-target="#presentation">Presentation</a> | <a href="#" class="text-primary font-weight-bold small" data-toggle="modal" data-target="#farewell">Farewell</a></th>
+                                            <td>{{$response_v}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Closing</th>
@@ -176,20 +176,6 @@
                                             @foreach($user as $users)
                                                 @php $k = 0; $j = 0; $i = 0; $h = 0; @endphp
                                                 @foreach($users->roles->where('name', 'sales') as $rol)
-                                                    {{--@foreach($inquire->where('estado', '<', 3) as $inquires)--}}
-                                                    {{--@php $i++; @endphp--}}
-                                                    {{--@endforeach--}}
-                                                    {{--@foreach($inquire->where('idusuario', $users->id)->where('estado', '<', 3)->where('estado', 2) as $inquires)--}}
-                                                    {{--@php $j++; @endphp--}}
-                                                    {{--@endforeach--}}
-                                                    {{--@foreach($inquire->where('idusuario', $users->id)->where('estado', '<', 3) as $inquires)--}}
-                                                    {{--@php $k++; @endphp--}}
-                                                    {{--@endforeach--}}
-
-                                                    {{--@foreach($inquire->where('idusuario', $users->id)->where('estado', 4) as $inquires)--}}
-                                                    {{--@php $h++; @endphp--}}
-                                                    {{--@endforeach--}}
-
                                                     @foreach($inquire->where('idusuario', $users->id) as $inquires)
                                                         @if($inquires->presentation == NULL)
                                                         @else
@@ -203,6 +189,43 @@
                                                 @endforeach
                                             @endforeach
                                         </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="farewell" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">farewell</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="card-columns">
+                                                @foreach($user as $users)
+                                                    @php $k = 0; $j = 0; $i = 0; $h = 0; @endphp
+                                                    @foreach($users->roles->where('name', 'sales') as $rol)
+                                                        @foreach($inquire->where('idusuario', $users->id) as $inquires)
+                                                            @if($inquires->presentation == NULL)
+                                                            @else
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        @php echo $inquires->farewell; @endphp
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        @endforeach
+                                                    @endforeach
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
