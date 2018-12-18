@@ -178,7 +178,7 @@
                                                     @foreach($inquire->where('idusuario', $users->id) as $inquires)
                                                         @if($inquires->presentation == NULL)
                                                         @else
-                                                            <div class="col-4 d-flex">
+                                                            <div class="col-4 d-flex mb-4">
                                                                 <div class="card w-100">
                                                                     <div class="card-body">
                                                                         @php echo $inquires->presentation; @endphp
