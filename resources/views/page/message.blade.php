@@ -628,40 +628,40 @@
                 </div>
             </div>
 
-            <div class="row mt-4">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="font-weight-bold orange-text">Attach More Programs</h5>
-                            <div class="row">
+            {{--<div class="row mt-4">--}}
+                {{--<div class="col">--}}
+                    {{--<div class="card">--}}
+                        {{--<div class="card-body">--}}
+                            {{--<h5 class="font-weight-bold orange-text">Attach More Programs</h5>--}}
+                            {{--<div class="row">--}}
 
-                                <div class="col-6">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                        <label class="custom-control-label" for="customCheck1">GTP500: Clasico Inca Machu Picchu</label>
-                                    </div>
-                                </div>
+                                {{--<div class="col-6">--}}
+                                    {{--<div class="custom-control custom-checkbox">--}}
+                                        {{--<input type="checkbox" class="custom-control-input" id="customCheck1">--}}
+                                        {{--<label class="custom-control-label" for="customCheck1">GTP500: Clasico Inca Machu Picchu</label>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
-            <div class="row mt-4">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="font-weight-bold orange-text">Attach File</h5>
+            {{--<div class="row mt-4">--}}
+                {{--<div class="col">--}}
+                    {{--<div class="card">--}}
+                        {{--<div class="card-body">--}}
+                            {{--<h5 class="font-weight-bold orange-text">Attach File</h5>--}}
 
-                            <div class="form-group">
-                                <input type="file" class="form-control-file" name="h_add" id="h_add">
-                            </div>
+                            {{--<div class="form-group">--}}
+                                {{--<input type="file" class="form-control-file" name="h_add" id="h_add">--}}
+                            {{--</div>--}}
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
         {{--<div class="row mt-4 karina">--}}
             {{--<div class="col">--}}
