@@ -208,7 +208,6 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
-
                                         @foreach($user as $users)
                                             @php $k = 0; $j = 0; $i = 0; $h = 0; @endphp
                                             @foreach($users->roles->where('name', 'sales') as $rol)
@@ -226,7 +225,6 @@
                                                 @endforeach
                                             @endforeach
                                         @endforeach
-
                                     </div>
                                 </div>
                             </div>

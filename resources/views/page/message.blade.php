@@ -655,7 +655,7 @@
                             <h5 class="font-weight-bold orange-text">Attach File</h5>
 
                             <div class="form-group">
-                                <input type="file" class="form-control-file" id="h_file">
+                                <input type="file" class="form-control-file" name="h_add" id="h_add">
                             </div>
 
                         </div>
@@ -1201,14 +1201,15 @@
             var s_superior = $("#h_superior:checked").val();
             var s_luxury = $("#h_luxury:checked").val();
 
-
             var s_message = myEditor.getData();
             var s_message2 = myEditor2.getData();
 
             var s_package = $("#sp_package").val();
             var s_advisor = $("#h_advisor").val();
 
-            var s_file = $("#h_file").val();;
+            // var s_add = $("#h_add").val();
+            // var s_add = document.getElementById("h_add");
+            // var file = s_add.files[0];
 
             if (filter.test(s_email)){
                 sendMail = "true";
@@ -1223,7 +1224,6 @@
 
             if(sendMail == "true"){
                 var datos = {
-
                     "txt_idinquire" : s_idinquire,
                     "txt_day" : s_day,
                     "txt_title" : s_title,
@@ -1264,11 +1264,13 @@
                     "txt_package" : s_package,
                     "txt_advisor" : s_advisor,
                     // "txt_itinerary" : s_itinerary,
-                    "txt_tratamiento" : s_tratamiento,
+                    "txt_tratamiento" : s_tratamiento
 
                 };
+
                 $.ajax({
                     data:  datos,
+                    // data:new FormData($("#upload_form")[0]),
                     url:   "{{route('message_mail_path')}}",
                     type:  'post',
 

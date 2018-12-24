@@ -145,6 +145,7 @@ class MessageController extends Controller
         $precio_5 = $_POST['txt_precio_5'];
 
         $tratamiento = $_POST['txt_tratamiento'];
+//        $txt_add = $_POST['txt_add'];
 
         if (isset($_POST['txt_file'])){
             $txt_file = $_POST['txt_file'];
@@ -215,8 +216,9 @@ class MessageController extends Controller
         $p_inquire->response = $date_res;
         $p_inquire->estado = 2;
 
-        if($p_inquire->save()){
-            try {
+//        if($p_inquire->save()){
+//            try {
+
 //            Mail::send(['html' => 'notifications.page.client-form-design'], ['name' => $name], function ($messaje) use ($email, $name) {
 //                $messaje->to($email, $name)
 //                    ->subject('GotoPeru')
@@ -343,13 +345,13 @@ class MessageController extends Controller
 //            });
 
 
-                return 'Thank you.';
-
-            }
-            catch (Exception $e){
-                return $e;
-            }
-        }
+//                return 'Thank you.';
+//
+//            }
+//            catch (Exception $e){
+//                return $e;
+//            }
+//        }
     }
 
     /**
