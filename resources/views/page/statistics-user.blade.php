@@ -18,7 +18,9 @@
                 @php $j++; @endphp
             @endforeach
             @foreach($inquire->where('idusuario', $users->id)->where('estado', '<', 3) as $inquires)
-                @php $k++; @endphp
+                @php
+                    $k++;
+                @endphp
             @endforeach
 
             @foreach($inquire->where('idusuario', $users->id)->where('estado', 4) as $inquires)
@@ -144,10 +146,10 @@
                                             <th scope="row">Closing</th>
                                             <td>{{$closing_v}}</td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">Average response for inquire</th>
-                                            <td>---</td>
-                                        </tr>
+                                        {{--<tr>--}}
+                                            {{--<th scope="row">Average response for inquire</th>--}}
+                                            {{--<td>---</td>--}}
+                                        {{--</tr>--}}
                                         <tr>
                                             <th scope="row">Total Inquires</th>
                                             <td>{{$total}}</td>
@@ -158,6 +160,8 @@
                             </div>
                         </div>
                     </div>
+
+
 
                     <!-- Modal -->
                     <div class="modal fade" id="presentation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -231,6 +235,49 @@
                         </div>
                     </div>
 
+                    <div class="row mt-4">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5>Average response for inquire</h5>
+                                    <hr>
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Inquire</th>
+                                            <th class="text-center">Date</th>
+                                            <th class="text-center">Time</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($user as $users)
+                                            @php $k = 0; $j = 0; $i = 0; $h = 0; @endphp
+                                            @foreach($users->roles->where('name', 'sales') as $rol)
+                                                @foreach($inquire->where('idusuario', $users->id)->where('estado', '<', 3) as $inquires)
+                                                    @php
+                                                        $fecha1 = new DateTime($inquires->register);//fecha inicial
+                                                        $fecha2 = new DateTime($inquires->response);//fecha de cierre
+
+                                                        $intervalo = $fecha1->diff($fecha2);
+
+                                                        //echo $intervalo->format('%Y-%m-%d %H:%i:%s').'<br>';//00 años 0 meses 0 días 08 horas 0 minutos 0 segundos
+
+                                                    @endphp
+                                                    <tr>
+                                                        <td class="font-weight-bold">{{$inquires->name}} <small class="d-block grey-text">{{$inquires->email}}</small></td>
+                                                        <td class="text-center">{{$intervalo->format('%Y-%M-%D')}}</td>
+                                                        <td class="text-center">{{$intervalo->format('%H:%I:%S')}}</td>
+                                                    </tr>
+                                                @endforeach
+
+                                            @endforeach
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
