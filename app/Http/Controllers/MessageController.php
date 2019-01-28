@@ -195,10 +195,10 @@ class MessageController extends Controller
             $email_a = "mihael@llama.tours";
             $name_a = "Mihael";
         }
-//        if ($advisor==4){
-//            $email_a = "martin@llama.tours";
-//            $name_a = "Martin";
-//        }
+        if ($advisor==4){
+            $email_a = "martin@llama.tours";
+            $name_a = "Martin";
+        }
 
 
         foreach ($package as $packages)
