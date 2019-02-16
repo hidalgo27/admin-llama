@@ -290,6 +290,7 @@ class MessageController extends Controller
                             ->cc($email_a, 'Propuesta de viaje Llama.Tours')
                             ->attach(asset('storage/'.$name_file_2.''))
                             ->from($email_a, 'Asesor Llama Tours');
+
                     }
 
                     if ($h_booking and $file_add == 0){
@@ -307,9 +308,12 @@ class MessageController extends Controller
                             ->attach(asset('file/booking.pdf'))
                             ->attach(asset('storage/'.$name_file_2.''))
                             ->from($email_a, 'Asesor Llama Tours');
+
                     }
 
                 });
+
+
 
                 return redirect()->route('home_path')->with('status', 'Su propuesta de viaje se envio satisfactoriamente');
 
