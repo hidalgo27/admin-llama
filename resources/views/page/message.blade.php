@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <form id="h_form" action="{{route('message_mail_path')}}" role="form" enctype="multipart/form-data">
+    <form id="h_form" action="{{route('message_mail_path')}}" method="post" role="form" enctype="multipart/form-data">
         {{csrf_field()}}
         @foreach($inquire as $inquires)
             <input type="hidden" id="id_inquire" name="id_inquire" value="{{$inquires->id}}">
@@ -693,7 +693,7 @@
                 <div class="col">
                     <a href="" class="btn btn-light float-left">Save Mail <i class="fa fa-save"></i></a>
                     {{--<a href="" class="btn btn-primary float-right" onclick="design()">Send Mail</a>--}}
-                    <button type="button" class="btn btn-primary float-right" id="h_submit" onclick="message()">Send</button>
+                    <button type="submit" class="btn btn-primary float-right" id="h_submit">Send</button>
                     <i class="fas fa-spinner fa-pulse fa-2x text-primary float-right d-none" id="h_load"></i>
                 </div>
             </div>
@@ -996,11 +996,12 @@
             browser_spellcheck : true,
             contextmenu: false,
             plugins: [
+                "textcolor",
                 "advlist autolink lists link image charmap print preview anchor textcolor",
                 "searchreplace visualblocks code fullscreen",
                 "insertdatetime media table paste code help wordcount"
             ],
-            toolbar: "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
+            toolbar: "undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
             setup: function (editor) {
                 editor.on("change", function () {
                     editor.save();
@@ -1008,303 +1009,18 @@
             }
         });
 
-        //editor
-        // ClassicEditor
-        //     .create( document.querySelector( '.editor-mess' ) )
-        //     .then( editor => {
-        //         console.log( 'Editor was initialized', editor );
-        //         myEditor = editor;
-        //     } )
-        //     .catch( error => {
-        //         console.error( error );
-        //     } );
-        //
-        // ClassicEditor
-        //     .create( document.querySelector( '.editor-mess-2' ) )
-        //     .then( editor => {
-        //         console.log( 'Editor was initialized', editor );
-        //         myEditor2 = editor;
-        //     } )
-        //     .catch( error => {
-        //         console.error( error );
-        //     } );
+        $( "#h_submit" ).click(function() {
+            $("#h_submit").addClass('d-none');
+            $("#h_load").removeClass('d-none');
+        });
+
+
 
         //email
         $("#h_email").on('keyup', function() {
             $('.add-label:last').text( $(this).val() );
         });
-        //advisor
-        function advisor() {
-            var s_advisor = $("#h_advisor").val();
-            if (s_advisor == '0'){
-                $(".karina").removeClass('d-none');
-                $(".paola").addClass('d-none');
-            }else{
-                $(".paola").removeClass('d-none');
-                $(".karina").addClass('d-none');
-            }
 
-        }
-
-        $(function () {
-            var $avatarImage, $avatarInput, $avatarForm;
-
-            $avatarImage = $('#avatarImage');
-            $avatarInput = $('#avatarInput');
-            $avatarForm = $('#avatarForm');
-
-            $avatarImage.on('click', function () {
-                $avatarInput.click();
-            });
-
-            $avatarInput.on('change', function () {
-                alert('change');
-            });
-        });
-
-        //formulario design
-        function message(){
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('[name="_token"]').val()
-                }
-            });
-
-            $("#submit_tip").attr("disabled", true);
-
-            var filter=/^[A-Za-z][A-Za-z0-9_.]*@[A-Za-z0-9_]+.[A-Za-z0-9_.]+[A-za-z]$/;
-
-            var s_day = document.getElementsByName('h_day[]');
-            var $day = "";
-            for (var i = 0, l = s_day.length; i < l; i++) {
-                if (s_day[i].valueOf()) {
-                    $day += s_day[i].value+'*';
-                }
-            }
-            s_day = $day.substring(0,$day.length-1);
-
-            var s_title = document.getElementsByName('h_title[]');
-            var $title = "";
-            for (var i = 0, l = s_title.length; i < l; i++) {
-                if (s_title[i].valueOf()) {
-                    $title += s_title[i].value+'*';
-                }
-            }
-            s_title = $title.substring(0,$title.length-1);
-
-            var s_resumen = document.getElementsByName('h_resumen[]');
-            var $resumen = "";
-            for (var i = 0, l = s_resumen.length; i < l; i++) {
-                if (s_resumen[i].valueOf()) {
-                    $resumen += s_resumen[i].value+'*';
-                }
-            }
-
-            s_resumen = $resumen.substring(0,$resumen.length-1);
-
-            var s_destinations = document.getElementsByName('destinations[]');
-            var $destinations = "";
-            for (var i = 0, l = s_destinations.length; i < l; i++) {
-                if (s_destinations[i]) {
-                    $destinations += s_destinations[i].value+'*';
-                }
-            }
-            s_destinations = $destinations.substring(0,$destinations.length-3);
-
-            var s_incluye = document.getElementsByName('incluye[]');
-            var $incluye = "";
-            for (var i = 0, l = s_incluye.length; i < l; i++) {
-                if (s_incluye[i]) {
-                    $incluye += s_incluye[i].value+'*';
-                }
-            }
-            s_incluye = $incluye.substring(0,$incluye.length-1);
-
-            var s_noincluye = document.getElementsByName('noincluye[]');
-            var $noincluye = "";
-            for (var i = 0, l = s_noincluye.length; i < l; i++) {
-                if (s_noincluye[i]) {
-                    $noincluye += s_noincluye[i].value+'*';
-                }
-
-            }
-            s_noincluye = $noincluye.substring(0,$noincluye.length-1);
-
-            var s_otros = document.getElementsByName('otros[]');
-            var $otros = "";
-            for (var i = 0, l = s_otros.length; i < l; i++) {
-                if (s_otros[i].checked) {
-                    $otros += s_otros[i].value+'*';
-                }
-            }
-            s_otros = $otros.substring(0,$otros.length-3);
-
-            var s_tratamiento = document.getElementsByName('tratamiento[]');
-            var $tratamiento = "";
-            for (var i = 0, l = s_tratamiento.length; i < l; i++) {
-                if (s_tratamiento[i].checked) {
-                    $tratamiento += s_tratamiento[i].value;
-                }
-            }
-            s_tratamiento = $tratamiento;
-
-            {{--var $itinerary = "";--}}
-            {{--var $k = '{{$k}}';--}}
-            {{--// var $hresumen = 'hresumen';--}}
-            {{--for (var i = 1, l = $k; i <= l; i++) {--}}
-                {{--$itinerary += $('#h_resumen_'+i).val()+'*';--}}
-            {{--}--}}
-            {{--s_itinerary = $itinerary.substring(0,$itinerary.length-1);--}}
-
-            {{--alert(s_itinerary);--}}
-
-            var s_idinquire = $("#id_inquire").val();
-            var s_email = $("#h_email").val();
-            var s_name = $("#h_name").val();
-            var s_category = $("#h_category").val();
-            var s_date = $("#h_date").val();
-            var s_days = $("#h_days").val();
-            var s_phone = $("#h_phone").val();
-
-            var s_precio_ch = $("#h_precio_ch").val();
-            var s_precio_sh = $("#h_precio_sh").val();
-            var s_precio_2 = $("#h_precio_2").val();
-            var s_precio_3 = $("#h_precio_3").val();
-            var s_precio_4 = $("#h_precio_4").val();
-            var s_precio_5 = $("#h_precio_5").val();
-
-            var s_file = $("#h_file:checked").val();
-
-            var s_economic = $("#h_economic:checked").val();
-            var s_tourist = $("#h_tourist:checked").val();
-            var s_superior = $("#h_superior:checked").val();
-            var s_luxury = $("#h_luxury:checked").val();
-
-            // var s_message = myEditor.getData();
-            // var s_message2 = myEditor2.getData();
-
-            var s_package = $("#sp_package").val();
-            var s_advisor = $("#h_advisor").val();
-
-            // var s_add = $("#h_add").val();
-            // var s_add = document.getElementById("h_add");
-            // var file = s_add.files[0];
-            // var s_advisor = $("#h_attach").val();
-            // var file_data = $('#h_attach').prop('files')[0];
-
-            // var file_data = document.getElementById("h_attach");
-            // var file = file_data.files[0];
-            // var data = new FormData(this.form);
-            // var s_attach = $("#h_attach").val();
-
-            // var data = new FormData();
-            // //Form data
-            // var form_data = $('#h_form').serializeArray();
-            // $.each(form_data, function (key, input) {
-            //     data.append(input.name, input.value);
-            // });
-            //
-            // //File data
-            // var file_data = $('input[name="h_attach"]')[0].files;
-            // for (var i = 0; i < file_data.length; i++) {
-            //     data.append("h_attach[]", file_data[i]);
-            // }
-            // //Custom data
-            // data.append('key', 'value');
-
-
-            var formData = new FormData();
-            formData.append('photo', $avatarInput[0].files[0]);
-
-
-
-            if (filter.test(s_email)){
-                sendMail = "true";
-            } else{
-                $('#h_email').css("border-bottom", "2px solid #FF0000");
-                sendMail = "false";
-            }
-            if (s_name.length == 0 ){
-                $('#h_name').css("border-bottom", "2px solid #FF0000");
-                var sendMail = "false";
-            }
-            if(sendMail == "true"){
-                var datos = {
-                    "txt_idinquire" : s_idinquire,
-                    "txt_day" : s_day,
-                    "txt_title" : s_title,
-                    "txt_resumen" : s_resumen,
-
-                    "txt_destinations" : s_destinations,
-
-                    "txt_incluye" : s_incluye,
-                    "txt_noincluye" : s_noincluye,
-
-                    "txt_email" : s_email,
-                    "txt_name" : s_name,
-                    "txt_category" : s_category,
-                    "txt_date" : s_date,
-                    "txt_days" : s_days,
-                    "txt_phone" : s_phone,
-
-                    "txt_precio_ch" : s_precio_ch,
-                    "txt_precio_sh" : s_precio_sh,
-
-                    "txt_precio_2" : s_precio_2,
-                    "txt_precio_3" : s_precio_3,
-                    "txt_precio_4" : s_precio_4,
-                    "txt_precio_5" : s_precio_5,
-
-                    "txt_economic" : s_economic,
-                    "txt_tourist" : s_tourist,
-                    "txt_superior" : s_superior,
-                    "txt_luxury" : s_luxury,
-
-                    "txt_file" : s_file,
-
-                    "txt_otros" : s_otros,
-
-                    // "txt_message" : s_message,
-                    // "txt_message2" : s_message2,
-
-                    "txt_package" : s_package,
-                    "txt_advisor" : s_advisor,
-                    // "txt_itinerary" : s_itinerary,
-                    "txt_tratamiento" : s_tratamiento
-
-                };
-                // data.append('hola',file);
-                // data.append('txt_idinquire', s_idinquire);
-                $.ajax({
-                    data:  data,
-                    // data:new FormData($("#upload_form")[0]),
-                    url:   $('#h_form').attr('action'),
-                    type:  'post',
-                    dataType: 'script',
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-
-                    beforeSend: function () {
-
-                        // $('#de_send').removeClass('show');
-                        $("#h_submit").addClass('d-none');
-                        $("#h_load").removeClass('d-none');
-                    },
-                    success:  function (response) {
-                        $('#h_form')[0].reset();
-                        $('#h_submit').removeClass('d-none');
-                        $("#h_load").addClass('d-none');
-                        $('#h_alert').removeClass('d-none');
-                        // $("#h_alert b").html(response);
-                        $("#h_alert").fadeIn('slow');
-                        $("#h_submit").removeAttr("disabled");
-                    }
-                });
-            } else{
-                $("#h_submit").removeAttr("disabled");
-            }
-        }
 
         $('.selectpicker').selectpicker();
 

@@ -1,73 +1,73 @@
-<p>{{$idinquire}}</p>
-<p>{{$sp_package}}</p>
-<p>{{$email_cliente}}</p>
-<p>{{$name_cliente}}</p>
-<p>{{$travellers}}</p>
-<p>{{$category}}</p>
-<p>{{$travel_date}}</p>
-<p>{{$duration}}</p>
-<p>{{$phone}}</p>
-<p>{{$destinations_i}}</p>
-<p>
-    @foreach($day as $days)
-        {{$days}}
-    @endforeach
-</p>
-<p>
-    @foreach($title as $titles)
-        {{$titles}}
-    @endforeach
-</p>
-<p>
-    @foreach($resumen as $resumens)
-        {{$resumens}}
-    @endforeach
-</p>
-<p>
-    @foreach($destinations as $destination)
-        {{$destination}}
-    @endforeach
-</p>
-<p>
-    @foreach($incluye as $incluyes)
-        {{$incluyes}}
-    @endforeach
-</p>
-<p>
-    @foreach($noincluye as $noincluyes)
-        {{$noincluyes}}
-    @endforeach
-</p>
+{{--<p>{{$idinquire}}</p>--}}
+{{--<p>{{$sp_package}}</p>--}}
+{{--<p>{{$email_cliente}}</p>--}}
+{{--<p>{{$name_cliente}}</p>--}}
+{{--<p>{{$travellers}}</p>--}}
+{{--<p>{{$category}}</p>--}}
+{{--<p>{{$travel_date}}</p>--}}
+{{--<p>{{$duration}}</p>--}}
+{{--<p>{{$phone}}</p>--}}
+{{--<p>{{$destinations_i}}</p>--}}
+{{--<p>--}}
+    {{--@foreach($day as $days)--}}
+        {{--{{$days}}--}}
+    {{--@endforeach--}}
+{{--</p>--}}
+{{--<p>--}}
+    {{--@foreach($title as $titles)--}}
+        {{--{{$titles}}--}}
+    {{--@endforeach--}}
+{{--</p>--}}
+{{--<p>--}}
+    {{--@foreach($resumen as $resumens)--}}
+        {{--{{$resumens}}--}}
+    {{--@endforeach--}}
+{{--</p>--}}
+{{--<p>--}}
+    {{--@foreach($destinations as $destination)--}}
+        {{--{{$destination}}--}}
+    {{--@endforeach--}}
+{{--</p>--}}
+{{--<p>--}}
+    {{--@foreach($incluye as $incluyes)--}}
+        {{--{{$incluyes}}--}}
+    {{--@endforeach--}}
+{{--</p>--}}
+{{--<p>--}}
+    {{--@foreach($noincluye as $noincluyes)--}}
+        {{--{{$noincluyes}}--}}
+    {{--@endforeach--}}
+{{--</p>--}}
 
 
-<p>{{$precio_ch}}</p>
-<p>{{$precio_sh}}</p>
+{{--<p>{{$precio_ch}}</p>--}}
+{{--<p>{{$precio_sh}}</p>--}}
 
-<p>{{$precio_2}}</p>
-<p>{{$precio_3}}</p>
-<p>{{$precio_4}}</p>
-<p>{{$precio_5}}</p>
+{{--<p>{{$precio_2}}</p>--}}
+{{--<p>{{$precio_3}}</p>--}}
+{{--<p>{{$precio_4}}</p>--}}
+{{--<p>{{$precio_5}}</p>--}}
 
 
-<p>{{$economic}}</p>
-<p>{{$tourist}}</p>
-<p>{{$superior}}</p>
-<p>{{$luxury}}</p>
+{{--<p>{{$economic}}</p>--}}
+{{--<p>{{$tourist}}</p>--}}
+{{--<p>{{$superior}}</p>--}}
+{{--<p>{{$luxury}}</p>--}}
 
 {{--<p>{{$otros}}</p>--}}
 
-<p>
-    @foreach($tratamiento as $tratamientos)
-        {{$tratamientos}}
-    @endforeach
-</p>
+{{--<p>--}}
+    {{--@foreach($tratamiento as $tratamientos)--}}
+        {{--{{$tratamientos}}--}}
+    {{--@endforeach--}}
+{{--</p>--}}
 
-<p>{{$presentation}}</p>
-<p>{{$farewell}}</p>
-<p>{{$email_a}}</p>
-<p>{{$name_a}}</p>
-<p>{{$codigo_p}}</p>
-<p>{{$titulo_p}}</p>
+{{--<p>{{$presentation}}</p>--}}
+{{--<p>{{$farewell}}</p>--}}
+{{--<p>{{$email_a}}</p>--}}
+{{--<p>{{$name_a}}</p>--}}
+{{--<p>{{$codigo_p}}</p>--}}
+{{--<p>{{$titulo_p}}</p>--}}
 {{--@extends('layouts.notifications.default')--}}
 {{--@section('content')--}}
     {{--<tr>--}}
@@ -126,9 +126,8 @@
                             <td style="padding:20px 0px 20px 50px">
                                 <p style="font-size:18px">
                                     <b>
-                                        Estimad
                                         @foreach($tratamiento as $tratamientos)
-                                            {{$tratamientos}}
+                                            Estimad{{$tratamientos}}
                                         @endforeach
                                     </b>: {{ucwords(strtolower($name_cliente))}}</p>
                                 <p>@php echo $presentation @endphp</p>
