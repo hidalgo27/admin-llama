@@ -212,7 +212,8 @@ class MessageController extends Controller
         if ($request->hasFile('h_attach')){
             $file_attach = $request->file('h_attach');
             $name_file = '.'.$file_attach->getClientOriginalExtension();
-            $file_add = $file_attach->storeAs('public', 'propuesta'.$idinquire.$name_file);
+            $file_attach->move(public_path().'/file/', 'propuesta'.$idinquire.$name_file);
+//            $file_add = $file_attach->storeAs('public', 'propuesta'.$idinquire.$name_file);
             $name_file_2 = 'propuesta'.$idinquire.$name_file;
         }else{
             $file_add = "0";
@@ -288,7 +289,7 @@ class MessageController extends Controller
                         $messaje->to($email_cliente, $name_cliente)
                             ->subject('Propuesta de viaje Llama.Tours')
                             ->cc($email_a, 'Propuesta de viaje Llama.Tours')
-                            ->attach(asset('storage/'.$name_file_2.''))
+                            ->attach(asset('file/'.$name_file_2.''))
                             ->from($email_a, 'Asesor Llama Tours');
 
                     }
@@ -306,7 +307,7 @@ class MessageController extends Controller
                             ->subject('Propuesta de viaje Llama.Tours')
                             ->cc($email_a, 'Propuesta de viaje Llama.Tours')
                             ->attach(asset('file/booking.pdf'))
-                            ->attach(asset('storage/'.$name_file_2.''))
+                            ->attach(asset('file/'.$name_file_2.''))
                             ->from($email_a, 'Asesor Llama Tours');
 
                     }
