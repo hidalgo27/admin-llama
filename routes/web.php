@@ -166,3 +166,8 @@ Route::get('/send/process', [
     'uses' => 'PaymentController@process',
     'as' => 'process_path',
 ]);
+
+Route::get('/pruebas', [
+    'uses' => 'MessageController@pruebas',
+    'as' => 'pruebas_path',
+]);

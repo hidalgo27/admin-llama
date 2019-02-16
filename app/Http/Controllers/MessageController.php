@@ -116,7 +116,222 @@ class MessageController extends Controller
         }
     }
 
-    public function message_mail()
+    public function pruebas(Request $request){
+        return view('page.pruebas');
+    }
+
+    public function message_mail(Request $request)
+    {
+        echo '<pre>';
+        print($_POST);
+//        print($_FILES);
+        echo '</pre>';
+        die();
+//        foreach ($_FILES['h_attach'] as $attach){
+//            echo $attach;
+//        }
+
+
+//        $path = public_path('images/');
+//        foreach ($_FILES["h_attach"]["error"] as $key => $error) {
+//            if ($error == UPLOAD_ERR_OK) {
+////                $name = $_FILES["h_attach"]["name"][$key];
+//                $temp = explode(".", $_FILES["h_attach"]["name"]);
+//                $newfilename = round(microtime(true)) . '.' . end($temp);
+//                move_uploaded_file( $_FILES["h_attach"]["tmp_name"][$key], "$path" . $_FILES['h_attach']['name'][$key]);
+//            }
+//        }
+
+
+
+        //obtenemos el campo file definido en el formulario
+//        $file = $request->file('lobo');
+////        $file = Request::file('h_attach')->first();
+////        $file = $_FILES["h_attach"]["tmp_name"][0];
+//
+//
+//        //obtenemos el nombre del archivo
+//        $nombre = $file->getClientOriginalName();
+//
+//        //indicamos que queremos guardar un nuevo archivo en el disco local
+//        \Storage::disk('local')->put($nombre,  \File::get($file));
+//
+//        return "archivo guardado";
+
+//        $file = $_FILES['h_attach'][0];
+//        echo $file;
+//        $extension = $file->getClientOriginalExtension();
+//        $fileName = auth()->id() . '.' . $extension;
+//        $path = public_path('images/users/'.$fileName);
+//
+//        $path = $file->store($path);
+//        return $path;
+
+//        $idinquire = $_POST['id_inquire'];
+//        $sp_package = $_POST['sp_package'];
+//        $email_cliente = $_POST['h_email'];
+//        $name_cliente = $_POST['h_name'];
+//        $travellers = $_POST['h_travellers'];
+//        $category = $_POST['h_category'];
+//        $travel_date = $_POST['h_date'];
+//
+//        $duration = $_POST['h_days'];
+//        $phone = $_POST['h_phone'];
+//        $destinations_i = $_POST['h_i_destinations'];
+//
+//        $day = $_POST['h_day'];
+//        $title = $_POST['h_title'];
+//        $resumen = $_POST['h_resumen'];
+//
+//        $destinations = $_POST['destinations'];
+//
+//        $incluye = $_POST['incluye'];
+//        $noincluye = $_POST['noincluye'];
+//
+//        $precio_ch = $_POST['h_precio_ch'];
+//        $precio_sh = $_POST['h_precio_sh'];
+//
+//        $precio_2 = $_POST['h_precio_2'];
+//        $precio_3 = $_POST['h_precio_3'];
+//        $precio_4 = $_POST['h_precio_4'];
+//        $precio_5 = $_POST['h_precio_5'];
+//
+//        if (isset($_POST['h_economic'])){
+//            $economic = $_POST['h_economic'];
+//        }else{
+//            $economic = "0";
+//        }
+//        if (isset($_POST['h_tourist'])){
+//            $tourist = $_POST['h_tourist'];
+//        }else{
+//            $tourist = "0";
+//        }
+//        if (isset($_POST['h_superior'])){
+//            $superior = $_POST['h_superior'];
+//        }else{
+//            $superior = "0";
+//        }
+//        if (isset($_POST['h_luxury'])){
+//            $luxury = $_POST['h_luxury'];
+//        }else{
+//            $luxury = "0";
+//        }
+//
+//        $otros = $_POST['otros'];
+//
+//        $h_advisor = $_POST['h_advisor'];
+//
+//        if (isset($_POST['h_booking'])){
+//            $h_booking = $_POST['h_booking'];
+//        }else{
+//            $h_booking = 0;
+//        }
+//
+//        $tratamiento = $_POST['tratamiento'];
+//        $advisor = $_POST['h_advisor'];
+//        $presentation = $_POST['h_txta_presentation'];
+//        $farewell = $_POST['h_txta_farewell'];
+//
+//
+//        $user = User::where('id', $advisor)->get();
+//        foreach ($user as $users) {
+//            $email_a = $users->email;
+//            $name_a = $users->name;
+//        }
+//
+//
+//        $package = TPaquete::where('id', $sp_package)->get();
+//        foreach ($package as $packages)
+//        {
+//            $codigo_p = $packages->codigo;
+//            $titulo_p = $packages->titulo;
+//        }
+//
+//        date_default_timezone_set('America/Lima');
+//        $date_res= date ("Y-m-d H:i:s");
+
+//        $p_inquire = TInquire::FindOrFail($idinquire);
+//        $p_inquire->presentation = $presentation;
+//        $p_inquire->farewell = $farewell;
+//        $p_inquire->response = $date_res;
+//        $p_inquire->estado = 2;
+//        $p_inquire->save();
+
+//        if($p_inquire->save()){
+//            try {
+//
+//                Mail::send(['html' => 'notifications.page.message'], [
+//                    'idinquire' => $idinquire,
+//                    'sp_package' => $sp_package,
+//                    'email_cliente' => $email_cliente,
+//                    'name_cliente' => $name_cliente,
+//                    'travellers' => $travellers,
+//                    'category' => $category,
+//                    'travel_date' => $travel_date,
+//
+//                    'duration' => $duration,
+//                    'phone' => $phone,
+//                    'destinations_i' => $destinations_i,
+//
+//                    'day' => $day,
+//                    'title' => $title,
+//                    'resumen' => $resumen,
+//
+//                    'destinations' => $destinations,
+//
+//                    'incluye' => $incluye,
+//                    'noincluye' => $noincluye,
+//
+//                    'precio_ch' => $precio_ch,
+//                    'precio_sh' => $precio_sh,
+//
+//                    'precio_2' => $precio_2,
+//                    'precio_3' => $precio_3,
+//                    'precio_4' => $precio_4,
+//                    'precio_5' => $precio_5,
+//
+//
+//                    'economic' => $economic,
+//                    'tourist' => $tourist,
+//                    'superior' => $superior,
+//                    'luxury' => $luxury,
+//
+//                    'otros' => $otros,
+//
+//                    'tratamiento' => $tratamiento,
+//                    'presentation' => $presentation,
+//                    'farewell' => $farewell,
+//
+//                    'email_a' => $email_a,
+//                    'name_a' => $name_a,
+//
+//                    'codigo_p' => $codigo_p,
+//                    'titulo_p' => $titulo_p
+//
+//                ], function ($messaje) use ($email_cliente, $email_a, $name_cliente, $h_booking) {
+//                    if ($h_booking == 0){
+//                        $messaje->to($email_cliente, $name_cliente)
+//                            ->subject('Propuesta de viaje Llama.Tours')
+//                            ->cc($email_a, 'Propuesta de viaje Llama.Tours')
+//                            ->from($email_a, 'Asesor Llama Tours');
+//                    }else{
+//                        $messaje->to($email_cliente, $name_cliente)
+//                            ->subject('Propuesta de viaje Llama.Tours')
+//                            ->cc($email_a, 'Propuesta de viaje Llama.Tours')
+//                            ->attach(asset('file/booking.pdf'))
+//                            ->from($email_a, 'Asesor Llama Tours');
+//                    }
+//                });
+//
+//            }
+//            catch (Exception $e){
+//                return $e;
+//            }
+//        }
+
+    }
+
+    public function message_mail_asas()
     {
         $from = 'hidalgochpnce@gmail.com';
         $from2 = 'paul@gotoperu.com';
@@ -200,7 +415,6 @@ class MessageController extends Controller
             $name_a = "Martin";
         }
 
-
         foreach ($package as $packages)
         {
             $codigo_p = $packages->codigo;
@@ -218,63 +432,6 @@ class MessageController extends Controller
 
         if($p_inquire->save()){
             try {
-
-//            Mail::send(['html' => 'notifications.page.client-form-design'], ['name' => $name], function ($messaje) use ($email, $name) {
-//                $messaje->to($email, $name)
-//                    ->subject('GotoPeru')
-//                    /*->attach('ruta')*/
-//                    ->from('info@gotoperu.com', 'GotoPeru');
-//            });
-
-
-//                Mail::send(['html' => 'notifications.page.message'], [
-//                    'day' => $day,
-//                    'title' => $title,
-//                    'resumen' => $resumen,
-////                'itinerary' => $itinerary,
-//                    'destinations' => $destinations,
-//                    'incluye' => $incluye,
-//                    'noincluye' => $noincluye,
-//                    'email' => $email,
-//                    'name' => $name,
-//                    'category' => $category,
-//                    'date' => $date,
-//                    'phone' => $phone,
-//                    'precio_ch' => $precio_ch,
-//                    'precio_sh' => $precio_sh,
-//                    'precio_2' => $precio_2,
-//                    'precio_3' => $precio_3,
-//                    'precio_4' => $precio_4,
-//                    'precio_5' => $precio_5,
-//
-//                    'economic' => $economic,
-//                    'tourist' => $tourist,
-//                    'superior' => $superior,
-//                    'luxury' => $luxury,
-//
-//                    'otros' => $otros,
-//                    'codigo_p' => $codigo_p,
-//                    'titulo_p' => $titulo_p,
-//
-//                    'email_a' => $email_a,
-//                    'name_a' => $name_a,
-//
-//                    'messagess' => $messagess,
-//                    'messagess2' => $messagess2,
-//                    'tratamiento' => $tratamiento
-//                ], function ($messaje) use ($email_a, $email, $txt_file) {
-//                    if ($txt_file == 0){
-//                        $messaje->to($email_a, 'Llama Tours')
-//                            ->subject('Propuesta Llama Tours')
-//                            /*->attach('ruta')*/
-//                            ->from($email, 'Llama Tours');
-//                    }else{
-//                        $messaje->to($email_a, 'Llama Tours')
-//                            ->subject('Propuesta Llama Tours')
-//                            ->attach(asset('file/booking.pdf'))
-//                            ->from($email, 'Llama Tours');
-//                    }
-//                });
 
                 Mail::send(['html' => 'notifications.page.message'], [
                     'day' => $day,
@@ -326,27 +483,6 @@ class MessageController extends Controller
                     }
                 });
 
-
-//            Mail::send(['html' => 'notifications.page.admin-form-inquire'], [
-//                'accommodation' => $accommodation,
-//                'number' => $number,
-//
-//                'date' => $date,
-//                'tel' => $tel,
-//                'name' => $name,
-//                'email' => $email,
-//                'package' => $package,
-//                'comment' => $comment
-//            ], function ($messaje) use ($from2) {
-//                $messaje->to($from2, 'GotoPeru')
-//                    ->subject('GOTOPERU')
-//                    /*->attach('ruta')*/
-//                    ->from('hidalgochpnce@gmail.com', 'GotoPeru');
-//            });
-
-
-//                return 'Thank you.';
-//
             }
             catch (Exception $e){
                 return $e;

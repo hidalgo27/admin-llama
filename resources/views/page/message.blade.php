@@ -1,8 +1,8 @@
 @extends('layouts.default')
 @section('content')
-    <div class="row sticky-top sticky-top-50 bg-white">
+    <div class="row bg-white">
         <div class="col">
-            <div class="mail-option py-2 mb-0">
+            <div class="mail-option pt-2 mb-0">
                 {{--<div class="chk-all">--}}
                 {{--<input type="checkbox" class="mail-checkbox mail-group-checkbox">--}}
                 {{--<div class="btn-group">--}}
@@ -42,202 +42,208 @@
             </div>
         </div>
     </div>
-    <form id="h_form" role="form" enctype="multipart/form-data">
+    <form id="h_form" action="{{route('message_mail_path')}}" role="form" enctype="multipart/form-data">
         {{csrf_field()}}
         @foreach($inquire as $inquires)
+            <input type="hidden" id="id_inquire" name="id_inquire" value="{{$inquires->id}}">
+            @if ($inquires->id_paquetes == 0)
+                <div class="row mt-3 justify-content-center d-none" id="sp_alert">
+                    <div class="col-10">
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <b class="d-block"><strong>Asignacion completa</strong> de paquete. :)</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-3 align-items-center">
+                    <div class="col">
+                        <select class="selectpicker w-100" data-live-search="true" onchange="save_package({{$inquires->id}})" id="sp_package" name="sp_package">
+                            @foreach($package as $pack)
+                                <option data-tokens="ketchup mustard" value="{{$pack->id}}">{{$pack->codigo}}: {{$pack->titulo}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <i class="fas fa-spinner fa-pulse fa-2x text-primary d-none" id="sp_load"></i>
+            @else
+
+                <div class="row my-3 align-items-center">
+                        @foreach($package->where('id', $inquires->id_paquetes) as $packages)
+
+                        @endforeach
+
+                    <div class="col">
+                        {{--<select class="selectpicker w-100" data-live-search="true" onchange="location = this.value;" id="h_package">--}}
+                            <select class="selectpicker w-100" data-live-search="true" onchange="save_package({{$inquires->id}})" id="sp_package" name="sp_package">
+
+                            @foreach($package as $pack)
+                                @if ($pack->id == $id_paquete)
+                                    @php
+                                        $selected = "selected";
+                                    @endphp
+                                @else
+                                    @php
+                                        $selected = "";
+                                    @endphp
+                                @endif
+                                <option data-tokens="ketchup mustard" value="{{$pack->id}}" {{$selected}}>{{$pack->codigo}}: {{$pack->titulo}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                </div>
+            @endif
         @endforeach
 
-        <input type="hidden" id="id_inquire" value="{{$inquires->id}}">
-
-        @if ($inquires->id_paquetes == 0)
-            <div class="row mt-3 justify-content-center d-none" id="sp_alert">
-                <div class="col-10">
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <b class="d-block"><strong>Asignacion completa</strong> de paquete. :)</b>
+        <div class="row my-4 sticky-top sticky-top-50">
+            <div class="col">
+                <div class="card light-green accent-1">
+                    <div class="card-body  py-2">
+                        <div class="row small">
+                            <div class="col-4">
+                                <b>Email:</b> {{strtolower($inquires->email)}}
+                            </div>
+                            <div class="col-4">
+                                <b>Name:</b> {{$inquires->name}}
+                            </div>
+                            <div class="col-4">
+                                <b>Phone </b> <small>{{$inquires->city}}</small> {{$inquires->phone}}
+                            </div>
+                            <div class="col-4">
+                                <b>Travellers:</b> {{$inquires->traveller}}
+                            </div>
+                            <div class="col-4">
+                                <b>Category:</b> {{$inquires->category}}
+                            </div>
+                            <div class="col-4">
+                                <b>Travel Date:</b> {{$inquires->traveldate}}
+                            </div>
+                            <div class="col-4">
+                                <b>Durations</b> {{$inquires->duration}} days
+                            </div>
+                            <div class="col-4">
+                                <b>Destiantions: </b> {{$inquires->destinations}}
+                            </div>
+                            <div class="col-12">
+                                <b>Message:</b> {{$inquires->comments}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row my-3 align-items-center">
-                <div class="col">
-                    <select class="selectpicker w-100" data-live-search="true" onchange="save_package({{$inquires->id}})" id="sp_package">
-                        @foreach($package as $pack)
-                            <option data-tokens="ketchup mustard" value="{{$pack->id}}">{{$pack->codigo}}: {{$pack->titulo}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <i class="fas fa-spinner fa-pulse fa-2x text-primary d-none" id="sp_load"></i>
-        @else
+        </div>
 
-            <div class="row my-3 align-items-center">
-                    @foreach($package->where('id', $inquires->id_paquetes) as $packages)
-
-                    @endforeach
-
-                <div class="col">
-                    {{--<select class="selectpicker w-100" data-live-search="true" onchange="location = this.value;" id="h_package">--}}
-                        <select class="selectpicker w-100" data-live-search="true" onchange="save_package({{$inquires->id}})" id="sp_package">
-
-                        @foreach($package as $pack)
-                            @if ($pack->id == $id_paquete)
-                                @php
-                                    $selected = "selected";
-                                @endphp
-                            @else
-                                @php
-                                    $selected = "";
-                                @endphp
-                            @endif
-                            <option data-tokens="ketchup mustard" value="{{$pack->id}}" {{$selected}}>{{$pack->codigo}}: {{$pack->titulo}}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-            </div>
+        <input type="hidden" id="h_email" name="h_email" class="form-control validate" value="{{strtolower($inquires->email)}}">
+        <input type="hidden" id="h_name" name="h_name" class="form-control validate" value="{{$inquires->name}}">
+        <input type="hidden" id="h_name" name="h_travellers" class="form-control validate" value="{{$inquires->traveller}}">
+        <input type="hidden" id="h_category" name="h_category" class="form-control validate" value="{{$inquires->category}}">
+        <input type="hidden" id="h_date" name="h_date" class="form-control validate" value="{{$inquires->traveldate}}">
+        <input type="hidden" id="h_days" name="h_days" class="form-control validate" value="{{$inquires->duration}}">
+        <input type="hidden" id="h_phone" name="h_phone" class="form-control validate" value="{{$inquires->phone}}">
+        @if ($inquires->destinations)
+            <input type="hidden" id="h_i_destinations" name="h_i_destinations" value="{{$inquires->destinations}}">
         @endif
-        <div class="row my-5">
-            <div class="col">
-                <div class="card yellow">
-                    <div class="card-body">
-                        {{$inquires->comments}}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-5">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
 
-                            <div class="row">
-                                <div class="col md-form form-group">
-                                    <i class="fa fa-envelope prefix grey-text"></i>
-                                    <input type="email" id="h_email" class="form-control validate" value="{{strtolower($inquires->email)}}">
-                                    <label for="h_email" data-error="wrong" data-success="right">Email</label>
-                                </div>
-                                <div class="col md-form form-group">
-                                    <i class="fa fa-user prefix grey-text"></i>
-                                    <input type="text" id="h_name" class="form-control validate" value="{{$inquires->name}}">
-                                    <label for="h_name" data-error="wrong" data-success="right">Traveller Name</label>
-                                </div>
-                                <div class="col-3 md-form form-group">
-                                    <i class="fa fa-users prefix grey-text"></i>
-                                    <input type="text" id="h_name" class="form-control validate" value="{{$inquires->traveller}}">
-                                    <label for="h_name" data-error="wrong" data-success="right">Travellers</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col md-form form-group">
-                                    <i class="fa fa-bookmark prefix grey-text"></i>
-                                    <input type="text" id="h_category" class="form-control validate" value="{{$inquires->category}}">
-                                    <label for="h_category" data-error="wrong" data-success="right">Category</label>
-                                </div>
-                                <div class="col md-form form-group">
-                                    <i class="fa fa-calendar prefix grey-text"></i>
-                                    <input type="text" id="h_date" class="form-control validate" value="{{$inquires->traveldate}}">
-                                    <label for="h_date" data-error="wrong" data-success="right">Travel Date</label>
-                                </div>
-                                <div class="col md-form form-group">
-                                    <i class="fa fa-calendar-alt prefix grey-text"></i>
-                                    <input type="text" id="h_days" class="form-control validate" value="{{$inquires->duration}}">
-                                    <label for="h_days" data-error="wrong" data-success="right">Durations (days)</label>
-                                </div>
-                                <div class="col md-form form-group">
-                                    <i class="fa fa-phone prefix grey-text"></i>
-                                    <input type="text" id="h_phone" class="form-control validate" value="{{$inquires->phone}}">
-                                    <label for="h_phone" data-error="wrong" data-success="right">Number Phone</label>
-                                </div>
-                            </div>
-                        @if ($inquires->destinations)
-                            <div class="row">
-                                <div class="col">
-                                    <div class="alert alert-primary">
-                                        <i class="fas fa-map-marker-alt"></i> {{$inquires->destinations}}.
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
         @php $k=0; @endphp
         @if ($inquires->id_paquetes > 0)
-        <div class="row mb-5">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="col">
+            <!--Accordion wrapper-->
+            <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
 
-                            @foreach($itinerary as $itin)
-                                <div class="row mt-4 align-items-center no-gutters">
-                                    <div class="col">
-                                        <div class="row">
-                                            <div class="col-1">
-                                                <div class="md-form form-lg">
-                                                    <input type="text" id="h_day_{{$itin->id}}" name="h_day[]" class="form-control form-control-lg font-weight-bold dark-grey-text" value="{{$itin->dia}}">
-                                                    <label for="h_day_{{$itin->id}}">Day</label>
+                <!-- Accordion card -->
+                <div class="card">
+
+                    <!-- Card header -->
+                    <div class="card-header" role="tab" id="headingOne1">
+                        <a data-toggle="collapse" data-parent="#accordionEx" href="#intinerary" aria-expanded="true"
+                           aria-controls="intinerary">
+                            <h5 class="mb-0 font-weight-bold light-blue-text darken-4">
+                                Itinerary <i class="fas fa-angle-down rotate-icon"></i>
+                            </h5>
+                        </a>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="intinerary" class="collapse" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
+                        <div class="card-body">
+                            <div class="col">
+                                @foreach($itinerary as $itin)
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <div class="md-form form-lg">
+                                                        <input type="text" id="h_day_{{$itin->id}}" name="h_day[]" class="form-control form-control-lg font-weight-bold dark-grey-text" value="{{$itin->dia}}">
+                                                        <label for="h_day_{{$itin->id}}">Day</label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="md-form form-lg">
-                                                    <input type="text" id="h_title_{{$itin->id}}" name="h_title[]" class="form-control form-control-lg font-weight-bold orange-text" value="{{ucwords(strtolower($itin->titulo))}}">
-                                                    <label for="h_title_{{$itin->id}}">Title</label>
+                                                <div class="col">
+                                                    <div class="md-form form-lg">
+                                                        <input type="text" id="h_title_{{$itin->id}}" name="h_title[]" class="form-control form-control-lg font-weight-bold orange-text" value="{{ucwords(strtolower($itin->titulo))}}">
+                                                        <label for="h_title_{{$itin->id}}">Title</label>
+                                                    </div>
+                                                    {{--Day 1: Cusco Arrival --}}
+                                                    {{--<span class="badge badge-dark">$1200<small>USD</small></span>--}}
                                                 </div>
+                                                {{--<div class="col-3">--}}
+                                                {{--<div class="md-form form-lg">--}}
+                                                {{--<input type="text" id="inputLGEx" class="form-control form-control-lg" value="1289">--}}
+                                                {{--<label for="inputLGEx">Price <small>(USD$)</small></label>--}}
+                                                {{--</div>--}}
+                                                {{--</div>--}}
                                                 {{--Day 1: Cusco Arrival --}}
                                                 {{--<span class="badge badge-dark">$1200<small>USD</small></span>--}}
-                                            </div>
-                                            {{--<div class="col-3">--}}
-                                            {{--<div class="md-form form-lg">--}}
-                                            {{--<input type="text" id="inputLGEx" class="form-control form-control-lg" value="1289">--}}
-                                            {{--<label for="inputLGEx">Price <small>(USD$)</small></label>--}}
-                                            {{--</div>--}}
-                                            {{--</div>--}}
-                                            {{--Day 1: Cusco Arrival --}}
-                                            {{--<span class="badge badge-dark">$1200<small>USD</small></span>--}}
 
-                                            <div class="col-12">
-                                                <div class="md-form mt-0">
-                                                    <textarea id="editor-{{$itin->id}}" name="h_resumen[]" class="editor-{{$itin->id}}" rows="2">{{$itin->resumen}}</textarea>
-                                                    {{--<input type="hidden" id="h_resumen" name="h_resumen[]" value="{{$itin->resumen}}">--}}
-                                                    {{--@php echo $itin->resumen @endphp--}}
-                                                    {{--<label for="text2">Auto-resizing textarea</label>--}}
+                                                <div class="col-12">
+                                                    <div class="md-form mt-0">
+                                                        <textarea id="editor-{{$itin->id}}" name="h_resumen[]" class="editor-{{$itin->id}}" rows="2">{{$itin->resumen}}</textarea>
+                                                        {{--<input type="hidden" id="h_resumen" name="h_resumen[]" value="{{$itin->resumen}}">--}}
+                                                        {{--@php echo $itin->resumen @endphp--}}
+                                                        {{--<label for="text2">Auto-resizing textarea</label>--}}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-auto field_itinerary">
+                                            <a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>
+                                        </div>
                                     </div>
-                                    <div class="col-auto field_itinerary">
-                                        <a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>
-                                    </div>
+                                    @php $k++; @endphp
+                                @endforeach
+
+                                <div class="field_itinerary2">
+
                                 </div>
-                                @php $k++; @endphp
-                            @endforeach
 
-                            <div class="field_itinerary2">
-
+                                <a href="javascript:void(0);" class="add_btn_itinerary" title="Add field"><i class="fas fa-plus text-success"></i></a>
                             </div>
 
-                            <a href="javascript:void(0);" class="add_btn_itinerary" title="Add field"><i class="fas fa-plus text-success"></i></a>
                         </div>
-
                     </div>
+
                 </div>
-            </div>
-        </div>
-        <div class="row mb-5">
-            <div class="col">
+                <!-- Accordion card -->
+
+                <!-- Accordion card -->
                 <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col">
-                                <h5 class="font-weight-bold orange-text">Destinations</h5>
-                                @foreach($paquete_destino as $paquete_destinos)
+
+                    <!-- Card header -->
+                    <div class="card-header" role="tab" id="headingTwo2">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#destinations"
+                           aria-expanded="false" aria-controls="destinations">
+                            <h5 class="mb-0 font-weight-bold light-blue-text darken-4">
+                                Destinations <i class="fas fa-angle-down rotate-icon"></i>
+                            </h5>
+                        </a>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="destinations" class="collapse" role="tabpanel" aria-labelledby="headingTwo2" data-parent="#accordionEx">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    @foreach($paquete_destino as $paquete_destinos)
 
                                         <div class="row field_wrapper align-items-center md-form px-3 my-1">
                                             {{--<input type="hidden" id="destinos_{{$paquete_destinos->id}}" name="destinations[]" value="{{$paquete_destinos->destinos->id}}">--}}
@@ -246,196 +252,223 @@
                                             <a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>
                                         </div>
 
-                                @endforeach
+                                    @endforeach
 
-                                <div class="field_wrapper2">
-                                    <div>
-                                        {{--<input type="text" name="field_name[]" value=""/>--}}
+                                    <div class="field_wrapper2">
+                                        <div>
+                                            {{--<input type="text" name="field_name[]" value=""/>--}}
+                                        </div>
                                     </div>
-                                </div>
-                                <a href="javascript:void(0);" class="add_button" title="Add field"><i class="fas fa-plus text-success"></i></a>
-                                {{--<input type="text" id="q2">--}}
+                                    <a href="javascript:void(0);" class="add_button" title="Add field"><i class="fas fa-plus text-success"></i></a>
+                                    {{--<input type="text" id="q2">--}}
 
-                                {{--{{ Form::open(['action' => ['SearchController@searchUser'], 'method' => 'GET']) }}--}}
-                                {{--{{ Form::text('q', '', ['id' =>  'q', 'placeholder' =>  'Enter name'])}}--}}
-                                {{--{{ Form::submit('Search', array('class' => 'button expand')) }}--}}
-                                {{--{{ Form::close() }}--}}
+                                    {{--{{ Form::open(['action' => ['SearchController@searchUser'], 'method' => 'GET']) }}--}}
+                                    {{--{{ Form::text('q', '', ['id' =>  'q', 'placeholder' =>  'Enter name'])}}--}}
+                                    {{--{{ Form::submit('Search', array('class' => 'button expand')) }}--}}
+                                    {{--{{ Form::close() }}--}}
 
 
                                     {{--<input type="text" name="q" value="" id="q" class="form-control form-control-sm col autocomplete"/>--}}
 
-                                {{--<div class="row align-items-center md-form w-25 px-3 my-2">--}}
+                                    {{--<div class="row align-items-center md-form w-25 px-3 my-2">--}}
                                     {{--<input type="text" name="field_name[]" value="" id="q" class="form-control form-control-sm col "/>--}}
-                                {{--</div>--}}
+                                    {{--</div>--}}
 
 
 
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
-            </div>
-        </div>
-        <div class="row mb-5">
-            <div class="col">
+                <!-- Accordion card -->
+
+                <!-- Accordion card -->
                 <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-12">
-                                <h5 class="font-weight-bold orange-text">Included</h5>
-                                @foreach($incluye as $incluidos)
-                                    <div class="row field_included align-items-center md-form px-3 my-1">
-                                        <input type="text" class="form-control form-control-sm col autocomplete_included" id="incluye_{{$incluidos->id}}" name="incluye[]" value="{{$incluidos->incluye}}">
-                                        {{--<label class="custom-control-label" for="incluye_{{$incluidos->id}}">{{$incluidos->incluye}}</label>--}}
-                                        <a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>
+
+                    <!-- Card header -->
+                    <div class="card-header" role="tab" id="headingThree3">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#included"
+                           aria-expanded="false" aria-controls="included">
+                            <h5 class="mb-0 font-weight-bold light-blue-text darken-4">
+                                Included and not included <i class="fas fa-angle-down rotate-icon"></i>
+                            </h5>
+                        </a>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="included" class="collapse" role="tabpanel" aria-labelledby="headingThree3" data-parent="#accordionEx">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="font-weight-bold orange-text">Included</h5>
+                                    @foreach($incluye as $incluidos)
+                                        <div class="row field_included align-items-center md-form px-3 my-1">
+                                            <input type="text" class="form-control form-control-sm col autocomplete_included" id="incluye_{{$incluidos->id}}" name="incluye[]" value="{{$incluidos->incluye}}">
+                                            {{--<label class="custom-control-label" for="incluye_{{$incluidos->id}}">{{$incluidos->incluye}}</label>--}}
+                                            <a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>
+                                        </div>
+                                    @endforeach
+                                    <div class="field_included2">
+                                        <div>
+                                            {{--<input type="text" name="field_name[]" value=""/>--}}
+                                        </div>
                                     </div>
-                                @endforeach
-                                <div class="field_included2">
-                                    <div>
-                                        {{--<input type="text" name="field_name[]" value=""/>--}}
-                                    </div>
+                                    <a href="javascript:void(0);" class="add_btn_included" title="Add field"><i class="fas fa-plus text-success"></i></a>
                                 </div>
-                                <a href="javascript:void(0);" class="add_btn_included" title="Add field"><i class="fas fa-plus text-success"></i></a>
-                            </div>
-                            <div class="col-12 mt-3">
-                                <h5 class="font-weight-bold orange-text">Not Included</h5>
-                                @foreach($no_incluye as $no_incluidos)
-                                    <div class="row field_no_included align-items-center md-form px-3 my-1">
-                                        <input type="text" class="form-control form-control-sm col autocomplete_no_included" id="no_incluye_{{$no_incluidos->id}}" name="noincluye[]" value="{{$no_incluidos->noincluye}}">
-{{--                                        <label class="custom-control-label" for="no_incluye_{{$no_incluidos->id}}">{{$no_incluidos->noincluye}}</label>--}}
-                                        <a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>
+                                <div class="col-12 mt-3">
+                                    <h5 class="font-weight-bold orange-text">Not Included</h5>
+                                    @foreach($no_incluye as $no_incluidos)
+                                        <div class="row field_no_included align-items-center md-form px-3 my-1">
+                                            <input type="text" class="form-control form-control-sm col autocomplete_no_included" id="no_incluye_{{$no_incluidos->id}}" name="noincluye[]" value="{{$no_incluidos->noincluye}}">
+                                            {{--                                        <label class="custom-control-label" for="no_incluye_{{$no_incluidos->id}}">{{$no_incluidos->noincluye}}</label>--}}
+                                            <a href="javascript:void(0);" class="remove_button col-auto" title="Remove field"> <i class="fas fa-times text-danger"></i></a>
+                                        </div>
+                                    @endforeach
+                                    <div class="field_no_included2">
+                                        <div>
+                                            {{--<input type="text" name="field_name[]" value=""/>--}}
+                                        </div>
                                     </div>
-                                @endforeach
-                                <div class="field_no_included2">
-                                    <div>
-                                        {{--<input type="text" name="field_name[]" value=""/>--}}
-                                    </div>
+                                    <a href="javascript:void(0);" class="add_btn_no_included" title="Add field"><i class="fas fa-plus text-success"></i></a>
                                 </div>
-                                <a href="javascript:void(0);" class="add_btn_no_included" title="Add field"><i class="fas fa-plus text-success"></i></a>
                             </div>
                         </div>
                     </div>
+
                 </div>
-            </div>
-        </div>
-        <div class="row mb-5">
-            <div class="col">
+                <!-- Accordion card -->
+
+                <!-- Accordion card -->
                 <div class="card">
-                    <div class="card-body">
-                        <h5 class="font-weight-bold orange-text">Prices</h5>
-                        <div class="alert alert-primary">
-                            * Si desea puede reservar las actividades por separado
-                        </div>
-                        <div class="card-deck mb-3 text-center">
-                            <div class="card shadow-sm">
-                                <div class="card-header">
-                                    <h4 class="my-0 font-weight-normal">With Hotels</h4>
-                                </div>
-                                <div class="card-body">
-                                    <h1 class="card-title pricing-card-title">
-                                        <div class="md-form input-group input-group-lg mt-0 mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">$</span>
-                                            </div>
-                                            @foreach($price as $prices)
-                                                @if ($prices->estrellas == 2)
-                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_ch" value="{{$prices->precio_d}}">
-                                                @endif
-                                            @endforeach
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">USD</span>
-                                            </div>
-                                        </div>
-                                        <small class="text-muted"></small></h1>
-                                    <ul class="list-unstyled mt-3 mb-4">
-                                        <li class="text-primary">Price per person.</li>
-                                        {{--<li>2 GB of storage</li>--}}
-                                        {{--<li>Email support</li>--}}
-                                        {{--<li>Help center access</li>--}}
-                                    </ul>
-                                    {{--<button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>--}}
-                                </div>
+
+                    <!-- Card header -->
+                    <div class="card-header" role="tab" id="headingTwo2">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#prices"
+                           aria-expanded="false" aria-controls="prices">
+                            <h5 class="mb-0 font-weight-bold light-blue-text darken-4">
+                                Prices <i class="fas fa-angle-down rotate-icon"></i>
+                            </h5>
+                        </a>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="prices" class="collapse" role="tabpanel" aria-labelledby="headingTwo2" data-parent="#accordionEx">
+                        <div class="card-body">
+                            <div class="alert alert-primary">
+                                * Si desea puede reservar las actividades por separado
                             </div>
-                            <div class="card shadow-sm">
-                                <div class="card-header">
-                                    <h4 class="my-0 font-weight-normal">Without Hotels</h4>
-                                </div>
-                                <div class="card-body">
-                                    <h1 class="card-title pricing-card-title">
-                                        <div class="md-form input-group input-group-lg mt-0 mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">$</span>
-                                            </div>
-                                            <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_sh" value="{{$packages->d_precio}}">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">USD</span>
-                                            </div>
-                                        </div>
-                                    </h1>
-                                    <ul class="list-unstyled mt-3 mb-4">
-                                        <li class="text-primary">Price per person.</li>
-                                        {{--<li>10 GB of storage</li>--}}
-                                        {{--<li>Priority email support</li>--}}
-                                        {{--<li>Help center access</li>--}}
-                                    </ul>
-                                    {{--<button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>--}}
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <h5 class="font-weight-bold orange-text mt-5">Upgrades Opcionales</h5>
-                        <p>Precios basados en doble acomodación</p>
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr class="bg-dark text-white text-center">
-                                <th scope="col">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="h_economic" value="economic" checked>
-                                        <label class="custom-control-label" for="h_economic">Economic</label>
+                            <div class="card-deck mb-3 text-center">
+                                <div class="card shadow-sm">
+                                    <div class="card-header">
+                                        <h4 class="my-0 font-weight-normal">With Hotels</h4>
                                     </div>
-                                </th>
-                                <th scope="col">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="h_tourist" value="tourist" checked>
-                                        <label class="custom-control-label" for="h_tourist">Tourist</label>
-                                    </div>
-                                </th>
-                                <th scope="col">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="h_superior" value="superior" checked>
-                                        <label class="custom-control-label" for="h_superior">Superior</label>
-                                    </div>
-                                </th>
-
-                                <th scope="col">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="h_luxury" value="luxury" checked>
-                                        <label class="custom-control-label" for="h_luxury">Luxury</label>
-                                    </div>
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-
-                            <tr class="text-center">
-                                @foreach($price as $prices)
-                                    @if ($prices->estrellas == 2)
-                                        <td>
-                                            <div class="md-form input-group input-group-sm mt-0 mb-3">
+                                    <div class="card-body">
+                                        <h1 class="card-title pricing-card-title">
+                                            <div class="md-form input-group input-group-lg mt-0 mb-3">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">$</span>
                                                 </div>
-
-                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_2" value="{{$prices->precio_d}}">
+                                                @foreach($price as $prices)
+                                                    @if ($prices->estrellas == 2)
+                                                        <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_ch" name="h_precio_ch" value="{{$prices->precio_d}}">
+                                                    @endif
+                                                @endforeach
                                                 <div class="input-group-append">
                                                     <span class="input-group-text">USD</span>
                                                 </div>
                                             </div>
-                                        </td>
-                                    @endif
-                                @endforeach
+                                            <small class="text-muted"></small></h1>
+                                        <ul class="list-unstyled mt-3 mb-4">
+                                            <li class="text-primary">Price per person.</li>
+                                            {{--<li>2 GB of storage</li>--}}
+                                            {{--<li>Email support</li>--}}
+                                            {{--<li>Help center access</li>--}}
+                                        </ul>
+                                        {{--<button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>--}}
+                                    </div>
+                                </div>
+                                <div class="card shadow-sm">
+                                    <div class="card-header">
+                                        <h4 class="my-0 font-weight-normal">Without Hotels</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <h1 class="card-title pricing-card-title">
+                                            <div class="md-form input-group input-group-lg mt-0 mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">$</span>
+                                                </div>
+                                                <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_sh" name="h_precio_sh" value="{{$packages->d_precio}}">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">USD</span>
+                                                </div>
+                                            </div>
+                                        </h1>
+                                        <ul class="list-unstyled mt-3 mb-4">
+                                            <li class="text-primary">Price per person.</li>
+                                            {{--<li>10 GB of storage</li>--}}
+                                            {{--<li>Priority email support</li>--}}
+                                            {{--<li>Help center access</li>--}}
+                                        </ul>
+                                        {{--<button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>--}}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <h5 class="font-weight-bold orange-text mt-5">Upgrades Opcionales</h5>
+                            <p>Precios basados en doble acomodación</p>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="bg-dark text-white text-center">
+                                    <th scope="col">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="h_economic" name="h_economic" value="economic" checked>
+                                            <label class="custom-control-label" for="h_economic">Economic</label>
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="h_tourist" name="h_tourist" value="tourist" checked>
+                                            <label class="custom-control-label" for="h_tourist">Tourist</label>
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="h_superior" name="h_superior" value="superior" checked>
+                                            <label class="custom-control-label" for="h_superior">Superior</label>
+                                        </div>
+                                    </th>
+
+                                    <th scope="col">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="h_luxury" name="h_luxury" value="luxury" checked>
+                                            <label class="custom-control-label" for="h_luxury">Luxury</label>
+                                        </div>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+
+                                <tr class="text-center">
+                                    @foreach($price as $prices)
+                                        @if ($prices->estrellas == 2)
+                                            <td>
+                                                <div class="md-form input-group input-group-sm mt-0 mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">$</span>
+                                                    </div>
+
+                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_2" name="h_precio_2" value="{{$prices->precio_d}}">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">USD</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        @endif
+                                    @endforeach
                                     @foreach($price as $prices)
                                         @if ($prices->estrellas == 3)
                                             <td>
@@ -444,7 +477,7 @@
                                                         <span class="input-group-text">$</span>
                                                     </div>
 
-                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_3" value="{{$prices->precio_d}}">
+                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_3" name="h_precio_3" value="{{$prices->precio_d}}">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">USD</span>
                                                     </div>
@@ -460,7 +493,7 @@
                                                         <span class="input-group-text">$</span>
                                                     </div>
 
-                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_4" value="{{$prices->precio_d}}">
+                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_4" name="h_precio_4" value="{{$prices->precio_d}}">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">USD</span>
                                                     </div>
@@ -476,7 +509,7 @@
                                                         <span class="input-group-text">$</span>
                                                     </div>
 
-                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_5" value="{{$prices->precio_d}}">
+                                                    <input type="text" class="form-control font-weight-bold text-center" aria-label="Amount (to the nearest dollar)" id="h_precio_5" name="h_precio_5" value="{{$prices->precio_d}}">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">USD</span>
                                                     </div>
@@ -484,31 +517,33 @@
                                             </td>
                                         @endif
                                     @endforeach
-                                {{--<td class="font-weight-bold h4"><sup><small>$</small></sup>50<small>USD</small></td>--}}
-                                {{--<td class="font-weight-bold h4 orange darken-1"><sup><small>$</small></sup>1250<small>USD</small></td>--}}
-                                {{--<td class="font-weight-bold h4"><sup><small>$</small></sup>20<small>USD</small></td>--}}
-                                {{--<td class="font-weight-bold h4"><sup><small>$</small></sup>90<small>USD</small></td>--}}
-                            </tr>
+                                    {{--<td class="font-weight-bold h4"><sup><small>$</small></sup>50<small>USD</small></td>--}}
+                                    {{--<td class="font-weight-bold h4 orange darken-1"><sup><small>$</small></sup>1250<small>USD</small></td>--}}
+                                    {{--<td class="font-weight-bold h4"><sup><small>$</small></sup>20<small>USD</small></td>--}}
+                                    {{--<td class="font-weight-bold h4"><sup><small>$</small></sup>90<small>USD</small></td>--}}
+                                </tr>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
 
 
-                        <span class="alert alert-dark d-block">
-                            @foreach($otro as $otros)
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="otros_{{$otros->id}}" name="otros[]" value="{{$otros->concepto}}: {{$otros->price}} - {{$otros->detalle}}" checked>
-                                    <label class="custom-control-label" for="otros_{{$otros->id}}">{{$otros->concepto}}: <sup><small>$</small></sup><span class="font-weight-bold">{{$otros->price}}</span><small>UDS</small>   - {{$otros->detalle}}</label>
-                                </div>
-                            @endforeach
-                        </span>
+                            <span class="alert alert-dark d-block">
+                                @foreach($otro as $otros)
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="otros_{{$otros->id}}" name="otros[]" value="{{$otros->concepto}}: {{$otros->price}} - {{$otros->detalle}}" checked>
+                                        <label class="custom-control-label" for="otros_{{$otros->id}}">{{$otros->concepto}}: <sup><small>$</small></sup><span class="font-weight-bold">{{$otros->price}}</span><small>UDS</small>   - {{$otros->detalle}}</label>
+                                    </div>
+                                @endforeach
+                            </span>
 
+                        </div>
                     </div>
+
                 </div>
+                <!-- Accordion card -->
+
             </div>
-        </div>
-
-
+            <!-- Accordion wrapper -->
             <div class="row mt-4">
                 <div class="col">
                     <div class="card">
@@ -520,7 +555,7 @@
                                 </div>
                                 <div class="col pt-3">
                                     <label class="bs-switch">
-                                        <input type="checkbox" value="1" id="h_file">
+                                        <input type="checkbox" value="1" id="h_booking" name="h_booking">
                                         <span class="slider round"></span>
                                     </label>
                                 </div>
@@ -530,7 +565,7 @@
                 </div>
             </div>
 
-        <div class="row mt-4">
+            <div class="row mt-4">
             <div class="col">
                 <div class="card rgba-deep-orange-light">
                     <div class="card-body">
@@ -571,7 +606,7 @@
                             </div>
                             <div class="col-4">
                                 {{--karina@llama.tours--}}
-                                <select class="custom-select custom-select-sm" onchange="advisor()" id="h_advisor">
+                                <select class="custom-select custom-select-sm" onchange="advisor()" id="h_advisor" name="h_advisor">
                                     {{--<option selected>Open this select menu</option>--}}
                                     @foreach($user as $users)
                                         @if ($inquires->idusuario == $users->id)
@@ -585,7 +620,7 @@
                             </div>
                         </div>
                         <div class="">
-                            <textarea class="form-control editor-mess w-100" aria-label="With textarea" id="h_message" rows="5"></textarea>
+                            <textarea class="form-control w-100" aria-label="With textarea" id="h_txta_presentation" name="h_txta_presentation" rows="5"></textarea>
                         </div>
                     </div>
                 </div>
@@ -597,31 +632,21 @@
                     <div class="card rgba-deep-purple-light">
                         <div class="card-body">
                             <h5 class="font-weight-bold orange-text">farewell</h5>
-                            {{--<div class="row">--}}
-                                {{--<div class="col-2">--}}
-                                    {{--<b>to:</b>--}}
-                                {{--</div>--}}
-                                {{--<div class="col">--}}
-                                    {{--hidalgo@gmail.com--}}
-                                    {{--<div class="add-label">{{$inquires->email}}</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="row mb-3">--}}
-                                {{--<div class="col-2">--}}
-                                    {{--<b>from:</b>--}}
-                                {{--</div>--}}
-                                {{--<div class="col-4">--}}
-                                    {{--karina@llama.tours--}}
-                                    {{--<select class="custom-select custom-select-sm" onchange="advisor()" id="h_advisor">--}}
-                                        {{--<option selected>Open this select menu</option>--}}
-                                        {{--<option value="0">karina@llama.tours</option>--}}
-                                        {{--<option value="1">paola@llama.tours</option>--}}
-                                        {{--<option value="2">martin@llama.tours</option>--}}
-                                    {{--</select>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
                             <div class="">
-                                <textarea class="form-control editor-mess-2 w-100" aria-label="With textarea" id="h_message" rows="5"></textarea>
+                                <textarea class="form-control w-100" aria-label="With textarea" id="h_txta_farewell" name="h_txta_farewell" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="font-weight-bold orange-text">Attach File</h5>
+                            <div class="form-group">
+                                <input type="file" class="form-control-file" id="h_attach" name="h_attach">
                             </div>
                         </div>
                     </div>
@@ -663,85 +688,27 @@
                 {{--</div>--}}
             {{--</div>--}}
 
-        {{--<div class="row mt-4 karina">--}}
-            {{--<div class="col">--}}
-                {{--<div class="card bg-light">--}}
-                    {{--<div class="card-body">--}}
-                        {{--<div class="row">--}}
-                            {{--<div class="col-4 text-center">--}}
-                                {{--<img src="https://scontent.flim5-1.fna.fbcdn.net/v/t1.0-9/31739806_993323907486435_1000599518791598080_n.jpg?_nc_cat=107&_nc_ht=scontent.flim5-1.fna&oh=dda0f6ac807e45167c5b86def2b4f24f&oe=5C3C4E5A" alt="paola" class="w-100 img-thumbnail">--}}
-                                {{--<p class="small">TA. Karina Ñahui</p>--}}
-                            {{--</div>--}}
-                            {{--<div class="col">--}}
-                                {{--<div class="row align-items-center">--}}
-                                    {{--<div class="col-2">--}}
-                                        {{--<img src="{{asset('images/logo-llama2.png')}}" alt="" class="w-100">--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col">--}}
-                                        {{--<h5 class="font-weight-bold orange-text mb-0">Karina Ñahui</h5>--}}
-                                        {{--<span class="small">Travel Advisor</span>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<hr>--}}
-                                {{--<div class="row">--}}
-                                    {{--<div class="col-3">--}}
-                                        {{--Phone:--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col">--}}
-                                        {{--+51 84 206 931--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="row">--}}
-                                    {{--<div class="col-3">--}}
-                                        {{--Site:--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col">--}}
-                                        {{--<a href="llana.tours">llama.tours</a>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="row">--}}
-                                    {{--<div class="col-3">--}}
-                                        {{--Email:--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col">--}}
-                                        {{--karina@llama.tours--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<hr>--}}
-                                {{--<div class="row">--}}
-                                    {{--<div class="col">--}}
-                                        {{--<a href=""><img src="{{asset('images/redes/whatsapp.png')}}" alt="" width="30"></a>--}}
-                                        {{--<a href=""><img src="{{asset('images/redes/facebook.png')}}" alt="" width="30"></a>--}}
-                                        {{--<a href=""><img src="{{asset('images/redes/instagram.png')}}" alt="" width="30"></a>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
 
-        <div class="row mt-4">
-            <div class="col">
-                <a href="" class="btn btn-light float-left">Save Mail <i class="fa fa-save"></i></a>
-                {{--<a href="" class="btn btn-primary float-right" onclick="design()">Send Mail</a>--}}
-                <button type="button" class="btn btn-primary float-right" id="h_submit" onclick="message()">Send</button>
-                <i class="fas fa-spinner fa-pulse fa-2x text-primary float-right d-none" id="h_load"></i>
-            </div>
-        </div>
-
-        <div class="row mt-3 justify-content-center d-none" id="h_alert">
-            <div class="col-10">
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <b class="d-block"><strong>Tu paquete fue enviado correctamente</strong>, revise su bandeja de entrada. :)</b>
-                    <span>***Esta propuesta es enviado a su cliente y a usted. Se sugiere revisar su bandeja de <b>spam</b>.</span>
+            <div class="row mt-4">
+                <div class="col">
+                    <a href="" class="btn btn-light float-left">Save Mail <i class="fa fa-save"></i></a>
+                    {{--<a href="" class="btn btn-primary float-right" onclick="design()">Send Mail</a>--}}
+                    <button type="button" class="btn btn-primary float-right" id="h_submit" onclick="message()">Send</button>
+                    <i class="fas fa-spinner fa-pulse fa-2x text-primary float-right d-none" id="h_load"></i>
                 </div>
             </div>
-        </div>
+
+            <div class="row mt-3 justify-content-center d-none" id="h_alert">
+                <div class="col-10">
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <b class="d-block"><strong>Tu paquete fue enviado correctamente</strong>, revise su bandeja de entrada. :)</b>
+                        <span>***Esta propuesta es enviado a su cliente y a usted. Se sugiere revisar su bandeja de <b>spam</b>.</span>
+                    </div>
+                </div>
+            </div>
         @endif
         {{--<div class="row">--}}
             {{--<div class="col">--}}
@@ -1042,25 +1009,25 @@
         });
 
         //editor
-        ClassicEditor
-            .create( document.querySelector( '.editor-mess' ) )
-            .then( editor => {
-                console.log( 'Editor was initialized', editor );
-                myEditor = editor;
-            } )
-            .catch( error => {
-                console.error( error );
-            } );
-
-        ClassicEditor
-            .create( document.querySelector( '.editor-mess-2' ) )
-            .then( editor => {
-                console.log( 'Editor was initialized', editor );
-                myEditor2 = editor;
-            } )
-            .catch( error => {
-                console.error( error );
-            } );
+        // ClassicEditor
+        //     .create( document.querySelector( '.editor-mess' ) )
+        //     .then( editor => {
+        //         console.log( 'Editor was initialized', editor );
+        //         myEditor = editor;
+        //     } )
+        //     .catch( error => {
+        //         console.error( error );
+        //     } );
+        //
+        // ClassicEditor
+        //     .create( document.querySelector( '.editor-mess-2' ) )
+        //     .then( editor => {
+        //         console.log( 'Editor was initialized', editor );
+        //         myEditor2 = editor;
+        //     } )
+        //     .catch( error => {
+        //         console.error( error );
+        //     } );
 
         //email
         $("#h_email").on('keyup', function() {
@@ -1078,6 +1045,22 @@
             }
 
         }
+
+        $(function () {
+            var $avatarImage, $avatarInput, $avatarForm;
+
+            $avatarImage = $('#avatarImage');
+            $avatarInput = $('#avatarInput');
+            $avatarForm = $('#avatarForm');
+
+            $avatarImage.on('click', function () {
+                $avatarInput.click();
+            });
+
+            $avatarInput.on('change', function () {
+                alert('change');
+            });
+        });
 
         //formulario design
         function message(){
@@ -1189,10 +1172,6 @@
             var s_precio_3 = $("#h_precio_3").val();
             var s_precio_4 = $("#h_precio_4").val();
             var s_precio_5 = $("#h_precio_5").val();
-            var s_economic = $("#h_economic:checked").val();
-            var s_tourist = $("#h_tourist:checked").val();
-            var s_superior = $("#h_superior:checked").val();
-            var s_luxury = $("#h_luxury:checked").val();
 
             var s_file = $("#h_file:checked").val();
 
@@ -1201,8 +1180,8 @@
             var s_superior = $("#h_superior:checked").val();
             var s_luxury = $("#h_luxury:checked").val();
 
-            var s_message = myEditor.getData();
-            var s_message2 = myEditor2.getData();
+            // var s_message = myEditor.getData();
+            // var s_message2 = myEditor2.getData();
 
             var s_package = $("#sp_package").val();
             var s_advisor = $("#h_advisor").val();
@@ -1210,6 +1189,34 @@
             // var s_add = $("#h_add").val();
             // var s_add = document.getElementById("h_add");
             // var file = s_add.files[0];
+            // var s_advisor = $("#h_attach").val();
+            // var file_data = $('#h_attach').prop('files')[0];
+
+            // var file_data = document.getElementById("h_attach");
+            // var file = file_data.files[0];
+            // var data = new FormData(this.form);
+            // var s_attach = $("#h_attach").val();
+
+            // var data = new FormData();
+            // //Form data
+            // var form_data = $('#h_form').serializeArray();
+            // $.each(form_data, function (key, input) {
+            //     data.append(input.name, input.value);
+            // });
+            //
+            // //File data
+            // var file_data = $('input[name="h_attach"]')[0].files;
+            // for (var i = 0; i < file_data.length; i++) {
+            //     data.append("h_attach[]", file_data[i]);
+            // }
+            // //Custom data
+            // data.append('key', 'value');
+
+
+            var formData = new FormData();
+            formData.append('photo', $avatarInput[0].files[0]);
+
+
 
             if (filter.test(s_email)){
                 sendMail = "true";
@@ -1221,7 +1228,6 @@
                 $('#h_name').css("border-bottom", "2px solid #FF0000");
                 var sendMail = "false";
             }
-
             if(sendMail == "true"){
                 var datos = {
                     "txt_idinquire" : s_idinquire,
@@ -1258,8 +1264,8 @@
 
                     "txt_otros" : s_otros,
 
-                    "txt_message" : s_message,
-                    "txt_message2" : s_message2,
+                    // "txt_message" : s_message,
+                    // "txt_message2" : s_message2,
 
                     "txt_package" : s_package,
                     "txt_advisor" : s_advisor,
@@ -1267,12 +1273,17 @@
                     "txt_tratamiento" : s_tratamiento
 
                 };
-
+                // data.append('hola',file);
+                // data.append('txt_idinquire', s_idinquire);
                 $.ajax({
-                    data:  datos,
+                    data:  data,
                     // data:new FormData($("#upload_form")[0]),
-                    url:   "{{route('message_mail_path')}}",
+                    url:   $('#h_form').attr('action'),
                     type:  'post',
+                    dataType: 'script',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
 
                     beforeSend: function () {
 

@@ -1,3 +1,73 @@
+<p>{{$idinquire}}</p>
+<p>{{$sp_package}}</p>
+<p>{{$email_cliente}}</p>
+<p>{{$name_cliente}}</p>
+<p>{{$travellers}}</p>
+<p>{{$category}}</p>
+<p>{{$travel_date}}</p>
+<p>{{$duration}}</p>
+<p>{{$phone}}</p>
+<p>{{$destinations_i}}</p>
+<p>
+    @foreach($day as $days)
+        {{$days}}
+    @endforeach
+</p>
+<p>
+    @foreach($title as $titles)
+        {{$titles}}
+    @endforeach
+</p>
+<p>
+    @foreach($resumen as $resumens)
+        {{$resumens}}
+    @endforeach
+</p>
+<p>
+    @foreach($destinations as $destination)
+        {{$destination}}
+    @endforeach
+</p>
+<p>
+    @foreach($incluye as $incluyes)
+        {{$incluyes}}
+    @endforeach
+</p>
+<p>
+    @foreach($noincluye as $noincluyes)
+        {{$noincluyes}}
+    @endforeach
+</p>
+
+
+<p>{{$precio_ch}}</p>
+<p>{{$precio_sh}}</p>
+
+<p>{{$precio_2}}</p>
+<p>{{$precio_3}}</p>
+<p>{{$precio_4}}</p>
+<p>{{$precio_5}}</p>
+
+
+<p>{{$economic}}</p>
+<p>{{$tourist}}</p>
+<p>{{$superior}}</p>
+<p>{{$luxury}}</p>
+
+{{--<p>{{$otros}}</p>--}}
+
+<p>
+    @foreach($tratamiento as $tratamientos)
+        {{$tratamientos}}
+    @endforeach
+</p>
+
+<p>{{$presentation}}</p>
+<p>{{$farewell}}</p>
+<p>{{$email_a}}</p>
+<p>{{$name_a}}</p>
+<p>{{$codigo_p}}</p>
+<p>{{$titulo_p}}</p>
 {{--@extends('layouts.notifications.default')--}}
 {{--@section('content')--}}
     {{--<tr>--}}
@@ -54,8 +124,14 @@
 
                         <tr>
                             <td style="padding:20px 0px 20px 50px">
-                                <p style="font-size:18px"><b>Estimad{{$tratamiento}}</b>: {{ucwords(strtolower($name))}}</p>
-                                <p>@php echo $messagess @endphp</p>
+                                <p style="font-size:18px">
+                                    <b>
+                                        Estimad
+                                        @foreach($tratamiento as $tratamientos)
+                                            {{$tratamientos}}
+                                        @endforeach
+                                    </b>: {{ucwords(strtolower($name_cliente))}}</p>
+                                <p>@php echo $presentation @endphp</p>
                                 <p style="font-weight: bold; font-size: 18px">PAQUETE: {{$codigo_p}} {{$titulo_p}}</p>
                                 <center style="background:#f6f6f6; padding:10px; -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);border: 0;">
                                     <table>
@@ -63,26 +139,25 @@
                                         <tr>
                                             <td style="text-align:left">
                                                 @php
-                                                    $day = explode('*', $day);
-                                                    $title = explode('*', $title);
-                                                    $resumen = explode('*', $resumen);
-                                                    $count  = count($day);
+                                                    //$day = explode('*', $day);
+                                                    //$title = explode('*', $title);
+                                                    //$resumen = explode('*', $resumen);
+                                                    //$count  = count($day);
+                                                    $i = 0;
                                                 @endphp
-                                                @for ($i = 0; $i < $count; $i++)
-                                                    <p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia {{$day[$i]}}: {{$title[$i]}}</p>
-                                                    @php echo $resumen[$i]; @endphp
-                                                @endfor
-                                                {{--@foreach($day as $days)--}}
-                                                    {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia {{$days}}: {{$count}}</p>--}}
-                                                    {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur cumque dolore ducimus enim excepturi exercitationem natus. Aliquam deleniti doloremque dolorum eaque eligendi facilis libero minima, nulla possimus quis, soluta voluptatum.</p>--}}
-                                                    {{--                                                            @php echo $resumen; @endphp--}}
-                                                {{--@endforeach--}}
-                                                {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia 1: Titulo del paquete</p>--}}
-                                                {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur beatae culpa distinctio, enim fuga harum inventore ipsum, iste minima natus nobis pariatur, quia quo quos reiciendis similique totam veritatis voluptatibus?</p>--}}
-                                                {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia 1: Titulo del paquete</p>--}}
-                                                {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur beatae culpa distinctio, enim fuga harum inventore ipsum, iste minima natus nobis pariatur, quia quo quos reiciendis similique totam veritatis voluptatibus?</p>--}}
-                                                {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia 1: Titulo del paquete</p>--}}
-                                                {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur beatae culpa distinctio, enim fuga harum inventore ipsum, iste minima natus nobis pariatur, quia quo quos reiciendis similique totam veritatis voluptatibus?</p>--}}
+                                                {{--@for ($i = 0; $i < $count; $i++)--}}
+                                                    {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia {{$day[$i]}}: {{$title[$i]}}</p>--}}
+                                                    {{--@php echo $resumen[$i]; @endphp--}}
+                                                {{--@endfor--}}
+
+                                                @foreach($title as $titles)
+                                                    <p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Dia {{$i+1}}: {{$titles}}</p>
+                                                    @php
+                                                        echo $resumen[$i];
+                                                        $i++;
+                                                    @endphp
+                                                @endforeach
+
                                             </td>
                                         </tr>
                                         </tbody>
@@ -90,45 +165,9 @@
                                 </center>
 
                                 <center style="margin-top: 30px; width: 100%">
-                                    <p style="font-weight: bold; font-size: 18px; text-align: left; margin: 0; color: #ff9800;">PRECIOS DEL PROGRAMA DE {{$count}} DIAS</p>
+                                    <p style="font-weight: bold; font-size: 18px; text-align: left; margin: 0; color: #ff9800;">PRECIOS DEL PROGRAMA DE {{$i}} DIAS</p>
                                     <p style="text-align: left"><strong style="font-weight: bold;">Precio por persona USD$.</strong> <span style="font-style: italic;">(basados en doble acomodación.)</span></p>
-                                    {{--<table style="width: 100%">--}}
-                                        {{--<tbody>--}}
-                                        {{--<tr style="text-align: center;">--}}
-                                            {{--<td style="text-align:center">--}}
-                                                {{--<table style="text-align: center; width: 100%; background:#f6f6f6;">--}}
-                                                    {{--<tr style="text-align: center">--}}
-                                                        {{--<td style="font-size: 20px; font-weight: bold;">Con Hoteles</td>--}}
-                                                    {{--</tr>--}}
-                                                    {{--<tr style="text-align: center">--}}
-                                                        {{--<td style="font-weight: bold; font-size: 25px">${{$precio_ch}}usd</td>--}}
-                                                    {{--</tr>--}}
-                                                    {{--<tr style="text-align: center">--}}
-                                                        {{--<td>Price per person.</td>--}}
-                                                    {{--</tr>--}}
-                                                {{--</table>--}}
-                                            {{--</td>--}}
-                                            {{--<td style="text-align:center">--}}
-                                                {{--<table style="text-align: center; width: 100%; background:#f6f6f6;">--}}
-                                                    {{--<tr style="text-align: center">--}}
-                                                        {{--<td style="font-size: 20px; font-weight: bold;">Sin Hoteles</td>--}}
-                                                    {{--</tr>--}}
-                                                    {{--<tr style="text-align: center">--}}
-                                                        {{--<td style="font-weight: bold; font-size: 25px">${{$precio_sh}}usd</td>--}}
-                                                    {{--</tr>--}}
-                                                    {{--<tr style="text-align: center">--}}
-                                                        {{--<td>Price per person.</td>--}}
-                                                    {{--</tr>--}}
-                                                {{--</table>--}}
 
-                                            {{--</td>--}}
-                                        {{--</tr>--}}
-                                        {{--<tr>--}}
-                                            {{--<td style="padding: 10px; background: #ff9800; color: white; border-radius: 0 0 5px" colspan="2">* Si desea puede reservar las actividades por separado.</td>--}}
-                                            {{--<td></td>--}}
-                                        {{--</tr>--}}
-                                        {{--</tbody>--}}
-                                    {{--</table>--}}
                                 </center>
 
                                 {{--<center style="margin-top: 30px; width: 100%">--}}
@@ -155,33 +194,33 @@
                                     {{--<p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>--}}
                                 {{--</center>--}}
 
-                                @php
+                                {{--@php--}}
 
-                                    if ($economic == 'economic'){
-                                        $d_economic = "display: none;";
-                                    }else{
-                                        $d_economic = '';
-                                    }
+                                    {{--if ($economic == 'economic'){--}}
+                                        {{--$d_economic = "display: none;";--}}
+                                    {{--}else{--}}
+                                        {{--$d_economic = '';--}}
+                                    {{--}--}}
 
-                                    if ($tourist == 'tourist'){
-                                        $d_tourist = "display: none;";
-                                    }else{
-                                        $d_tourist = '';
-                                    }
+                                    {{--if ($tourist == 'tourist'){--}}
+                                        {{--$d_tourist = "display: none;";--}}
+                                    {{--}else{--}}
+                                        {{--$d_tourist = '';--}}
+                                    {{--}--}}
 
-                                    if ($superior == 'superior'){
-                                        $d_superior = "display: none;";
-                                    }else{
-                                        $d_superior = '';
-                                    }
+                                    {{--if ($superior == 'superior'){--}}
+                                        {{--$d_superior = "display: none;";--}}
+                                    {{--}else{--}}
+                                        {{--$d_superior = '';--}}
+                                    {{--}--}}
 
-                                    if ($luxury = 'luxury'){
-                                        $d_luxury = "display: none;";
-                                    }else{
-                                        $d_luxury = '';
-                                    }
+                                    {{--if ($luxury = 'luxury'){--}}
+                                        {{--$d_luxury = "display: none;";--}}
+                                    {{--}else{--}}
+                                        {{--$d_luxury = '';--}}
+                                    {{--}--}}
 
-                                @endphp
+                                {{--@endphp--}}
 
                                 <center style="margin-top: 10px; width: 100%">
                                     <h5 style="font-size: 18px; margin-bottom: 10px;">Hoteles, Tours, Transporte, Entradas, Trenes, Transfers.</h5>
@@ -229,7 +268,7 @@
 
                                         </tbody>
                                     </table>
-                                    {{--<p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>--}}
+                                    <p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>
                                 </center>
 
                                 <center style="margin-top: 30px; width: 100%">
@@ -237,11 +276,11 @@
                                     <table style="width: 100%; border: 1px solid #cccccc;">
                                         <tbody>
                                         <tr style="background: #ff9800; color: white; text-align: center">
-                                            <th style="padding: 10px; font-size: 18px">{{$count}} días <span style="color: #0d0d0d; font-weight: bold;">SIN HOTELES: ${{$precio_sh}}usd</span></th>
+                                            <th style="padding: 10px; font-size: 18px">{{$i}} días <span style="color: #0d0d0d; font-weight: bold;">SIN HOTELES: ${{$precio_sh}}usd</span></th>
                                         </tr>
                                         </tbody>
                                     </table>
-                                    {{--<p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>--}}
+                                    <p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>
                                 </center>
 
 
@@ -268,22 +307,16 @@
                                             <td style="text-align:left; float: left; width: 50%">
                                                 <p style="font-weight: bold; font-size: 16px; color: #ff9800 ">Incluye:</p>
                                                 <ul>
-                                                    @php
-                                                        $included = explode('*', $incluye);
-                                                    @endphp
-                                                    @foreach($included as $includes)
-                                                        <li>{{$includes}}</li>
+                                                    @foreach($incluye as $incluyes)
+                                                        <li>{{$incluyes}}</li>
                                                     @endforeach
                                                 </ul>
                                             </td>
                                             <td style="text-align:left; float: left; width: 100%">
                                                 <p style="font-weight: bold; font-size: 16px; color: #ff9800 ">No Incluye:</p>
                                                 <ul>
-                                                    @php
-                                                        $noincluded = explode('*', $noincluye);
-                                                    @endphp
-                                                    @foreach($noincluded as $noincludeds)
-                                                        <li>{{$noincludeds}}</li>
+                                                    @foreach($noincluye as $noincluyes)
+                                                        <li>{{$noincluyes}}</li>
                                                     @endforeach
                                                 </ul>
                                             </td>
@@ -316,9 +349,9 @@
                                     <table style="width: 100%;">
                                         <tr style="text-align: left;">
                                             <td style="font-weight: bold; color: #181818">
-                                                {{--<ul>--}}
-                                                {{--sdsdsd--}}
-                                                {{--</ul>--}}
+                                                <ul>
+                                                sdsdsd
+                                                </ul>
                                                 <ul>
                                                     <li><a href="http://llama.tours/peru-tours/machu-picchu-todo-el-dia" target="_blank">Machu Picchu todo el día: $229usd</a></li>
                                                     <li><a href="http://llama.tours/peru-tours/city-tour-en-cusco" target="_blank">City tours en Cusco: $19usd</a></li>
@@ -337,8 +370,8 @@
                                         <tbody>
                                         <tr>
                                             <td style="text-align:left;">
-                                                {{--<p style="font-weight: bold; font-size: 16px; color: #ff9800 ">***</p>--}}
-                                                 @php echo $messagess2 @endphp
+                                                <p style="font-weight: bold; font-size: 16px; color: #ff9800 ">***</p>
+                                                 @php echo $farewell @endphp
                                             </td>
                                         </tr>
                                         </tbody>

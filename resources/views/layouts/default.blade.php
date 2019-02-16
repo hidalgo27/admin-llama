@@ -152,7 +152,7 @@
 
 
                             </div>
-                            <ul class="inbox-nav inbox-divider">
+                            <ul class="inbox-nav inbox-divider sticky-top sticky-top-65">
                                 <li class="active">
                                     <a href="{{route('home_path')}}"><i class="fa fa-inbox"></i> Inbox <span class="badge badge-danger float-right">2</span></a>
 
@@ -212,47 +212,6 @@
                                     {{--</a>--}}
                                 {{--</div>--}}
                             {{--</div>--}}
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="container">
-                                        <div style="font-family:Lato,sans-serif;font-size:15px;color:#666666" marginheight="0" marginwidth="0">
-                                            <table cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff" align="center" width="100%" color="#666666">
-                                                <tbody>
-                                                <tr>
-                                                    <td style="padding:20px 0px 20px 50px">
-                                                        <p style="font-size:18px"><b>Mensaje de</b>:</p>
-                                                        <p>Mensaje del formulario principal diseño footer LLAMA TOURS.</p>
-                                                        <center style="background:#f6f6f6; padding:10px;">
-                                                            <table>
-                                                                <tbody>
-                                                                <tr>
-                                                                    <td style="text-align:left">
-                                                                        <p><strong>Accommodation:</strong></p>
-                                                                        <p><strong>Destinations:</strong></p>
-                                                                        <p><strong>Travellers:</strong></p>
-                                                                        <p><strong>Duration:</strong></p>
-                                                                        <p><strong>Date:</strong></p>
-                                                                        <p><strong>Phone: </strong></p>
-                                                                        <p><strong>Phone: </strong></p>
-                                                                        <p><strong>Email: </strong></p>
-                                                                        <p><strong>Comment: </strong></p>
-                                                                        <p><strong>Authorization Whatsapp: </strong></p>
-                                                                    </td>
-                                                                </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </center>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                            <br>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                         </aside>
                         <aside class="lg-side">
