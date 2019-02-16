@@ -277,15 +277,15 @@ class MessageController extends Controller
                     'codigo_p' => $codigo_p,
                     'titulo_p' => $titulo_p
 
-                ], function ($messaje) use ($email_cliente, $email_a, $name_cliente, $h_booking, $file_add, $name_file_2) {
-                    if ($h_booking == 0 and $file_add == 0){
+                ], function ($messaje) use ($email_cliente, $email_a, $name_cliente, $h_booking, $name_file_2) {
+                    if ($h_booking == 0 and $name_file_2 == 0){
                         $messaje->to($email_cliente, $name_cliente)
                             ->subject('Propuesta de viaje Llama.Tours')
                             ->cc($email_a, 'Propuesta de viaje Llama.Tours')
                             ->from($email_a, 'Asesor Llama Tours');
                     }
 
-                    if ($h_booking == 0 and $file_add){
+                    if ($h_booking == 0 and $name_file_2){
                         $messaje->to($email_cliente, $name_cliente)
                             ->subject('Propuesta de viaje Llama.Tours')
                             ->cc($email_a, 'Propuesta de viaje Llama.Tours')
@@ -294,7 +294,7 @@ class MessageController extends Controller
 
                     }
 
-                    if ($h_booking and $file_add == 0){
+                    if ($h_booking and $name_file_2 == 0){
                         $messaje->to($email_cliente, $name_cliente)
                             ->subject('Propuesta de viaje Llama.Tours')
                             ->cc($email_a, 'Propuesta de viaje Llama.Tours')
@@ -302,7 +302,7 @@ class MessageController extends Controller
                             ->from($email_a, 'Asesor Llama Tours');
                     }
 
-                    if ($h_booking and $file_add){
+                    if ($h_booking and $name_file_2){
                         $messaje->to($email_cliente, $name_cliente)
                             ->subject('Propuesta de viaje Llama.Tours')
                             ->cc($email_a, 'Propuesta de viaje Llama.Tours')
