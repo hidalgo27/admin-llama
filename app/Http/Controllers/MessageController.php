@@ -216,7 +216,7 @@ class MessageController extends Controller
 //            $file_add = $file_attach->storeAs('public', 'propuesta'.$idinquire.$name_file);
             $name_file_2 = 'propuesta'.$idinquire.$name_file;
         }else{
-            $file_add = "0";
+            $name_file_2 = "0";
         }
 
         $date_res= date ("Y-m-d H:i:s");
