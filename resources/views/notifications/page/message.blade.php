@@ -348,9 +348,7 @@
                                     <table style="width: 100%;">
                                         <tr style="text-align: left;">
                                             <td style="font-weight: bold; color: #181818">
-                                                <ul>
-                                                sdsdsd
-                                                </ul>
+                                               
                                                 <ul>
                                                     <li><a href="http://llama.tours/peru-tours/machu-picchu-todo-el-dia" target="_blank">Machu Picchu todo el día: $229usd</a></li>
                                                     <li><a href="http://llama.tours/peru-tours/city-tour-en-cusco" target="_blank">City tours en Cusco: $19usd</a></li>
@@ -369,7 +367,7 @@
                                         <tbody>
                                         <tr>
                                             <td style="text-align:left;">
-                                                <p style="font-weight: bold; font-size: 16px; color: #ff9800 ">***</p>
+                                               
                                                  @php echo $farewell @endphp
                                             </td>
                                         </tr>
