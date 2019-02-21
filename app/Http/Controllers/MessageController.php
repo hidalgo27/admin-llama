@@ -179,9 +179,9 @@ class MessageController extends Controller
             $luxury = "0";
         }
 
-        $otros = $_POST['otros'];
+//        $otros = $_POST['otros'];
 
-        $h_advisor = $_POST['h_advisor'];
+//        $h_advisor = $_POST['h_advisor'];
 
         if (isset($_POST['h_booking'])){
             $h_booking = $_POST['h_booking'];
@@ -265,7 +265,7 @@ class MessageController extends Controller
                     'superior' => $superior,
                     'luxury' => $luxury,
 
-                    'otros' => $otros,
+//                    'otros' => $otros,
 
                     'tratamiento' => $tratamiento,
                     'presentation' => $presentation,

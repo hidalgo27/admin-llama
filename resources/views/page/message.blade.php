@@ -527,14 +527,14 @@
                             </table>
 
 
-                            <span class="alert alert-dark d-block">
-                                @foreach($otro as $otros)
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="otros_{{$otros->id}}" name="otros[]" value="{{$otros->concepto}}: {{$otros->price}} - {{$otros->detalle}}" checked>
-                                        <label class="custom-control-label" for="otros_{{$otros->id}}">{{$otros->concepto}}: <sup><small>$</small></sup><span class="font-weight-bold">{{$otros->price}}</span><small>UDS</small>   - {{$otros->detalle}}</label>
-                                    </div>
-                                @endforeach
-                            </span>
+                            {{--<span class="alert alert-dark d-block">--}}
+                                {{--@foreach($otro as $otros)--}}
+                                    {{--<div class="custom-control custom-checkbox">--}}
+                                        {{--<input type="checkbox" class="custom-control-input" id="otros_{{$otros->id}}" name="otros[]" value="{{$otros->concepto}}: {{$otros->price}} - {{$otros->detalle}}" checked>--}}
+                                        {{--<label class="custom-control-label" for="otros_{{$otros->id}}">{{$otros->concepto}}: <sup><small>$</small></sup><span class="font-weight-bold">{{$otros->price}}</span><small>UDS</small>   - {{$otros->detalle}}</label>--}}
+                                    {{--</div>--}}
+                                {{--@endforeach--}}
+                            {{--</span>--}}
 
                         </div>
                     </div>
