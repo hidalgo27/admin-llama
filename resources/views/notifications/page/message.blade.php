@@ -228,28 +228,34 @@
                                         <tr style="background: #8d8d8d; color: white; text-align: center">
 
                                             @php
-                                            if ($economic == 'economic'){
-                                            $econo = " ";
-                                            }else{
-                                            $econo = "display:none;";
-                                            }
-                                            if ($tourist == 'tourist'){
-                                            $tour = " ";
-                                            }else{
-                                            $tour = "display:none;";
-                                            }
-                                            if ($superior == 'superior'){
-                                            $sup = " ";
-                                            }else{
-                                            $sup = "display:none;";
-                                            }
-                                            if ($luxury == 'luxury'){
-                                            $lux = " ";
-                                            }else{
-                                            $lux = "display:none;";
-                                            }
+                                                if ($precio_ch == '0'){
+                                                    $p_ch = "display:none;";
+                                                }else{
+                                                    $p_ch = " ";
+                                                }
+
+                                                if ($economic == 'economic'){
+                                                $econo = " ";
+                                                }else{
+                                                $econo = "display:none;";
+                                                }
+                                                if ($tourist == 'tourist'){
+                                                $tour = " ";
+                                                }else{
+                                                $tour = "display:none;";
+                                                }
+                                                if ($superior == 'superior'){
+                                                $sup = " ";
+                                                }else{
+                                                $sup = "display:none;";
+                                                }
+                                                if ($luxury == 'luxury'){
+                                                $lux = " ";
+                                                }else{
+                                                $lux = "display:none;";
+                                                }
                                             @endphp
-                                            <th style="padding: 10px; {{$econo}}">Económico</th>
+                                            <th style="padding: 10px; {{$econo}}; {{$p_ch}}">Económico</th>
                                             <th style="{{$tour}}">Turista</th>
                                             <th style="{{$sup}}">Superior</th>
                                             <th style="{{$lux}}">Lujo</th>
@@ -259,7 +265,7 @@
                                         <tbody>
 
                                         <tr style="text-align: center;">
-                                            <td style="font-weight: bold; color: #181818; {{$econo}}">${{$precio_2}}usd</td>
+                                            <td style="font-weight: bold; color: #181818; {{$econo}}; {{$p_ch}}">${{$precio_2}}usd</td>
                                             <td style="font-weight: bold; color: #181818; {{$tour}}">${{$precio_3}}usd</td>
                                             <td style="font-weight: bold; color: #181818; {{$sup}}">${{$precio_4}}usd</td>
                                             <td style="font-weight: bold; color: #181818; {{$lux}}">${{$precio_5}}usd</td>
@@ -270,7 +276,15 @@
                                     <p style="text-align: left; font-weight: bold;">***Precios basados en doble acomodación.</p>
                                 </center>
 
-                                <center style="margin-top: 30px; width: 100%">
+                                @php
+                                    if ($precio_sh == '0'){
+                                        $p_sh = "display:none;";
+                                    }else{
+                                        $p_sh = " ";
+                                    }
+                                @endphp
+
+                                <center style="margin-top: 30px; width: 100%; {{$p_sh}}">
                                     <h5 style="font-size: 18px; margin-bottom: 10px;">Tours, Transporte, Entradas, Trenes, Transfers.</h5>
                                     <table style="width: 100%; border: 1px solid #cccccc;">
                                         <tbody>
@@ -283,7 +297,7 @@
                                 </center>
 
 
-                                <center style="margin-top: 30px; width: 100%">
+                                <center style="margin-top: 30px; width: 100%; {{$p_sh}}">
                                     <table style="width: 100%">
                                         <tbody>
                                         <tr style="text-align: center;">

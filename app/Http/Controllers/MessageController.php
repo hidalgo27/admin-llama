@@ -150,8 +150,17 @@ class MessageController extends Controller
         $incluye = $_POST['incluye'];
         $noincluye = $_POST['noincluye'];
 
-        $precio_ch = $_POST['h_precio_ch'];
-        $precio_sh = $_POST['h_precio_sh'];
+        if ($request->has('h_con_hotel')){
+            $precio_ch = $_POST['h_precio_ch'];
+        }else{
+            $precio_ch = "0";
+        }
+
+        if ($request->has('h_sin_hotel')){
+            $precio_sh = $_POST['h_precio_sh'];
+        }else{
+            $precio_sh = "0";
+        }
 
         $precio_2 = $_POST['h_precio_2'];
         $precio_3 = $_POST['h_precio_3'];

@@ -362,7 +362,12 @@
                             <div class="card-deck mb-3 text-center">
                                 <div class="card shadow-sm">
                                     <div class="card-header">
-                                        <h4 class="my-0 font-weight-normal">With Hotels</h4>
+                                        <h4 class="my-0 font-weight-normal">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="h_con_hotel" name="h_con_hotel" value="con_hotel" checked>
+                                                <label class="custom-control-label" for="h_con_hotel">With Hotels</label>
+                                            </div>
+                                        </h4>
                                     </div>
                                     <div class="card-body">
                                         <h1 class="card-title pricing-card-title">
@@ -391,7 +396,12 @@
                                 </div>
                                 <div class="card shadow-sm">
                                     <div class="card-header">
-                                        <h4 class="my-0 font-weight-normal">Without Hotels</h4>
+                                        <h4 class="my-0 font-weight-normal">
+                                            <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="h_sin_hotel" name="h_sin_hotel" value="sin_hotel" checked>
+                                                <label class="custom-control-label" for="h_sin_hotel">Without Hotels</label>
+                                            </div>
+                                        </h4>
                                     </div>
                                     <div class="card-body">
                                         <h1 class="card-title pricing-card-title">
